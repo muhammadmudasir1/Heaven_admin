@@ -3,6 +3,7 @@ import LoginPage from "./component/LoginPage"
 import PrivatePage from "./component/PrivatePage"
 import Dashboard from "./component/Dashboard"
 import ProductDashboard from "./component/ProductDashBoard"
+import AddProduct from "./component/AddProduct"
 import "./style.css"
 
 
@@ -17,7 +18,7 @@ const App=()=>{
                         <Route path="topFive" element={<h1>TopFive</h1>}/>
                         <Route path="news" element={<h1>News</h1>}/>
                         <Route path="analytics" element={<h1>Google Analytics</h1>}/>
-                        <Route path="addProduct" element={<h1>add Product</h1>}/>
+                        <Route path="addProduct" element={<AddProduct/>}/>
                         </Route>
                 </Route>
                 <Route path="/login" element={<LoginPage/>}/>
