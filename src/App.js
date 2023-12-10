@@ -12,8 +12,8 @@ const App=()=>{
 
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<PrivatePage/>}>
-                    <Route path="/dashboard" element={<Dashboard/>}>
+                <Route path="/dashboard" element={<PrivatePage/>}>
+                    <Route element={<Dashboard/>}>
                         <Route path="product" element={<ProductDashboard/>}/>
                         <Route path="topFive" element={<h1>TopFive</h1>}/>
                         <Route path="news" element={<h1>News</h1>}/>
@@ -22,6 +22,7 @@ const App=()=>{
                         </Route>
                 </Route>
                 <Route path="/login" element={<LoginPage/>}/>
+                <Route path="*" element={<p>404 Page not found</p>}></Route>
             </Routes>
         
         </BrowserRouter>
