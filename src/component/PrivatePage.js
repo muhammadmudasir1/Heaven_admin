@@ -1,9 +1,11 @@
 import { Navigate, Outlet} from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 const PrivatePage=()=>{
-    const isLogin=true
+    const {auth}=useAuth()
+    console.log(auth)
     
-    if(isLogin){
+    if(auth){
         return(
             <>
             <Outlet/>

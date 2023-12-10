@@ -7,8 +7,25 @@ import plus from "../imges/plus.svg"
 import Logo from "../imges/logo.png"
 import logout from "../imges/logout.svg"
 import person from "../imges/person.svg"
+import { useAuth } from "../context/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 const Dashboard = () => {
+    const {logout}=useAuth()
+    const navigate=useNavigate()
+    const handleLogout=(e)=>{
+        try {
+            logout()
+            navigate('/login')
+            
+        } catch (error) {
+            console.log(error.reponse)
+        }
+    }
+    
+
+
+
     return (
         <div className="grid grid-cols-6 h-screen">
             <div className=" bg-customBlue flex flex-col justify-between">
@@ -43,10 +60,13 @@ const Dashboard = () => {
                         <img src={person} className=" w-4 ml-7" />
                         <p className="pl-2">User Account</p>
                     </Link>
-                    <Link className=" flex items-center text-white font-sans font-bold text-lg py-3 hover:text-gray-300">
+                    <button 
+                    className=" flex items-center text-white font-sans font-bold text-lg py-3 hover:text-gray-300"
+                    onClick={handleLogout}
+                    >
                         <img src={logout} className=" w-4 ml-7" />
                         <p className="pl-2">Logout</p>
-                    </Link>
+                    </button>
                 </div>
             </div>
             <div className=" col-span-5">

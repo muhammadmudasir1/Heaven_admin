@@ -1,19 +1,37 @@
 import logo from "../imges/logo.png"
 import { useState,useEffect } from "react"
 import Api from "../api/Api"
+import { useAuth } from "../context/AuthContext"
+import { Navigate, useNavigate } from "react-router-dom"
 
 
 const LoginPage = () => {
     const [email,setEmail]=useState()
     const [password,setPassword]=useState()
+    const [error,setError]=useState(null)
+    const {login} =useAuth()
+    const naviagate=useNavigate()
     
     const handleSubmit=async(e)=>{
         e.preventDefault()
-        // console.log(email,pwd)
-        const response=await Api.post('user/login',{email,password})
-        console.log(response.data)
-        console.log(document.cookie)
+        try {
+            const response=await Api.post('api/user/login',{email,password})
+            login(response.data)
+            console.log(response.data)
+            naviagate('/dashboard/product')
+
+            
+        } catch (error) {
+            console.log(error)
+            error.response?.status===400?
+                setError("Invalid Email Or Password")
+            :setError("Login Failed")
+        }
     }
+
+    useEffect(()=>{
+        setError(null)
+    },[email,password])
     
     return (
         <div className=" w-screen h-screen bg-gradient flex justify-center items-center">
@@ -51,14 +69,11 @@ const LoginPage = () => {
                         }}
                     />
                     </div>
-                    <button type="submit" className="w-3/4 my-12  bg-customBlue hover:bg-sky-600 h-12 rounded-full font-sans font-bold text-lg text-white">Login</button>
+                    {error?
+                    <p className=" mt-2  text-center text-red-500">{error}</p>:null}
+                    <button type="submit" className="w-3/4 my-10  bg-customBlue hover:bg-sky-600 h-12 rounded-full font-sans font-bold text-lg text-white">Login</button>
                 </form>
-                <button onClick={async(e)=>{
-                    const response =await Api.get('/user/test')
-                    console.log(response.data)
-                }}>
-                    Check
-                </button>
+            
             </div>
         </div>
     )
