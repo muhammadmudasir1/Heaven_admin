@@ -91,14 +91,10 @@ const AddProduct = () => {
     }
 
 
-    useEffect(() => {
-        console.log(variants)
-    }, [variants])
-
     const { acceptedFiles: acceptedFilesImages,
         getInputProps: getInputPropsImages,
         getRootProps: getRootPropsImages
-    } = useDropzone({ onDrop: onDropImages, accept: 'image/png, image/jpeg, image/webp' })
+    } = useDropzone({ onDrop: onDropImages, accept: 'image/png, image/jpeg, image/webp'})
     const { acceptedFiles: acceptedFilesScopeImages,
         getInputProps: getInputPropsScopeImages,
         getRootProps: getRootPropsScopeImages
@@ -106,6 +102,7 @@ const AddProduct = () => {
 
     const handleAddProductForm=async(e)=>{
         e.preventDefault()
+        
     }
 
 
@@ -113,7 +110,7 @@ const AddProduct = () => {
     return (
         <div className="w-full h-screen p-6 flex flex-col overflow-x-hidden overflow-scroll">
 
-            <form className="" onSubmit={handleAddProductForm}>
+            <form encType='multipart/form-data' onSubmit={handleAddProductForm}>
                 <div className="h-12 ">
                     <h1 className=" font-sans font-bold text-2xl">Add Product</h1>
                 </div>
@@ -125,6 +122,7 @@ const AddProduct = () => {
                             </label>
                             <input type="text" placeholder="Type Here"
                                 className="h-12 rounded-lg outline-none px-3 border-2 border-gray-400"
+                                required
                                 value={productName}
                                 onChange={(e)=>{setProductName(e.target.value)}}
                                 />
@@ -136,6 +134,7 @@ const AddProduct = () => {
                             </label>
                             <input type="text" placeholder="Type Here"
                                 className="h-12 rounded-lg outline-none px-3 border-2 border-gray-400"
+                                required
                                 value={manufacturer}
                                 onChange={(e)=>{setManufacturer(e.target.value)}}
                                 />
@@ -146,10 +145,11 @@ const AddProduct = () => {
                                 Product Discription
                             </label>
                             <textarea placeholder="Type Here"
+                                required
                                 rows={5}
                                 className=" resize-none  rounded-lg outline-none p-3 border-2 border-gray-400"
                                 value={productDiscription}
-                                onChange={(e)=>productDiscription(e.target.value)}
+                                onChange={(e)=>setProductDiscription(e.target.value)}
                                 />
                         </section>
                     </div>
@@ -162,7 +162,8 @@ const AddProduct = () => {
                                 </label>
 
                                 <div {...getRootPropsImages({ className: " text-center bg-gray-200 h-14 flex items-center justify-center rounded-md mb-2 hover:bg-gray-100" })}>
-                                    <input {...getInputPropsImages()} />
+                                    <input {...getInputPropsImages()} 
+                                    />
                                     <p>Drag or Click to select a Picture  </p>
 
                                 </div>

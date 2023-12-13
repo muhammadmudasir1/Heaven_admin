@@ -5,12 +5,14 @@ import list from "../imges/list.svg"
 import barChart from "../imges/barChart.svg"
 import plus from "../imges/plus.svg"
 import Logo from "../imges/logo.png"
-import logout from "../imges/logout.svg"
+import logoutIcon from "../imges/logout.svg"
 import person from "../imges/person.svg"
 import { useAuth } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 const Dashboard = () => {
+    const {t}=useTranslation()
     const {logout}=useAuth()
     const navigate=useNavigate()
     const handleLogout=(e)=>{
@@ -38,15 +40,15 @@ const Dashboard = () => {
                     <div className="flex flex-col mt-5 ">
                         <Link to={'product'} className=" flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
                             <img src={plus} className=" w-4 ml-7" />
-                            <p className="pl-2">Product</p>
+                            <p className="pl-2">{t('products')}</p>
                         </Link>
                         <Link to={'topFive'} className="flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
                             <img src={topFive} className=" w-4 ml-7" />
-                            <p className="pl-2">Top 5 Product</p>
+                            <p className="pl-2">Top 5 {t('products')}</p>
                         </Link>
                         <Link to={'News'}className="flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
                             <img src={list} className=" w-4 ml-7" />
-                            <p className="pl-2">News</p>
+                            <p className="pl-2">{t('news')}</p>
                         </Link>
                         <Link to={'analytics'}className="flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
                             <img src={barChart} className=" w-4 ml-7" />
@@ -64,8 +66,8 @@ const Dashboard = () => {
                     className=" flex items-center text-white font-sans font-bold text-lg py-3 hover:text-gray-300"
                     onClick={handleLogout}
                     >
-                        <img src={logout} className=" w-4 ml-7" />
-                        <p className="pl-2">Logout</p>
+                        <img src={logoutIcon} className=" w-4 ml-7" />
+                        <p className="pl-2">{t("logout")}</p>
                     </button>
                 </div>
             </div>

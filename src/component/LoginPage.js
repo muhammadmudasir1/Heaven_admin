@@ -3,6 +3,7 @@ import { useState,useEffect } from "react"
 import Api from "../api/Api"
 import { useAuth } from "../context/AuthContext"
 import { Navigate, useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 
 const LoginPage = () => {
@@ -10,6 +11,9 @@ const LoginPage = () => {
     const [password,setPassword]=useState()
     const [error,setError]=useState(null)
     const {login} =useAuth()
+    const {t}=useTranslation()
+
+
     const naviagate=useNavigate()
     
     const handleSubmit=async(e)=>{
@@ -40,10 +44,10 @@ const LoginPage = () => {
                     <img src={logo} className=" w-12"></img>
                     <h2 className=" text-2xl font-sans font-bold">3D Heaven</h2>
                 </div>
-                <h1 className=" text-5xl font-righteous text-customBlue mt-6 ">WELCOME!</h1>
+                <h1 className=" text-5xl font-righteous text-customBlue mt-6 ">{t("welcome")}</h1>
                 <form className="mt-6 flex flex-col items-center w-full"    onSubmit={handleSubmit}>
                     <div className="w-3/4">
-                    <label>Username/E-mail Address:</label>
+                    <label>{t('emailAddress')}:</label>
                     <input
                         type="text"
                         id="username"
@@ -57,7 +61,7 @@ const LoginPage = () => {
 
                     </div>
                     <div className="w-3/4 mt-5">
-                    <label>Password:</label>
+                    <label>{t('password')}:</label>
                     <input
                         type="password"
                         id="pasword"
@@ -71,7 +75,7 @@ const LoginPage = () => {
                     </div>
                     {error?
                     <p className=" mt-2  text-center text-red-500">{error}</p>:null}
-                    <button type="submit" className="w-3/4 my-10  bg-customBlue hover:bg-sky-600 h-12 rounded-full font-sans font-bold text-lg text-white">Login</button>
+                    <button type="submit" className="w-3/4 my-10  bg-customBlue hover:bg-sky-600 h-12 rounded-full font-sans font-bold text-lg text-white">{t('login')}</button>
                 </form>
             
             </div>
