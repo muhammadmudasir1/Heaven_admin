@@ -1,7 +1,11 @@
 import { useDropzone } from 'react-dropzone'
 import { useCallback, useEffect, useState } from 'react'
+import { useProductContext } from '../context/CurrentProductContext';
+import  ClipLoader  from 'react-spinners/ClipLoader';
 import { ImCross } from "react-icons/im";
+import { MdCancel } from "react-icons/md";
 import Api from "../api/Api"
+import {useNavigate,useParams } from 'react-router-dom';
 
 const AddProduct = () => {
     const [images, setImages] = useState([])
@@ -11,15 +15,30 @@ const AddProduct = () => {
     const [variantSearch, setVariantSearch] = useState(null)
     const [variantByApi, setVariantByApi] = useState(null)
     const [variants, setVariants] = useState([])
-    const [productName,setProductName]=useState('')
-    const [manufacturer,setManufacturer]=useState('')
-    const [productDiscription,setProductDiscription]=useState('')
-    const [scopeOfDeliveryDiscription,setScopeOfDeliveryDiscription]=useState('')
-    const [priceRating,setPriceRating]=useState(0)
-    const [innovationRating,setinnovationRating]=useState(0)
-    const [softwareRating,setSoftwareRating]=useState(0)
-    const [customerServiceRating,setCustomerServiceRating]=useState(0)
-    const [processingRating,setProcessingRating]=useState(0)
+    const [productName, setProductName] = useState('')
+    const [manufacturer, setManufacturer] = useState('')
+    const [productDiscription, setProductDiscription] = useState('')
+    const [scopeOfDeliveryDiscription, setScopeOfDeliveryDiscription] = useState('')
+    const [priceRating, setPriceRating] = useState(0)
+    const [innovationRating, setinnovationRating] = useState(0)
+    const [softwareRating, setSoftwareRating] = useState(0)
+    const [customerServiceRating, setCustomerServiceRating] = useState(0)
+    const [processingRating, setProcessingRating] = useState(0)
+    const [nullImageError, setNullImageError] = useState(false)
+    const [isThumbnail,setIsThumbnail]=useState(false)
+    const[thumbnail,setThumbnail]=useState(0)
+    const [includeInBestDeals,setIncludeInBestDeals]=useState(false)
+    const {populateProduct}=useProductContext()
+    const [loading,setLoading]=useState(false)
+    const [error,setError]=useState(null)
+    const navigate=useNavigate()
+
+
+    // states for Error Handling
+    const [productTypeError, setProductTypeError] = useState(false)
+    const [productNameError, setProductNameError] = useState('')
+    const [manufacturerError, setManufacturerError] = useState('')
+
 
 
     useEffect(() => {
@@ -28,18 +47,15 @@ const AddProduct = () => {
                 { "query": variantSearch }
             )
             setVariantByApi(response.data)
-
-
         }
         search()
-
-
-
     }, [variantSearch])
 
     useEffect(() => {
-        console.log(productType)
-    }, [productType])
+        if (images.length > 0 && nullImageError) {
+            setNullImageError(false)
+        }
+    }, [images])
 
     const onDropImages = useCallback((acceptedFiles) => {
         const NewFiles = acceptedFiles.map(file => {
@@ -82,11 +98,11 @@ const AddProduct = () => {
         })
         setVariantSearch('')
     }
-    const handleRemoveVariant=(index)=>{
-        setVariants((prev)=>{
-            const tempOne=prev.slice(0,index)
-            const tempTwo=prev.slice(index+1)
-            return [...tempOne,...tempTwo]
+    const handleRemoveVariant = (index) => {
+        setVariants((prev) => {
+            const tempOne = prev.slice(0, index)
+            const tempTwo = prev.slice(index + 1)
+            return [...tempOne, ...tempTwo]
         })
     }
 
@@ -94,23 +110,94 @@ const AddProduct = () => {
     const { acceptedFiles: acceptedFilesImages,
         getInputProps: getInputPropsImages,
         getRootProps: getRootPropsImages
-    } = useDropzone({ onDrop: onDropImages, accept: 'image/png, image/jpeg, image/webp'})
+    } = useDropzone({ onDrop: onDropImages, accept: 'image/png, image/jpeg, image/webp' })
     const { acceptedFiles: acceptedFilesScopeImages,
         getInputProps: getInputPropsScopeImages,
         getRootProps: getRootPropsScopeImages
     } = useDropzone({ onDrop: onDropScopeImages, accept: 'image/png, image/jpeg, image/webp' })
 
-    const handleAddProductForm=async(e)=>{
-        e.preventDefault()
+    
+    const saveProduct=async(e)=>{
+        document.getElementById('addproduct').scrollTop=0
+        setLoading(true)
+        const fd=new FormData()
+        fd.append("thumbnail",images[thumbnail])
+
+        images.forEach((image,index)=>{
+            if(index!==thumbnail){
+
+                fd.append('images',image)
+            }
+        })
+
+        scopeImaages.forEach((image)=>{
+            fd.append('sdImages',image)
+        })
+
+        fd.append('product_name',productName)
+        fd.append('manufacturer',manufacturer)
+        fd.append('price_rating',priceRating)
+        fd.append('innovation_rating',innovationRating)
+        fd.append('software_rating',softwareRating)
+        fd.append('customer_service_rating',customerServiceRating)
+        fd.append('processing_rating',processingRating)
+        fd.append('scope_of_delivery_discription',scopeOfDeliveryDiscription)
+        fd.append('include_in_BestDeals',includeInBestDeals)
+        fd.append('productType',productType)
+        fd.append('discription',productDiscription)
+        console.log(thumbnail)
+        console.log(fd.getAll('thumbnail'))
+        try {
+            const response =await Api.post('/api/products/test',fd)
+            populateProduct(response.data)
+            setLoading(false)
+            navigate(`/dashboard/addSpecs/${response.data}`)
+            
+            
+        } catch (error) {
+            console.log(error)
+            setError("Saving Product is Failed")
+            setLoading(false)
+
+        }
+
+
+
+
+
+    }
+    const processForm =async (e) => {
+        if(!productName || !manufacturer || !productType || images.length < 1){
+            !productName && setProductNameError(true)
+            !manufacturer && setManufacturerError(true)
+            !productTypeError && setProductTypeError(true)
+            images.length<1 && setNullImageError(true)
+            document.getElementById('addproduct').scrollTop=0
+            return
+        }
+        else {
+            if(images.length>1){
+                document.getElementById('addproduct').scrollTop=0
+                setIsThumbnail(true)
+                
+            }
+            else{
+                setThumbnail(0)
+                await saveProduct()
+            }
+
+        }
         
+
     }
 
 
 
-    return (
-        <div className="w-full h-screen p-6 flex flex-col overflow-x-hidden overflow-scroll">
 
-            <form encType='multipart/form-data' onSubmit={handleAddProductForm}>
+    return (
+        <div id='addproduct' className={` w-full h-screen relative p-6 flex flex-col overflow-x-hidden ${isThumbnail||error||loading?" overflow-y-hidden":" overflow-y-scroll"}`}>
+
+            <div>
                 <div className="h-12 ">
                     <h1 className=" font-sans font-bold text-2xl">Add Product</h1>
                 </div>
@@ -121,11 +208,15 @@ const AddProduct = () => {
                                 Product Name
                             </label>
                             <input type="text" placeholder="Type Here"
-                                className="h-12 rounded-lg outline-none px-3 border-2 border-gray-400"
-                                required
+                                className={`h-12 rounded-lg outline-none px-3 border-2 ${productNameError?"border-red-500":"border-gray-400"}`}
                                 value={productName}
-                                onChange={(e)=>{setProductName(e.target.value)}}
-                                />
+                                onChange={(e) => {
+                                    setProductName(e.target.value)
+                                    setProductNameError(false)
+                                }}
+                            />
+                            {productNameError?<p className='text-red-500 text-sm'>Product Name is Compulsory</p>:null}
+
                         </section>
 
                         <section className="flex flex-col mb-2">
@@ -133,11 +224,14 @@ const AddProduct = () => {
                                 Manufacturer
                             </label>
                             <input type="text" placeholder="Type Here"
-                                className="h-12 rounded-lg outline-none px-3 border-2 border-gray-400"
-                                required
+                                className={`h-12 rounded-lg outline-none px-3 border-2 ${manufacturerError?"border-red-500":"border-gray-400"}`}
                                 value={manufacturer}
-                                onChange={(e)=>{setManufacturer(e.target.value)}}
-                                />
+                                onChange={(e) => {
+                                    setManufacturer(e.target.value)
+                                    setManufacturerError(false)
+                                }}
+                            />
+                            {manufacturerError?<p className='text-red-500 text-sm'>Manufacturer is Compulsory</p>:null}
                         </section>
 
                         <section className="flex flex-col ">
@@ -145,12 +239,11 @@ const AddProduct = () => {
                                 Product Discription
                             </label>
                             <textarea placeholder="Type Here"
-                                required
                                 rows={5}
-                                className=" resize-none  rounded-lg outline-none p-3 border-2 border-gray-400"
+                                className={" resize-none  rounded-lg outline-none p-3 border-2 border-gray-400"}
                                 value={productDiscription}
-                                onChange={(e)=>setProductDiscription(e.target.value)}
-                                />
+                                onChange={(e) => setProductDiscription(e.target.value)}
+                            />
                         </section>
                     </div>
 
@@ -161,12 +254,24 @@ const AddProduct = () => {
                                     Images
                                 </label>
 
-                                <div {...getRootPropsImages({ className: " text-center bg-gray-200 h-14 flex items-center justify-center rounded-md mb-2 hover:bg-gray-100" })}>
-                                    <input {...getInputPropsImages()} 
+                                <div {...getRootPropsImages(
+                                    {
+                                        className: `text-center bg-gray-200 h-14 flex items-center justify-center rounded-md mb-2 hover:bg-gray-100 ${nullImageError ? " border-red-500 border-2" : null} `
+                                    }
+                                )}>
+                                    <input {...getInputPropsImages()}
                                     />
                                     <p>Drag or Click to select a Picture  </p>
 
+
                                 </div>
+
+                                {
+                                    nullImageError ?
+                                        <p className=' text-red-500'>Please select at least One Image</p>
+                                        : null
+                                }
+
                                 {
                                     images.length > 0 ?
                                         <div className=' h-14 w-full  flex justify-center items-center'>
@@ -205,7 +310,7 @@ const AddProduct = () => {
                                 Product Type
                             </label>
                             <select
-                                className="h-12 rounded-lg outline-none px-3 border-2 border-gray-400"
+                                className={`h-12 rounded-lg outline-none px-3 border-2  ${productTypeError?"border-red-500":"border-gray-400"}`}
                                 value={productType}
                                 onChange={
                                     (e) => {
@@ -213,8 +318,9 @@ const AddProduct = () => {
                                             setProductType(null)
                                         }
                                         else {
-
+                                            
                                             setProductType(e.target.value)
+                                            setProductTypeError(false)
                                         }
                                     }}
                             >
@@ -225,6 +331,7 @@ const AddProduct = () => {
                                 <option value={4}>Leaser Cutter</option>
                                 <option value={5}>Others</option>
                             </select>
+                            {productTypeError?<p className='text-red-500 text-sm'>Product Type is Compulsory</p>:null}
                         </section>
                         {
                             !(productType == 5) ?
@@ -282,13 +389,14 @@ const AddProduct = () => {
                                                 {
                                                     variants.length > 0 ?
                                                         <div className='flex my-2'>
-                                                            {variants.map((product,index) => {
+                                                            {variants.map((product, index) => {
                                                                 return <p key={index} className=' bg-customBlue text-white px-2  py-1 mx-1 rounded-2xl flex items-center '>
                                                                     <span className='truncate max-w-[150px]'>{product.product_name}</span>
                                                                     <span className='text-white text-xs ml-2 p-2 hover:cursor-pointer'
-                                                                    onClick={(e)=>{
-                                                                        console.log("from remove variants")
-                                                                        handleRemoveVariant(index)}}
+                                                                        onClick={(e) => {
+                                                                            console.log("from remove variants")
+                                                                            handleRemoveVariant(index)
+                                                                        }}
                                                                     >x</span></p>
                                                             })}
                                                         </div>
@@ -312,7 +420,10 @@ const AddProduct = () => {
                                 Include in Best Deals
                             </label>
                             <input type="checkbox"
-                                className="ounded-lg outline-none border-2 border-gray-400 ml-3" />
+                                className="ounded-lg outline-none border-2 border-gray-400 ml-3" 
+                                value={includeInBestDeals}
+                                onChange={(e)=>setIncludeInBestDeals(e.target.value)}
+                                />
                         </section>
                     </div>
 
@@ -333,12 +444,12 @@ const AddProduct = () => {
                                 </label>
                                 <textarea placeholder="Type Here"
                                     rows={5}
-                                    className=" resize-none  rounded-lg outline-none p-3 border-2 border-gray-400" 
-                                    value={productDiscription}
-                                    onChange={(e)=>{
-                                        setProductDiscription(e.target.value)
+                                    className=" resize-none  rounded-lg outline-none p-3 border-2 border-gray-400"
+                                    value={scopeOfDeliveryDiscription}
+                                    onChange={(e) => {
+                                        setScopeOfDeliveryDiscription(e.target.value)
                                     }}
-                                    />
+                                />
                             </section>
                         </div>
                         <div>
@@ -387,22 +498,22 @@ const AddProduct = () => {
                         <div className=" h-36 flex justify-between items-center">
                             <div className="flex flex-col items-center">
                                 <div className=" h-28 w-28 rounded-full bg-white border-customBlue border-4 relative flex justify-center items-center">
-                                    <input 
-                                    type='text'
-                                    className="h-8 w-8 text-lg rounded-md text-center border-gray-400 border-2 absolute top-4 left-4 outline-none "
-                                    value={priceRating}
-                                    onChange={(e)=>{
-                                        if(e.target.value>5){
-                                            setPriceRating(5)
-                                        }
-                                        else if(e.target.value<0){
-                                            setPriceRating(0)
-                                        }
-                                        else{
-                                            setPriceRating(e.target.value)
-                                        }
-                                        
-                                    }}
+                                    <input
+                                        type='text'
+                                        className="h-8 w-8 text-lg rounded-md text-center border-gray-400 border-2 absolute top-4 left-4 outline-none "
+                                        value={priceRating}
+                                        onChange={(e) => {
+                                            if (e.target.value > 5) {
+                                                setPriceRating(5)
+                                            }
+                                            else if (e.target.value < 0) {
+                                                setPriceRating(0)
+                                            }
+                                            else {
+                                                setPriceRating(e.target.value)
+                                            }
+
+                                        }}
                                     />
                                     <div className=" w-0.5 h-5/6 bg-customBlue rotate-45"></div>
 
@@ -416,24 +527,24 @@ const AddProduct = () => {
                             <div className="flex flex-col items-center">
                                 <div className=" h-28 w-28 rounded-full bg-white border-customBlue border-4 relative flex justify-center items-center">
                                     <input
-                                    className="h-8 w-8 text-lg rounded-md text-center border-gray-400 border-2 absolute top-4 left-4 outline-none "
-                                    value={innovationRating}
-                                    onChange={(e)=>{
-                                        if(e.target.value>5){
-                                            setinnovationRating(5)
-                                        }
-                                        else if(e.target.value<0){
-                                            setinnovationRating(0)
-                                        }
-                                        else{
-                                            setinnovationRating(e.target.value)
-                                        }
-                                        
-                                    }}
-                                    
-                                    
+                                        className="h-8 w-8 text-lg rounded-md text-center border-gray-400 border-2 absolute top-4 left-4 outline-none "
+                                        value={innovationRating}
+                                        onChange={(e) => {
+                                            if (e.target.value > 5) {
+                                                setinnovationRating(5)
+                                            }
+                                            else if (e.target.value < 0) {
+                                                setinnovationRating(0)
+                                            }
+                                            else {
+                                                setinnovationRating(e.target.value)
+                                            }
+
+                                        }}
+
+
                                     />
-                                    
+
                                     <div className=" w-0.5 h-5/6 bg-customBlue rotate-45"></div>
 
                                     <p className="h-6 w-6 text-center text-2xl absolute bottom-5 right-5 ">
@@ -446,21 +557,21 @@ const AddProduct = () => {
                             <div className="flex flex-col items-center">
                                 <div className=" h-28 w-28 rounded-full bg-white border-customBlue border-4 relative flex justify-center items-center">
                                     <input className="h-8 w-8 text-lg rounded-md text-center border-gray-400 border-2 absolute top-4 left-4 outline-none "
-                                    value={softwareRating}
-                                    onChange={(e)=>{
-                                        if(e.target.value>5){
-                                            setSoftwareRating(5)
-                                        }
-                                        else if(e.target.value<0){
-                                            setSoftwareRating(0)
-                                        }
-                                        else{
-                                            setSoftwareRating(e.target.value)
-                                        }
-                                        
-                                    }}
+                                        value={softwareRating}
+                                        onChange={(e) => {
+                                            if (e.target.value > 5) {
+                                                setSoftwareRating(5)
+                                            }
+                                            else if (e.target.value < 0) {
+                                                setSoftwareRating(0)
+                                            }
+                                            else {
+                                                setSoftwareRating(e.target.value)
+                                            }
+
+                                        }}
                                     />
-                                    
+
                                     <div className=" w-0.5 h-5/6 bg-customBlue rotate-45"></div>
 
                                     <p className="h-6 w-6 text-center text-2xl absolute bottom-5 right-5 ">
@@ -473,21 +584,21 @@ const AddProduct = () => {
                             <div className="flex flex-col items-center">
                                 <div className=" h-28 w-28 rounded-full bg-white border-customBlue border-4 relative flex justify-center items-center">
                                     <input className="h-8 w-8 text-lg rounded-md text-center border-gray-400 border-2 absolute top-4 left-4 outline-none "
-                                    value={customerServiceRating}
-                                    onChange={(e)=>{
-                                        if(e.target.value>5){
-                                            setCustomerServiceRating(5)
-                                        }
-                                        else if(e.target.value<0){
-                                            setCustomerServiceRating(0)
-                                        }
-                                        else{
-                                            setCustomerServiceRating(e.target.value)
-                                        }
-                                        
-                                    }}
+                                        value={customerServiceRating}
+                                        onChange={(e) => {
+                                            if (e.target.value > 5) {
+                                                setCustomerServiceRating(5)
+                                            }
+                                            else if (e.target.value < 0) {
+                                                setCustomerServiceRating(0)
+                                            }
+                                            else {
+                                                setCustomerServiceRating(e.target.value)
+                                            }
+
+                                        }}
                                     />
-                                    
+
                                     <div className=" w-0.5 h-5/6 bg-customBlue rotate-45"></div>
 
                                     <p className="h-6 w-6 text-center text-2xl absolute bottom-5 right-5 ">
@@ -500,19 +611,19 @@ const AddProduct = () => {
                             <div className="flex flex-col items-center">
                                 <div className=" h-28 w-28 rounded-full bg-white border-customBlue border-4 relative flex justify-center items-center">
                                     <input className="h-8 w-8 text-lg rounded-md text-center border-gray-400 border-2 absolute top-4 left-4 outline-none "
-                                    value={processingRating}
-                                    onChange={(e)=>{
-                                        if(e.target.value>5){
-                                            setProcessingRating(5)
-                                        }
-                                        else if(e.target.value<0){
-                                            setProcessingRating(0)
-                                        }
-                                        else{
-                                            setProcessingRating(e.target.value)
-                                        }
-                                        
-                                    }}
+                                        value={processingRating}
+                                        onChange={(e) => {
+                                            if (e.target.value > 5) {
+                                                setProcessingRating(5)
+                                            }
+                                            else if (e.target.value < 0) {
+                                                setProcessingRating(0)
+                                            }
+                                            else {
+                                                setProcessingRating(e.target.value)
+                                            }
+
+                                        }}
                                     />
                                     <div className=" w-0.5 h-5/6 bg-customBlue rotate-45"></div>
 
@@ -523,7 +634,7 @@ const AddProduct = () => {
                                 </div>
                                 <p>Processing Rating</p>
                             </div>
-                            
+
 
                         </div>
 
@@ -532,12 +643,94 @@ const AddProduct = () => {
                         <div className="w-40 h-12 bg-gray-300 rounded-md">
                             Back
                         </div>
-                        <button className="w-40 h-12 bg-gray-300 rounded-md">
+                        <button className="w-40 h-12 bg-gray-300 rounded-md"
+                        onClick={(e)=>{
+                            processForm(e)
+                        }}
+                        >
                             Save & Next
                         </button>
                     </div>
                 </div>
-            </form>
+            </div>
+            {
+            isThumbnail?
+            <div className='top-0 left-0  absolute w-full h-full flex justify-center items-center'>
+                <div className=' absolute w-full h-full bg-black opacity-60'>
+                </div>
+                <div className=' w-1/2  bg-white z-[9999] rounded-lg flex flex-col  items-center p-4'>
+
+                    <p className='text-xl font-semibold text-customBlue'>
+                        Select a Thumbnail
+                    </p>
+                    <div className='grid grid-cols-4 gap-2 mt-4'>
+                        {
+                            images.map((picture,index)=>{
+                                return<div className=' bg-customBlue'>
+                                    <img  className={`${thumbnail===index?"mix-blend-screen border-customBlue border-2 ":" "}   hover:mix-blend-overlay w-32 h-32`} src={picture.preview}
+                                    onClick={(e)=>setThumbnail(index)}
+                                    />
+                                </div>
+
+                                
+
+                            })
+                        }
+                        
+                    </div>
+                    <div>
+
+                        <button
+                        className="text-white hover:bg-blue-500 bg-customBlue mt-6 px-4 py-2 rounded-lg"
+                            onClick={async(e)=>{
+                                setIsThumbnail(false)
+                                await saveProduct()
+                            }}
+                            
+                            >
+                            Done</button>
+                    </div>
+                </div>
+
+
+            </div>
+            :null
+            }
+            {
+                loading?
+                <div className='top-0 left-0  absolute w-full h-full flex justify-center items-center'>
+                    <div className=' absolute w-full h-full bg-gray-500 opacity-60'>
+                    </div>
+                    <ClipLoader
+                    size={75}
+                    loading={loading}
+                    color={"#026CC4"}
+                    />
+                </div>:
+                null
+            }
+
+            {
+                error?
+                <div className='top-0 left-0  absolute w-full h-screen flex justify-center items-center'>
+                    <div className=' absolute w-full h-full bg-gray-500 opacity-60'>
+                        
+                    </div>
+                    <div className=' absolute w-1/2 h-32 bg-white rounded-md z-[9999] flex justify-center items-center'>
+                    <MdCancel className=' absolute top-2 right-2 hover:text-red-500'
+                    onClick={(e)=>setError(null)}
+                    />
+                        <p>{error}</p>
+                    </div>
+                </div>:
+                null
+            }
+
+
+
+
+
+
 
         </div>
     )

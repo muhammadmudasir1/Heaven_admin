@@ -45,16 +45,17 @@ const ProductDashboard = () => {
         }
     }
     return (
-        <div className="px-10 h-full w-full">
+        <div className="px-10 pt-14 w-full">
             <div className="mr-5 h-12 w-full flex flex-row-reverse items-center">
-                <div className=" mr-5 h-10 flex items-center ">
 
+                <div className=" mr-5 h-10 flex items-center ">
                     <input type=" text" className="h-full px-4 rounded-tl-full rounded-bl-full outline-none border-2 border-l-0 shadow-lg" placeholder="Search...... " />
                     <button
                         className="h-full rounded-tr-full rounded-br-full px-3 bg-customBlue text-white font-sans font-semibold hover:bg-sky-500 shadow-lg"
                         onClick={(handleSearch)}
                     >Search</button>
                 </div>
+
             </div>
             <div className=" h-12 w-full">
                 <button

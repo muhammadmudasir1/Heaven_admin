@@ -6,6 +6,8 @@ import ProductDashboard from "./component/ProductDashBoard"
 import AddProduct from "./component/AddProduct"
 import "./style.css"
 import AuthProvider from "./context/AuthContext"
+import CurrentProductProvider from "./context/CurrentProductContext"
+import AddSpecs from "./component/AddSpecs"
 
 
 const App = () => {
@@ -13,6 +15,7 @@ const App = () => {
 
         <BrowserRouter>
             <AuthProvider>
+                <CurrentProductProvider>
                 <Routes>
 
                     <Route path="/dashboard" element={<PrivatePage />}>
@@ -23,6 +26,7 @@ const App = () => {
                             <Route path="news" element={<h1>News</h1>} />
                             <Route path="analytics" element={<h1>Google Analytics</h1>} />
                             <Route path="addProduct" element={<AddProduct />} />
+                            <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
                         </Route>
                     </Route>
 
@@ -30,6 +34,7 @@ const App = () => {
                     <Route path="*" element={<p>404 Page not found</p>}></Route>
 
                 </Routes>
+                </CurrentProductProvider>
             </AuthProvider>
 
 

@@ -4,6 +4,12 @@ import Api from "../api/Api"
 import { useAuth } from "../context/AuthContext"
 import { Navigate, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+import { CiGlobe } from "react-icons/ci";
+import { countries } from 'country-flag-icons';
+import {FaCaretDown} from 'react-icons/fa'
+import germanflag from "../imges/germanflag.png"
+import ukflag from "../imges/ukflag.png"
+import useLanguage from "../hooks/useLanguage"
 
 
 const LoginPage = () => {
@@ -12,6 +18,8 @@ const LoginPage = () => {
     const [error,setError]=useState(null)
     const {login} =useAuth()
     const {t}=useTranslation()
+    const [showLang,setShowLang]=useState(false)
+    const setlang=useLanguage()
 
 
     const naviagate=useNavigate()
@@ -78,6 +86,40 @@ const LoginPage = () => {
                     <button type="submit" className="w-3/4 my-10  bg-customBlue hover:bg-sky-600 h-12 rounded-full font-sans font-bold text-lg text-white">{t('login')}</button>
                 </form>
             
+            </div>
+            <div className="absolute top-4 right-4 ">
+                <div className="flex bg-white items-center rounded-3xl">
+                <CiGlobe className="text-2xl m-2"/> 
+                <p className="m-2">Language</p>
+                <FaCaretDown className="m-2 hover:text-customBlue "
+                onClick={(e)=>setShowLang((prev)=>{
+                    return !prev}
+                )}
+                />
+                </div>
+                {showLang?
+                <ul className="bg-white mt-2 rounded-md shadow-md overflow-hidden">
+                    <li className="px-2 py-1 hover:bg-sky-400 hover:text-white flex items-center"
+                    onClick={(e)=>{
+                        setlang("en")
+                        setShowLang(false)
+                    }}
+                    >
+                        <img src={ukflag} className="h-4 mr-2"/>
+                        <p>English</p>
+                        </li>
+                    <li className="px-2 py-1 hover:bg-sky-400 hover:text-white flex items-center"
+                    onClick={(e)=>{
+                        setlang("de")
+                        setShowLang(false)
+                    }}
+                    >
+                        <img src={germanflag} className="h-4 mr-2"/>
+                        German</li>
+                </ul>
+                :null
+                }
+
             </div>
         </div>
     )
