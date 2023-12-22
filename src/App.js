@@ -17,7 +17,6 @@ const App = () => {
             <AuthProvider>
                 <CurrentProductProvider>
                 <Routes>
-
                     <Route path="/dashboard" element={<PrivatePage />}>
 
                         <Route element={<Dashboard />}>

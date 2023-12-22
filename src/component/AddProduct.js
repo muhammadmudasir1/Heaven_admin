@@ -327,8 +327,8 @@ const AddProduct = () => {
                                 <option value={0}>Select Prouduct Type</option>
                                 <option value={1}>SLA Printers</option>
                                 <option value={2}>FDM Printers</option>
-                                <option value={3}>3D Scannar</option>
-                                <option value={4}>Leaser Cutter</option>
+                                <option value={3}>Leaser Cutter</option>
+                                <option value={4}>3D Scannar</option>
                                 <option value={5}>Others</option>
                             </select>
                             {productTypeError?<p className='text-red-500 text-sm'>Product Type is Compulsory</p>:null}
