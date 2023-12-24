@@ -1,10 +1,10 @@
 import { useDropzone } from 'react-dropzone'
 import { useCallback, useEffect, useState } from 'react'
-import { useProductContext } from '../context/CurrentProductContext';
+import { useProductContext } from '../../context/CurrentProductContext';
 import  ClipLoader  from 'react-spinners/ClipLoader';
 import { ImCross } from "react-icons/im";
 import { MdCancel } from "react-icons/md";
-import Api from "../api/Api"
+import Api from "../../api/Api"
 import {useNavigate,useParams } from 'react-router-dom';
 
 const AddProduct = () => {
@@ -110,11 +110,25 @@ const AddProduct = () => {
     const { acceptedFiles: acceptedFilesImages,
         getInputProps: getInputPropsImages,
         getRootProps: getRootPropsImages
-    } = useDropzone({ onDrop: onDropImages, accept: 'image/png, image/jpeg, image/webp' })
+    } = useDropzone({
+        onDrop: onDropImages,
+        accept: {
+            'image/jpeg': [],
+            'image/png': [],
+            'image/webp':[]
+          }
+    })
     const { acceptedFiles: acceptedFilesScopeImages,
         getInputProps: getInputPropsScopeImages,
         getRootProps: getRootPropsScopeImages
-    } = useDropzone({ onDrop: onDropScopeImages, accept: 'image/png, image/jpeg, image/webp' })
+    } = useDropzone({
+        onDrop: onDropScopeImages,
+        accept: {
+            'image/jpeg': [],
+            'image/png': [],
+            'image/webp':[]
+          }
+    })
 
     
     const saveProduct=async(e)=>{
@@ -133,6 +147,9 @@ const AddProduct = () => {
         scopeImaages.forEach((image)=>{
             fd.append('sdImages',image)
         })
+        variants.forEach((variant,index)=>{
+            fd.append('variants',variant.Id)
+        })
 
         fd.append('product_name',productName)
         fd.append('manufacturer',manufacturer)
@@ -145,10 +162,10 @@ const AddProduct = () => {
         fd.append('include_in_BestDeals',includeInBestDeals)
         fd.append('productType',productType)
         fd.append('discription',productDiscription)
-        console.log(thumbnail)
+        
         console.log(fd.getAll('thumbnail'))
         try {
-            const response =await Api.post('/api/products/test',fd)
+            const response =await Api.post('/api/products/',fd)
             populateProduct(response.data)
             setLoading(false)
             navigate(`/dashboard/addSpecs/${response.data}`)
@@ -364,7 +381,7 @@ const AddProduct = () => {
                                                                     >
                                                                         <img
                                                                             className='bg-white w-12 h-12'
-                                                                            src={`/${product.thumbnail}`}
+                                                                            src={`/${product.ProductImages[0].path}`}
                                                                         />
                                                                         <p className=' grow overflow-hidden px-2'>
                                                                             {product.product_name}

@@ -1,15 +1,14 @@
-import logo from "../imges/logo.png"
+import logo from "../../imges/logo.png"
 import { useState,useEffect } from "react"
-import Api from "../api/Api"
-import { useAuth } from "../context/AuthContext"
+import Api from "../../api/Api"
+import { useAuth } from "../../context/AuthContext"
 import { Navigate, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { CiGlobe } from "react-icons/ci";
-import { countries } from 'country-flag-icons';
 import {FaCaretDown} from 'react-icons/fa'
-import germanflag from "../imges/germanflag.png"
-import ukflag from "../imges/ukflag.png"
-import useLanguage from "../hooks/useLanguage"
+import germanflag from "../../imges/germanflag.png"
+import ukflag from "../../imges/ukflag.png"
+import useLanguage from "../../hooks/useLanguage"
 
 
 const LoginPage = () => {

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Api from '../api/Api'
+import Api from '../../api/Api'
 import FDMSpecs from './FDMSpecs'
 import SLASpecs from './SLASpecs'
 import ScannarSpecs from './ScannarSpecs'
 import LaserCutterSpecs from './LaserCutterSpecs'
+import { useNavigate } from 'react-router-dom'
 
 const AddSpecs = () => {
   const { id } = useParams();
   const [productType, setProductType] = useState(null)
   const [err, setErr] = useState(null)
+  const navigate=useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +30,7 @@ const saveData=(data)=>{
     data.Product_Id=id
     const sendData=async()=>{
       await Api.post('/api/products/specs',data)
+      navigate(`/dashboard/addPurchaseLinks/${id}`)
     }
     sendData()
   } catch (error) {

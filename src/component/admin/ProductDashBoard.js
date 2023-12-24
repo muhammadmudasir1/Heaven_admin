@@ -1,9 +1,9 @@
 import ProductCard from "./ProductCard"
-import plus from "../imges/plus.svg"
+import plus from "../../imges/plus.svg"
 import { Link } from "react-router-dom"
-import Api from "../api/Api"
-import { useAuth } from "../context/AuthContext"
-import useRefresh from "../hooks/useRefresh"
+import Api from "../../api/Api"
+import { useAuth } from "../../context/AuthContext"
+import useRefresh from "../../hooks/useRefresh"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 

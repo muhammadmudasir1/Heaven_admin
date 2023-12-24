@@ -1,6 +1,6 @@
-import ProductImage from "../imges/ProductImage.png"
-import Star from "../imges/Star.svg"
-import halfStar from "../imges/halfStar.svg"
+import ProductImage from "../../imges/ProductImage.png"
+import Star from "../../imges/Star.svg"
+import halfStar from "../../imges/halfStar.svg"
 
 const ProductCard = () => {
     return (
