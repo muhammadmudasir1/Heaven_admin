@@ -8,6 +8,10 @@ import "./style.css"
 import AuthProvider from "./context/AuthContext"
 import CurrentProductProvider from "./context/CurrentProductContext"
 import AddSpecs from "./component/AddSpecs"
+import Home from "./component/Home"
+import Navigationbar from "./component/Landingpage/Navigationbar"
+import Review from "./component/Review"
+import OneReview from "./component/OneReview"
 
 
 const App = () => {
@@ -17,7 +21,12 @@ const App = () => {
             <AuthProvider>
                 <CurrentProductProvider>
                 <Routes>
-
+                    <Route element={<Navigationbar/>}>
+                    <Route path="/" element= {<Home/>}/>
+                    <Route path="/Review" element= {<Review/>}/>
+                    <Route path="/OneReview" element= {<OneReview/>}/>
+                    
+                    </Route>
                     <Route path="/dashboard" element={<PrivatePage />}>
 
                         <Route element={<Dashboard />}>
