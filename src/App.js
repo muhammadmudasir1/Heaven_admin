@@ -9,6 +9,7 @@ import "./style.css"
 import AuthProvider from "./context/AuthContext"
 import CurrentProductProvider from "./context/CurrentProductContext"
 import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
+import AddReview from "./component/admin/AddReview"
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
                             <Route path="addProduct" element={<AddProduct />} />
                             <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
                             <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks/>}/>
+                            <Route path="addReview/:id" element={<AddReview/>}/>
                         </Route>
                     </Route>
 
