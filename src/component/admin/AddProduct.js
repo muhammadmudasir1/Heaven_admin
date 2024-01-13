@@ -168,6 +168,7 @@ const AddProduct = () => {
             const response =await Api.post('/api/products/',fd)
             populateProduct(response.data)
             setLoading(false)
+            navigate(`/dashboard/updateproduct/${response.data}`,{replace:true})
             navigate(`/dashboard/addSpecs/${response.data}`)
             
             
