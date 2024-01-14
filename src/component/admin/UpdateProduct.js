@@ -10,7 +10,6 @@ import Api from "../../api/Api"
 import { useParams } from 'react-router-dom';
 
 
-
 const UpdateProduct = () => {
     const [productName, setProductName] = useState('')
     const [productNameError, setProductNameError] = useState('')
@@ -27,6 +26,10 @@ const UpdateProduct = () => {
     const [scopeOfDeliveryImages, setScopeOfDeliveryImages] = useState(null)
     const [manageImages, setManageImages] = useState(false)
     const [manageSODImages, setManageSODImages] = useState(false)
+    const [searchValue, setSearchValue] = useState("")
+    const [productType, setProductType] = useState()
+    const [variants, setVariants] = useState([])
+    const [variantByApi, setVariantByApi] = useState(null)
     const { id } = useParams()
 
 
@@ -57,7 +60,7 @@ const UpdateProduct = () => {
                     return false
                 }
             })
-
+            console.log(result)
             setProductName(result.data.product_name)
             setManufacturer(result.data.manufacturer)
             setProductDiscription(result.data.discription)
@@ -68,20 +71,46 @@ const UpdateProduct = () => {
             setProcessingRating(result.data.processing_rating)
             setScopeOfDeliveryDiscription(result.data.scope_of_delivery_discription)
             setProductImages(images)
+            setProductType(result.data.productType)
             setScopeOfDeliveryImages(SODImages)
+            setVariants(result.data.variants)
         } catch (error) {
             console.log(error)
         }
     }
 
+    useEffect(() => {
+        const search = async () => {
+            const response = await Api.post(`api/products/searchbytype/${productType}`,
+                { "query": searchValue }
+            )
+            setVariantByApi(response.data)
+        }
+        search()
+    }, [searchValue])
 
     useEffect(() => {
-
         getProductData(id)
     }, [id])
-    useEffect(() => {
-        console.log(scopeOfDeliveryImages)
-    }, [productImages])
+    
+    const handleAddVariants=async (variantId)=>{
+        try {
+            await Api.post('/api/products/addVariants',{
+                "productId":id,
+                "variants":[variantId]
+            })
+            setSearchValue("")
+            await getProductData(id)
+            console.log(variantId)
+            
+        } catch (error) {
+            
+        }
+    }
+    const handleSave=()=>{
+        console.log("")
+    }
+
 
     return (
         <div id='updateProduct' className={`overflow-x-hidden h-screen relative ${manageImages ? "overflow-y-hidden" : "overflow-y-scroll"} `}>
@@ -152,13 +181,56 @@ const UpdateProduct = () => {
                         </section>
 
                     </div>
-                    <div className='col-span-5'>
-                        <div className='  h-12 flex justify-center items-center my-4 text-2xl border-y-2'>
+                    <div className='col-span-5 grid grid-cols-8'>
+                        <div className='  h-12 flex justify-center items-center my-4 text-2xl border-y-2 col-span-8'>
                             <p className="">Variants</p>
                         </div>
-                        <div className='h-40'>
+                        <div className='h-40 col-span-6'>
+                            <VarientSlider variants={variants} productId={id} reload={getProductData} />
+                        </div>
+                        <div className='h-40 col-span-2 flex flex-col border-l-2'>
+                            <p className=' text-center pb-2'>Add Variants</p>
+                            <div className='w-full flex justify-center '>
+                                <input
+                                    className='rounded-md outline-none px-3 border-2 grow h-12 border-gray-400 ml-6'
+                                    placeholder='Type Here'
+                                    value={searchValue}
+                                    onChange={(e) => {
+                                        setSearchValue(e.target.value)
+                                    }}
+                                />
+                            </div>
+                            {
+                                searchValue && variantByApi && variantByApi.length > 0 &&
+                                <ul className='w-full h-full flex-grow overflow-x-hidden overflow-y-scroll'>
+                                    {
+                                        variantByApi.length > 0 ? variantByApi.map((product) => {
+                                            return <li
+                                                className='flex m-2 px-1  py-2 mr-2 w-full h-14 items-center justify-between border-gray-300 border-b-2 hover:bg-gray-300 rounded-md'
+                                                key={product.Id}
+                                            >
+                                                <img
+                                                    className='bg-white w-12 h-12'
+                                                    src={`/${product.ProductImages[0].path}`}
+                                                />
+                                                <p className=' grow overflow-hidden px-2'>
+                                                    {product.product_name}
+                                                </p>
+                                                <div
+                                                    className='px-3 py-1 bg-white hover:bg-customBlue hover:text-white cursor-pointer'
+                                                onClick={(e)=>handleAddVariants(product.Id)}
+                                                
+                                                > Add</div>
 
-                            <VarientSlider />
+                                            </li>
+
+                                        }) :
+                                            <p className='w-full text-center pt-14'>No Product is found</p>
+
+                                    }
+
+                                </ul>
+                            }
                         </div>
                     </div>
                     <div className='  col-span-5 grid grid-cols-6 gap-4'>
@@ -168,7 +240,7 @@ const UpdateProduct = () => {
                         </div>
                         <div className=' col-span-2'>
                             {
-                                scopeOfDeliveryImages&& scopeOfDeliveryImages.length>0 &&
+                                scopeOfDeliveryImages && scopeOfDeliveryImages.length > 0 &&
                                 <div className=' h-48'>
 
                                     <SingleImageSilider images={scopeOfDeliveryImages} />
@@ -356,7 +428,12 @@ const UpdateProduct = () => {
                         <button className="w-40 h-12 bg-gray-300 rounded-md">
                             Back
                         </button>
-                        <button className="w-40 h-12 bg-customBlue text-white hover:bg-sky-500 rounded-md">
+                        <button
+                        className="w-40 h-12 bg-customBlue text-white hover:bg-sky-500 rounded-md"
+                        onClick={(e)=>{
+                            handleSave()
+                        }}
+                        >
                             Next
                         </button>
 
@@ -372,14 +449,14 @@ const UpdateProduct = () => {
                         <h2 className=' w-full text-center p-4  text-2xl'>Manage Product Images</h2>
                         <div className='w-full grow '>
                             {
-                                manageImages&&
+                                manageImages &&
                                 <ManageImages productId={id} />
                             }
                             {
-                                manageSODImages&&
-                                <ManageSODImages productId={id}/>
+                                manageSODImages &&
+                                <ManageSODImages productId={id} />
                             }
-                            
+
 
                         </div>
                         <RxCross2 className=' absolute top-0 right-0 m-2 text-xl bg-customBlue rounded-full text-white hover:bg-sky-500 p-[1px]'

@@ -62,7 +62,7 @@ const AddPurchaseLinks = () => {
   },[OldPurchaseLinks])
 
   return (
-    <div className='w-full h-screen relative pl-4 overflow-hidden'>
+    <div className='w-full h-screen relative pl-4 overflow-x-hidden '>
       {
         err ?
           <p>{err}</p>
