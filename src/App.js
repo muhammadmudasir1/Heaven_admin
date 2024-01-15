@@ -14,6 +14,7 @@ import Navigationbar from "./component/Landingpage/Navigationbar"
 import Review from "./component/Review"
 import OneReview from "./component/OneReview"
 import ComparisonPage from "./component/ComparisonPage"
+import CompareResult from "./component/CompareResult"
 
 
 
@@ -31,7 +32,7 @@ const App = () => {
                             <Route path="/ComparisonPage" element={<ComparisonPage/>} />
                             <Route path="/Review" element={<Review />} />
                             <Route path="/OneReview" element={<OneReview />} />
-                                
+                            <Route path="/CompareResult" element={<CompareResult/>}/>
                         </Route>
                         <Route path="/dashboard" element={<PrivatePage />}>
 
