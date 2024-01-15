@@ -1,44 +1,72 @@
 import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
+import useLanguage from '../../hooks/useLanguage'
 
 const SingleReviewTabbar = () => {
     const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
+    const [isSticky, setissticky] = useState(false);
+    const {t}=useTranslation();
+
+    const setlang = useLanguage()
+
+    const fixednavbar = () => {
+        if (window.scrollY > 0) {
+            setissticky(true)
+        } else {
+            setissticky(false)
+        }
+    }
+    window.addEventListener('scroll', fixednavbar)
 
     useEffect(() => {
         const handleResize = () => {
-          setIsDesktop(window.innerWidth > 768);
+            setIsDesktop(window.innerWidth > 768);
         };
-    
+
         window.addEventListener('resize', handleResize);
-    
+
         return () => {
-          window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResize);
         };
-      }, []);
+    }, []);
 
     return (
         <div>
             {
-                isDesktop? (
+                isDesktop ? (
+
                     <>
-                    <ul className='py-8 mt-3'>
-                    <li className='flex items-center justify-evenly'>
-                        <a href="" className='underline underline-offset-8 decoration-4 decoration-blue-500'>Alle Wichtigste</a>
-                        <a href="">Erster Eindruck</a>
-                        <a href="">Technichen Daten</a>
-                        <a href="">Lieferumfang</a>
-                        <a href="">Hardware/ <br /> Software</a>
-                        <a href="">Fazit</a>
-                    </li>
-                </ul>
-                <div class="w-full bg-zinc-100 py-8 px-12">
-                    <div class="text-neutral-800 text-xl font-semibold font-['Roboto']">Alle wichtigste</div>
-                </div>
+                        <ul className={`py-4 mt-3 flex items-center justify-evenly ${isSticky ? 'fixed w-full z-20 bg-slate-50 top-[126px]' : ''}`}>
+                            <li onClick={()=>setlang('en')} className=''>
+                                <NavLink >{t('MostImportant')}</NavLink>
+                            </li>
+                            <li onClick={()=>setlang('en')}>
+                                <NavLink >{t('FirstImpression')}</NavLink>
+                            </li>
+                            <li  onClick={()=>setlang('en')}>
+                                <NavLink >{t('TechnicalData')}</NavLink>
+                            </li>
+                            <li onClick={()=>setlang('en')}>
+                                <NavLink >Lieferumfang</NavLink>
+                            </li>
+                            <li  onClick={()=>setlang('en')}>
+                                <NavLink >Hardware/ <br /> Software</NavLink>
+                            </li>
+                            <li  onClick={()=>setlang('en')}>
+                                <NavLink >Fazit</NavLink>
+                            </li>
+                        </ul>
+                        <div class="w-full bg-zinc-100 py-8 px-12">
+                            <div class="text-neutral-800 text-xl font-semibold font-['Roboto']">Alle wichtigste</div>
+                        </div>
                     </>
-                ):(
+
+                ) : (
                     ''
                 )
             }
-           
+
         </div>
     )
 }

@@ -6,6 +6,13 @@ import { Outlet } from 'react-router-dom';
 import StickyFooter from './StickyFooter';
 import { Link } from 'react-router-dom';
 import SearchData from './SearchData.json'
+import { MdOutlineArrowDropDown } from "react-icons/md";
+import { MdOutlineArrowDropUp } from "react-icons/md";
+import { useTranslation } from 'react-i18next';
+import useLanguage from '../../hooks/useLanguage';
+import germanflag from '../../imges/germanflag.png';
+import ukflag from '../../imges/ukflag.png'
+
 
 const Navigationbar = () => {
     const [nav, setnav] = useState(false);
@@ -14,8 +21,22 @@ const Navigationbar = () => {
     const [Input, setInput] = useState("");
     const [result, setResults] = useState([]);
     const [IsOpen, setIsOpen] = useState(false);
+    const [IsTranslated, setIsTranslated] = useState(false);
+    const [language, setLanguage] = useState('DE');
+    const { t } = useTranslation();
 
-    const SearchMenu =()=>{
+    const setlang = useLanguage()
+
+    const handleLanguageChange = (setlang) => {
+        setIsTranslated(false);
+        setLanguage(setlang);
+    };
+
+    const dropDown = () => {
+        setIsTranslated(!IsTranslated)
+    }
+
+    const SearchMenu = () => {
         setIsOpen(!IsOpen)
     }
 
@@ -58,9 +79,9 @@ const Navigationbar = () => {
 
     return (
         <>
-            <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-20 ${isSticky ? 'fixed w-full top-0 shadow-black/30 shadow-xl' : ''}`}>
+            <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-20 ${isSticky ? 'fixed w-full top-0' : ''}`}>
                 <div className='z-20'>
-                    <h1 className='text-black text-2xl font-normal font-[Avenir]'>3D heavens</h1>
+                    <h1 className='text-white text-2xl font-normal font-[Avenir]'>3D heavens</h1>
                 </div>
                 {isMobile ? (
 
@@ -117,8 +138,54 @@ const Navigationbar = () => {
                                 ))}
                             </div>
                         </div>
-                        <a href="" className='ml-4 text-white text-xl font-light font-[Roboto] hover:underline'>Bestie Deals</a>
-                        <a href="" className='ml-4 text-white hover:underline'>DE</a>
+                        <a href="" className='ml-4 text-white text-xl font-light font-[Roboto] hover:underline'>
+                            ⚡️{t("BestDeals")}
+                        </a>
+                        <div className='px-8 flex items-center relative'>
+                            <button
+                                onClick={dropDown}
+                                className='text-white text-xl font-light font-[Roboto]'
+                            >
+                                {language}
+                            </button>
+                            {!IsTranslated ? (
+                                <MdOutlineArrowDropDown
+                                    onClick={dropDown}
+                                    size={30}
+                                    className='text-white'
+                                />
+                            ) : (
+                                <MdOutlineArrowDropUp
+                                    onClick={dropDown}
+                                    size={30}
+                                    className='text-white'
+                                />
+                            )}
+                            {IsTranslated && (
+                                <div className='bg-white absolute top-6 right-0 flex flex-col items-center justify-center p-4 z-40 mt-2 shadow-md shadow-slate-400 rounded-xl'>
+                                    <button
+                                        onClick={() => handleLanguageChange[setlang('de')]}
+                                        className=' text-xl font-light font-[Roboto]'
+                                    >
+                                        <div className='flex items-center justify-center'>
+                                        <img src={germanflag} alt=""  className='h-10 w-12 pr-2'/>
+                                        DE
+                                        </div>
+                                    </button>
+                                    <button
+                                        onClick={() => handleLanguageChange[setlang('en')]}
+                                        className=' text-xl font-light font-[Roboto]'
+                                    >
+                                        <div className='flex items-center justify-center py-2'>
+
+                                        <img src={ukflag} alt="" className='h-10 w-12 pr-2'/>
+                                        EN
+                                        </div>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+
                     </div>
                 )}
             </nav>

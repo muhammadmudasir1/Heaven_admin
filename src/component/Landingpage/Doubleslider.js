@@ -57,9 +57,9 @@ const Doubleslider = () => {
     <div className='lg:grid lg:grid-cols-8 lg:grid-rows-2 m-8'>
       <>
         <div className='lg:col-span-6 lg:relative my-8'>
-        <div class=" flex justify-center items-center">
-          <h1 class="text-neutral-800 text-2xl font-normal font-['Avenir']">Latest on SLA printer</h1>
-        </div>
+          <div class=" flex justify-center items-center">
+            <h1 class="text-neutral-800 text-2xl font-normal font-[Avenir]">Latest on SLA printer</h1>
+          </div>
           <Swiper
             modules={[Navigation, Scrollbar, A11y]}
             breakpoints={{
@@ -83,11 +83,11 @@ const Doubleslider = () => {
           >
             {slide.map((slide) => (
 
-              <SwiperSlide key={slide.url} className='py-8 relative'>
-                <div className='rounded-lg flex flex-col m-6 bg-white/95' style={{ boxShadow: '-8px 0 15px rgba(0, 0, 0, 0.4), 0 8px 15px rgba(0, 0, 0, 0.4)' }}>
-                  <img src={slide.url} alt="" className='h-80 pt-8  w-full' />
-                  <h2 className='mx-6 mt-4 mb-2 font-bold'>Lorem, ipsum dolor.</h2>
-                  <p className='mx-6 mb-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi minus officiis delectus minima aut, cupiditate ducimus corrupti ipsum facere illo maxime nulla hic, animi tempora! Optio sequi eius perferendis quis?</p>
+              <SwiperSlide key={slide.url} className='pb-4 relative'>
+                <div className='rounded-xl  flex flex-col items-start m-6 bg-white/95 h-[60vh]' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }}>
+                  <img src={slide.url} alt="" className='bg-cover rounded-t-xl' />
+                  <h2 className='pt-8 px-6 font-bold'>Lorem, ipsum dolor.</h2>
+                  <p className=' pt-4 px-6'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi minus officiis delectus minima aut, cupiditate ducimus corrupti ipsum facere illo maxime nulla hic, animi tempora! Optio sequi eius perferendis quis?</p>
 
                 </div>
 
@@ -95,7 +95,7 @@ const Doubleslider = () => {
             ))}
             {!isMobile ? (
 
-              <div className='lg:h-5/6  lg:bg-white lg:hover:bg-white/80 lg:duration-300 lg:rounded-lg lg:w-52 lg:absolute lg:top-12 lg:right-0 lg:z-20 lg:flex lg:items-center lg:justify-center' style={{ boxShadow: '-8px 0 15px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.9), 0 8px 15px rgba(255, 255, 255, 0.9)' }}>
+              <div className='lg:h-[87%] lg:bg-white lg:duration-300 lg:rounded-lg lg:w-52 lg:absolute lg:top-[25px] lg:right-0 lg:z-20 lg:flex lg:items-center lg:justify-center' style={{ boxShadow: '-8px 0 15px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.4), 0 8px 15px rgba(255, 255, 255, 0.4)' }}>
                 <IoIosArrowForward size={100} onClick={() => swiper.slideNext()} className='cursor-pointer ' />
               </div>
             ) : (
@@ -107,12 +107,12 @@ const Doubleslider = () => {
         </div>
       </>
 
-      <div className='lg:row-span-2 lg:col-span-2 lg:ml-6 lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgba(0, 0, 0, 0.4), 0 8px 15px rgba(0, 0, 0, 0.4)' }} ></div>
+      <div className='lg:row-span-2 lg:col-span-2 lg:ml-6 lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} ></div>
       <>
         <div className='lg:col-span-6 lg:relative my-8'>
-        <div class=" flex justify-center items-center">
-          <h1 class="text-neutral-800 text-2xl font-normal font-['Avenir']">Latest on FDM Printer</h1>
-        </div>
+          <div class=" flex justify-center items-center">
+            <h1 class="text-neutral-800 text-2xl font-normal font-['Avenir']">Latest on FDM Printer</h1>
+          </div>
           <Swiper
             modules={[Navigation, Scrollbar, A11y]}
             breakpoints={{
@@ -136,17 +136,17 @@ const Doubleslider = () => {
           >
             {slide.map((slide) => (
 
-              <SwiperSlide key={slide.url} className='py-8 relative'>
-                <div className='rounded-lg flex flex-col m-6 bg-white/95' style={{ boxShadow: '-8px 0 15px rgba(0, 0, 0, 0.4), 0 8px 15px rgba(0, 0, 0, 0.4)' }}>
-                  <img src={slide.url} alt="" className='h-80 pt-8 w-full' />
-                  <h2 className='mx-6 mt-4 mb-2 font-bold'>Lorem, ipsum dolor.</h2>
-                  <p className='mx-6 mb-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi minus officiis delectus minima aut, cupiditate ducimus corrupti ipsum facere illo maxime nulla hic, animi tempora! Optio sequi eius perferendis quis?</p>
-                </div>
+              <SwiperSlide key={slide.url} className='pb-4 relative'>
+                <div className='rounded-xl  flex flex-col items-start m-6 bg-white/95 h-[60vh]' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }}>
+                  <img src={slide.url} alt="" className='bg-cover rounded-t-xl' />
+                  <h2 className='pt-8 px-6 font-bold'>Lorem, ipsum dolor.</h2>
+                  <p className=' pt-4 px-6'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi minus officiis delectus minima aut, cupiditate ducimus corrupti ipsum facere illo maxime nulla hic, animi tempora! Optio sequi eius perferendis quis?</p>
 
+                </div>
               </SwiperSlide>
             ))}
             {!isMobile ? (
-              <div className='lg:h-5/6  lg:bg-white lg:hover:bg-white/80 lg:duration-300 lg:rounded-lg lg:w-52 lg:absolute lg:top-12 lg:right-0 lg:z-20 lg:flex lg:items-center lg:justify-center' style={{ boxShadow: '-8px 0 15px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.9), 0 8px 15px rgba(255, 255, 255, 0.9)' }}>
+              <div className='lg:h-[87%] lg:bg-white lg:duration-300 lg:rounded-lg lg:w-52 lg:absolute lg:top-[25px] lg:right-0 lg:z-20 lg:flex lg:items-center lg:justify-center' style={{ boxShadow: '-8px 0 15px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.4), 0 8px 15px rgba(255, 255, 255, 0.4)' }}>
                 <IoIosArrowForward size={100} onClick={() => swiper.slideNext()} className='cursor-pointer ' />
               </div>
             ) : ('')}

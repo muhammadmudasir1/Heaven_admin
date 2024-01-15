@@ -6,7 +6,7 @@ const ReviewTabbar = () => {
 
             <ul>
                 <li className='flex gap-8 items-center justify-center'>
-                    <a href="" className='underline underline-offset-8 decoration-4 decoration-blue-500'>All 3D Printers</a>
+                    <a href="" className='underline underline-offset-8 decoration-4 decoration-cyan-500'>All 3D Printers</a>
                     <a href="">Top Rated</a>
                     <a href="">Least Rated</a>
                 </li>

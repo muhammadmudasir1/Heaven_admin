@@ -31,5 +31,13 @@
     "DataConnection":"Datenverbindungen",
     "motherboard":"Mainboard",
     "PrintRoomCamera":"Druckraumkamera",
-    "LEDLight":"LED Beleuchtung"
+    "LEDLight":"LED Beleuchtung",
+    "HomePage": "Startseite",
+    "BestDeals": "Best deals & angebote",
+    "Filament": "Filamente",
+    "Bestlist": "Beste liste",
+    "3dprinters": "3D Druckers",
+    "MostImportant": "Alle wichtigste",
+    "FirstImpression": "Erster Eindruck",
+    "TechnicalData": "Technichen Daten"
 }

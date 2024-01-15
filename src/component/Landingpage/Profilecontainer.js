@@ -3,7 +3,7 @@ import React from 'react'
 const Profilecontainer = () => {
     return (
         <div className='bg-[#00CED1] py-12 flex flex-row items-center justify-between '>
-            <div className='lg:ml-12 ml-6 flex flex-col justify-center items-center'>
+            <div className='lg:ml-12 ml-6 flex flex-col justify-start items-start'>
                 <h1 className='text-neutral-800 lg:text-6xl text-2xl font-extrabold font-[Avenir]'>
                     Beginner’s guide to buy <br/> the right 3D printer
                 </h1>

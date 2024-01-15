@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MdOutlineArrowDropDown } from "react-icons/md";
-import { Link } from "react-router-dom"
-
+import { MdOutlineArrowDropUp } from "react-icons/md";
+import { NavLink } from "react-router-dom"
 const Tabbar = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
   const [isOpen, setisOpen] = useState(false);
+  const {t} = useTranslation();
 
   const toggleDropdown = () => {
     setisOpen(!isOpen)
@@ -36,35 +38,46 @@ const Tabbar = () => {
 
 
   return (
-    <div className={isDesktop ? ` bg-white py-6 shadow-md shadow-slate-300 w-full cursor-pointer relative ${isSticky ? 'fixed w-full top-[70px] z-30' : ''}` : 'hidden'}>
+    <div className={isDesktop ? ` bg-white shadow-md shadow-slate-300 w-full cursor-pointer relative ${isSticky ? 'fixednav w-full top-[70px] z-20' : ''}` : 'hidden'}>
       {isDesktop ? (
-        <div className='w-full h-full'>
+        <div className='w-full h-full flex items-center pt-2'>
           <ul className='flex justify-evenly items-center gap-x-6  w-full relative'>
-            <Link 
-            to={'/'}  
-            className='z-10 relative active:underline active:underline-offset-8 decoration-blue-600 decoration-4'>Startseite </Link>
-            <a href="">Beste Liste</a>
-            <div className='flex justify-center items-center gap-3 relative'>
-              <Link to={'../Review'} className='active:underline active:underline-offset-8 decoration-blue-600 decoration-4'>3D Druckers</Link>
-              <MdOutlineArrowDropDown onClick={toggleDropdown} size={30} />
+            <NavLink
+              to={'/'}
+              className='z-10 relative py-4 px-4 flex items-center text-neutral-800
+              text-xl
+              font-light
+              font-[Roboto]'>{t("HomePage")} </NavLink>
+            <NavLink to={"*"} className='text-neutral-800 text-xl font-light font-[Roboto]'>{t('Bestlist')}</NavLink>
+            <div className=' relative'>
+              <div className='flex justify-center items-center'>
+                <NavLink to={'../Review'} className='py-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>{t("3dprinters")} </NavLink>
+                {!isOpen ? <MdOutlineArrowDropDown onClick={toggleDropdown} size={30} /> : <MdOutlineArrowDropUp onClick={toggleDropdown} size={30} />}
+              </div>
               {isOpen && (
-                <div className='absolute top-9 right-2 flex flex-col items-start justify-evenly bg-slate-500 w-full  py-8'>
-                  <Link className='hover:bg-slate-600 w-full pl-2'>option 1</Link>
-                  <Link className='hover:bg-slate-600 w-full pl-2 gap-y-3'>option 2</Link>
+                <div className='absolute top-12 right-0 flex flex-col items-start justify-evenly bg-white w-40 shadow-md shadow-slate-400'>
+                  <NavLink to={'scanner'}
+                    className='hover:bg-[#EEEEEE] w-full p-3 text-neutral-700 text-xl font-light font-[Roboto]'>
+                    SLA printer
+                  </NavLink>
+                  <NavLink to={'LaserCutter'}
+                    className='hover:bg-[#EEEEEE] w-full p-3 text-neutral-700 text-xl font-light font-[Roboto]'>
+                    SLA printer
+                  </NavLink>
                 </div>
               )}
             </div>
-            <Link>Laser</Link>
-            <Link>Scanner</Link>
-            <Link>Filamente</Link>
-            <Link>Ratgeber</Link>
-            <Link>News</Link>
+            <NavLink to={'Baloch'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Laser</NavLink>
+            <NavLink to={'Osama'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Scanner</NavLink>
+            <NavLink to={'Ali'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>{t("Filament")}</NavLink>
+            <NavLink to={'Ahsan'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Ratgeber</NavLink>
+            <NavLink to={'Benazir'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>News</NavLink>
           </ul>
 
         </div>
       ) : ('')}
     </div>
   );
-};
+}
 
 export default Tabbar;

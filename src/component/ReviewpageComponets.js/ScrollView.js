@@ -1,7 +1,7 @@
 import React from 'react';
 import { CiStar } from 'react-icons/ci';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const ReviewList = [
   {
@@ -47,26 +47,26 @@ const ScrollView = () => {
     <div className='lg:grid lg:grid-cols-7 mt-14'>
       <div className='p-8 col-span-5'>
         {ReviewList.map(ReviewList => {
-          return <div className='flex items-center py-8 my-4 shadow-lg shadow-black/30 bg-white/95 rounded-lg '>
-            <div className='h-64 lg:w-64'>
-              <img src={ReviewList.url} alt="" className='h-full w-full ' />
+          return <NavLink to={"../OneReview"} className='flex items-center py-8 my-8 shadow-for-app bg-white/95 rounded-lg '>
+            <div className='h-full lg:w-64'>
+              <img src={ReviewList.url} alt="" className='bg-cover ' />
             </div>
             <div className='lg:pl-8 pr-3 w-2/4 '>
               <h1 className='text-neutral-800 text-xl font-semibold font-[Roboto]'>Two Trees SK-1</h1>
               <div className='flex'>
                 {[...Array(5)].map((_, index) => (
 
-                  <CiStar key={index} size={40} className='text-yellow-400' />
+                  <CiStar key={index} size={40} className='text-amber-500' />
 
                 ))}
               </div>
               <p>{ReviewList.review}</p>
               <div className='flex items-center '>
-                <Link to={'../OneReview'} className='underline decoration-blue-800 underline-offset-8 decoration-4'>Read More</Link>
+                <Link to={'../OneReview'} className='underline decoration-cyan-500 underline-offset-8 decoration-4'>Read More</Link>
                 <MdKeyboardDoubleArrowRight />
               </div>
             </div>
-          </div>
+          </NavLink>
         })}
       </div>
       <div className='lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600' />

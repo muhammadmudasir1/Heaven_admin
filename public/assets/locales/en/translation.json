@@ -31,6 +31,13 @@
     "DataConnection":"Data Connections",
     "motherboard":"Motherboard",
     "PrintRoomCamera":"Print Room Camera",
-    "LEDLight":"LED Light"
-
+    "LEDLight":"LED Light",
+    "HomePage": "Home Page",
+    "BestDeals": "Best Deals",
+    "Filament": "Filaments",
+    "Bestlist": "Best List",
+    "3dprinters": "3D Printers",
+    "MostImportant": "Most Important",
+    "FirstImpression": "First Impression",
+    "TechnicalData": "Technical Data"
 }

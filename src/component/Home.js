@@ -4,6 +4,7 @@ import Filtersearch from "./Landingpage/Filtersearch";
 import Doubleslider from "./Landingpage/Doubleslider";
 import Profilecontainer from "./Landingpage/Profilecontainer";
 import MaskSlider from "./Landingpage/MaskSlider";
+import NewsAndEvent from './Landingpage/NewsAndEvent';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Doubleslider />
       <Profilecontainer />
       <MaskSlider />
+      <NewsAndEvent/>
 
     </>
   )
