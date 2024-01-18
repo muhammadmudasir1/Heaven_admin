@@ -141,7 +141,8 @@ const ManageImages = ({ productId }) => {
                 <div className='grid grid-cols-4 2xl:grid-cols-5 gap-2 '>
                     {
                         images.slice(1).map((image, index) => {
-                            return <div className='relative group rounded-md overflow-hidden shadow-md '>
+                            if(image.role===2){
+                                return <div className='relative group rounded-md overflow-hidden shadow-md '>
                                 <div
                                     className='bg-cover b-center h-28 2xl:h-32 relative flex flex-col-reverse'
                                     style={{ backgroundImage: `url(/${image.path})` }}>
@@ -162,7 +163,8 @@ const ManageImages = ({ productId }) => {
                                         }}
                                     />
                                 </div>
-                            </div>
+                                </div>
+                            }
 
 
 

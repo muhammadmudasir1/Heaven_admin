@@ -36,7 +36,7 @@ const Dashboard = () => {
 
 
     return (
-        <div className="grid grid-cols-6 h-screen">
+        <div className="grid grid-cols-6 h-screen fixed">
             <div className=" bg-customBlue flex flex-col justify-between">
                 <div>
                     <div className=" bg-sky-700 flex justify-center items-center p-4">
@@ -80,7 +80,7 @@ const Dashboard = () => {
 
                 
             </div>
-            <div className=" col-span-5 ">
+            <div className=" col-span-5">
 
                 <Outlet/>
             </div>

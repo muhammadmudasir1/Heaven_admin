@@ -30,6 +30,7 @@ const UpdateProduct = () => {
     const [productType, setProductType] = useState()
     const [variants, setVariants] = useState([])
     const [variantByApi, setVariantByApi] = useState(null)
+    const [includeInBestDeals,setIncludeInBestDeals]=useState(null)
     const { id } = useParams()
 
 
@@ -74,6 +75,7 @@ const UpdateProduct = () => {
             setProductType(result.data.productType)
             setScopeOfDeliveryImages(SODImages)
             setVariants(result.data.variants)
+            setIncludeInBestDeals(result.data.include_in_BestDeals)
         } catch (error) {
             console.log(error)
         }
@@ -107,17 +109,45 @@ const UpdateProduct = () => {
             
         }
     }
-    const handleSave=()=>{
-        console.log("")
+    const handleSave=async ()=>{
+
+        if(!productName){
+            setProductNameError("Product Name is Compulsory")
+            window.scrollY=0
+            return
+        }
+
+        if(!manufacturer){
+            setManufacturerError("Manufacturer is Compulsory")
+            return
+        }
+
+        const data={
+            product_name: productName,
+            manufacturer: manufacturer,
+            price_rating:priceRating,
+            innovation_rating:innovationRating,
+            software_rating: softwareRating,
+            customer_service_rating:customerServiceRating,
+            processing_rating:processingRating,
+            scope_of_delivery_discription:scopeOfDeliveryDiscription,
+            include_in_BestDeals: includeInBestDeals,
+            discription:productDiscription
+        }
+
+        try {
+            await Api.patch(`/api/products/${id}`,data)
+            
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
 
     return (
-        <div id='updateProduct' className={`overflow-x-hidden h-screen relative ${manageImages ? "overflow-y-hidden" : "overflow-y-scroll"} `}>
-            <div className='p-8'>
-                <div className='h-12 '>
-                    <h2 className='font-sans font-bold text-2xl'>UpdateProduct</h2>
-                </div>
+        <div id='updateProduct' className={`overflow-x-hidden h-full relative ${manageImages ? "overflow-y-hidden" : "overflow-y-scroll"} `}>
+            <div className='px-8'>
                 <div className='grid grid-cols-5 '>
                     <div className='col-span-2 h-80 2xl:h-[400px] flex flex-col items-center'>
 
@@ -177,6 +207,16 @@ const UpdateProduct = () => {
                                 className={" resize-none  rounded-lg outline-none p-3 border-2 border-gray-400"}
                                 value={productDiscription}
                                 onChange={(e) => setProductDiscription(e.target.value)}
+                            />
+                        </section>
+                        <section className="flex justify-center mt-4">
+                            <label className="ml-4">
+                                Include in Best Deals
+                            </label>
+                            <input type="checkbox"
+                                className="ounded-lg outline-none border-2 border-gray-400 ml-3"
+                                value={includeInBestDeals}
+                                onChange={(e) => setIncludeInBestDeals(e.target.value)}
                             />
                         </section>
 
@@ -424,17 +464,15 @@ const UpdateProduct = () => {
                         </div>
 
                     </div>
-                    <div className='col-span-5 h-16 flex justify-between mt-8'>
-                        <button className="w-40 h-12 bg-gray-300 rounded-md">
-                            Back
-                        </button>
+                    <div className='col-span-5 h-16 flex flex-row-reverse mt-8'>
+                      
                         <button
                         className="w-40 h-12 bg-customBlue text-white hover:bg-sky-500 rounded-md"
                         onClick={(e)=>{
                             handleSave()
                         }}
                         >
-                            Next
+                            Update
                         </button>
 
                     </div>

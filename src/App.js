@@ -5,13 +5,14 @@ import Dashboard from "./component/admin/Dashboard"
 import ProductDashboard from "./component/admin/ProductDashBoard"
 import AddProduct from "./component/admin/AddProduct"
 import AddSpecs from "./component/admin/AddSpecs"
-import "./style.css"
 import AuthProvider from "./context/AuthContext"
 import CurrentProductProvider from "./context/CurrentProductContext"
 import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
 import AddReview from "./component/admin/AddReview"
 import UpdateProduct from "./component/admin/UpdateProduct"
-
+import NavigationForAddForm from "./component/admin/NavigationForAddForm"
+import "./style.css"
+import "./custom.css"
 
 const App = () => {
     return (
@@ -27,11 +28,14 @@ const App = () => {
                             <Route path="topFive" element={<h1>TopFive</h1>} />
                             <Route path="news" element={<h1>News</h1>} />
                             <Route path="analytics" element={<h1>Google Analytics</h1>} />
+                            <Route element={<NavigationForAddForm/>}>
+
                             <Route path="addProduct" element={<AddProduct />} />
                             <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
                             <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks/>}/>
                             <Route path="addReview/:id" element={<AddReview/>}/>
                             <Route path="updateproduct/:id" element={<UpdateProduct/>}/>
+                            </Route>
                         </Route>
                     </Route>
 

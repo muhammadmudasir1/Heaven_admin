@@ -6,7 +6,7 @@ import { ImCross } from "react-icons/im";
 import { MdCancel } from "react-icons/md";
 import Api from "../../api/Api"
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight,FaArrowLeft } from "react-icons/fa";
 
 const AddProduct = () => {
     const [images, setImages] = useState([])
@@ -214,15 +214,14 @@ const AddProduct = () => {
 
 
     return (
-        <div id='addproduct' className={` w-full h-screen relative p-6 flex flex-col overflow-x-hidden ${isThumbnail || error || loading ? " overflow-y-hidden" : " overflow-y-scroll"}`}>
+        <div id='addproduct'
+        className={` w-full h-full p-6 flex flex-col overflow-x-hidden
+        ${isThumbnail || error || loading ? " overflow-y-hidden" : ""}`}>
 
             <div>
-                <div className="h-24 bg-red-400 flex flex-col">
-                    <h1 className=" font-sans font-bold text-2xl bg-orange-400">Add Product</h1>
-                    <div className='flex bg-yellow-400 w-full flex-grow'>
-
-                    </div>
-                </div>
+                {/* <div className="flex flex-col">
+                    <h1 className=" font-sans font-bold text-2xl">Add Product</h1>
+                </div> */}
                 <div className=" w-full  grid grid-cols-2 gap-4 border-b-2 border-gray-400 pb-2">
                     <div className=" p-2">
                         <section className="flex flex-col mb-2">

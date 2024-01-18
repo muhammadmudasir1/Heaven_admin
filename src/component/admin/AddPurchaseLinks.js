@@ -67,8 +67,7 @@ const AddPurchaseLinks = () => {
         err ?
           <p>{err}</p>
           :
-          <div className='mt-8'>
-            <h2 className='text-2xl font-semibold font-sans'>Add Purchase Links</h2>
+          <div className=''>
             <div className='grid w-full grid-cols-7'>
               <div className=' col-span-4 pt-6'>
                 {

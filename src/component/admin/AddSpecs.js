@@ -40,11 +40,10 @@ const saveData=(data)=>{
 
 
   return (
-    <div className='w-full h-screen relative t-2 p-6 overflow-y-scroll'>
+    <div className='w-full h-full px-8 flex flex-col overflow-x-hidden '>
       {err ?
         <p>{err}</p>
         : <>
-          <h2 className=' text-2xl font-semibold font-sans'>Add Product Specifications</h2>
 
           {
             productType == 1 ?

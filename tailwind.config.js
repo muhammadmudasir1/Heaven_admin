@@ -15,6 +15,8 @@ module.exports = {
       'righteous': ['Righteous', 'cursive'],
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ]
 }
 
