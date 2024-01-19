@@ -8,6 +8,8 @@ import ManageSODImages from './ManageSODImages';
 import { RxCross2 } from "react-icons/rx";
 import Api from "../../api/Api"
 import { useParams } from 'react-router-dom';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { FaCheck } from "react-icons/fa";
 
 
 const UpdateProduct = () => {
@@ -31,6 +33,8 @@ const UpdateProduct = () => {
     const [variants, setVariants] = useState([])
     const [variantByApi, setVariantByApi] = useState(null)
     const [includeInBestDeals,setIncludeInBestDeals]=useState(null)
+    const [isLoading,setIsLoading]=useState(false)
+    const [isUpdated,setIsUpdated]=useState(false)
     const { id } = useParams()
 
 
@@ -121,7 +125,8 @@ const UpdateProduct = () => {
             setManufacturerError("Manufacturer is Compulsory")
             return
         }
-
+        document.getElementById('updateProduct').scrollTop = 0
+        setIsLoading(true)
         const data={
             product_name: productName,
             manufacturer: manufacturer,
@@ -134,9 +139,14 @@ const UpdateProduct = () => {
             include_in_BestDeals: includeInBestDeals,
             discription:productDiscription
         }
-
+        
         try {
             await Api.patch(`/api/products/${id}`,data)
+            setIsLoading(false)
+            setIsUpdated(true)
+            setTimeout(()=>{
+                setIsUpdated(false)
+            },5000)
             
         } catch (error) {
             console.log(error)
@@ -146,7 +156,7 @@ const UpdateProduct = () => {
 
 
     return (
-        <div id='updateProduct' className={`overflow-x-hidden h-full relative ${manageImages ? "overflow-y-hidden" : "overflow-y-scroll"} `}>
+        <div id='updateProduct' className={`overflow-x-hidden h-full relative ${manageImages || isLoading ? "overflow-y-hidden" : "overflow-y-scroll"} `}>
             <div className='px-8'>
                 <div className='grid grid-cols-5 '>
                     <div className='col-span-2 h-80 2xl:h-[400px] flex flex-col items-center'>
@@ -510,7 +520,26 @@ const UpdateProduct = () => {
 
                 </div>
             }
+            {
+                isLoading&&
+                <div className='w-full h-full absolute top-0 flex justify-center items-center z-[9999]'>
+                    <div className='w-full h-full absolute top-0  bg-gray-200 opacity-60' />
+                <ClipLoader
+                size={75}
+                loading={isLoading}
+                color={"#026CC4"}
+                />
 
+                </div>   
+            }
+            {
+                isUpdated &&
+                <div className='w-full absolute top-0 flex justify-center items-center bg-green-600 z-[9999]'>
+                    <FaCheck className='text-white text-lg'/>
+                    <p className='p-4 text-white text-lg'>Updated</p>
+                </div>
+            }
+            
 
         </div>
     )
