@@ -1,6 +1,6 @@
 import { Navigate, Outlet} from "react-router-dom"
-import { useAuth } from "../context/AuthContext"
-import useRefresh from "../hooks/useRefresh"
+import { useAuth } from "../../context/AuthContext"
+import useRefresh from "../../hooks/useRefresh"
 import { useEffect } from "react"
 
 const PrivatePage=()=>{

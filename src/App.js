@@ -1,13 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import LoginPage from "./component/LoginPage"
-import PrivatePage from "./component/PrivatePage"
-import Dashboard from "./component/Dashboard"
-import ProductDashboard from "./component/ProductDashBoard"
-import AddProduct from "./component/AddProduct"
+import LoginPage from "./component/admin/LoginPage"
+import PrivatePage from "./component/admin/PrivatePage"
+import Dashboard from "./component/admin/Dashboard"
+import ProductDashboard from "./component/admin/ProductDashBoard"
+import AddProduct from "./component/admin/AddProduct"
+import AddSpecs from "./component/admin/AddSpecs"
 import "./style.css"
 import AuthProvider from "./context/AuthContext"
 import CurrentProductProvider from "./context/CurrentProductContext"
-import AddSpecs from "./component/AddSpecs"
+import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
+import AddReview from "./component/admin/AddReview"
+import UpdateProduct from "./component/admin/UpdateProduct"
 
 
 const App = () => {
@@ -17,7 +20,6 @@ const App = () => {
             <AuthProvider>
                 <CurrentProductProvider>
                 <Routes>
-
                     <Route path="/dashboard" element={<PrivatePage />}>
 
                         <Route element={<Dashboard />}>
@@ -27,6 +29,9 @@ const App = () => {
                             <Route path="analytics" element={<h1>Google Analytics</h1>} />
                             <Route path="addProduct" element={<AddProduct />} />
                             <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
+                            <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks/>}/>
+                            <Route path="addReview/:id" element={<AddReview/>}/>
+                            <Route path="updateproduct/:id" element={<UpdateProduct/>}/>
                         </Route>
                     </Route>
 
