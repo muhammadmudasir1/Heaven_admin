@@ -10,7 +10,6 @@ import AuthProvider from "./context/AuthContext"
 import CurrentProductProvider from "./context/CurrentProductContext"
 import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
 import AddReview from "./component/admin/AddReview"
-import UpdateProduct from "./component/admin/UpdateProduct"
 
 
 const App = () => {
@@ -31,7 +30,6 @@ const App = () => {
                             <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
                             <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks/>}/>
                             <Route path="addReview/:id" element={<AddReview/>}/>
-                            <Route path="updateproduct/:id" element={<UpdateProduct/>}/>
                         </Route>
                     </Route>
 
