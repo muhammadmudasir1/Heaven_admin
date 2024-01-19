@@ -7,12 +7,15 @@ import AddProduct from "./component/admin/AddProduct"
 import AddSpecs from "./component/admin/AddSpecs"
 import AuthProvider from "./context/AuthContext"
 import CurrentProductProvider from "./context/CurrentProductContext"
-import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
-import AddReview from "./component/admin/AddReview"
-import UpdateProduct from "./component/admin/UpdateProduct"
-import NavigationForAddForm from "./component/admin/NavigationForAddForm"
-import "./style.css"
-import "./custom.css"
+import Home from "./component/Home"
+import Navigationbar from "./component/Landingpage/Navigationbar"
+import Review from "./component/Review"
+import OneReview from "./component/OneReview"
+import ComparisonPage from "./component/ComparisonPage"
+import CompareResult from "./component/CompareResult"
+
+
+
 
 const App = () => {
     return (
@@ -20,8 +23,16 @@ const App = () => {
         <BrowserRouter>
             <AuthProvider>
                 <CurrentProductProvider>
-                <Routes>
-                    <Route path="/dashboard" element={<PrivatePage />}>
+
+                    <Routes>
+                        <Route element={<Navigationbar />}>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/ComparisonPage" element={<ComparisonPage/>} />
+                            <Route path="/Review" element={<Review />} />
+                            <Route path="/OneReview" element={<OneReview />} />
+                            <Route path="/CompareResult" element={<CompareResult/>}/>
+                        </Route>
+                        <Route path="/dashboard" element={<PrivatePage />}>
 
                         <Route element={<Dashboard />}>
                             <Route path="product" element={<ProductDashboard />} />
@@ -39,10 +50,11 @@ const App = () => {
                         </Route>
                     </Route>
 
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="*" element={<p>404 Page not found</p>}></Route>
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="*" element={<p>404 Page not found</p>}></Route>
 
-                </Routes>
+                    </Routes>
+
                 </CurrentProductProvider>
             </AuthProvider>
 
