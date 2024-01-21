@@ -13,6 +13,10 @@ import Review from "./component/Review"
 import OneReview from "./component/OneReview"
 import ComparisonPage from "./component/ComparisonPage"
 import CompareResult from "./component/CompareResult"
+import NavigationForAddForm from "./component/admin/NavigationForAddForm"
+import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
+import AddReview from "./component/admin/AddReview"
+import UpdateProduct from "./component/admin/UpdateProduct"
 
 
 
@@ -40,7 +44,6 @@ const App = () => {
                             <Route path="news" element={<h1>News</h1>} />
                             <Route path="analytics" element={<h1>Google Analytics</h1>} />
                             <Route element={<NavigationForAddForm/>}>
-
                             <Route path="addProduct" element={<AddProduct />} />
                             <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
                             <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks/>}/>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const LaserCutterSpecs = (props) => {
-    const {saveData}=props
+    const { saveData,oldData,update } = props
     const [laserPower,setLaserPower]=useState('')
     const [laserWavelenght,setLaserWavelength]=useState('')
     const [engravingAccuracy,setEngravingAccuaracy]=useState('')
@@ -17,6 +17,9 @@ const LaserCutterSpecs = (props) => {
     const [airAssist,setAirAssist]=useState('')
     const [workingArea,setWorkingArea]=useState('')
 
+    useEffect(()=>{
+
+    },[oldData])
 
 
     const {t}=useTranslation()

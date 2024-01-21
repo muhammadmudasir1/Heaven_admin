@@ -40,6 +40,9 @@ const AddProduct = () => {
     const [productNameError, setProductNameError] = useState('')
     const [manufacturerError, setManufacturerError] = useState('')
 
+    useEffect(()=>{
+        console.log(includeInBestDeals)
+    },[includeInBestDeals])
 
 
     useEffect(() => {
@@ -442,8 +445,10 @@ const AddProduct = () => {
                             </label>
                             <input type="checkbox"
                                 className="ounded-lg outline-none border-2 border-gray-400 ml-3"
-                                value={includeInBestDeals}
-                                onChange={(e) => setIncludeInBestDeals(e.target.value)}
+                                checked={includeInBestDeals}
+                                onChange={(e) => {
+                                    setIncludeInBestDeals(e.target.checked)
+                                }}
                             />
                         </section>
                     </div>

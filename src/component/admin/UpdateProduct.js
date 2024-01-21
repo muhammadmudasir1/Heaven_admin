@@ -101,6 +101,9 @@ const UpdateProduct = () => {
     
     const handleAddVariants=async (variantId)=>{
         try {
+
+
+
             await Api.post('/api/products/addVariants',{
                 "productId":id,
                 "variants":[variantId]
@@ -130,17 +133,18 @@ const UpdateProduct = () => {
         const data={
             product_name: productName,
             manufacturer: manufacturer,
-            price_rating:priceRating,
-            innovation_rating:innovationRating,
-            software_rating: softwareRating,
-            customer_service_rating:customerServiceRating,
-            processing_rating:processingRating,
+            price_rating: Number(priceRating),
+            innovation_rating:Number(innovationRating),
+            software_rating: Number(softwareRating),
+            customer_service_rating:Number(customerServiceRating),
+            processing_rating:Number(processingRating),
             scope_of_delivery_discription:scopeOfDeliveryDiscription,
             include_in_BestDeals: includeInBestDeals,
             discription:productDiscription
         }
         
         try {
+            console.log(data)
             await Api.patch(`/api/products/${id}`,data)
             setIsLoading(false)
             setIsUpdated(true)
@@ -150,9 +154,13 @@ const UpdateProduct = () => {
             
         } catch (error) {
             console.log(error)
+            setIsLoading(false)
         }
 
     }
+    useEffect(()=>{
+        console.log(includeInBestDeals)
+    },[includeInBestDeals])
 
 
     return (
@@ -226,7 +234,10 @@ const UpdateProduct = () => {
                             <input type="checkbox"
                                 className="ounded-lg outline-none border-2 border-gray-400 ml-3"
                                 value={includeInBestDeals}
-                                onChange={(e) => setIncludeInBestDeals(e.target.value)}
+                                checked={includeInBestDeals}
+                                onChange={(e) => {
+                                    setIncludeInBestDeals(e.target.checked)}
+                                }
                             />
                         </section>
 
@@ -447,6 +458,7 @@ const UpdateProduct = () => {
                                 <div className=" h-28 w-28 rounded-full bg-white border-customBlue border-4 relative flex justify-center items-center">
                                     <input className="h-8 w-8 text-lg rounded-md text-center border-gray-400 border-2 absolute top-4 left-4 outline-none "
                                         value={processingRating}
+                                        type='number'
                                         onChange={(e) => {
                                             if (e.target.value > 5) {
                                                 setProcessingRating(5)
