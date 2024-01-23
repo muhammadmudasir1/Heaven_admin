@@ -17,6 +17,7 @@ import NavigationForAddForm from "./component/admin/NavigationForAddForm"
 import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
 import AddReview from "./component/admin/AddReview"
 import UpdateProduct from "./component/admin/UpdateProduct"
+import TopFive from "./component/admin/TopFive"
 
 
 
@@ -40,7 +41,7 @@ const App = () => {
 
                         <Route element={<Dashboard />}>
                             <Route path="product" element={<ProductDashboard />} />
-                            <Route path="topFive" element={<h1>TopFive</h1>} />
+                            <Route path="topFive" element={<TopFive/>} />
                             <Route path="news" element={<h1>News</h1>} />
                             <Route path="analytics" element={<h1>Google Analytics</h1>} />
                             <Route element={<NavigationForAddForm/>}>

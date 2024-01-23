@@ -28,7 +28,7 @@ const SLASpecs = (props) => {
             setAirPurificationSystem(oldData.airPurificationSystem)
             setBuildSize(oldData.buildSize)
             setInstallationSpace(oldData.installationSpace)
-            setInterface(oldData.Interface)
+            setInterface(oldData.interface)
             setLightDensity(oldData.lightDensity)
             setLightTechnology(oldData.lightTechnology)
             setMonoscreen(oldData.monoscreen)
@@ -59,7 +59,7 @@ const SLASpecs = (props) => {
             lightTechnology,
             lightDensity,
             airPurificationSystem,
-            Interface,
+            "interface":Interface,
             buildSize
         }
         saveData(data)
@@ -79,7 +79,7 @@ const SLASpecs = (props) => {
             lightTechnology,
             lightDensity,
             airPurificationSystem,
-            Interface,
+            "interface":Interface,
             buildSize
         }
         await update(oldData.product, 1, specsId, data)

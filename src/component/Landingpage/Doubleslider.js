@@ -84,10 +84,10 @@ const Doubleslider = () => {
             {slide.map((slide) => (
 
               <SwiperSlide key={slide.url} className='pb-4 relative'>
-                <div className='rounded-xl  flex flex-col items-start m-6 bg-white/95 h-[60vh]' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }}>
+                <div className='rounded-xl  flex flex-col items-start m-6 bg-white/95 h-[60vh] overflow-hidden' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }}>
                   <img src={slide.url} alt="" className='bg-cover rounded-t-xl' />
                   <h2 className='pt-8 px-6 font-bold'>Lorem, ipsum dolor.</h2>
-                  <p className=' pt-4 px-6'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi minus officiis delectus minima aut, cupiditate ducimus corrupti ipsum facere illo maxime nulla hic, animi tempora! Optio sequi eius perferendis quis?</p>
+                  <p className=' pt-4 px-6 text-ellipsis overflow-hidden ...'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi minus officiis delectus minima aut, cupiditate ducimus corrupti ipsum facere illo maxime nulla hic, animi tempora! Optio sequi eius perferendis quis?</p>
 
                 </div>
 
