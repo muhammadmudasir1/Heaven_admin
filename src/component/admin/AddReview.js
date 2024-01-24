@@ -46,14 +46,15 @@ const AddReview = () => {
                 cons,
                 review
             }
-            isLoading(true)
+            console.log("handle save")
+            setIsLoading(true)
             await Api.post(`/api/products/review/${id}`, data)
-            isLoading(false)
-            navigate('/dashboard/products')
+            setIsLoading(false)
+            navigate('/dashboard/product')
 
         } catch (error) {
             console.log(error)
-            isLoading(false)
+            setIsLoading(false)
         }
     }
 
