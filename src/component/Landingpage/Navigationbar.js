@@ -88,8 +88,8 @@ const Navigationbar = () => {
                     <>
 
                         <div className='flex flex-row justify-center items-center'>
-                            <PiMagnifyingGlass size={30} className='text-black z-20 cursor-pointer' />
-                            <GiHamburgerMenu onClick={handleNav} size={40} className='z-20 ml-3 cursor-pointer text-black' />
+                            <PiMagnifyingGlass size={30} className='text-white z-20 cursor-pointer' />
+                            <GiHamburgerMenu onClick={handleNav} size={40} className='z-20 ml-3 cursor-pointer text-white' />
                             <div className={nav ? 'w-full h-screen fixed left-0 top-0 flex-col z-10 bg-white/90 ease-in duration-500' : 'absolute top-0 left-[-100%] ease-in duration-500 z-10'}>
                                 <ul className='gap-8 flex lg:flex-row flex-col items-center justify-center h-screen w-full'>
                                     <li className='z-20 text-black hover:underline'>
@@ -125,7 +125,7 @@ const Navigationbar = () => {
                         {/* Add other desktop menu options here */}
                         <div onMouseLeave={SearchMenu} className='relative w-[40vw]'>
                             <div className='h-20 w-full p-4 rounded-tl-2xl rounded-bl-2xl border-none items-center grid grid-cols-8'>
-                                <input setResults={setResults} value={Input} onChange={(e) => handleChangeInput(e.target.value)} type='text' placeholder='What are you looking for?' className='pl-4 text-neutral-700 text-xl font-light font-[Avenir] h-full w-full col-span-7 rounded-tl-xl rounded-bl-xl' />
+                                <input setResults={setResults} value={Input} onChange={(e) => handleChangeInput(e.target.value)} type='text' placeholder='What are you looking for?' className='pl-4 text-neutral-700 text-xl font-light h-full w-full col-span-7 rounded-tl-xl rounded-bl-xl' />
                                 <div className='h-full bg-[#00CED1] flex items-center col-span-1 justify-center rounded-tr-xl rounded-br-xl'>
                                     <FaSearch className=' ' />
                                 </div>

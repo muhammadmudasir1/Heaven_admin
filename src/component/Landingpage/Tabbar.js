@@ -35,8 +35,6 @@ const Tabbar = () => {
   }, []);
 
 
-
-
   return (
     <div className={isDesktop ? ` bg-white shadow-md shadow-slate-300 w-full cursor-pointer relative ${isSticky ? 'fixednav w-full top-[70px] z-20' : ''}` : 'hidden'}>
       {isDesktop ? (

@@ -22,3 +22,8 @@
     padding: 24px;
 
 }
+.sticky {
+    position: sticky;
+    bottom: 0; 
+  }
+  

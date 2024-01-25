@@ -17,7 +17,7 @@ import NavigationForAddForm from "./component/admin/NavigationForAddForm"
 import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
 import AddReview from "./component/admin/AddReview"
 import UpdateProduct from "./component/admin/UpdateProduct"
-
+import "./customStyle.css"
 
 
 

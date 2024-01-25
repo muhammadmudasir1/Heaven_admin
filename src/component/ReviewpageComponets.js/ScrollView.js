@@ -47,7 +47,7 @@ const ScrollView = () => {
     <div className='lg:grid lg:grid-cols-7 mt-14'>
       <div className='p-8 col-span-5'>
         {ReviewList.map(ReviewList => {
-          return <NavLink to={"../OneReview"} className='flex items-center py-8 my-8 shadow-for-app bg-white/95 rounded-lg '>
+          return <NavLink to={"../OneReview"} className='flex items-center py-8 my-8 shadow-for-app bg-white/95 rounded-lg 'style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }}>
             <div className='h-full lg:w-64'>
               <img src={ReviewList.url} alt="" className='bg-cover ' />
             </div>
@@ -69,7 +69,7 @@ const ScrollView = () => {
           </NavLink>
         })}
       </div>
-      <div className='lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600' />
+      <div className='lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }}/>
     </div>
   );
 };

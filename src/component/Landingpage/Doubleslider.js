@@ -58,7 +58,7 @@ const Doubleslider = () => {
       <>
         <div className='lg:col-span-6 lg:relative my-8'>
           <div class=" flex justify-center items-center">
-            <h1 class="text-neutral-800 text-2xl font-normal font-[Avenir]">Latest on SLA printer</h1>
+            <h1 class="text-neutral-800 text-2xl font-normal">Latest on SLA printer</h1>
           </div>
           <Swiper
             modules={[Navigation, Scrollbar, A11y]}
@@ -111,7 +111,7 @@ const Doubleslider = () => {
       <>
         <div className='lg:col-span-6 lg:relative my-8'>
           <div class=" flex justify-center items-center">
-            <h1 class="text-neutral-800 text-2xl font-normal font-['Avenir']">Latest on FDM Printer</h1>
+            <h1 class="text-neutral-800 text-2xl font-normal ">Latest on FDM Printer</h1>
           </div>
           <Swiper
             modules={[Navigation, Scrollbar, A11y]}
