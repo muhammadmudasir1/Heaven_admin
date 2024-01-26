@@ -125,13 +125,15 @@ const Navigationbar = () => {
                         {/* Add other desktop menu options here */}
                         <div onMouseLeave={SearchMenu} className='relative w-[40vw]'>
                             <div className='h-20 w-full p-4 rounded-tl-2xl rounded-bl-2xl border-none items-center grid grid-cols-8'>
-                                <input setResults={setResults} value={Input} onChange={(e) => handleChangeInput(e.target.value)} type='text' placeholder='What are you looking for?' className='pl-4 text-neutral-700 text-xl font-light h-full w-full col-span-7 rounded-tl-xl rounded-bl-xl' />
+                                <input setResults={setResults} value={Input} onChange={(e) => handleChangeInput(e.target.value)} type='text' placeholder='What are you looking for?'
+                                onBlur={(e)=> {setResults(false)}}
+                                className='pl-4 text-neutral-700 text-xl font-light h-full w-full col-span-7 rounded-tl-xl rounded-bl-xl' />
                                 <div className='h-full bg-[#00CED1] flex items-center col-span-1 justify-center rounded-tr-xl rounded-br-xl'>
                                     <FaSearch className=' ' />
                                 </div>
                             </div>
                             <div results={result} className='absolute z-40 bg-slate-50 w-full mt-2 rounded-lg overflow-y-scroll max-h-72'>
-                                {result.map((printer) => (
+                                {result && result.map((printer) => (
                                     <div key={printer.id} className='px-4 py-4'>
                                         {printer.printer}
                                     </div>

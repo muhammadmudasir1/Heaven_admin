@@ -22,6 +22,11 @@ import SLA from "./component/SLA"
 import Scanner from "./component/Scanner"
 import Cutter from "./component/Cutter"
 import SingleReview from "./component/SingleReview"
+import ScrollView from "./component/ReviewpageComponets.js/ScrollView"
+import SLAView from "./component/SLAComponents/SLAView"
+import FDMView from "./component/FDMAComponents/FDMView"
+import ScannerView from "./component/SCANNERComponents/ScannerView"
+import CutterView from "./component/CUTTERComponents/CutterView"
 
 
 const App = () => {
@@ -34,33 +39,35 @@ const App = () => {
                     <Routes>
                         <Route element={<Navigationbar />}>
                             <Route path="/" element={<Home />} />
-                            <Route path="/ComparisonPage" element={<ComparisonPage/>} />
-                            <Route path="/Review" element={<Review />} />
-                            <Route path="/singlereview" element={<SingleReview/>}/>
-                            <Route path="/CompareResult" element={<CompareResult/>}/>
-                            <Route path="/all3dprinter" element={<Review/>}/>
-                            <Route path="/fdm" element={<FDM/>} />
-                            <Route path="/sla" element={<SLA/>}/>
-                            <Route path="/scanner" element={<Scanner/>} />
-                            <Route path="/cutter" element={<Cutter/>} />
-                            <Route path="allmostimportant" element={<SingleReview/>} />
-                         </Route>
+                            <Route path="/ComparisonPage" element={<ComparisonPage />} />
+                            <Route path="/product" element={<Review />} >
+                                <Route path="all3dprinter" element={<ScrollView />} />
+                                <Route path="fdm" element={<FDMView />} />
+                                <Route path="sla" element={<SLAView />} />
+                                <Route path="scanner" element={<ScannerView />} />
+                                <Route path="cutter" element={<CutterView />} />
+                            </Route>
+                            <Route path="/singlereview" element={<SingleReview />} />
+                            <Route path="/CompareResult" element={<CompareResult />} />
+
+                            <Route path="allmostimportant" element={<SingleReview />} />
+                        </Route>
                         <Route path="/dashboard" element={<PrivatePage />}>
 
-                        <Route element={<Dashboard />}>
-                            <Route path="product" element={<ProductDashboard />} />
-                            <Route path="topFive" element={<h1>TopFive</h1>} />
-                            <Route path="news" element={<h1>News</h1>} />
-                            <Route path="analytics" element={<h1>Google Analytics</h1>} />
-                            <Route element={<NavigationForAddForm/>}>
-                            <Route path="addProduct" element={<AddProduct />} />
-                            <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
-                            <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks/>}/>
-                            <Route path="addReview/:id" element={<AddReview/>}/>
-                            <Route path="updateproduct/:id" element={<UpdateProduct/>}/>
+                            <Route element={<Dashboard />}>
+                                <Route path="product" element={<ProductDashboard />} />
+                                <Route path="topFive" element={<h1>TopFive</h1>} />
+                                <Route path="news" element={<h1>News</h1>} />
+                                <Route path="analytics" element={<h1>Google Analytics</h1>} />
+                                <Route element={<NavigationForAddForm />}>
+                                    <Route path="addProduct" element={<AddProduct />} />
+                                    <Route path="addSpecs/:id" element={<AddSpecs />}></Route>
+                                    <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks />} />
+                                    <Route path="addReview/:id" element={<AddReview />} />
+                                    <Route path="updateproduct/:id" element={<UpdateProduct />} />
+                                </Route>
                             </Route>
                         </Route>
-                    </Route>
 
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="*" element={<p>404 Page not found</p>}></Route>

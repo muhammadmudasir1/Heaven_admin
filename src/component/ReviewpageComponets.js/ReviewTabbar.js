@@ -7,11 +7,11 @@ const ReviewTabbar = () => {
 
             <ul>
                 <li className='flex gap-24 items-center justify-center'>
-                    <NavLink to={{pathname: '/all3dprinter'}} className='text-neutral-800 text-xl font-normal'>All 3D Printers</NavLink>
-                    <NavLink to={{pathname: '/fdm'}} className='text-neutral-800 text-xl font-normal'>FDM</NavLink>
-                    <NavLink to={{pathname: '/sla'}} className='text-neutral-800 text-xl font-normal'>SLA</NavLink>
-                    <NavLink to={{pathname: '/scanner'}} className='text-neutral-800 text-xl font-normal'>Scanner</NavLink>
-                    <NavLink to={{pathname: '/cutter'}} className='text-neutral-800 text-xl font-normal'>Cutter</NavLink>
+                    <NavLink to={{pathname: '/product/all3dprinter'}} className='text-neutral-800 text-xl font-normal'>All 3D Printers</NavLink>
+                    <NavLink to={{pathname: '/product/fdm'}} className='text-neutral-800 text-xl font-normal'>FDM</NavLink>
+                    <NavLink to={{pathname: '/product/sla'}} className='text-neutral-800 text-xl font-normal'>SLA</NavLink>
+                    <NavLink to={{pathname: '/product/scanner'}} className='text-neutral-800 text-xl font-normal'>Scanner</NavLink>
+                    <NavLink to={{pathname: '/product/cutter'}} className='text-neutral-800 text-xl font-normal'>Cutter</NavLink>
                 </li>
             </ul>
 

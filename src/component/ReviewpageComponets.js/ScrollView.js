@@ -76,9 +76,10 @@ const ScrollView = () => {
     return (
         <div className='flex flex-col items-center'>
             <div className='lg:grid lg:grid-cols-7 mt-14'>
+                
                 <div className='p-4 col-span-5 h-325px' style={{ backgroundImage: `url(${Cards.url})` }}>
                     {currentCard.map(Cards => {
-                        return <NavLink to={{ pathname: "../singlereview" }} className='flex items-center my-4 shadow-for-app bg-white/95 rounded-lg '
+                        return <NavLink to={"/product/all3dprinter"}   className='flex items-center my-4 shadow-for-app bg-white/95 rounded-lg '
                             style={
                                 { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                             }>
