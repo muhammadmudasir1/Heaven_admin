@@ -4,7 +4,7 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link, NavLink } from 'react-router-dom';
 import PaginationClass from '../ComparisonComponet/PaginationClass';
 
-const ScrollView = () => {
+const SLAView = () => {
 
     const [CardPerPage, setCardPerPage] = useState(5);
     const [CurrentPage, setCurrentPage] = useState(1);
@@ -114,4 +114,4 @@ const ScrollView = () => {
     );
 };
 
-export default ScrollView;
+export default SLAView;

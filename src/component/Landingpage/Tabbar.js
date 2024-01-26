@@ -49,18 +49,18 @@ const Tabbar = () => {
             <NavLink to={"*"} className='text-neutral-800 text-xl font-light font-[Roboto]'>{t('Bestlist')}</NavLink>
             <div className=' relative'>
               <div className='flex justify-center items-center'>
-                <NavLink to={'../Review'} className='py-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>{t("3dprinters")} </NavLink>
+                <NavLink to={{pathname: '/Review'}} className='py-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>{t("3dprinters")} </NavLink>
                 {!isOpen ? <MdOutlineArrowDropDown onClick={toggleDropdown} size={30} /> : <MdOutlineArrowDropUp onClick={toggleDropdown} size={30} />}
               </div>
               {isOpen && (
                 <div className='absolute top-12 right-0 flex flex-col items-start justify-evenly bg-white w-40 shadow-md shadow-slate-400'>
-                  <NavLink to={'scanner'}
+                  <NavLink to={{pathname: '/sla'}}
                     className='hover:bg-[#EEEEEE] w-full p-3 text-neutral-700 text-xl font-light font-[Roboto]'>
                     SLA printer
                   </NavLink>
-                  <NavLink to={'LaserCutter'}
+                  <NavLink to={{pathname: '/fdm'}}
                     className='hover:bg-[#EEEEEE] w-full p-3 text-neutral-700 text-xl font-light font-[Roboto]'>
-                    SLA printer
+                    FDM printer
                   </NavLink>
                 </div>
               )}

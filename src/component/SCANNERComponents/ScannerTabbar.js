@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const ReviewTabbar = () => {
+const ScannerTabbar = () => {
     return (
         <div>
 
@@ -19,4 +19,4 @@ const ReviewTabbar = () => {
     )
 }
 
-export default ReviewTabbar
+export default ScannerTabbar

@@ -10,7 +10,6 @@ import CurrentProductProvider from "./context/CurrentProductContext"
 import Home from "./component/Home"
 import Navigationbar from "./component/Landingpage/Navigationbar"
 import Review from "./component/Review"
-import OneReview from "./component/OneReview"
 import ComparisonPage from "./component/ComparisonPage"
 import CompareResult from "./component/CompareResult"
 import NavigationForAddForm from "./component/admin/NavigationForAddForm"
@@ -18,7 +17,11 @@ import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
 import AddReview from "./component/admin/AddReview"
 import UpdateProduct from "./component/admin/UpdateProduct"
 import "./customStyle.css"
-
+import FDM from "./component/FDM"
+import SLA from "./component/SLA"
+import Scanner from "./component/Scanner"
+import Cutter from "./component/Cutter"
+import SingleReview from "./component/SingleReview"
 
 
 const App = () => {
@@ -33,9 +36,15 @@ const App = () => {
                             <Route path="/" element={<Home />} />
                             <Route path="/ComparisonPage" element={<ComparisonPage/>} />
                             <Route path="/Review" element={<Review />} />
-                            <Route path="/OneReview" element={<OneReview />} />
+                            <Route path="/singlereview" element={<SingleReview/>}/>
                             <Route path="/CompareResult" element={<CompareResult/>}/>
-                        </Route>
+                            <Route path="/all3dprinter" element={<Review/>}/>
+                            <Route path="/fdm" element={<FDM/>} />
+                            <Route path="/sla" element={<SLA/>}/>
+                            <Route path="/scanner" element={<Scanner/>} />
+                            <Route path="/cutter" element={<Cutter/>} />
+                            <Route path="allmostimportant" element={<SingleReview/>} />
+                         </Route>
                         <Route path="/dashboard" element={<PrivatePage />}>
 
                         <Route element={<Dashboard />}>

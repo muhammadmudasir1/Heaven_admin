@@ -269,7 +269,7 @@ const CompareScrollandAdd = () => {
     return (
         <>
             <div className='grid grid-cols-8'>
-                <div className='col-span-6 flex flex-col items-center px-6 mt-16'>
+                <div className='col-span-6 flex flex-col items-center px-6 mt-16 h-427px'>
                     {currentCard.map((cards, Index) => {
                         const isChecked = selectedCards.includes(Index);
                         return <div key={cards.Index} className='flex shadow-for-app items-end justify-start rounded-lg my-2 w-full py-8' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }}>
