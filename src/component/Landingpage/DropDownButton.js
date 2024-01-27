@@ -14,6 +14,7 @@ const DropDownButton = ({ buttonName }) => {
   return (
     <div className='flex flex-col items-center justify-between w-full mx-2 lg:relative'>
       <button
+        onBlur={(e)=> {setIsOpen(false)}}
         onClick={toggleDropdown}
         className='bg-white w-full lg:text-lg py-3 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white duration-500 active:text-white lg:pl-8 lg:pr-2 text-neutral-700 text-xl font-light font-[Roboto]'
       >
@@ -24,10 +25,10 @@ const DropDownButton = ({ buttonName }) => {
         <div
           className='bg w-full rounded-lg flex flex-col place-items-start lg:z-20 top-full mt-2 lg:bottom-0 lg:absolute'
         >
-          {list.map((item, i) => (
+          {isOpen && list.map((item, i) => (
             <div
               key={i}
-              className='flex flex-row justify-between w-full px-5 py-2 cursor-pointer hover:bg-blue-500 rounded-lg'
+              className='flex flex-row justify-between w-full px-5 py-2 cursor-pointer bg-white hover:bg-blue-500 rounded-lg'
             >
               <h3 className='font-bold'>{item.city}</h3>
               <h3>{item.emojy}</h3>

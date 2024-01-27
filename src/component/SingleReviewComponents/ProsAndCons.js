@@ -14,9 +14,9 @@ const ProsAndCons = () => {
     };
 
     return (
-        <div>
-            <div onClick={handleToggle} className=''>
-                <div className='flex justify-between px-8 py-8 bg-stone-50'>
+        <div className='mx-8 my-8'>
+            <div onClick={handleToggle} className='mb-4'>
+                <div className='flex justify-between px-8 py-4 bg-stone-50'>
                     <div className='text-neutral-700 text-2xl font-medium '>
                         Pros
                     </div>
@@ -25,7 +25,7 @@ const ProsAndCons = () => {
                     </div>
                 </div>
                 {isToggled && (
-                    <ul className='list-disc px-16 bg-stone-50'>
+                    <ul className='list-disc px-16 bg-stone-50 text-neutral-700 text-xl font-medium pb-8'>
                         <li>Pros Lorem ipsum dolor sit amet, consetetur sadipscing elitr </li>
                         <li>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </li>
                         <li>At vero eos et accusam et justo duo dolores et ea rebum. Stet </li>
@@ -33,8 +33,8 @@ const ProsAndCons = () => {
                     </ul>
                 )}
             </div>
-            <div onClick={handleToggleCons} className=''>
-                <div className='flex justify-between px-8 py-8 bg-stone-50'>
+            <div onClick={handleToggleCons} className='mb-4'>
+                <div className='flex justify-between px-8 py-4 bg-stone-50'>
                     <div className='text-neutral-700 text-2xl font-medium '>
                         Cons
                     </div>
@@ -43,7 +43,7 @@ const ProsAndCons = () => {
                     </div>
                 </div>
                 {isToggledCons && (
-                    <ul className='list-disc px-16 bg-stone-50'>
+                    <ul className='list-disc px-16 bg-stone-50 text-neutral-700 text-xl font-medium pb-8'>
                         <li>Pros Lorem ipsum dolor sit amet, consetetur sadipscing elitr </li>
                         <li>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </li>
                         <li>At vero eos et accusam et justo duo dolores et ea rebum. Stet </li>

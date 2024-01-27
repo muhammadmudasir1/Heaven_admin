@@ -10,7 +10,7 @@ const SingleReviewTabbar = () => {
             <ul>
                 <li className='flex gap-24 items-center justify-center'>
                     <NavLink
-                        to={{ pathname: '/allmostimportant' }}
+                        to={`/productreview/${1}/allmostimportant`}
                         className='text-neutral-800 text-xl font-normal'
                         onClick={() => setCurrentHeading('Alle Wichtigste')}
                     >

@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { MdOutlineArrowDropUp } from "react-icons/md";
 import { NavLink } from "react-router-dom"
+import "../../customStyle.css"
+
 const Tabbar = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
   const [isOpen, setisOpen] = useState(false);
@@ -67,9 +69,9 @@ const Tabbar = () => {
             </div>
             <NavLink to={'/product/cutter'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Laser</NavLink>
             <NavLink to={'/product/scanner'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Scanner</NavLink>
-            <NavLink to={'Ali'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>{t("Filament")}</NavLink>
-            <NavLink to={'Ahsan'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Ratgeber</NavLink>
-            <NavLink to={'Benazir'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>News</NavLink>
+            <NavLink to={'/filament'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>{t("Filament")}</NavLink>
+            <NavLink to={'/product/ratgeber'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Ratgeber</NavLink>
+            <NavLink to={'/news'} className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>News</NavLink>
           </ul>
 
         </div>

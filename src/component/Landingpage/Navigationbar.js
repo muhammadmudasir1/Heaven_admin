@@ -145,6 +145,7 @@ const Navigationbar = () => {
                         </a>
                         <div className='px-8 flex items-center relative'>
                             <button
+                                onBlur={(e)=>{setIsTranslated(false)}}
                                 onClick={dropDown}
                                 className='text-white text-xl font-light font-[Roboto]'
                             >

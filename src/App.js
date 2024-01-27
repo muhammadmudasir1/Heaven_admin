@@ -27,6 +27,11 @@ import SLAView from "./component/SLAComponents/SLAView"
 import FDMView from "./component/FDMAComponents/FDMView"
 import ScannerView from "./component/SCANNERComponents/ScannerView"
 import CutterView from "./component/CUTTERComponents/CutterView"
+import CompareScrollandAdd from "./component/ComparisonComponet/CompareScrollandAdd"
+import CompareTabbar from "./component/ComparisonComponet/CompareTabbar"
+import ComparePage from "./component/ComparisonComponet/ComparePage"
+import ShowFilament from "./component/ShowFilament"
+import ReviewAndAdd from "./component/SingleReviewComponents/ReviewAndAdd"
 
 
 const App = () => {
@@ -38,8 +43,14 @@ const App = () => {
 
                     <Routes>
                         <Route element={<Navigationbar />}>
-                            <Route path="/" element={<Home />} />
                             <Route path="/ComparisonPage" element={<ComparisonPage />} />
+                            <Route path="/" element={<Home />} />
+                            <Route path="/filament" element={<ShowFilament />} />
+                            <Route path="/result/:fdm/:price/:product" element={<ComparePage />}/>
+                            <Route path="/comparision/:index1/:index2/:index3/:index4" element={<CompareResult/>} />
+                            <Route path="/result/sla/:price/:manufacture" element={<ComparePage />} />
+                            <Route path="/result/scanner/:price/:manufacture" element={<ComparePage />} />
+                            <Route path="/result/cutter/:price/:manufacture" element={<ComparePage />} />
                             <Route path="/product" element={<Review />} >
                                 <Route path="all3dprinter" element={<ScrollView />} />
                                 <Route path="fdm" element={<FDMView />} />
@@ -47,10 +58,9 @@ const App = () => {
                                 <Route path="scanner" element={<ScannerView />} />
                                 <Route path="cutter" element={<CutterView />} />
                             </Route>
-                            <Route path="/singlereview" element={<SingleReview />} />
-                            <Route path="/CompareResult" element={<CompareResult />} />
-
-                            <Route path="allmostimportant" element={<SingleReview />} />
+                            <Route path="/productreview/:id" element={<SingleReview />} >
+                                <Route path="allmostimportant" element={<SingleReview />} />
+                            </Route>
                         </Route>
                         <Route path="/dashboard" element={<PrivatePage />}>
 

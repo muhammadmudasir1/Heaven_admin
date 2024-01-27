@@ -3,7 +3,7 @@ import imges from '../../imges/coupon.svg'
 import imges1 from '../../imges/EBay_logo.png'
 import { Checkbox } from "@material-tailwind/react"
 import PaginationClass from './PaginationClass'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const StickyComparisonBar = (setIsSticky) => {
     const handleScroll = () => {
@@ -27,6 +27,7 @@ const CompareScrollandAdd = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCards, setSelectedCards] = useState([]);
     const [isSticky, setIsSticky] = useState(false);
+    const navigation = useNavigate();
 
     StickyComparisonBar(setIsSticky);
     // const [totalCards, setTotalCards]=useState()
@@ -304,7 +305,7 @@ const CompareScrollandAdd = () => {
                                         <h1 className='mx-2'>{cards.coupon}</h1>
                                     </button>
                                     <div className='flex items-center pt-8'>
-                                        <Checkbox size={60} checked={selectedCards.includes(cards.Index)} onChange={() => handleCheckboxChange(cards.Index)} className='px-8 py-8'/>
+                                        <Checkbox size={60} checked={selectedCards.includes(cards.Index)} onChange={() => handleCheckboxChange(cards.Index)} className='px-8 py-8' />
                                         <h1 class=" text-lg font-light">Add to Comparison</h1>
                                     </div>
                                 </div>
@@ -344,29 +345,23 @@ const CompareScrollandAdd = () => {
                 <div className='col-span-2 shadow-for-app shadow-slate-600 mx-4' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
             </div>
             {selectedCards.length > 0 && selectedCards.length <= 4 && (
-                <div className={`bg-slate-600/30 z-10 w-full flex items-center py-4 px-4 mt-2 ${isSticky ? 'sticky w-full z-20' : ''} `}>
+                <div className={`bg-black bg-opacity-40 z-10 w-full flex items-center py-8 px-8 mt-2 ${isSticky ? 'sticky w-full z-20' : ''} `}>
                     {selectedCards.map((selectedIndex) => (
-                        <div key={selectedIndex} className='flex items-center mx-2 bg-white'>
-                            <div className='w-20'><img src={cards[selectedIndex].img} alt="" className='bg-cover' /></div>
+                        <div key={selectedIndex} className='flex items-center mx-4 py-4 bg-white'>
+                            <div className='bg-black' style={{ height: '100%', backgroundImage: `url(${cards[selectedIndex].img})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                            osamaosamaosamaosama
                             <div className='px-2'>
                                 <h1 className='text-neutral-800 text-base font-semibold font-[Roboto]'>{cards[selectedIndex].title}</h1>
                                 <h1 className='text-neutral-800 text-sm font-semibold font-[Roboto]'>{cards[selectedIndex].price}</h1>
                             </div>
                         </div>
                     ))}
-                    <NavLink
-                        to={{
-                            pathname: '/CompareResult',
-                            state: {
-                                selectedCards: selectedCards.map((index) =>
-                                    cards.find((card) => card.Index === index)
-                                ),
-                            },
-                        }}
-                        className='border-hidden h-8 px-4 bg-sky-700 flex items-center justify-center rounded-md'
+                    <div
+                        onClick={(e)=>{navigation('/comparision/:index1/:index2/:index3/:index4')}}
+                        className='border-hidden h-8 px-4 bg-sky-700 flex items-center justify-center rounded-md cursor-pointer'
                     >
                         Comparison
-                    </NavLink>
+                    </div>
 
                 </div>
             )}

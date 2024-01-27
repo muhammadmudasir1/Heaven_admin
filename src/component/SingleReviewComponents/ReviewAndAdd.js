@@ -2,9 +2,13 @@ import React from 'react'
 import { CiStar } from 'react-icons/ci';
 import SingleReviewPropertyCard from './SingleReviewPropertyCard';
 import ProsAndCons from './ProsAndCons';
-
+import { useEffect } from 'react';
+import PriceCards from './PriceCards'
 const ReviewAndAdd = () => {
-
+    
+     useEffect (()=>{
+        console.log("ok")
+     },[]);
     const names = [
         {
 
@@ -30,6 +34,7 @@ const ReviewAndAdd = () => {
 
     return (
         <div className='grid-cols-8 grid '>
+            
             <div className='col-span-6'>
                 <div className='lg:flex items-center justify-center pr-4 bg-slate-200 relative w-full'>
                     <div className='flex mt-20 items-center lg:flex-col'>
@@ -86,6 +91,7 @@ const ReviewAndAdd = () => {
                 </div>
                 <SingleReviewPropertyCard />
                 <ProsAndCons/>
+                <PriceCards/>
             </div>
             <div className='col-span-2 lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} ></div>
         </div>

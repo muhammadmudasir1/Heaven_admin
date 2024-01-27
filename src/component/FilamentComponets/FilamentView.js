@@ -4,7 +4,7 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import PaginationClass from '../ComparisonComponet/PaginationClass';
 
-const ScannerView = () => {
+const FilamentView = () => {
 
     const [CardPerPage, setCardPerPage] = useState(5);
     const [CurrentPage, setCurrentPage] = useState(1);
@@ -115,4 +115,4 @@ const ScannerView = () => {
     );
 };
 
-export default ScannerView;
+export default FilamentView;

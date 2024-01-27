@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { CiStar } from 'react-icons/ci';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import PaginationClass from '../ComparisonComponet/PaginationClass';
 
 const CutterView = () => {
 
     const [CardPerPage, setCardPerPage] = useState(5);
     const [CurrentPage, setCurrentPage] = useState(1);
+
+    const navigation = useNavigate();
 
     useEffect(() => {
         console.log(CardPerPage)
@@ -78,7 +80,7 @@ const CutterView = () => {
             <div className='lg:grid lg:grid-cols-7 mt-14'>
                 <div className='p-4 col-span-5 h-325px' style={{ backgroundImage: `url(${Cards.url})` }}>
                     {currentCard.map(Cards => {
-                        return <NavLink to={{ pathname: "../singlereview" }} className='flex items-center my-4 shadow-for-app bg-white/95 rounded-lg '
+                        return <div onClick={(e)=>{navigation(`/productreview/${3}`)}} className='flex items-center my-4 shadow-for-app bg-white/95 rounded-lg cursor-pointer'
                             style={
                                 { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                             }>
@@ -99,7 +101,7 @@ const CutterView = () => {
                                     <MdKeyboardDoubleArrowRight size={25} />
                                 </div>
                             </div>
-                        </NavLink>
+                        </div>
                     })}
                 </div>
                 <div className='lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
