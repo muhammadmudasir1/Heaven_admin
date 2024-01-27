@@ -35,7 +35,7 @@ const ProductDashboard = () => {
             }
         }
         fetchData()
-    }, [currentProducttype, query])
+    }, [query])
 
     const handleSearch = async (e) => {
         try {
