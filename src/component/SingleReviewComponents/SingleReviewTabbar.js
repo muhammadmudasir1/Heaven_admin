@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const SingleReviewTabbar = () => {
+    const [isFixed,setIsFixed]=useState(false);
+
+    const handleFixedTabbar=()=>{
+        if(window.scrollY >0){
+            setIsFixed(true)
+        }else{
+            setIsFixed(false)
+        }
+    }
+    window.addEventListener('scroll',handleFixedTabbar)
 
     const [currentHeading, setCurrentHeading] = useState('Alle Wichtigste');
 
     return (
         <div className='mt-4'>
+            {/* <ul className={`${isFixed? 'fixed top-32 w-full z-20 bg-white py-8' : ''} `}> */}
             <ul>
                 <li className='flex gap-24 items-center justify-center'>
                     <NavLink
@@ -17,7 +29,7 @@ const SingleReviewTabbar = () => {
                         Alle Wichtigste
                     </NavLink>
                     <NavLink
-                        to={{ pathname: '/fdm' }}
+                        to={'/fdm' }
                         className='text-neutral-800 text-xl font-normal'
                         onClick={() => setCurrentHeading('Erster Eindruck')}
                     >

@@ -3,7 +3,7 @@ import imges from '../../imges/coupon.svg'
 import imges1 from '../../imges/EBay_logo.png'
 import { Checkbox } from "@material-tailwind/react"
 import PaginationClass from './PaginationClass'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 const StickyComparisonBar = (setIsSticky) => {
     const handleScroll = () => {
@@ -29,8 +29,19 @@ const CompareScrollandAdd = () => {
     const [isSticky, setIsSticky] = useState(false);
     const navigation = useNavigate();
 
+    const handleComparison = () => {
+        let search = "";
+        const selectedCardsData = selectedCards.map(index => cards[index]);
+        selectedCardsData.forEach((card, index) => {
+            console.log(`Card ${index + 1} details:`);
+            console.log(card);
+            search += `cp${index + 1}=${card.Index}&`;
+        });
+    
+        navigation(`/comparision?${search}`, { selectedCardsData });
+    };
+
     StickyComparisonBar(setIsSticky);
-    // const [totalCards, setTotalCards]=useState()
     useEffect(() => {
         console.log(cardPerPage)
     }, [cardPerPage])
@@ -349,7 +360,7 @@ const CompareScrollandAdd = () => {
                     {selectedCards.map((selectedIndex) => (
                         <div key={selectedIndex} className='flex items-center mx-4 py-4 bg-white'>
                             <div className='bg-black' style={{ height: '100%', backgroundImage: `url(${cards[selectedIndex].img})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                            osamaosamaosamaosama
+                            osama
                             <div className='px-2'>
                                 <h1 className='text-neutral-800 text-base font-semibold font-[Roboto]'>{cards[selectedIndex].title}</h1>
                                 <h1 className='text-neutral-800 text-sm font-semibold font-[Roboto]'>{cards[selectedIndex].price}</h1>
@@ -357,7 +368,8 @@ const CompareScrollandAdd = () => {
                         </div>
                     ))}
                     <div
-                        onClick={(e)=>{navigation('/comparision/:index1/:index2/:index3/:index4')}}
+                        
+                        onClick={handleComparison}
                         className='border-hidden h-8 px-4 bg-sky-700 flex items-center justify-center rounded-md cursor-pointer'
                     >
                         Comparison
