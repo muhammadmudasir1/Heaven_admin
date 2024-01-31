@@ -16,7 +16,7 @@ const DropDownButton = ({ buttonName }) => {
       <button
         onBlur={(e)=> {setIsOpen(false)}}
         onClick={toggleDropdown}
-        className='bg-white w-full lg:text-lg py-3 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white duration-500 active:text-white lg:pl-8 lg:pr-2 text-neutral-700 text-xl font-light font-[Roboto]'
+        className='bg-white w-full lg:text-lg py-3 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white duration-500 active:text-white lg:pl-8 lg:pr-2 text-neutral-700 text-2xl font-light font-[Roboto]'
       >
         {isname}
         {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}

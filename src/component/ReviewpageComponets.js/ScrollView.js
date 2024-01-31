@@ -77,16 +77,16 @@ const ScrollView = () => {
     }
 
     return (
-        <div className='flex flex-col items-center'>
-            <div className='lg:grid lg:grid-cols-7 mt-14'>
+        <div className='flex flex-col items-center '>
+            <div className='lg:grid lg:grid-cols-7 p-5 '>
                 
-                <div className='p-4 col-span-5 h-325px' style={{ backgroundImage: `url(${Cards.url})` }}>
+                <div className=' col-span-5 h-full pr-12' >
                     {currentCard.map(Cards => {
-                        return <div onClick={(e)=>{navigate(`/productreview/${1}/allmostimportant`)}}  className='flex items-center my-4 shadow-for-app bg-white/95 rounded-lg cursor-pointer'
+                        return <div onClick={(e)=>{navigate(`/productreview/${1}/allmostimportant`)}}  className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
                             style={
                                 { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                             }>
-                            <div className='lg:w-1/3 bg-cover bg-center w-full h-[358.18px]'style={{backgroundImage:`url(${Cards.url})`}}/>
+                            <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full h-[358.18px]'style={{backgroundImage:`url(${Cards.url})`}}/>
                             <div className='lg:pl-8 w-3/5 '>
                                 <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.title}</h1>
                                 <div className='flex pb-4'>

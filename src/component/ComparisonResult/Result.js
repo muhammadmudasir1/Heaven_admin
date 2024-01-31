@@ -32,7 +32,7 @@ const Result = () => {
             </div>
             <h1 className='text-neutral-800 text-xl font-semibold'>{item.title}</h1>
             <h1 className='line-through text-neutral-800 text-lg font-semibold'>{item['Offical Price']}</h1>
-            <div className='flex px-8 py-4 outline outline-sky-600 rounded-lg my-2'>
+            <div className='flex px-8 py-4 outline outline-[#026CC4] rounded-lg my-2'>
               <img src={imges} alt="" className='' />
               <h1>{item.price}</h1>
             </div>

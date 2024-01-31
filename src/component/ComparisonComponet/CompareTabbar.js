@@ -6,7 +6,7 @@ const CompareTabbar = () => {
     const {manufacture,price,product} = useParams();
     return (
         <>
-            <ul className='flex pt-8 items-center justify-center'>
+            <ul className='flex pt-7 mb-5 items-center justify-center'>
                 <li>
                     <NavLink to={'/result/:fdm/:price/:product'} className='px-12 text-neutral-800 text-xl font-normal'>FDM</NavLink>
                 </li>

@@ -9,7 +9,7 @@ const Review = () => {
   return (
     <>
       <Tabbar />
-      <div className='bg-gray-300 my-8 w-full h-full flex flex-row items-center justify-between'>
+      <div className='bg-zinc-100 w-full h-full flex flex-row items-center justify-between'>
         <div>
           <h1 className='text-neutral-800 lg:text-5xl text-3xl font-normal font-[Avenir] ml-12 py-20 '> Reviews from our <br /> 3D expert</h1>
         </div>

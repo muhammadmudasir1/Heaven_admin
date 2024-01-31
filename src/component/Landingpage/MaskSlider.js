@@ -85,6 +85,7 @@ const MaskSlider = () => {
     return (
         <div className='lg:relative'>
             <div className='lg:relative'>
+                
                 <Swiper
                     modules={[Navigation, Scrollbar, A11y, Pagination]}
                     breakpoints={

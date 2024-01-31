@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const ScannerTabbar = () => {
     return (
-        <div>
+        <div className='pt-7 pb-[76px]'>
 
             <ul>
                 <li className='flex gap-24 items-center justify-center'>

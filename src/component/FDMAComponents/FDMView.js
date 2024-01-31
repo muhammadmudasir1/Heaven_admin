@@ -77,15 +77,14 @@ const FDMView = () => {
 
     return (
         <div className='flex flex-col items-center'>
-            <div className='lg:grid lg:grid-cols-7 mt-14'>
-
-                <div className='p-4 col-span-5 h-325px' style={{ backgroundImage: `url(${Cards.url})` }}>
+            <div className='lg:grid lg:grid-cols-7 p-5'>
+                <div className='col-span-5 h-325px pr-12'>
                     {currentCard.map(Cards => {
-                        return <div onClick={(e)=>{navigation(`/productreview/${2}`)}} className='flex items-center my-4 shadow-for-app bg-white/95 rounded-lg cursor-pointer'
+                        return <div onClick={(e)=>{navigation(`/productreview/${2}`)}} className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
                             style={
                                 { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                             }>
-                            <div className='lg:w-1/3 bg-cover bg-center w-full h-[358.18px]' style={{ backgroundImage: `url(${Cards.url})` }}>
+                            <div className='lg:w-1/3 bg-cover bg-center w-full h-[358.18px] rounded-l-xl' style={{ backgroundImage: `url(${Cards.url})` }}>
                                 {/* <img src={ReviewList.url} alt="" className='h-full w-full '/> */}
                                 {/* <div className='bg-cover bg-center bg-black w-[318.36px] h-[358.18px]' style={{ backgroundImage: `url(${ReviewList.url})` }} /> */}
                             </div>
