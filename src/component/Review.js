@@ -18,7 +18,7 @@ const Review = () => {
         </div>
 
       </div>
-      <ReviewTabbar />
+      {/* <ReviewTabbar /> */}
       <Outlet/>
         {/* <ScrollView /> */}
       
