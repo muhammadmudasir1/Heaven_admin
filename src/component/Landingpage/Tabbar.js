@@ -38,7 +38,7 @@ const Tabbar = () => {
 
 
   return (
-    <div className={isDesktop ? ` bg-white shadow-md shadow-slate-300 w-full cursor-pointer relative ${isSticky ? 'fixednav w-full top-[70px] z-[99999]' : ''}` : 'hidden'}>
+    <div className={isDesktop ? ` bg-white shadow-md shadow-slate-300 w-full cursor-pointer relative ${isSticky ? 'fixednav w-full top-[8vh] lg:top-[10vh] z-[99999]' : ''}` : 'hidden'}>
       {isDesktop ? (
         <div className='w-full h-full flex items-center pt-2'>
           <ul className='flex justify-evenly items-center gap-x-6  w-full relative'>
