@@ -56,6 +56,7 @@ const FilamentView = () => {
                 <div
                   className="rounded-l-xl lg:w-1/3 bg-cover bg-center w-full h-[358.18px]"
                   style={{ backgroundImage: `url(/${Cards.ProductImages[0].path})`, }}
+                  
                 >
                 </div>
                 <div className="lg:pl-8 w-3/5 ">
