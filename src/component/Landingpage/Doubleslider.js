@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { IoIosArrowForward } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper/modules";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
@@ -11,39 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/a11y";
 import "swiper/css";
 
-const Doubleslider = () => {
-  const slides = [
-    {
-      url: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-      review:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    },
-    {
-      url: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-      review:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    },
-    {
-      url: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-      review:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    },
-    {
-      url: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-      review:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    },
-    {
-      url: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-      review:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    },
-    {
-      url: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-      review:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    },
-  ];
+const Doubleslider = () => {  
 
   
   //SLA
@@ -104,7 +71,9 @@ const Doubleslider = () => {
       <>
         <div className="lg:col-span-6 lg:relative my-8">
           <div class=" flex justify-center items-center">
-            <h1 class="text-neutral-800 text-2xl font-bold">Latest on SLA printer</h1>
+            <h1 class="text-neutral-800 text-2xl font-normal">
+              Latest on SLA printer
+            </h1>
           </div>
           <div className=" relative flex items-center ">
             {width >= 480 && !isBeginningSLA ? (
@@ -152,7 +121,7 @@ const Doubleslider = () => {
             {width >= 480 && (
               <div className=" h-full w-1/12 absolute right-0 z-[99] bg-gradient-to-l from-white to-transparent from-60% " />
             )}
-            {width >= 480 && !isEndSLA && slides.length > slidesToShow ? (
+            {width >= 480 && !isEndSLA && SLAproducts.length > slidesToShow ? (
               <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-0 z-[999]">
                 <FaAngleRight
                   onClick={(e) => {
@@ -175,7 +144,9 @@ const Doubleslider = () => {
       <>
         <div className="lg:col-span-6 lg:relative my-8">
           <div class=" flex justify-center items-center">
-            <h1 class="text-neutral-800 text-2xl font-bold ">Latest on FDM Printer</h1>
+            <h1 class="text-neutral-800 text-2xl font-normal ">
+              Latest on FDM Printer
+            </h1>
           </div>
           <div className=" relative flex items-center ">
             {width >= 480 && !isBeginningFDM ? (
@@ -223,7 +194,7 @@ const Doubleslider = () => {
             {width >= 480 && (
               <div className=" h-full w-1/12 absolute right-0 z-[99] bg-gradient-to-l from-white to-transparent from-60% " />
             )}
-            {width >= 480 && !isEndFDM && slides.length > slidesToShow ? (
+            {width >= 480 && !isEndFDM && FDMproducts.length > slidesToShow ? (
               <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-0 z-[999]">
                 <FaAngleRight
                   onClick={(e) => {
