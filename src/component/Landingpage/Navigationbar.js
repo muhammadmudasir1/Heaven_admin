@@ -79,7 +79,7 @@ const Navigationbar = () => {
 
     return (
         <>
-            <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-20 ${isSticky ? 'fixed w-full top-0' : ''}`}>
+            <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-[9999] ${isSticky ? 'fixed w-full top-0' : ''}`}>
                 <div className='z-20'>
                     <h1 className='text-white text-2xl font-normal font-[Avenir]'>3D heavens</h1>
                 </div>
