@@ -7,12 +7,7 @@ Quill.register('modules/imageResize', ImageResize);
 
 const TextEditor = ({text,setText}) => {
 
-    useEffect(()=>{
-        console.log(text)
-    },[text])
-
     const handleChange=(content, delta, source, editor)=>{
-        console.log(content)
         setText(content)
     }
 

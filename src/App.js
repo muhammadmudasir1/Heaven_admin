@@ -18,7 +18,8 @@ import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
 import AddReview from "./component/admin/AddReview"
 import UpdateProduct from "./component/admin/UpdateProduct"
 import TopFive from "./component/admin/TopFive"
-
+import News from "./component/admin/News"
+import AddNews from "./component/admin/AddNews"
 
 
 
@@ -42,7 +43,9 @@ const App = () => {
                         <Route element={<Dashboard />}>
                             <Route path="product" element={<ProductDashboard />} />
                             <Route path="topFive" element={<TopFive/>} />
-                            <Route path="news" element={<h1>News</h1>} />
+                            <Route path="news" element={ <News/> } />
+                            <Route path="addNews" element={ <AddNews/> } />
+                            <Route path="updateNews/:id" element={ <AddNews/> } />
                             <Route path="analytics" element={<h1>Google Analytics</h1>} />
                             <Route element={<NavigationForAddForm/>}>
                             <Route path="addProduct" element={<AddProduct />} />

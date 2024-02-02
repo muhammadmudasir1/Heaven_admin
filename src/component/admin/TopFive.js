@@ -102,11 +102,6 @@ const SearchedLines = ({ product, selectedItems, setInCards, reRender }) => {
 }
 
 
-
-
-
-
-
 const TopFive = () => {
     const [cards, setCards] = useState([])
     const [query, setQuery] = useState('')
