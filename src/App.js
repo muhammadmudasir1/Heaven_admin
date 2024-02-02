@@ -59,23 +59,8 @@ const App = () => {
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
                         </Route>
-                        <Route path="/dashboard" element={<PrivatePage />}>
-
-                            <Route element={<Dashboard />}>
-                                <Route path="product" element={<ProductDashboard />} />
-                                <Route path="topFive" element={<h1>TopFive</h1>} />
-                                <Route path="news" element={<h1>News</h1>} />
-                                <Route path="analytics" element={<h1>Google Analytics</h1>} />
-                                <Route element={<NavigationForAddForm />}>
-                                    <Route path="addProduct" element={<AddProduct />} />
-                                    <Route path="addSpecs/:id" element={<AddSpecs />}></Route>
-                                    <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks />} />
-                                    <Route path="addReview/:id" element={<AddReview />} />
-                                    <Route path="updateproduct/:id" element={<UpdateProduct />} />
-                                </Route>
-                            </Route>
-                        </Route>
-                        <Route element={<Dashboard />}>
+                        
+                        <Route path="/dashboard" element={<Dashboard />}>
                             <Route path="product" element={<ProductDashboard />} />
                             <Route path="topFive" element={<TopFive/>} />
                             <Route path="news" element={ <News/> } />
@@ -90,11 +75,9 @@ const App = () => {
                             <Route path="updateproduct/:id" element={<UpdateProduct/>}/>
                             </Route>
                         </Route>
-                    </Route>
 
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="*" element={<p>404 Page not found</p>}></Route>
-
+                        <Route path="*" element={<p>404 Page not found</p>}/>
                     </Routes>
 
                 </CurrentProductProvider>
