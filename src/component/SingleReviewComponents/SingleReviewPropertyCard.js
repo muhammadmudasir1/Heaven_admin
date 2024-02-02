@@ -5,7 +5,7 @@ import { FaTemperatureThreeQuarters } from "react-icons/fa6";
 import { RiPrinterCloudFill } from "react-icons/ri";
 import { useEffect } from 'react';
 
-const SingleReviewProperty = () => {
+const SingleReviewPropertyCard = () => {
     const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
 
     useEffect(() => {
@@ -68,4 +68,4 @@ const SingleReviewProperty = () => {
   )
 }
 
-export default SingleReviewProperty
+export default SingleReviewPropertyCard

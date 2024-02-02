@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Button, IconButton } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 
@@ -22,7 +22,7 @@ const PaginationClass = ({ currentPage, cardsPerPage, totalcards, onPageChange }
     console.log(pageNumber)
     console.log('totalPage ' +total)
     return (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 mb-5">
             <Button
                 variant="text"
                 className="flex items-center gap-2"
@@ -31,7 +31,7 @@ const PaginationClass = ({ currentPage, cardsPerPage, totalcards, onPageChange }
             >
                 <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
             </Button>
-            <div className="flex items-center gap-2 ">
+            <div className="flex items-center gap-2 text-xl">
                 {pageNumber.map((number) => (
                     <IconButton
                         key={number}

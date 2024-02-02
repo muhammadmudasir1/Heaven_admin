@@ -1,0 +1,81 @@
+[
+    {
+       "heading1": "Installation Space",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    {
+
+        "heading2": "Surface Area",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    {
+        "heading3": "Installating Space Enclouser",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    {
+        "heading4": "Print Volume",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    {
+        "heading5": "Z-Axis Printing Accuracy",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    {
+        "heading6": "Printing Accuracy XY Resolution",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    
+    {
+        "heading7": "Print Bed Technology",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    {
+        "heading8": "Filament Compatibility",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    {
+        "heading9": "Nozzle Tempurature ",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    {
+        "heading10": "Print Tempurature",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    },
+    {
+        "heading11": "Pressure Chamber Tempurature",
+        "h1 comparingRow1": "400 x 400 x 450 mm",
+        "h1 comparingRow2":"400 x 400 x 450 mm",
+        "h1 comparingRow3": "400 x 400 x 450 mm",
+        "h1 comparingRow4":"400 x 400 x 450 mm"
+    }
+]

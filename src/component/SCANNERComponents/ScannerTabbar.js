@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const ReviewTabbar = () => {
+const ScannerTabbar = () => {
     return (
         <div className='pt-7 pb-[76px]'>
 
@@ -11,7 +11,7 @@ const ReviewTabbar = () => {
                     <NavLink to={{pathname: '/product/fdm'}} className='text-neutral-800 text-xl font-normal'>FDM</NavLink>
                     <NavLink to={{pathname: '/product/sla'}} className='text-neutral-800 text-xl font-normal'>SLA</NavLink>
                     <NavLink to={{pathname: '/product/scanner'}} className='text-neutral-800 text-xl font-normal'>Scanner</NavLink>
-                    <NavLink to={{pathname: '/product/cutter'}} className='text-neutral-800 text-xl font-normal'>Cutter</NavLink>
+                    <NavLink to={{pathname: 'product/cutter'}} className='text-neutral-800 text-xl font-normal'>Cutter</NavLink>
                 </li>
             </ul>
 
@@ -19,4 +19,4 @@ const ReviewTabbar = () => {
     )
 }
 
-export default ReviewTabbar
+export default ScannerTabbar

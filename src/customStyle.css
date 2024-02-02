@@ -1,3 +1,7 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
 .shadow-for-app {
     -moz-box-shadow: 0 0 15px #475569;
     -webkit-box-shadow: 0 0 15px #475569;
@@ -22,3 +26,8 @@
     padding: 24px;
 
 }
+.sticky {
+    position: sticky;
+    bottom: 0; 
+  }
+  

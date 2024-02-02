@@ -19,7 +19,7 @@ const StickyFooter = () => {
         };
     }, []);
     return (
-        <div className='bg-customBlue w-full lg:mt-8 mt-6 lg:py-8'>
+        <div className='bg-customBlue w-full lg:py-8'>
             {isMobile ? (
                 <>
                     <div className='px-4 '>
