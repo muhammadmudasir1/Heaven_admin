@@ -88,7 +88,7 @@ const Doubleslider = () => {
             <Swiper
               modules={[A11y, Navigation]}
               spaceBetween={12}
-              slidesPerView={slidesToShow}
+              slidesPerView={SLAproducts.length>slidesToShow?slidesToShow:SLAproducts.length}
               onSwiper={(swiper) => handleSwiperSLA(swiper)}
               onSlideChange={(swiperCurrent) => {
                 setIsBeginningSLA(swiperCurrent.isBeginning);
@@ -105,7 +105,7 @@ const Doubleslider = () => {
                         "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
                     }}
                   >
-                    <div className=" w-full h-52 bg-cover"
+                    <div className=" w-full h-52 bg-cover bg-center"
                     style={{
                       backgroundImage: `url(${SLAproduct.ProductImages[0].path})`
                     }}
@@ -160,8 +160,8 @@ const Doubleslider = () => {
             ) : null}
             <Swiper
               modules={[A11y, Navigation]}
-              spaceBetween={12}
-              slidesPerView={slidesToShow}
+              spaceBetween={20}
+              slidesPerView={FDMproducts.length>slidesToShow?slidesToShow:FDMproducts.length}
               onSwiper={(swiper) => handleSwiperFDM(swiper)}
               onSlideChange={(swiperCurrent) => {
                 setIsBeginningFDM(swiperCurrent.isBeginning);
@@ -178,7 +178,7 @@ const Doubleslider = () => {
                         "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
                     }}
                   >
-                    <div className=" w-full h-52 bg-cover"
+                    <div className=" w-full h-52 bg-cover bg-center"
                     style={{
                       backgroundImage: `url(${FDMproduct.ProductImages[0].path})`
                     }}

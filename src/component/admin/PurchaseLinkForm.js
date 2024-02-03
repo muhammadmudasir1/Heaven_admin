@@ -183,8 +183,8 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     }}
                 >
                     <option value={1} >Amazon de</option>
-                    <option value={2}>Ebay</option>
-                    <option value={3}>GeeksBuyingScrap</option>
+                    <option value={2}>Ebay de</option>
+                    <option value={3}>GeeksBuying</option>
                     <option value={4}>TomTop</option>
                     <option value={5}>3DJake</option>
                     <option value={6}>Ortur</option>

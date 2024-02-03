@@ -69,7 +69,7 @@ const MaskSlider = () => {
             ) : null}
             <Swiper
               modules={[A11y, Navigation]}
-              spaceBetween={12}
+              spaceBetween={24}
               slidesPerView={slidesToShow}
               onSwiper={(swiper) => handleSwiperTopFive(swiper)}
               onSlideChange={(swiperCurrent) => {
@@ -79,6 +79,7 @@ const MaskSlider = () => {
               className="p-5"
             >
               {TopFiveProducts.map((Product,index) => (
+                Product?
                 <SwiperSlide key={Product.Id} className=" relative my-3">
                   <div
                     className=" rounded-xl overflow-hidden flex flex-col items-start  bg-white h-[400px]"
@@ -90,15 +91,35 @@ const MaskSlider = () => {
                     <div className='w-full h-full relative flex flex-col justify-center items-center'>
                     <div className=" w-full h-full bg-cover bg-center absolute top-0"
                     style={{
-                        backgroundImage: `url(${Product.ProductImages[0].path})`
+                        backgroundImage: `url(${Product && Product.ProductImages[0].path})`
                     }}
                     />
                     <div className={`w-full h-full absolute top-0 ${colors[index]}`}/>
                     <h2 className='z-[9999] text-4xl text-white font-semibold font-sans pb-16'>#{index+1}</h2>
-                    <h2 className='z-[9999] text-4xl text-white font-semibold font-sans'>{Product.product_name}</h2>
+                    <h2 className='z-[9999] text-4xl text-white font-semibold font-sans text-center'>{Product && Product.product_name}</h2>
                   </div> 
                   </div>
                 </SwiperSlide>
+                :<SwiperSlide key={index} className=" relative my-3">
+                <div
+                  className=" rounded-xl overflow-hidden flex flex-col items-start  bg-white h-[400px]"
+                  style={{
+                    boxShadow:
+                      "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
+                  }}
+                >
+                  <div className='w-full h-full relative flex flex-col justify-center items-center'>
+                  <div className=" w-full h-full bg-cover bg-center absolute top-0"
+                  style={{
+                      backgroundImage: `url(${Product && Product.ProductImages[0].path})`
+                  }}
+                  />
+                  <div className={`w-full h-full absolute top-0 ${colors[index]}`}/>
+                  <h2 className='z-[9999] text-4xl text-white font-semibold font-sans pb-16'>#{index+1}</h2>
+                  <h2 className='z-[9999] text-4xl text-white font-semibold font-sans'>{Product && Product.product_name}</h2>
+                </div> 
+                </div>
+              </SwiperSlide>
               ))}
             </Swiper>
             {width >= 480 && !isEnd && TopFiveProducts.length > slidesToShow && (
