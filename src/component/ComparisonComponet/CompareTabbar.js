@@ -1,24 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 
 const CompareTabbar = () => {
-    const {manufacture,price,product} = useParams();
+    const [productType,setProductType]=useState(1)
+
+
     return (
         <>
-            <ul className='flex pt-7 mb-5 items-center justify-center'>
-                <li>
-                    <NavLink to={'/result/:fdm/:price/:product'} className='px-12 text-neutral-800 text-xl font-normal'>FDM</NavLink>
+            <ul className='flex pmb-5 items-center justify-center bg-red-400 '>
+                <div 
+                className='flex w-3/4 bg-yellow-500 justify-around text-xl h-full'>
+
+                <li className={`py-3 cursor-pointer px-2 ${productType==1 && "active"}`}
+                onClick={(e)=>{
+                    setProductType(1)
+                }}
+                >
+                   <p>SLA Printer</p>
                 </li>
-                <li>
-                    <NavLink to={'/result/sla/:price/:manufacture'} className='px-12 text-neutral-800 text-xl font-normal'>SLA</NavLink>
+                <li className={`py-3 cursor-pointer px-2 ${productType==2 && "active"}`}
+                onClick={(e)=>{
+                    setProductType(2)
+                }}
+                >
+                    <p>FDM Printer</p>
                 </li>
-                <li>
-                    <NavLink to={'/result/scanner/:price/:manufacture'} className='px-12 text-neutral-800 text-xl font-normal'>Scanner</NavLink>
+                <li className={`py-3 cursor-pointer px-2 ${productType==3 && "active"}`}
+                onClick={(e)=>{
+                    setProductType(3)
+                }}
+                >
+                    <p>Laser Cutter</p>
                 </li>
-                <li>
-                    <NavLink to={'/result/cutter/:price/:manufacture'} className='px-12 text-neutral-800 text-xl font-normal'>Cutter</NavLink>
+                <li className={`py-3 cursor-pointer px-2 ${productType==4 && "active"}`}
+                onClick={(e)=>{
+                    setProductType(4)
+                }}
+                >
+                    <p>3D Scannar</p>
                 </li>
+                </div>
             </ul>
         </>
     )

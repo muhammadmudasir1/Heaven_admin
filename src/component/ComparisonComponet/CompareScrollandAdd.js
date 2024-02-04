@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import imges from '../../imges/coupon.svg'
-import imges1 from '../../imges/EBay_logo.png'
-
 import PaginationClass from './PaginationClass'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import {useLocation, useNavigate } from 'react-router-dom'
 import ComparisionCard from './ComparisionCard'
+import Api from '../../api/Api'
 
 const StickyComparisonBar = (setIsSticky) => {
+
     const handleScroll = () => {
         if (window.scrollY > 0) {
             setIsSticky(true);
@@ -24,11 +23,60 @@ const StickyComparisonBar = (setIsSticky) => {
 };
 
 const CompareScrollandAdd = () => {
+    const [cards, setcards] = useState([])
+    const [productType,setProductType]=useState(1)
+    const [manufacturers,setManufacturers]=useState([])
+    const [products,setProducts]=useState([])
+    const [price,setPrice]=useState(99999)
     const [cardPerPage, setCardPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCards, setSelectedCards] = useState([]);
     const [isSticky, setIsSticky] = useState(false);
     const navigation = useNavigate();
+    const location=useLocation()
+    const queryParams=new URLSearchParams(location.search)
+    
+
+    
+
+    useEffect(()=>{
+        let manufacturersParams=queryParams.get('manufacturers')
+        manufacturersParams=JSON.parse(decodeURIComponent(manufacturersParams))
+        setManufacturers(manufacturersParams)
+        let productsParams=queryParams.get('products')
+        productsParams=JSON.parse(decodeURIComponent(productsParams))
+        setProducts(productsParams)
+        let priceParams=queryParams.get('priceQuery')
+        priceParams=JSON.parse(decodeURIComponent(priceParams))
+        if(priceParams==1){
+            priceParams=500
+        }
+        else if(priceParams==2){
+            priceParams=1000
+        }
+        else if(priceParams==3){
+            priceParams=1500
+        }
+        else if(priceParams==4){
+            priceParams=2000
+        }
+        else if(priceParams==5){
+            priceParams=2500
+        }
+        setPrice(priceParams)
+
+        const fetchData=async()=>{
+         const response=await Api.post('/api/products/filter',{
+            manufacturers,
+            products,
+            price,
+            productType
+         })
+         console.log(response.data)
+         setcards(response.data)   
+        }
+        fetchData()
+    },[productType])
 
     const handleComparison = () => {
         let search = "";
@@ -43,220 +91,6 @@ const CompareScrollandAdd = () => {
     };
 
     StickyComparisonBar(setIsSticky);
-    useEffect(() => {
-        console.log(cardPerPage)
-    }, [cardPerPage])
-
-    const [cards, setcards] = useState([
-        {
-            Index: "1",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "2",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "3",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "4",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "5",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "6",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "7",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "8",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "9",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges"
-
-        },
-        {
-            Index: "10",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "11",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "12",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "13",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },
-        {
-            Index: "14",
-            img: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-            "title": "Anycubic Photon Mono 1",
-            "volume": "XYZm/s",
-            "Speed": "XYZm/s",
-            "Filament Compatibility": "XYZm/s",
-            "Printing Accuracy XY Resolution": "XYZm/s",
-            "coupon": "coupon",
-            price: "Official Price",
-            "Offical Price": "219.00 Euro",
-            ebaylogo: "imges",
-            price: "139 Euro"
-
-        },])
 
     const indexOfLastCard = currentPage * cardPerPage;
     const indexOfFirstCard = indexOfLastCard - cardPerPage;
@@ -270,9 +104,6 @@ const CompareScrollandAdd = () => {
     const handleCheckboxChange = (index) => {
         const isSelected = selectedCards.includes(index);
         if (selectedCards.length<=4){
-
-
-
             setSelectedCards((prevSelectedCards) =>{
                 if(isSelected) {
                     const temp=prevSelectedCards.filter((cardIndex) => {
@@ -288,27 +119,53 @@ const CompareScrollandAdd = () => {
                     }
                     return [...prevSelectedCards, index]
 
-                }   
-                    
-                    
+                }});
             }
-            );
-            
-        }
+        };
 
-    };
-
-    useEffect(()=>{
-        console.log(selectedCards)
-    },[selectedCards])
 
     return (
         <>
+            <ul className='flex pmb-5 items-center justify-center '>
+                <div 
+                className='flex w-3/4 justify-around text-xl h-full'>
+
+                <li className={`py-3 cursor-pointer px-2 ${productType==1 && "active"}`}
+                onClick={(e)=>{
+                    setProductType(1)
+                }}
+                >
+                   <p>SLA Printer</p>
+                </li>
+                <li className={`py-3 cursor-pointer px-2 ${productType==2 && "active"}`}
+                onClick={(e)=>{
+                    setProductType(2)
+                }}
+                >
+                    <p>FDM Printer</p>
+                </li>
+                <li className={`py-3 cursor-pointer px-2 ${productType==3 && "active"}`}
+                onClick={(e)=>{
+                    setProductType(3)
+                }}
+                >
+                    <p>Laser Cutter</p>
+                </li>
+                <li className={`py-3 cursor-pointer px-2 ${productType==4 && "active"}`}
+                onClick={(e)=>{
+                    setProductType(4)
+                }}
+                >
+                    <p>3D Scannar</p>
+                </li>
+                </div>
+            </ul>
+
             <div className='mb-12'>
                 <div className='p-5 grid grid-cols-8'>
                     <div className='col-span-6 flex flex-col items-center pr-12'>
                         {currentCard.map((card, Index) => {
-                            return <ComparisionCard card={card}  selectedcards={selectedCards} handleCheckboxChange={handleCheckboxChange} />
+                            return <ComparisionCard card={card} selectedcards={selectedCards} handleCheckboxChange={handleCheckboxChange} />
                         })}
                         <div>
                             <PaginationClass

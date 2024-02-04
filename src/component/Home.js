@@ -13,10 +13,10 @@ const Home = () => {
       <Filtersearch />
       <Doubleslider />
       <Profilecontainer />
-      <div id="topFive">
+      {/* <div id="topFive"> */}
       <MaskSlider />
 
-      </div>
+      {/* </div> */}
       <NewsAndEvent/>
 
     </>

@@ -10,7 +10,7 @@ const ComparePage = () => {
         <>
             <Tabbar />
             <Filtersearch />
-            <CompareTabbar/>
+            {/* <CompareTabbar/> */}
             <CompareScrollandAdd/>
         </>
     )

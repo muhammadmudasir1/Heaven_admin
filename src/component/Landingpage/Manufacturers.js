@@ -3,17 +3,17 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import Api from '../../api/Api';
 
-const ManufacturerElement = ({ element,selectedList}) => {
-  const [selected,setSelected]=useState(false)
+const ManufacturerElement = ({ element,setSelectedList,selectedList}) => {
+  const [selected,setSelected]=useState(selectedList.includes(element))
 
   useEffect(()=>{
     if(selected){
-      selectedList((prev)=>{
+      setSelectedList((prev)=>{
         return [...prev,element]
       })
     }
     else{
-      selectedList((prev)=>{
+      setSelectedList((prev)=>{
         const temp=prev.filter((ele)=>{
           return ele!=element
         })
@@ -37,7 +37,7 @@ const ManufacturerElement = ({ element,selectedList}) => {
 
 
 
-const Manufacturers = ({setFilterManufacturer}) => {
+const Manufacturers = ({setFilterManufacturer,filterManufacturer}) => {
   const [isOpen, setIsOpen] = useState(false)
   const [manufacturerList, setManufacturerList] = useState([])
 
@@ -67,7 +67,7 @@ const Manufacturers = ({setFilterManufacturer}) => {
           {
 
             manufacturerList.map((manufacturer) => {
-              return <ManufacturerElement element={manufacturer.manufacturer} selectedList={setFilterManufacturer}/>
+              return <ManufacturerElement element={manufacturer.manufacturer} setSelectedList={setFilterManufacturer} selectedList={filterManufacturer} />
             })
           }
 
