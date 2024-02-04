@@ -20,12 +20,12 @@ const ProductCard = ({data}) => {
 
     const navigate=useNavigate()
     return (
-        <div className="flex shadow-sm w-full h-[180px] rounded-lg overflow-hidden mb-4 hover:bg-gray-100 p-2">
+        <div className="flex justify-between shadow-sm w-full h-[180px] rounded-lg overflow-hidden mb-4 hover:bg-gray-100 p-2">
             <div className="bg-cover bg-center  w-[320px] h-full border-2 rounded-md"
             style={{ backgroundImage: `url(/${data.ProductImages[0].path})` }}></div>
-            <div className=" grow h-full px-3 ">
-                <div className="flex items-center justify-between h-1/4 w-full">
-                    <p className=" font-sans font-bold text-2xl ">{data.product_name}</p>
+            <div className=" w-[70%] h-full px-3 ">
+                <div className="flex items-center justify-between w-full">
+                    <p className=" font-sans font-bold text-2xl w-3/4 line-clamp-2 ">{data.product_name}</p>
                     <div>
                         <button className="px-5 hover:text-green-500 ml-2"
                         onClick={(e)=>{
@@ -50,11 +50,11 @@ const ProductCard = ({data}) => {
 
 
                 </div>
-                <div className="p-2 h-2/4 w-full ">
-                    <p>
+                {/* <div className="p-2 h-2/4 w-full"> */}
+                    <p className=" h-2/4 line-clamp-3">
                         {data.discription}
                     </p>
-                </div>
+                {/* </div> */}
             </div>
 
         </div>

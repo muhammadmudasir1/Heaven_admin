@@ -37,18 +37,17 @@ const ManufacturerElement = ({ element,selectedList}) => {
 
 
 
-const Manufacturers = ({ type ,setFilterManufacturer}) => {
+const Manufacturers = ({setFilterManufacturer}) => {
   const [isOpen, setIsOpen] = useState(false)
   const [manufacturerList, setManufacturerList] = useState([])
-  // const [filterManufacturer, setFilterManufacturer] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await Api.get(`/api/products/manufacturerList/${type}`)
+      const response = await Api.get(`/api/products/manufacturerList/0`)
       setManufacturerList(response.data)
     }
     fetchData()
-  }, [type])
+  }, [])
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);

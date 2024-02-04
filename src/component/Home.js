@@ -13,7 +13,10 @@ const Home = () => {
       <Filtersearch />
       <Doubleslider />
       <Profilecontainer />
+      <div id="topFive">
       <MaskSlider />
+
+      </div>
       <NewsAndEvent/>
 
     </>

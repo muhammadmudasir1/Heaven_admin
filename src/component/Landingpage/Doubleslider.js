@@ -87,7 +87,7 @@ const Doubleslider = () => {
             ) : null}
             <Swiper
               modules={[A11y, Navigation]}
-              spaceBetween={12}
+              spaceBetween={20}
               slidesPerView={SLAproducts.length>slidesToShow?slidesToShow:SLAproducts.length}
               onSwiper={(swiper) => handleSwiperSLA(swiper)}
               onSlideChange={(swiperCurrent) => {

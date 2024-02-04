@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import imges from '../../imges/coupon.svg'
 import imges1 from '../../imges/EBay_logo.png'
-import { Checkbox } from "@material-tailwind/react"
+
 import PaginationClass from './PaginationClass'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import ComparisionCard from './ComparisionCard'
 
 const StickyComparisonBar = (setIsSticky) => {
     const handleScroll = () => {
@@ -267,83 +268,47 @@ const CompareScrollandAdd = () => {
     }
 
     const handleCheckboxChange = (index) => {
-        // Check if the card is already selected
         const isSelected = selectedCards.includes(index);
+        if (selectedCards.length<=4){
 
-        // If selected, remove it; otherwise, add it to the selectedCards array
-        setSelectedCards((prevSelectedCards) =>
-            isSelected
-                ? prevSelectedCards.filter((cardIndex) => cardIndex !== index)
-                : [...prevSelectedCards, index]
-        );
+
+
+            setSelectedCards((prevSelectedCards) =>{
+                if(isSelected) {
+                    const temp=prevSelectedCards.filter((cardIndex) => {
+                        return cardIndex !== index
+                    })
+                    return [...temp]
+                }
+                else{
+                    if(prevSelectedCards.length>=4){
+                        console.log("Previous Card " + prevSelectedCards.length)
+                        alert("Max Limit for Compare Cards is 4")
+                        return prevSelectedCards
+                    }
+                    return [...prevSelectedCards, index]
+
+                }   
+                    
+                    
+            }
+            );
+            
+        }
+
     };
+
+    useEffect(()=>{
+        console.log(selectedCards)
+    },[selectedCards])
 
     return (
         <>
             <div className='mb-12'>
                 <div className='p-5 grid grid-cols-8'>
-                    <div className='col-span-6 flex flex-col items-center h-427px pr-12'>
-                        {currentCard.map((cards, Index) => {
-                            const isChecked = selectedCards.includes(Index);
-                            return <div key={cards.Index} className='flex shadow-for-app items-end justify-start rounded-xl  w-full mb-6' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }}>
-                                <div className=' w-1/3 h-full pr-8'>
-                                    <div className={`bg-cover bg-center h-full w-full rounded-l-xl`} style={{ backgroundImage: `url(${cards.img})` }} />
-                                </div>
-                                <div className='flex items-center flex-grow pl-4'>
-                                    <div className=' pr-20 w-3/5 '>
-                                        <h1 className='text-neutral-800 text-2xl font-semibold font-[Roboto] my-5'>{cards.title}</h1>
-                                        <div className='px-2'>
-                                            <ul className=''>
-                                                <div className='flex items-center'>
-                                                    <li className=' text-lg font-bold pr-2 list-disc'>Print Volume: </li>
-                                                    <li>{cards.volume}</li>
-                                                </div>
-                                                <div className='flex items-center'>
-                                                    <li className=' text-lg font-bold pr-2 list-disc'>Print Speed: </li>
-                                                    <li>{cards.Speed}</li>
-                                                </div>
-                                                <div className='flex items-center'>
-                                                    <li className=' text-lg font-bold pr-2 list-disc'>Filament Compatibility: </li>
-                                                    <li>{cards['Filament Compatibility']}</li>
-                                                </div>
-                                                <div className='flex items-center'>
-                                                    <li className=' text-lg font-bold pr-2 list-disc'>Printing Accuracy XY Resolution: </li>
-                                                    <li>{cards['Printing Accuracy XY Resolution']}</li>
-                                                </div>
-                                            </ul>
-                                        </div>
-                                        <button className='flex items-center bg-gray-200 my-2 px-4 py-2 rounded-md'>
-                                            <img src={imges} alt="" />
-                                            <h1 className='mx-2'>{cards.coupon}</h1>
-                                        </button>
-                                        <div className='flex items-center pt-[70px] pb-9'>
-                                            <Checkbox size={60} checked={selectedCards.includes(cards.Index)} onChange={() => handleCheckboxChange(cards.Index)} className='px-8 py-8' />
-                                            <h1 class=" text-lg font-light">Add to Comparison</h1>
-                                        </div>
-                                    </div>
-                                    <div className='w-[1px] h-72 bg-black' />
-                                    <div className=' flex flex-col items-end pr-14 w-2/5 h-full'>
-                                        <div className='flex flex-col items-center'>
-                                            <h1 className=' font-bold text-xl'>{cards.price}</h1>
-                                            <h1 className='text-black text-xl font-bold font-[Roboto]'>{cards['Offical Price']}</h1>
-                                            <div className=''>
-                                                <div className='flex border-2 items-center justify-evenly border-blue-500 rounded-md py-2 px-6 my-2' >
-                                                    <img src={imges1} alt="" className='h-full pr-2' />
-                                                    <h1 className='pl-2 text-lg font-bold'>{cards.price}</h1>
-                                                </div>
-                                                <div className='flex border-2 items-center justify-evenly border-blue-500 rounded-md py-2 px-6 my-2' >
-                                                    <img src={imges1} alt="" className='h-full pr-2' />
-                                                    <h1 className='pl-2 text-lg font-bold'>{cards.price}</h1>
-                                                </div>
-                                                <div className='flex border-2 items-center justify-evenly border-blue-500 rounded-md py-2 px-6 my-2' >
-                                                    <img src={imges1} alt="" className='h-full pr-2' />
-                                                    <h1 className='pl-2 text-lg font-bold'>{cards.price}</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div className='col-span-6 flex flex-col items-center pr-12'>
+                        {currentCard.map((card, Index) => {
+                            return <ComparisionCard card={card}  selectedcards={selectedCards} handleCheckboxChange={handleCheckboxChange} />
                         })}
                         <div>
                             <PaginationClass
@@ -361,7 +326,6 @@ const CompareScrollandAdd = () => {
                 <div className={`bg-black bg-opacity-40 z-10 w-full flex items-center py-4 px-8 mt-2 ${isSticky ? 'sticky w-full z-20' : ''} `}>
                     {selectedCards.map((selectedIndex) => (
                         <div key={selectedIndex} className='flex items-center mx-4 py-4 bg-white'>
-                            {/* <div className='bg-black' style={{ height: '100%', backgroundImage: `url(${cards[selectedIndex].img})`, backgroundSize: 'cover', backgroundPosition: 'center' }} /> */}
                             <img src={cards[selectedIndex].img} alt="" className='h-16' />
                             <div className='px-2'>
                                 <h1 className='text-neutral-800 text-base font-semibold font-[Roboto]'>{cards[selectedIndex].title}</h1>
@@ -369,13 +333,14 @@ const CompareScrollandAdd = () => {
                             </div>
                         </div>
                     ))}
-                    <div
+                    <button
 
                         onClick={handleComparison}
-                        className='border-hidden h-16 px-4 bg-sky-700 flex items-center justify-center rounded-md cursor-pointer'
+                        className='border-hidden h-16 px-4 bg-customBlue hover:bg-sky-500 flex items-center justify-center rounded-md cursor-pointer text-white'
                     >
+
                         Comparison
-                    </div>
+                    </button>
 
                 </div>
             )}

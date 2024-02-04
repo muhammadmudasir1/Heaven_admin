@@ -53,7 +53,7 @@ const MaskSlider = () => {
             <>
         <div className="lg:col-span-6 lg:relative my-8">
           <div class=" flex justify-center items-center">
-            <h1 class="text-neutral-800 text-2xl font-bold">
+            <h1 class="text-neutral-800 text-2xl font-bold" id="topFive">
               Unsere Top 5
             </h1>
           </div>
