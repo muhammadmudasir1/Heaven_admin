@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Manufacturers from './Manufacturers';
 import ProductFilter from './ProductFilter';
 import PriceFilter from './PriceFilter';
@@ -6,18 +6,29 @@ import { IoSearch } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
-const Filtersearch = () => {
+const Filtersearch = ({manufacturersParams,productsParams,priceParams}) => {
   const [priceLimit,setPriceLimit]=useState(1)
   const [filterManufacturer, setFilterManufacturer] = useState([])
   const [filterProduct,setFilterProduct]=useState([])
   const navigate=useNavigate()
+  
+  useEffect(()=>{
+    if(Array.isArray(manufacturersParams)){
+      setFilterManufacturer(manufacturersParams)
+    }
+    if(Array.isArray(productsParams)){
+      setFilterProduct(productsParams)
+    }
+    if(priceParams){
+      setPriceLimit(priceParams)
+    }
+
+  },[manufacturersParams,productsParams,priceParams])
 
   const handleFilter=()=>{
     const manufacturersQuery=encodeURIComponent(JSON.stringify(filterManufacturer))
     const productsQuery=encodeURIComponent(JSON.stringify(filterProduct))
     const priceQuery=encodeURIComponent(JSON.stringify(priceLimit))
-    // console.log(manufacturersQuery)
-
     navigate(`/ComparisonPage?manufacturers=${manufacturersQuery}&products=${productsQuery}&priceQuery=${priceQuery}`)
 
   }

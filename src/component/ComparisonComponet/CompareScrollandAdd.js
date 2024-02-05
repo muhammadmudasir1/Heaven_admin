@@ -176,7 +176,7 @@ const CompareScrollandAdd = () => {
                             />
                         </div>
                     </div>
-                    <div className='col-span-2 shadow-for-app shadow-slate-600' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
+                    <div className='col-span-2 min-h-[600px]' style={{ boxShadow: '-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgb(203,213,225,0.5)' }} />
                 </div>
             </div>
             {selectedCards.length > 0 && selectedCards.length <= 4 && (
