@@ -20,6 +20,9 @@ const AddProduct = () => {
     const [manufacturer, setManufacturer] = useState('')
     const [productDiscription, setProductDiscription] = useState('')
     const [scopeOfDeliveryDiscription, setScopeOfDeliveryDiscription] = useState('')
+    const [price,setPrice]=useState("")
+    const [unit,setUnit]=useState("€")
+    const [priceError,setPriceError]=useState("")
     const [priceRating, setPriceRating] = useState(0)
     const [innovationRating, setinnovationRating] = useState(0)
     const [softwareRating, setSoftwareRating] = useState(0)
@@ -166,6 +169,8 @@ const AddProduct = () => {
         fd.append('include_in_BestDeals', includeInBestDeals)
         fd.append('productType', productType)
         fd.append('discription', productDiscription)
+        fd.append('price',price)
+        fd.append('unit',unit)
 
         console.log(fd.getAll('thumbnail'))
         try {
@@ -189,10 +194,11 @@ const AddProduct = () => {
 
     }
     const processForm = async (e) => {
-        if (!productName || !manufacturer || !productType || images.length < 1) {
+        if (!productName || !manufacturer || !productType || images.length < 1 || price) {
             !productName && setProductNameError(true)
             !manufacturer && setManufacturerError(true)
-            !productTypeError && setProductTypeError(true)
+            !productType && setProductTypeError(true)
+            !price && setPriceError(true)
             images.length < 1 && setNullImageError(true)
             document.getElementById('addproduct').scrollTop = 0
             return
@@ -222,9 +228,6 @@ const AddProduct = () => {
         ${isThumbnail || error || loading ? " overflow-y-hidden" : ""}`}>
 
             <div>
-                {/* <div className="flex flex-col">
-                    <h1 className=" font-sans font-bold text-2xl">Add Product</h1>
-                </div> */}
                 <div className=" w-full  grid grid-cols-2 gap-4 border-b-2 border-gray-400 pb-2">
                     <div className=" p-2">
                         <section className="flex flex-col mb-2">
@@ -255,10 +258,40 @@ const AddProduct = () => {
                                     setManufacturerError(false)
                                 }}
                             />
-                            {manufacturerError ? <p className='text-red-500 text-sm'>Manufacturer is Compulsory</p> : null}
+                            {manufacturerError ? <p className=' text-sm text-red-500'>Manufacturer is Compulsory</p> : null}
+                        </section>
+                        <section className="flex flex-col mt-4">
+                            <div className='flex'>
+                            <div className='flex grow items-center'>
+                            <label className="mr-2">Official Price</label>
+                            <input type="text" placeholder="Type Here"
+                                className={`h-12 rounded-lg outline-none px-3 border-2 w-1/2 ${priceError ? "border-red-500" : "border-gray-400"}`}
+                                value={price}
+                                onChange={(e) => {
+                                    setPrice(e.target.value)
+                                    setPriceError(false)
+                                }}
+                            />
+                            </div>
+                            <div className='flex w-1/2 items-center'>
+                            <p className="mx-2">Price Unit</p>
+                            <select
+                                className={`h-12 rounded-lg outline-none px-3 border-2   border-gray-400`}
+                                value={unit}
+                                onChange={
+                                    (e) => {
+                                        setUnit(e.target.value)
+                                    }}
+                            >
+                                <option value={"€"}>Euro (€)</option>
+                                <option value={"$"}>USD ($)</option>
+                            </select>
+                            </div>
+                            </div>
+                            {priceError ? <p className='text-red-500 text-sm'>Official Price is Compulsory</p> : null}
                         </section>
 
-                        <section className="flex flex-col ">
+                        <section className="flex flex-col mt-4">
                             <label className="ml-4">
                                 Product Discription
                             </label>
@@ -665,10 +698,7 @@ const AddProduct = () => {
                         </div>
 
                     </div>
-                    <div className="h-20 w-full flex justify-between mt-4 ">
-                        <div className="w-40 h-12 bg-gray-300 rounded-md">
-                            Back
-                        </div>
+                    <div className="h-20 w-full flex justify-end mt-4 ">
                         <button className="w-40 h-12 bg-gray-300 rounded-md"
                             onClick={(e) => {
                                 processForm(e)

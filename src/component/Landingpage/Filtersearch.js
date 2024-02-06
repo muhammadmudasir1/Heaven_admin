@@ -4,10 +4,9 @@ import ProductFilter from './ProductFilter';
 import PriceFilter from './PriceFilter';
 import { IoSearch } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
 const Filtersearch = ({manufacturersParams,productsParams,priceParams}) => {
-  const [priceLimit,setPriceLimit]=useState(1)
+  const [priceLimit,setPriceLimit]=useState(5)
   const [filterManufacturer, setFilterManufacturer] = useState([])
   const [filterProduct,setFilterProduct]=useState([])
   const navigate=useNavigate()

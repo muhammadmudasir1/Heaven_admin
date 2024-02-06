@@ -99,11 +99,6 @@ const PriceTile = ({ priceData }) => {
     }, [priceData])
     return (
         <div className='flex  border-2 items-center justify-evenly border-blue-500 rounded-md py-2 h-14 my-2 w-full p-2' >
-            {/* <div className='bg-cover bg-center w-1/2 rounded-lg h-8 bg-gray-400'
-            style={{backgroundImage:`url(${logo})`}}
-            >
-
-            </div> */}
             <div className='w-1/2 h-full flex justify-center items-center rounded-xl p-2 bg-gray-300'>
 
             <img src={logo} alt="" className='w-full' />
@@ -139,6 +134,9 @@ const PriceTile = ({ priceData }) => {
 const ComparisionCard = ({ card, selectedcards, handleCheckboxChange }) => {
 
     const [isChecked, setIsChecked] = useState(false)
+    useEffect(()=>{
+        console.log("is Called From CArd")
+    })
 
     return (<div key={card.Id} className='flex items-center justify-between rounded-xl h-[350px] w-full mb-6'
         style={{ boxShadow: '-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgba(203,213,225,0.5)' }}>
@@ -249,7 +247,7 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange }) => {
                             }
                         }}
                         className='h-5 w-5 mr-4' />
-                    <h1 class=" text-lg font-light">Add to Comparison</h1>
+                    <h1 className=" text-lg font-light">Add to Comparison</h1>
                 </div>
             </div>
             <div className=' flex justify-center w-2/5 h-full '>
@@ -261,7 +259,9 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange }) => {
                     </div>
                     <div className='px-6 w-full'>
                         {card.purchaseLinks.map((link) => {
-                            return <PriceTile priceData={link} />
+                            return <PriceTile 
+                            key={link.purchaseLinksId}
+                            priceData={link} />
                         })}
                     </div>
                 </div>

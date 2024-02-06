@@ -61,9 +61,9 @@ const StickyFooter = () => {
                 <div className='flex flex-row justify-around items-start'>
                     <div className=' bg-[#00CED1] flex flex-col justify-center items-center w-1/5 p-20'>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwme89cM8YZvHcybGrZl_Obd9U9p5QabozJQ&usqp=CAU" alt="" className='w-56 rounded-full' />
-                        <h1 class="text-2xl text-white font-normal font-[Avenir] py-8">Manuel Strauss</h1>
-                        <h1 class="  font-normal font-[Roboto]">3D printer enthusiat</h1>
-                        <h1 class=" font-normal font-[Roboto]">abc@email.com</h1>
+                        <h1 className="text-2xl text-white font-normal font-[Avenir] py-8">Manuel Strauss</h1>
+                        <h1 className="  font-normal font-[Roboto]">3D printer enthusiat</h1>
+                        <h1 className=" font-normal font-[Roboto]">abc@email.com</h1>
                     </div>
                     <div className=''>
                         <h1 className='text-neutral-100 text-3xl font-normal font-[Avenir] pt-4'>Quick links</h1>

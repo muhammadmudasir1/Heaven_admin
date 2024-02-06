@@ -24,12 +24,15 @@ const UpdateProduct = () => {
     const [softwareRating, setSoftwareRating] = useState(0)
     const [customerServiceRating, setCustomerServiceRating] = useState(0)
     const [processingRating, setProcessingRating] = useState(0)
+    const [price,setPrice]=useState("")
+    const [unit,setUnit]=useState("")
     const [productImages, setProductImages] = useState(null)
     const [scopeOfDeliveryImages, setScopeOfDeliveryImages] = useState(null)
     const [manageImages, setManageImages] = useState(false)
     const [manageSODImages, setManageSODImages] = useState(false)
     const [searchValue, setSearchValue] = useState("")
     const [productType, setProductType] = useState()
+    const [priceError,setPriceError]=useState(false)
     const [variants, setVariants] = useState([])
     const [variantByApi, setVariantByApi] = useState(null)
     const [includeInBestDeals,setIncludeInBestDeals]=useState(null)
@@ -80,6 +83,8 @@ const UpdateProduct = () => {
             setScopeOfDeliveryImages(SODImages)
             setVariants(result.data.variants)
             setIncludeInBestDeals(result.data.include_in_BestDeals)
+            setPrice(result.data.price)
+            setUnit(result.data.unit)
         } catch (error) {
             console.log(error)
         }
@@ -140,7 +145,9 @@ const UpdateProduct = () => {
             processing_rating:Number(processingRating),
             scope_of_delivery_discription:scopeOfDeliveryDiscription,
             include_in_BestDeals: includeInBestDeals,
-            discription:productDiscription
+            discription:productDiscription,
+            price:price,
+            unit:unit
         }
         
         try {
@@ -228,7 +235,36 @@ const UpdateProduct = () => {
                             />
                         </section>
                         <section className="flex justify-center mt-4">
-                            <label className="ml-4">
+                        
+                            <div className='flex grow items-center w-1/3'>
+                            <label className="mr-2">Official Price</label>
+                            <input type="text" placeholder="Type Here"
+                                className={`h-12 rounded-lg outline-none px-3 border-2 w-1/2 ${priceError ? "border-red-500" : "border-gray-400"}`}
+                                value={price}
+                                onChange={(e) => {
+                                    setPrice(e.target.value)
+                                    setPriceError(false)
+                                }}
+                            />
+                            </div>
+                            <div className='flex items-center w-1/3'>
+                            <p className="mx-2">Price Unit</p>
+                            <select
+                                className={`h-12 rounded-lg outline-none px-3 border-2   border-gray-400`}
+                                value={unit}
+                                onChange={
+                                    (e) => {
+                                        setUnit(e.target.value)
+                                    }}
+                            >
+                                <option value={"€"}>Euro (€)</option>
+                                <option value={"$"}>USD ($)</option>
+                            </select>
+                            </div>
+                           
+                            <div>
+                            <div className='flex justify-center h-full'>
+                            <label className="ml-4 flex items-center">
                                 Include in Best Deals
                             </label>
                             <input type="checkbox"
@@ -238,7 +274,11 @@ const UpdateProduct = () => {
                                 onChange={(e) => {
                                     setIncludeInBestDeals(e.target.checked)}
                                 }
-                            />
+                            />   
+                            </div>
+                            
+                            </div>
+                            
                         </section>
 
                     </div>

@@ -70,7 +70,7 @@ const Tabbar = () => {
             <div className=' relative'>
               <div className='flex justify-center items-center'>
                 < p className={`py-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] ${pageOnPrinter?'active':''}`}
-                tlineArrowDropDown onClick={toggleDropdown} 
+                onClick={toggleDropdown} 
                 >{t("3dprinters")} 
                 <span>
                 {!isOpen ? <MdOutlineArrowDropDown size={30} /> : <MdOutlineArrowDropUp size={30} />}

@@ -66,8 +66,10 @@ const Manufacturers = ({setFilterManufacturer,filterManufacturer}) => {
         <div className='flex flex-col absolute bg-white w-full top-full z-[999] p-4 h-[30vh] overflow-y-auto'>
           {
 
-            manufacturerList.map((manufacturer) => {
-              return <ManufacturerElement element={manufacturer.manufacturer} setSelectedList={setFilterManufacturer} selectedList={filterManufacturer} />
+            manufacturerList.map((manufacturer,index) => {
+              return <ManufacturerElement 
+              key={index}
+              element={manufacturer.manufacturer} setSelectedList={setFilterManufacturer} selectedList={filterManufacturer} />
             })
           }
 

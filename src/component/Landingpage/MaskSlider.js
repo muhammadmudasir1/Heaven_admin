@@ -40,8 +40,6 @@ const MaskSlider = () => {
     useEffect(() => {
         const noOfSlides = width <= 480 ? 1 : width <= 1380 ? 4 : 5;
         setSlidesToShow(noOfSlides);
-        // setSwiperInstanceSLA(swiperInstanceSLA)
-        console.log(width,noOfSlides);
       }, [width]);
 
 

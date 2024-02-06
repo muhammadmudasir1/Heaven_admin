@@ -40,7 +40,7 @@ const App = () => {
 
                     <Routes>
                         <Route element={<Navigationbar />}>
-                            <Route path="/ComparisonPage" element={<ComparisonPage />} />
+                            <Route path="/ComparisonPage" element={<ComparePage />} />
                             <Route path="/" element={<Home />} />
                             <Route path="/filament" element={<ShowFilament />} />
                             <Route path="/result/:fdm/:price/:product" element={<ComparePage />}/>

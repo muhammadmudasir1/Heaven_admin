@@ -62,16 +62,14 @@ const Doubleslider = () => {
   useEffect(() => {
     const noOfSlides = width <= 480 ? 1 : width <= 1380 ? 3 : 4;
     setSlidesToShow(noOfSlides);
-    // setSwiperInstanceSLA(swiperInstanceSLA)
-    console.log(width,noOfSlides);
   }, [width]);
 
   return (
     <div className="lg:grid lg:grid-cols-8 lg:grid-rows-2 m-8">
       <>
         <div className="lg:col-span-6 lg:relative my-8">
-          <div class=" flex justify-center items-center">
-            <h1 class="text-neutral-800 text-2xl font-normal">
+          <div className=" flex justify-center items-center">
+            <h1 className="text-neutral-800 text-2xl font-normal">
               Latest on SLA printer
             </h1>
           </div>

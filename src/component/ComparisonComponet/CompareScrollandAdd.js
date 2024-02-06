@@ -3,6 +3,7 @@ import PaginationClass from './PaginationClass'
 import {useLocation, useNavigate } from 'react-router-dom'
 import ComparisionCard from './ComparisionCard'
 import Api from '../../api/Api'
+import LoadingCard from '../LoadingCard'
 
 const StickyComparisonBar = (setIsSticky) => {
 
@@ -22,8 +23,8 @@ const StickyComparisonBar = (setIsSticky) => {
     }, []);
 };
 
-const CompareScrollandAdd = () => {
-    const [cards, setcards] = useState([])
+const CompareScrollandAdd = ({reload}) => {
+    const [cards, setCards] = useState([])
     const [productType,setProductType]=useState(1)
     const [manufacturers,setManufacturers]=useState([])
     const [products,setProducts]=useState([])
@@ -31,22 +32,21 @@ const CompareScrollandAdd = () => {
     const [cardPerPage, setCardPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCards, setSelectedCards] = useState([]);
+    const [isLoading,setIsloading]=useState(false)
     const [isSticky, setIsSticky] = useState(false);
     const navigation = useNavigate();
     const location=useLocation()
-    const queryParams=new URLSearchParams(location.search)
     
-
     
-
+    
+    
     useEffect(()=>{
+        const queryParams=new URLSearchParams(location.search)
         let manufacturersParams=queryParams.get('manufacturers')
         manufacturersParams=JSON.parse(decodeURIComponent(manufacturersParams))
-        setManufacturers(manufacturersParams)
         let productsParams=queryParams.get('products')
         productsParams=JSON.parse(decodeURIComponent(productsParams))
-        setProducts(productsParams)
-        let priceParams=queryParams.get('priceQuery')
+        let priceParams=queryParams.get('price')
         priceParams=JSON.parse(decodeURIComponent(priceParams))
         if(priceParams==1){
             priceParams=500
@@ -63,20 +63,39 @@ const CompareScrollandAdd = () => {
         else if(priceParams==5){
             priceParams=2500
         }
-        setPrice(priceParams)
+        // console.log(priceParams)
 
         const fetchData=async()=>{
+            setIsloading(true)
+            setCards([])
          const response=await Api.post('/api/products/filter',{
-            manufacturers,
-            products,
-            price,
+            manufacturers:manufacturersParams,
+            products:productsParams,
+            price:priceParams,
             productType
          })
-         console.log(response.data)
-         setcards(response.data)   
+         
+         setCards(response.data)
+         setIsloading(false)
+         
         }
-        fetchData()
-    },[productType])
+        try {
+            fetchData()
+        } catch (error) {
+            setIsloading(false)
+            console.log(error)
+        }
+        return () => {
+            // Cleanup function to cancel ongoing requests if the component unmounts or reload changes
+            // This will help to avoid setting state on an unmounted component
+            setIsloading(false);
+        };
+        
+    },[productType,reload])
+
+    useEffect(()=>{
+        console.log("is Called") 
+    },[cards])
 
     const handleComparison = () => {
         let search = "";
@@ -162,11 +181,25 @@ const CompareScrollandAdd = () => {
             </ul>
 
             <div className='mb-12'>
-                <div className='p-5 grid grid-cols-8'>
-                    <div className='col-span-6 flex flex-col items-center pr-12'>
-                        {currentCard.map((card, Index) => {
-                            return <ComparisionCard card={card} selectedcards={selectedCards} handleCheckboxChange={handleCheckboxChange} />
-                        })}
+                <div className='p-5 grid grid-cols-8 h-full '>
+                    <div className='col-span-6 flex flex-col items-center justify-between pr-12'>
+                        <div className='w-full ml-5'>
+
+                        
+                        {
+                            isLoading?<>
+                            <LoadingCard/>
+                            <LoadingCard/>
+                            </>
+                            :currentCard.map((card, Index) => {
+                                return <ComparisionCard 
+                                key={card.Id}
+                                card={card}
+                                selectedcards={selectedCards}
+                                handleCheckboxChange={handleCheckboxChange} />
+                            })
+                        }
+                        </div>
                         <div>
                             <PaginationClass
                                 currentPage={currentPage}
