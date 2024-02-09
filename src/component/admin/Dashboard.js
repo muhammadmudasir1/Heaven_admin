@@ -57,15 +57,16 @@ const Dashboard = () => {
                             <img src={list} className=" w-4 ml-7" />
                             <p className="pl-2">{t('news')}</p>
                         </Link>
-                        <Link to={'analytics'}className="flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
+                        <Link to={'beginnersGuid'}className="flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
                             <img src={barChart} className=" w-4 ml-7" />
-                            <p className="pl-2">Google Analytics</p>
+                            <p className="pl-2">Beginners Guid</p>
                         </Link>
                     </div>
 
                 </div>
                 <div className="flex flex-col mt-5 ">
-                    <Link className=" flex items-center text-white font-sans font-bold text-lg py-3 hover:text-gray-300">
+                    <Link to={'users'} 
+                        className=" flex items-center text-white font-sans font-bold text-lg py-3 hover:text-gray-300">
                         <img src={person} className=" w-4 ml-7" />
                         <p className="pl-2">User Account</p>
                     </Link>

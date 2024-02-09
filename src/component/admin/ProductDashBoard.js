@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import ClipLoader from 'react-spinners/ClipLoader';
 
+
+
 const ProductDashboard = () => {
     const { auth, setAuth } = useAuth()
     const refresh = useRefresh()
@@ -16,10 +18,11 @@ const ProductDashboard = () => {
     const [query, setQuery] = useState('')
     const [products, setProducts] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-
+    const [reload,setReload]=useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
+            setProducts([])
             try {
                 setIsLoading(true)
                 const response = await Api.post(`/api/products/searchbytype/${currentProducttype}`, {
@@ -35,7 +38,7 @@ const ProductDashboard = () => {
             }
         }
         fetchData()
-    }, [query,currentProducttype])
+    }, [query,currentProducttype,reload])
 
     const handleSearch = async (e) => {
         try {
@@ -122,7 +125,7 @@ const ProductDashboard = () => {
             <div className="2xl:h-[700px] xl:h-[400px] w-full border-gray-200 border-2 p-2 overflow-scroll overflow-x-hidden ">
                 {
                     products && products.map((product, index) => {
-                        return <ProductCard key={index} data={product} />
+                        return <ProductCard key={product.Id} data={product} prevCards={setProducts} />
                     })
                 }
             </div>

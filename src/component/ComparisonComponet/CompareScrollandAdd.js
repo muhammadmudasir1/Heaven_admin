@@ -4,6 +4,7 @@ import {useLocation, useNavigate } from 'react-router-dom'
 import ComparisionCard from './ComparisionCard'
 import Api from '../../api/Api'
 import LoadingCard from '../LoadingCard'
+import SelectedCard from './SelectedCard'
 
 const StickyComparisonBar = (setIsSticky) => {
 
@@ -26,9 +27,6 @@ const StickyComparisonBar = (setIsSticky) => {
 const CompareScrollandAdd = ({reload}) => {
     const [cards, setCards] = useState([])
     const [productType,setProductType]=useState(1)
-    const [manufacturers,setManufacturers]=useState([])
-    const [products,setProducts]=useState([])
-    const [price,setPrice]=useState(99999)
     const [cardPerPage, setCardPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCards, setSelectedCards] = useState([]);
@@ -66,6 +64,7 @@ const CompareScrollandAdd = ({reload}) => {
         // console.log(priceParams)
 
         const fetchData=async()=>{
+            setSelectedCards([])
             setIsloading(true)
             setCards([])
          const response=await Api.post('/api/products/filter',{
@@ -86,8 +85,6 @@ const CompareScrollandAdd = ({reload}) => {
             console.log(error)
         }
         return () => {
-            // Cleanup function to cancel ongoing requests if the component unmounts or reload changes
-            // This will help to avoid setting state on an unmounted component
             setIsloading(false);
         };
         
@@ -98,15 +95,14 @@ const CompareScrollandAdd = ({reload}) => {
     },[cards])
 
     const handleComparison = () => {
-        let search = "";
-        const selectedCardsData = selectedCards.map(index => cards[index]);
-        selectedCardsData.forEach((card, index) => {
-            console.log(`Card ${index + 1} details:`);
-            console.log(card);
-            search += `cp${index + 1}=${card.Index}&`;
-        });
+        
+        let ids=selectedCards.map((card)=>{
+            return card.Id
+        })
 
-        navigation(`/comparision?${search}`, { selectedCardsData });
+        ids = encodeURIComponent(JSON.stringify(ids))
+
+        navigation(`/comparision?products=${ids}`,);
     };
 
     StickyComparisonBar(setIsSticky);
@@ -120,27 +116,35 @@ const CompareScrollandAdd = ({reload}) => {
         setCurrentPage(PageNumber)
     }
 
-    const handleCheckboxChange = (index) => {
-        const isSelected = selectedCards.includes(index);
+    const handleCheckboxChange = (data) => {
+        let isSelected = false
+        selectedCards.forEach((prev)=>{
+            if (prev.Id === data.Id){
+                isSelected=true
+            }
+        })
         if (selectedCards.length<=4){
             setSelectedCards((prevSelectedCards) =>{
                 if(isSelected) {
-                    const temp=prevSelectedCards.filter((cardIndex) => {
-                        return cardIndex !== index
+                    const temp=prevSelectedCards.filter((card) => {
+                        return card.Id !== data.Id
                     })
                     return [...temp]
                 }
                 else{
                     if(prevSelectedCards.length>=4){
-                        console.log("Previous Card " + prevSelectedCards.length)
                         alert("Max Limit for Compare Cards is 4")
                         return prevSelectedCards
                     }
-                    return [...prevSelectedCards, index]
+                    return [...prevSelectedCards, data]
 
                 }});
             }
         };
+
+    useEffect(()=>{
+        console.log(selectedCards)
+    },[selectedCards])
 
 
     return (
@@ -214,15 +218,9 @@ const CompareScrollandAdd = ({reload}) => {
             </div>
             {selectedCards.length > 0 && selectedCards.length <= 4 && (
                 <div className={`bg-black bg-opacity-40 z-10 w-full flex items-center py-4 px-8 mt-2 ${isSticky ? 'sticky w-full z-20' : ''} `}>
-                    {selectedCards.map((selectedIndex) => (
-                        <div key={selectedIndex} className='flex items-center mx-4 py-4 bg-white'>
-                            <img src={cards[selectedIndex].img} alt="" className='h-16' />
-                            <div className='px-2'>
-                                <h1 className='text-neutral-800 text-base font-semibold font-[Roboto]'>{cards[selectedIndex].title}</h1>
-                                <h1 className='text-neutral-800 text-sm font-semibold font-[Roboto]'>{cards[selectedIndex].price}</h1>
-                            </div>
-                        </div>
-                    ))}
+                    {selectedCards.map((CheckedCard) => {
+                        return <SelectedCard data={CheckedCard}/>
+                    })}
                     <button
 
                         onClick={handleComparison}

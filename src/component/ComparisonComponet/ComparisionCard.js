@@ -236,7 +236,12 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange }) => {
                     <input type='checkbox'
                         checked={isChecked}
                         onChange={() => {
-                            handleCheckboxChange(card.Index)
+                            handleCheckboxChange({
+                                "Id":card.Id,
+                                "image":card.ProductImages[0].path,
+                                "title":card.product_name,
+                                "price":card.price
+                            })
                             if (selectedcards.length < 4) {
                                 setIsChecked((prev) => {
                                     return !prev

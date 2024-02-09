@@ -9,9 +9,9 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
     const [unit, setUnit] = useState(null)
     const [loading, setLoading] = useState(false)
     useEffect(() => {
-        try {
-            const fetchPrice = async () => {
-                setLoading(true)
+        const fetchPrice = async () => {
+            setLoading(true)
+                try {
                 const result = await Api.get(`/api/products/price/${purchaselinkId}`, {
                     headers: {
                         'Cache-Control': 'no-cache',
@@ -21,17 +21,17 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
                 setOriginalPrice(result.data.originalPrice)
                 setUnit(result.data.unit)
                 setLoading(false)
-            }
+                }catch (error) {
+                    setLoading(false)
+                    console.log(error)
+                }
+                }
                 if(purchaselinkId){
 
                     fetchPrice()
                 }
 
-        }
-        catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
+        
     }, [])
 
     const handleEdit=(e)=>{
@@ -45,10 +45,9 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
         "title":data.title,
         "coupon":data.coupon,
         "discription":data.discription,
-        "siteType":data.siteType
+        "siteType":data.siteType,
+        "visitingLink":data.visitingLink
         }
-        console.log("from purchaselink form")
-        console.log(newdata)
         setUpdateData(newdata)
         remove(purchaselinkId)
     }
@@ -142,7 +141,7 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
                         <a href="#"
                         className='mt-4 py-1 grow rounded-lg text-center text-lg text-white bg-customBlue hover:bg-sky-500'
                         onClick={(e)=>{
-                            window.open(data.link,"_blank")
+                            window.open(data.visitingLink,"_blank")
                         }}
                         >
                         Visit</a>

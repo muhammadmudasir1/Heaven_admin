@@ -28,6 +28,9 @@ import ShowFilament from "./component/ShowFilament"
 import TopFive from "./component/admin/TopFive"
 import News from "./component/admin/News"
 import AddNews from "./component/admin/AddNews"
+import BeginnersGuid from "./component/admin/BeginnersGuid"
+import AddBeginnersGuid from "./component/admin/AddBeginnersGuid"
+import UserPage from "./component/admin/users/UserPage"
 
 
 
@@ -66,7 +69,9 @@ const App = () => {
                             <Route path="news" element={ <News/> } />
                             <Route path="addNews" element={ <AddNews/> } />
                             <Route path="updateNews/:id" element={ <AddNews/> } />
-                            <Route path="analytics" element={<h1>Google Analytics</h1>} />
+                            <Route path="beginnersGuid" element={ <BeginnersGuid/> } />
+                            <Route path="addBeginnersGuid" element={ <AddBeginnersGuid/> } />
+                            <Route path="updateBeginnersGuid/:id" element={ <AddBeginnersGuid/> } />
                             <Route element={<NavigationForAddForm/>}>
                             <Route path="addProduct" element={<AddProduct />} />
                             <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
@@ -74,6 +79,7 @@ const App = () => {
                             <Route path="addReview/:id" element={<AddReview/>}/>
                             <Route path="updateproduct/:id" element={<UpdateProduct/>}/>
                             </Route>
+                            <Route path="users" element={<UserPage/>}/>
                         </Route>
 
                         <Route path="/login" element={<LoginPage />} />

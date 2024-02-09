@@ -4,8 +4,9 @@ import halfStar from "../../imges/halfStar.svg"
 import GrayStar from "../../imges/grayStar.svg"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
+import Api from "../../api/Api"
 
-const ProductCard = ({data}) => {
+const ProductCard = ({data,prevCards}) => {
     const [yellowStar,setYellowStar]=useState()
     const [grayStar,setGrayStar]=useState()
 
@@ -16,7 +17,22 @@ const ProductCard = ({data}) => {
     useEffect(()=>{
         console.log(yellowStar)
     },[yellowStar])
-
+    const handleDelete=()=>{
+        const deleteProduct=async()=>{
+            try {
+                await Api.delete(`/api/products/${data.Id}`)
+            } catch (error) {
+               console.log(error) 
+            }
+        }
+        deleteProduct()
+        prevCards((cards)=>{
+            const temp= cards.filter((card)=>{
+                return data.Id!=card.Id
+            })
+            return [...temp]
+        })
+    }
 
     const navigate=useNavigate()
     return (
@@ -27,12 +43,16 @@ const ProductCard = ({data}) => {
                 <div className="flex items-center justify-between w-full">
                     <p className=" font-sans font-bold text-2xl w-3/4 line-clamp-2 ">{data.product_name}</p>
                     <div>
-                        <button className="px-5 hover:text-green-500 ml-2"
+                        <button className="px-5 hover:text-green-500 ml-2 cursor-pointer"
                         onClick={(e)=>{
                             navigate(`/dashboard/updateproduct/${data.Id}`)
                         }}
                         >Edit</button>
-                        <button className="px-5 hover:text-red-500 ml-2">Delete</button>
+                        <button className="px-5 hover:text-red-500 ml-2 cursor-pointer"
+                        onClick={(e)=>{
+                            handleDelete()
+                        }}
+                        >Delete</button>
                     </div>
 
                 </div>

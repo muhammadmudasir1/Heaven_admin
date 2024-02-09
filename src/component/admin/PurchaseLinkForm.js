@@ -17,6 +17,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
     const [title, setTitle] = useState('')
     const [coupon, setCoupon] = useState('')
     const [discription, setDiscription] = useState('')
+    const [visitingLink,setVisitingLink]=useState('')
     const [purchaseLinkId, setPurchaseLinkId] = useState(null)
     const [editData, setEditData] = useState(null)
 
@@ -30,6 +31,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
         setTitle(data.title)
         setCoupon(data.coupon)
         setDiscription(data.discription)
+        setVisitingLink(data.visitingLink)
         setTimeout(() => {
             setRetrivePriceFlag(data.retrivePriceFlag)
 
@@ -41,7 +43,8 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             "purchaseLinksId": data.purchaseLinkId,
             "retrivePriceFlag": data.retrivePriceFlag,
             "siteType": data.siteType,
-            "title": data.title
+            "title": data.title,
+            "visitingLink":data.visitingLink
         })
     }
 
@@ -51,6 +54,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                 returnToList(editData)
             }
             setData(updateData)
+            console.log(updateData)
 
             setUpdateData(null)
 
@@ -63,7 +67,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
     }, [link])
 
     const handleAddPurchaseLink = async () => {
-        console.log(id)
+
         try {
             await Api.post("/api/products/addPurchaseLinks", {
                 "productId": id,
@@ -77,11 +81,13 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     retrivePriceFlag,
                     title,
                     coupon,
-                    discription
+                    discription,
+                    visitingLink
                 }
             })
             setSiteType(1)
             setLink("")
+            setVisitingLink("")
             setOriginalPrice("")
             setDiscountedPrice("")
             setUnit("")
@@ -202,7 +208,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
 
             <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
                 <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Site Link:</label>
-                <div className='w-full grow-0 flex 2xl:grow '>
+                <div className='w-full flex '>
                     <input
                         type='text'
                         className='grow px-2 py-1 outline-none border-2 border-gray-400 rounded-md'
@@ -224,7 +230,20 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                             >Check</button>
                     }
                 </div>
+
+
             </section>
+                <section className='p-0 2xl:p-2 flex items-start flex-col 2xl:flex-row 2xl:items-center w-full'>
+                    <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Visiting Link:</label>
+                    <input
+                        type='text'
+                        className='px-2 py-1  outline-none border-2 border-gray-400 rounded-md w-full grow-0 2xl:grow'
+                        value={visitingLink}
+                        onChange={(e) => {
+                            setVisitingLink(e.target.value)
+                        }}
+                    />
+                </section>
             <div className='grid grid-flow-col gap-2 2xl:block'>
                 <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
                     <label className='mr-2 pl-1 pt-1 2xl:w-2/6 2xl:p-0 text-sm 2xl:text-base'>Original Price:</label>
@@ -238,6 +257,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                         }}
                     />
                 </section>
+
                 <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center'>
                     <label className='mr-2 pl-1 pt-1 2xl:w-2/6 2xl:p-0 text-sm 2xl:text-base'>Discounteds Price:</label>
                     <input
@@ -253,7 +273,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             </div>
 
 
-            <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center'>
+            <section className='p-0 2xl:p-2 flex items-start flex-col 2xl:flex-row 2xl:items-center'>
                 <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Site Title:</label>
                 <input
                     type='text'
@@ -280,7 +300,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
                 <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base' >Description:</label>
                 <textarea type='text'
-                    rows={4}
+                    rows={2}
                     className=" resize-none px-2 py-1  outline-none border-2 border-gray-400 rounded-md w-full grow-0 2xl:grow "
                     value={discription}
                     onChange={(e) => {

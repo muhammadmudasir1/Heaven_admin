@@ -139,6 +139,7 @@ const AddProduct = () => {
 
 
     const saveProduct = async (e) => {
+        console.log("Save Product")
         document.getElementById('addproduct').scrollTop = 0
         setLoading(true)
         const fd = new FormData()
@@ -194,13 +195,14 @@ const AddProduct = () => {
 
     }
     const processForm = async (e) => {
-        if (!productName || !manufacturer || !productType || images.length < 1 || price) {
+        if (!productName || !manufacturer || !productType || images.length < 1 || !price) {
             !productName && setProductNameError(true)
             !manufacturer && setManufacturerError(true)
             !productType && setProductTypeError(true)
             !price && setPriceError(true)
             images.length < 1 && setNullImageError(true)
             document.getElementById('addproduct').scrollTop = 0
+            console.log(images.length<1)
             return
         }
         else {
