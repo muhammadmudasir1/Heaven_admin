@@ -1,12 +1,13 @@
 import { useDropzone } from 'react-dropzone'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useProductContext } from '../../context/CurrentProductContext';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { ImCross } from "react-icons/im";
 import { MdCancel } from "react-icons/md";
 import Api from "../../api/Api"
-import { useNavigate, useParams } from 'react-router-dom';
-import { FaArrowRight,FaArrowLeft } from "react-icons/fa";
+import { useNavigate} from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
 
 const AddProduct = () => {
     const [images, setImages] = useState([])
@@ -36,6 +37,8 @@ const AddProduct = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const navigate = useNavigate()
+    const {auth,setAuth}=useAuth()
+    const refresh=useRefresh()
 
 
     // states for Error Handling
@@ -174,8 +177,13 @@ const AddProduct = () => {
         fd.append('unit',unit)
 
         console.log(fd.getAll('thumbnail'))
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
         try {
-            const response = await Api.post('/api/products/', fd)
+            const response = await Api.post('/api/products/', fd,config)
             populateProduct(response.data)
             setLoading(false)
             navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
@@ -184,8 +192,33 @@ const AddProduct = () => {
 
         } catch (error) {
             console.log(error)
-            setError("Saving Product is Failed")
-            setLoading(false)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    const response = await Api.post('/api/products/', fd,config)
+                    populateProduct(response.data)
+                    setLoading(false)
+                    navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
+                    navigate(`/dashboard/addSpecs/${response.data}`)
+        
+
+                } catch (error) {
+                    console.log(error)
+                    setError("Saving Product is Failed")
+                    setLoading(false)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
+            
 
         }
 

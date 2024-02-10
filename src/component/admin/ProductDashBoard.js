@@ -55,7 +55,7 @@ const ProductDashboard = () => {
             console.log(error)
             if (error.response?.status === 403) {
                 const accessToken = await refresh()
-                console.log(auth)
+                // console.log(auth)
                 const config = {
                     headers: {
                         'Content-Type': 'application/json',

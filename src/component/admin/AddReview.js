@@ -6,7 +6,8 @@ import Api from '../../api/Api';
 import { useNavigate, useParams } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
-
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
 
 
 
@@ -16,9 +17,12 @@ const AddReview = () => {
     const [pros, setPros] = useState('')
     const [cons, setCons] = useState('')
     const [review, setReview] = useState('')
+    const [seoKeys,setSeoKeys]=useState('')
     const [reviewId, setReviewId] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
+    const { auth, setAuth } = useAuth()
+    const refresh = useRefresh()
 
     useEffect(() => {
         try {
@@ -29,6 +33,7 @@ const AddReview = () => {
                     setCons(response.data[0].cons)
                     setReview(response.data[0].review)
                     setReviewId(response.data[0].id)
+                    setSeoKeys(response.data[0].seoKeys)
                 }
             }
             fetchData()
@@ -40,33 +45,60 @@ const AddReview = () => {
 
 
     const handleSave = async () => {
-        try {
-            const data = {
-                pros,
-                cons,
-                review
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
             }
-            console.log("handle save")
+        }
+
+        try {
+            const data = { pros, cons, review,seoKeys }
             setIsLoading(true)
-            await Api.post(`/api/products/review/${id}`, data)
+            await Api.post(`/api/products/review/${id}`, data, config)
             setIsLoading(false)
             navigate('/dashboard/product')
 
         } catch (error) {
             console.log(error)
-            setIsLoading(false)
+            if (error.response?.status === 403) {
+                const accessToken = refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    const data = { pros, cons, review, seoKeys }
+                    setIsLoading(true)
+                    await Api.post(`/api/products/review/${id}`, data, config)
+                    setIsLoading(false)
+                    navigate('/dashboard/product')
+
+
+                } catch (error) {
+                    console.log(error)
+                    setIsLoading(false)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
         }
     }
 
     const handleUpdate = async () => {
-        try {
-            const data = {
-                pros,
-                cons,
-                review
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
             }
+        }
+
+        try {
+            const data = { pros, cons, review, seoKeys }
             setIsLoading(true)
-            await Api.patch(`/api/products/review/${id}`, data)
+            await Api.patch(`/api/products/review/${id}`, data, config)
             setIsLoading(false)
             setIsUpdated(true)
             setTimeout(() => {
@@ -74,7 +106,32 @@ const AddReview = () => {
             }, 5000)
         } catch (error) {
             console.log(error)
-            setIsLoading(false)
+            if (error.response?.status === 403) {
+                const accessToken = refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    const data = { pros, cons, review, seoKeys }
+                    setIsLoading(true)
+                    await Api.patch(`/api/products/review/${id}`, data, config)
+                    setIsLoading(false)
+                    setIsUpdated(true)
+                    setTimeout(() => {
+                        setIsUpdated(false)
+                    }, 5000)
+                } catch (error) {
+                    console.log(error)
+                    setIsLoading(false)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
         }
     }
 
@@ -84,7 +141,7 @@ const AddReview = () => {
         <div className=' w-full h-screen relative'>
             <div className='w-full h-4/5 overflow-x-hidden overflow-y-auto px-4'>
 
-                <div className='w-full grid grid-cols-2 gap-2'>
+                <div className='w-full grid grid-cols-3 gap-2'>
                     <div className='py-2 flex flex-col h-full'>
                         <h2 className='w-full mb-2'>Pros:</h2>
                         <div className='w-full h-40 mb-6 '>
@@ -96,6 +153,19 @@ const AddReview = () => {
                         <h2 className='w-full mb-2'>Cons:</h2>
                         <div className='w-full h-40 mb-6 '>
                             <ListEditor text={cons} setText={setCons} />
+                        </div>
+
+                    </div>
+                    <div className='py-2 flex flex-col h-full'>
+                        <h2 className='w-full mb-2'>SEO Keys:</h2>
+                        <div className='w-full h-40 mb-6 '>
+                            <textarea 
+                            className='w-full h-full overflow-y-auto p-2 resize-none outline-none border-[1px] border-gray-300'
+                            value={seoKeys}
+                            onChange={(e)=>{
+                                setSeoKeys(e.target.value)
+                            }}
+                            />
                         </div>
 
                     </div>

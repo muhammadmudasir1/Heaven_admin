@@ -62,7 +62,7 @@ const App = () => {
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
                         </Route>
-                        
+                        <Route element={ <PrivatePage/>}>
                         <Route path="/dashboard" element={<Dashboard />}>
                             <Route path="product" element={<ProductDashboard />} />
                             <Route path="topFive" element={<TopFive/>} />
@@ -81,7 +81,7 @@ const App = () => {
                             </Route>
                             <Route path="users" element={<UserPage/>}/>
                         </Route>
-
+                        </Route>
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="*" element={<p>404 Page not found</p>}/>
                     </Routes>

@@ -7,8 +7,9 @@ import halfStar from "../../imges/halfStar.svg"
 import GrayStar from "../../imges/grayStar.svg"
 import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
-
-
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
+import { useNavigate } from 'react-router-dom';
 
 const SearchedLines = ({ product, selectedItems, setInCards, reRender }) => {
     const [yellowStar, setYellowStar] = useState()
@@ -109,21 +110,54 @@ const TopFive = () => {
     const [selectedIds, setSeletedIds] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [dummpyState, setDumpyState] = useState(true)
-    const [isUpdated,setIsUpdated]=useState(false)
+    const [isUpdated, setIsUpdated] = useState(false)
+    const { auth, setAuth } = useAuth()
+    const refresh = useRefresh()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${auth.accessToken}`
+                }
+            }
             try {
                 setIsLoading(true)
                 const response = await Api.post(`/api/products/search`, {
                     "query": query
-                })
+                }, config)
                 setProducts(response.data)
                 setIsLoading(false)
 
             } catch (error) {
-                setIsLoading(false)
                 console.log(error)
+                if (error.response?.status === 403) {
+                    const accessToken = await refresh()
+                    const config = {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                    }
+                    try {
+                        const response = await Api.post(`/api/products/search`, {
+                            "query": query
+                        }, config)
+                        setProducts(response.data)
+                        setIsLoading(false)
+
+
+                    } catch (error) {
+                        console.log(error)
+                        setIsLoading(false)
+                    }
+                }
+                else {
+                    setAuth(null)
+                    navigate('/login')
+                }
+                
             }
         }
         fetchData()
@@ -162,7 +196,7 @@ const TopFive = () => {
         } catch (error) {
             setIsLoading(false)
             console.log(error)
-            
+
         }
     }
 
@@ -238,25 +272,25 @@ const TopFive = () => {
                     <button className='py-2 bg-customBlue px-6 text-xl rounded-ee-full rounded-se-full text-white hover:bg-sky-500' ><BsSearch /> </button>
                 </div>
             </div>
-            <div className={`w-full h-[400px] py-3 overflow-x-hidden mt-5 relative ${isLoading?"overflow-hidden":"overflow-scroll"}`}>
+            <div className={`w-full h-[400px] py-3 overflow-x-hidden mt-5 relative ${isLoading ? "overflow-hidden" : "overflow-scroll"}`}>
                 {
                     products ? products.map((product) => {
                         return <SearchedLines product={product} selectedItems={selectedIds} setInCards={setCards} reRender={reRender} />
                     })
-                    : <p>Products Not Found</p>
+                        : <p>Products Not Found</p>
                 }
 
                 {
                     isLoading &&
                     <>
-                    <div className='w-full h-full bg-white absolute inset-0 opacity-50'/>
-                    <div className='w-full h-full absolute inset-0 flex justify-center items-center'>
-                    <ClipLoader
-                        size={75}
-                        loading={isLoading}
-                        color={"#026CC4"}
-                    />
-                    </div>
+                        <div className='w-full h-full bg-white absolute inset-0 opacity-50' />
+                        <div className='w-full h-full absolute inset-0 flex justify-center items-center'>
+                            <ClipLoader
+                                size={75}
+                                loading={isLoading}
+                                color={"#026CC4"}
+                            />
+                        </div>
                     </>
 
                 }
@@ -270,7 +304,7 @@ const TopFive = () => {
                     <p className='p-4 text-white text-lg'>Updated</p>
                 </div>
             }
-                
+
         </div>
     )
 }

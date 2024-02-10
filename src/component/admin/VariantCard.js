@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { RxCross2 } from "react-icons/rx";
 import Api from '../../api/Api';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
 
 const VariantCard = ({id,productId,reload}) => {
     const navigate=useNavigate()
@@ -9,6 +11,8 @@ const VariantCard = ({id,productId,reload}) => {
     const [productName,setProductName]=useState('')
     const [price,setPrice]=useState('')
     const [unit,setUnit]=useState('')
+    const {auth,setAuth}=useAuth()
+    const refresh=useRefresh()
     const getProductData=async (id)=>{
         try {
             const result = await Api.get(`/api/products/${id}`)
@@ -20,7 +24,7 @@ const VariantCard = ({id,productId,reload}) => {
                 }
             });
             setProductName(result.data.product_name)
-            console.log(result.data)
+            // console.log(result.data)
         } catch (error) {
             console.log(error)
         }
@@ -32,14 +36,44 @@ const VariantCard = ({id,productId,reload}) => {
     },[id])
     
     const handleDelete=async ()=>{
+        const config={
+            headers:{
+                Authorization:`Bearer ${auth.accessToken}`
+            }
+        }
         try {
             await Api.patch('/api/products/removeVariant',{
                 "productId":productId,
                 "variantId":id
-            })
+            },config)
             await reload(productId)
         } catch (error) {
             console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.patch('/api/products/removeVariant',{
+                        "productId":productId,
+                        "variantId":id
+                    },config)
+                    await reload(productId)
+                    
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
+
+            // console.log(error)
         }
     }
 
@@ -55,7 +89,7 @@ const VariantCard = ({id,productId,reload}) => {
             >
             </div>
             <div className='grow flex flex-col ml-2 justify-between h-full' >
-                <h2>{productName}</h2>
+                <h2 className=' line-clamp-2' title={productName}>{productName}</h2>
                 <div className='flex w-full justify-end'>
 
                     <p >

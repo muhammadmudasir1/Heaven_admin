@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Api from '../../api/Api'
 import ClipLoader from 'react-spinners/ClipLoader';
 import checkIcon from "../../imges/Check.png"
-
-
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
+import { useNavigate } from 'react-router-dom';
 
 const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToList }) => {
     const [siteType, setSiteType] = useState(1)
@@ -17,9 +18,12 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
     const [title, setTitle] = useState('')
     const [coupon, setCoupon] = useState('')
     const [discription, setDiscription] = useState('')
-    const [visitingLink,setVisitingLink]=useState('')
+    const [visitingLink, setVisitingLink] = useState('')
     const [purchaseLinkId, setPurchaseLinkId] = useState(null)
     const [editData, setEditData] = useState(null)
+    const { auth, setAuth } = useAuth()
+    const refresh = useRefresh()
+    const navigate = useNavigate()
 
     const setData = (data) => {
         setPurchaseLinkId(data.purchaseLinkId)
@@ -44,7 +48,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             "retrivePriceFlag": data.retrivePriceFlag,
             "siteType": data.siteType,
             "title": data.title,
-            "visitingLink":data.visitingLink
+            "visitingLink": data.visitingLink
         })
     }
 
@@ -67,7 +71,12 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
     }, [link])
 
     const handleAddPurchaseLink = async () => {
-
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${auth.accessToken}`,
+            },
+        }
         try {
             await Api.post("/api/products/addPurchaseLinks", {
                 "productId": id,
@@ -84,7 +93,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     discription,
                     visitingLink
                 }
-            })
+            }, config)
             setSiteType(1)
             setLink("")
             setVisitingLink("")
@@ -100,13 +109,53 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
 
         } catch (error) {
             console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.post("/api/products/addPurchaseLinks", {
+                        "productId": id,
+                        "purchaseLink": {
+                            purchaseLinkId,
+                            siteType,
+                            link,
+                            originalPrice,
+                            discountedPrice,
+                            unit,
+                            retrivePriceFlag,
+                            title,
+                            coupon,
+                            discription,
+                            visitingLink
+                        }
+                    }, config)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
         }
     }
 
     const handleCheckLink = async () => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${auth.accessToken}`,
+            },
+        }
         try {
             setLoading(true)
-            const result = await Api.post("/api/products/check", { siteType, link })
+            const result = await Api.post("/api/products/check", { siteType, link }, config)
             console.log(result.data)
             setDiscountedPrice(result.data.discountedPrice)
             setOriginalPrice(result.data.regularPrice)
@@ -114,8 +163,34 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             setLoading(false)
             setShowRetrive(true)
         } catch (error) {
-            setLoading(false)
-            console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    setLoading(true)
+                    const result = await Api.post("/api/products/check", { siteType, link }, config)
+                    console.log(result.data)
+                    setDiscountedPrice(result.data.discountedPrice)
+                    setOriginalPrice(result.data.regularPrice)
+                    setUnit(result.data.unit)
+                    setLoading(false)
+                    setShowRetrive(true)
+
+                } catch (error) {
+                    setLoading(false)
+                    console.log(error)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
+
         }
     }
 
@@ -233,17 +308,17 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
 
 
             </section>
-                <section className='p-0 2xl:p-2 flex items-start flex-col 2xl:flex-row 2xl:items-center w-full'>
-                    <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Visiting Link:</label>
-                    <input
-                        type='text'
-                        className='px-2 py-1  outline-none border-2 border-gray-400 rounded-md w-full grow-0 2xl:grow'
-                        value={visitingLink}
-                        onChange={(e) => {
-                            setVisitingLink(e.target.value)
-                        }}
-                    />
-                </section>
+            <section className='p-0 2xl:p-2 flex items-start flex-col 2xl:flex-row 2xl:items-center w-full'>
+                <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Visiting Link:</label>
+                <input
+                    type='text'
+                    className='px-2 py-1  outline-none border-2 border-gray-400 rounded-md w-full grow-0 2xl:grow'
+                    value={visitingLink}
+                    onChange={(e) => {
+                        setVisitingLink(e.target.value)
+                    }}
+                />
+            </section>
             <div className='grid grid-flow-col gap-2 2xl:block'>
                 <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
                     <label className='mr-2 pl-1 pt-1 2xl:w-2/6 2xl:p-0 text-sm 2xl:text-base'>Original Price:</label>

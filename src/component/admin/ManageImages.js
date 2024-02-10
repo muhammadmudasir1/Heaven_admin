@@ -3,11 +3,18 @@ import { RxCross2 } from "react-icons/rx";
 import { useDropzone } from 'react-dropzone'
 import { FaPlus } from 'react-icons/fa6';
 import Api from '../../api/Api';
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
+import { useNavigate } from 'react-router-dom';
 
 const ManageImages = ({ productId }) => {
     const [images, setImages] = useState([])
     const [addImages, setAddImages] = useState([])
-    const [apiCalls, setApiCalls] = useState([])
+    const [apiCalls,setApiCalls]=useState([])
+    const { auth, setAuth } = useAuth()
+    const refresh = useRefresh()
+    const navigate = useNavigate()
+
 
     const getImages = async (id) => {
         try {
@@ -32,35 +39,120 @@ const ManageImages = ({ productId }) => {
     }, [productId])
 
 
-    useEffect(() => {
-        console.log(apiCalls)
-    }, [apiCalls])
-
-
-    const removeImage = async(ImageId) => {
+    const removeImage = async (ImageId) => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
         try {
-            console.log(ImageId)
-            await Api.patch(`/api/products/removeimage/${productId}`,
-            {
-                "imageId":ImageId
-            })
+            await Api.patch(`/api/products/removeimage/${productId}`, { "imageId": ImageId }, config)
             await getImages(productId)
-            
+
         } catch (error) {
             console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.patch(`/api/products/removeimage/${productId}`, { "imageId": ImageId }, config)
+                    await getImages(productId)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
         }
     }
+
 
     const setToThumbnail = async (ImageId) => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
         try {
-            await Api.patch(`/api/products/changeThumbnail/${productId}`, {
-                "imageId": ImageId
-            })
+            await Api.patch(`/api/products/changeThumbnail/${productId}`, { "imageId": ImageId }, config)
             await getImages(productId)
         } catch (error) {
             console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.patch(`/api/products/changeThumbnail/${productId}`, { "imageId": ImageId }, config)
+                    await getImages(productId)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
         }
     }
+
+    const uploadImages = async () => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
+        try {
+            const fd = new FormData()
+            addImages.forEach((image, index) => {
+                fd.append("images", image)
+            })
+            await Api.patch(`/api/products/addImages/${productId}`, fd, config)
+            setAddImages([])
+            await getImages(productId)
+        } catch (error) {
+            console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    const fd = new FormData()
+                    addImages.forEach((image, index) => {
+                        fd.append("images", image)
+                    })
+                    await Api.patch(`/api/products/addImages/${productId}`, fd, config)
+                    setAddImages([])
+                    await getImages(productId)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
+        }
+    }
+
 
     const AddToImage = () => {
 
@@ -106,19 +198,7 @@ const ManageImages = ({ productId }) => {
         })
     }
 
-    const uploadImages=async()=>{
-        try {
-            const fd=new FormData()
-            addImages.forEach((image,index)=>{
-                fd.append("images",image)
-            })
-            const result=await Api.patch(`/api/products/addImages/${productId}`,fd)
-            setAddImages([])
-            await getImages(productId)
-        } catch (error) {
-            console.log(error)
-        }
-    }   
+
 
     return (
         <div className='grid grid-cols-3 2xl:grid-cols-4 gap-2 p-3'>
@@ -141,28 +221,28 @@ const ManageImages = ({ productId }) => {
                 <div className='grid grid-cols-4 2xl:grid-cols-5 gap-2 '>
                     {
                         images.slice(1).map((image, index) => {
-                            if(image.role===2){
+                            if (image.role === 2) {
                                 return <div className='relative group rounded-md overflow-hidden shadow-md '>
-                                <div
-                                    className='bg-cover b-center h-28 2xl:h-32 relative flex flex-col-reverse'
-                                    style={{ backgroundImage: `url(/${image.path})` }}>
-                                    <div className='absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-40'></div>
                                     <div
-                                        className='w-full h-1/5 hidden group-hover:block bg-gray-400 text-center p-1 hover:bg-customBlue z-[999] cursor-pointer'
-                                        onClick={(e) => {
-                                            setToThumbnail(image.id)
-                                        }}
-                                    >
-                                        <p
-                                            className='text-black hidden group-hover:flex justify-center items-center hover:text-white h-full text-sm'>Set to Thumbnail</p>
+                                        className='bg-cover b-center h-28 2xl:h-32 relative flex flex-col-reverse'
+                                        style={{ backgroundImage: `url(/${image.path})` }}>
+                                        <div className='absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-40'></div>
+                                        <div
+                                            className='w-full h-1/5 hidden group-hover:block bg-gray-400 text-center p-1 hover:bg-customBlue z-[999] cursor-pointer'
+                                            onClick={(e) => {
+                                                setToThumbnail(image.id)
+                                            }}
+                                        >
+                                            <p
+                                                className='text-black hidden group-hover:flex justify-center items-center hover:text-white h-full text-sm'>Set to Thumbnail</p>
+                                        </div>
+                                        <RxCross2
+                                            className='absolute top-1 right-1 bg-customBlue rounded-full text-white p-[1px] hover:bg-sky-500 hover:text-red-500 cursor-pointer'
+                                            onClick={(e) => {
+                                                removeImage(image.id)
+                                            }}
+                                        />
                                     </div>
-                                    <RxCross2
-                                        className='absolute top-1 right-1 bg-customBlue rounded-full text-white p-[1px] hover:bg-sky-500 hover:text-red-500 cursor-pointer'
-                                        onClick={(e) => {
-                                            removeImage(image.id)
-                                        }}
-                                    />
-                                </div>
                                 </div>
                             }
 
@@ -220,12 +300,12 @@ const ManageImages = ({ productId }) => {
                 addImages.length > 0 &&
                 <div className=' col-span-3 2xl:col-span-4 flex justify-center items-center mt-3'>
                     <button
-                    className='bg-customBlue hover:bg-sky-500 text-white px-4 py-2 rounded-md'
-                    onClick={(e)=>{
-                        uploadImages()
-                    }}
+                        className='bg-customBlue hover:bg-sky-500 text-white px-4 py-2 rounded-md'
+                        onClick={(e) => {
+                            uploadImages()
+                        }}
                     >
-                    Upload Image</button>
+                        Upload Image</button>
                 </div>
             }
         </div>
