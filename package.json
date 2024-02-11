@@ -2,7 +2,7 @@
   "name": "heaven_admin",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:3500",
+  "proxy": "http://54.210.47.195:3500",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -25,6 +25,7 @@
     "quill-image-resize-module-react": "^3.0.0",
     "quill-resize-module": "^1.2.4",
     "react": "^18.2.0",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-i18next": "^13.5.0",

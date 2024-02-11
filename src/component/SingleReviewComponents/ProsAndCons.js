@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 const ProsAndCons = () => {
     const [isToggled, setIsToggled] = useState(false);
     const [isToggledCons, setIsToggledCons] = useState(false);
-    // Function to handle toggle
+    
     const handleToggle = () => {
         setIsToggled(!isToggled);
     };
@@ -14,10 +14,10 @@ const ProsAndCons = () => {
     };
 
     return (
-        <div className='mx-8 my-8'>
+        <div className='my-8 pl-8 pr-12 '>
             <div onClick={handleToggle} className='mb-4'>
-                <div className='flex justify-between px-8 py-4 bg-stone-50'>
-                    <div className='text-neutral-700 text-2xl font-medium '>
+                <div className='flex justify-between px-8 py-4 bg-stone-50 rounded-xl'>
+                    <div className='text-neutral-700 text-2xl font-bold lg:font-medium '>
                         Pros
                     </div>
                     <div className=' '>
@@ -34,8 +34,8 @@ const ProsAndCons = () => {
                 )}
             </div>
             <div onClick={handleToggleCons} className='mb-4'>
-                <div className='flex justify-between px-8 py-4 bg-stone-50'>
-                    <div className='text-neutral-700 text-2xl font-medium '>
+                <div className='flex justify-between px-8 py-4 bg-stone-50 rounded-xl'>
+                    <div className='text-neutral-700 font-bold text-2xl lg:font-medium '>
                         Cons
                     </div>
                     <div className=' '>
