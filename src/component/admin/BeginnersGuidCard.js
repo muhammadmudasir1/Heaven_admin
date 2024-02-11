@@ -1,8 +1,53 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
+import useRefresh from '../../hooks/useRefresh'
+import Api from '../../api/Api'
 
-const BeginnersGuidCard = ({ data }) => {
+
+const BeginnersGuidCard = ({ data, reload }) => {
     const navigate=useNavigate()
+    const {auth,setAuth}=useAuth()
+    const refresh=useRefresh()
+
+    const handleDelete = async () => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
+        try {
+            await Api.delete(`/api/beginnersGuid/${data.guidId}`, config)
+            reload((prev) => {
+                return !prev
+            })
+
+        } catch (error) {
+            console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.delete(`/api/beginnersGuid/${data.guidId}`, config)
+                    reload((prev) => {
+                        return !prev
+                    })
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
+        }
+    }
+
     return (
         <div className='w-full h-[250px] rounded-md  grid grid-cols-4 gap-3 overflow-hidden bg-gray-200 shadow-md p-2 mb-2'>
             <div className='w-full h-full  bg-cover bg-center'
@@ -20,7 +65,11 @@ const BeginnersGuidCard = ({ data }) => {
                         navigate(`/dashboard/updatebeginnersguid/${data.guidId}`)
                     }}
                     >Edit</button>
-                    <button className='px-4 py-2 bg-gray-200 rounded-md ml-1 hover:bg-red-500 hover:text-white'>Delete</button>
+                    <button className='px-4 py-2 bg-gray-200 rounded-md ml-1 hover:bg-red-500 hover:text-white'
+                    onClick={(e)=>{
+                        handleDelete()
+                    }}
+                    >Delete</button>
                 </div>
             </div>
 

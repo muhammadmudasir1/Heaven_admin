@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 const NavigationForAddForm = () => {
     const [scroll,setScroll]=useState(false)
+    const {auth}=useAuth()
     const {id}=useParams()
     useEffect(() => {
 
@@ -36,7 +38,7 @@ const NavigationForAddForm = () => {
             to={id?`/dashboard/updateproduct/${id}`:'/dashboard/addproduct'}
             > Basic Details</NavLink>
             {
-                id?
+                id ?
                 <>
                 <NavLink to={`/dashboard/addspecs/${id}`} className='py-4 px-2 2xl:py-6 2xl:px-3 text-lg hover:bg-customBlue hover:text-white '> Specs</NavLink>
                 <NavLink to={`/dashboard/addpurchaselinks/${id}`} className='py-4 px-2 2xl:py-6 2xl:px-3 text-lg hover:bg-customBlue hover:text-white'> Purchase Links</NavLink>

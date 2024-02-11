@@ -7,9 +7,13 @@ import Api from "../../api/Api"
 import { useNavigate, useParams } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
 
 
 const AddBeginnersGuid = () => {
+    const { auth, setAuth } = useAuth()
+    const refresh = useRefresh()
     const [images, setImages] = useState([])
     const [blog, setBlog] = useState('')
     const [title, setTitle] = useState('')
@@ -62,7 +66,7 @@ const AddBeginnersGuid = () => {
             'image/webp': []
         }
     })
-
+    // beginnersguid
     const handleRemoveImage = async () => {
         setImages([])
 
@@ -75,6 +79,25 @@ const AddBeginnersGuid = () => {
 
             } catch (error) {
                 console.log(error)
+                if (error.response?.status === 403) {
+                    const accessToken = await refresh()
+                    const config = {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                    }
+                    try {
+                        setIsLoading(true)
+                        await Api.delete(`api/news/beginnersguid/${id}`, config)
+                        setImageFromApi(false)
+                        setIsLoading(false)
+
+                    } catch (error) {
+                        console.log(error)
+                        setIsLoading(false)
+                    }
+                }
             }
         }
     }

@@ -139,10 +139,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     console.log(error)
                 }
             }
-            else {
-                setAuth(null)
-                navigate('/login')
-            }
+            
         }
     }
 
@@ -186,11 +183,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     console.log(error)
                 }
             }
-            else {
-                setAuth(null)
-                navigate('/login')
-            }
-
+            
         }
     }
 

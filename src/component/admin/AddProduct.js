@@ -47,11 +47,16 @@ const AddProduct = () => {
     const [manufacturerError, setManufacturerError] = useState('')
 
     useEffect(()=>{
-        console.log(includeInBestDeals)
-    },[includeInBestDeals])
+        console.log(auth)
+        if(auth && auth.role>=3){
+            console.log("from Access")
+            navigate('/dashboard/product')
+        }
+    },[auth])
 
 
     useEffect(() => {
+        console.log(auth)
         const search = async () => {
             const response = await Api.post(`api/products/searchbytype/${productType}`,
                 { "query": variantSearch }
@@ -142,7 +147,6 @@ const AddProduct = () => {
 
 
     const saveProduct = async (e) => {
-        console.log("Save Product")
         document.getElementById('addproduct').scrollTop = 0
         setLoading(true)
         const fd = new FormData()
@@ -218,8 +222,6 @@ const AddProduct = () => {
                 setAuth(null)
                 navigate('/login')
             }
-            
-
         }
 
 

@@ -114,50 +114,28 @@ const TopFive = () => {
     const { auth, setAuth } = useAuth()
     const refresh = useRefresh()
     const navigate = useNavigate()
+    
+    useEffect(()=>{
+        console.log(auth)
+        if(auth && auth.role>=3){
+            console.log("from Access")
+            navigate('/dashboard/product')
+        }
+    },[auth])
 
     useEffect(() => {
         const fetchData = async () => {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${auth.accessToken}`
-                }
-            }
             try {
                 setIsLoading(true)
                 const response = await Api.post(`/api/products/search`, {
                     "query": query
-                }, config)
+                })
                 setProducts(response.data)
                 setIsLoading(false)
 
             } catch (error) {
+                setIsLoading(false)
                 console.log(error)
-                if (error.response?.status === 403) {
-                    const accessToken = await refresh()
-                    const config = {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${accessToken}`,
-                        },
-                    }
-                    try {
-                        const response = await Api.post(`/api/products/search`, {
-                            "query": query
-                        }, config)
-                        setProducts(response.data)
-                        setIsLoading(false)
-
-
-                    } catch (error) {
-                        console.log(error)
-                        setIsLoading(false)
-                    }
-                }
-                else {
-                    setAuth(null)
-                    navigate('/login')
-                }
-                
             }
         }
         fetchData()
@@ -183,20 +161,51 @@ const TopFive = () => {
 
 
     const saveTopFive = async () => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
         try {
             setIsLoading(true)
             setIsUpdated(true)
             await Api.post('/api/products/TopFive', {
                 "products": selectedIds
-            })
+            }, config)
             setIsLoading(false)
             setTimeout(() => {
                 setIsUpdated(false)
             }, 500)
         } catch (error) {
-            setIsLoading(false)
             console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },}
+                try {
+                    setIsLoading(true)
+                    setIsUpdated(true)
+                    await Api.post('/api/products/TopFive', {
+                        "products": selectedIds
+                    }, config)
+                    setIsLoading(false)
+                    setTimeout(() => {
+                        setIsUpdated(false)
+                    }, 500)
 
+
+                } catch (error) {
+                    console.log(error)
+                    setIsLoading(false)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
         }
     }
 

@@ -22,6 +22,13 @@ const AddSpecs = () => {
   const { auth, setAuth } = useAuth()
   const refresh = useRefresh()
 
+  useEffect(()=>{
+    console.log(auth)
+    if(auth && auth.role>=3){
+        navigate(`/dashboard/addreview/${id}`)
+    }
+},[auth,id])
+
   useEffect(() => {
     const fetchData = async () => {
       try {

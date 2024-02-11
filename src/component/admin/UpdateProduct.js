@@ -44,6 +44,12 @@ const UpdateProduct = () => {
     const refresh = useRefresh()
     const naviagate = useNavigate()
 
+    useEffect(()=>{
+        console.log(auth)
+        if(auth && auth.role>=3){
+            naviagate(`/dashboard/addreview/${id}`)
+        }
+    },[auth,id])
 
 
     const getProductData = async (id) => {
