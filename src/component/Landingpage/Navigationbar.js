@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import useLanguage from '../../hooks/useLanguage';
 import germanflag from '../../imges/germanflag.png';
 import ukflag from '../../imges/ukflag.png'
+import { IoIosMenu } from "react-icons/io";
 
 
 const Navigationbar = () => {
@@ -89,7 +90,7 @@ const Navigationbar = () => {
 
                         <div className='flex flex-row justify-center items-center'>
                             <PiMagnifyingGlass size={30} className='text-white z-20 cursor-pointer' />
-                            <GiHamburgerMenu onClick={handleNav} size={40} className='z-20 ml-3 cursor-pointer text-white' />
+                            <IoIosMenu onClick={handleNav} size={40} className='z-20 ml-3 cursor-pointer text-white' />
                             <div className={nav ? 'w-full h-screen fixed left-0 top-0 flex-col z-10 bg-white/90 ease-in duration-500' : 'absolute top-0 left-[-100%] ease-in duration-500 z-10'}>
                                 <ul className='gap-8 flex lg:flex-row flex-col items-center justify-center h-screen w-full'>
                                     <li className='z-20 text-black hover:underline'>

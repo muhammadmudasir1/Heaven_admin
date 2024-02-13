@@ -149,7 +149,7 @@ const ColumnCard = () => {
 
     const [isBeginning, setIsBeginning] = useState(true)
     const [isEnd, setIsEnd] = useState(false)
-    const [isActive, setIsActive]=useState()
+    const [isActive, setIsActive]=useState(false)
 
     const handleSwiper = (swiper) => {
         setIsActive(swiper)
@@ -331,7 +331,7 @@ const ColumnCard = () => {
                         }
                         <div className='flex items-center'>
                             {
-                                pageNumbers.map((items,i)=>{
+                                columns.map((items,i)=>{
                                     return <div className={`mx-1 ${!isActive ? 'bg-customBlue ':'bg-gray-300 '} h-4 w-4 rounded-full`}></div>
                                 })                            
                             }

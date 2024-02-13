@@ -102,7 +102,7 @@ const ReviewAndAdd = () => {
                                 </div>
                             </div>
                             <div className=' lg:px-4 px-8'>
-                                <h1 className='py-8 text-neutral-800 text-2xl font-semibold font-[Avenir]'>Creality Ender 3 S1</h1>
+                                <h1 className='py-8 text-neutral-800 text-2xl font-semibold'>Creality Ender 3 S1</h1>
                                 <p className='pb-8'>Der Ender 3 S1 ist die dritte Generation des erfolgreichen Creality Ender. <br />
                                     Dieser 3D Drucker ist durch jahrelange Weiterentwicklung erprobt und <br />
                                     bietet zahlreiche Erweiterungsmöglichkeiten.</p>
