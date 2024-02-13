@@ -6,10 +6,9 @@ import { useEffect } from 'react';
 import PriceCards from './PriceCards'
 import FirstImpression from './FirstImpression';
 import { useState } from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./SingleReviwStyle.css"
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import './SingleReviwStyle.css'
 
 const ReviewAndAdd = () => {
 
@@ -25,13 +24,6 @@ const ReviewAndAdd = () => {
         };
     }, []);
 
-    var settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-    };
     const mobileImageUrl = [
         {
 
@@ -151,15 +143,24 @@ const ReviewAndAdd = () => {
                 </div>
             ) : (
                 <div className=''>
-                    <Slider {...settings} className='h-56'>
+                    <Swiper 
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true}}
+                    // scrollbar={{ draggable: true }}
+                    onSwiper={(swiper) => console.log(swiper)}
+                    onSlideChange={() => console.log('slide change')}
+                     className='h-56 relative'>
                         {mobileImageUrl.map((items, index) => {
-                            return <div className=' '>
-                                <img key={index} src={items.url} alt="" className='w-full h-56 mx-7 shadow-2xl shadow-[#1E1E1E]/20' />
-                            </div>
+                            return <SwiperSlide className=''>
+                                <img key={index} src={items.url} alt="" className='w-full h-56 mx-7 shadow-2xl shadow-[#1E1E1E]/50' />
+                            </SwiperSlide>
                         })}
-                    </Slider>
+                    </Swiper>
                     <div className=' px-6 py-8 flex flex-col justify-center items-center'>
-                        <h1 className='py-8 text-neutral-800 text-2xl font-semibold font-[Avenir]'>Creality Ender 3 S1</h1>
+                        <h1 className='py-8 text-neutral-800 text-2xl font-semibold '>Creality Ender 3 S1</h1>
                         <p className='pb-4 text-center'>Der Ender 3 S1 ist die dritte Generation des erfolgreichen Creality Ender. <br />
                             Dieser 3D Drucker ist durch jahrelange Weiterentwicklung erprobt und <br />
                             bietet zahlreiche Erweiterungsmöglichkeiten.</p>
@@ -191,9 +192,9 @@ const ReviewAndAdd = () => {
                         </div>
                     </div>
                     <SingleReviewPropertyCard />
-                        <ProsAndCons />
-                        <PriceCards />
-                        <FirstImpression />
+                    <ProsAndCons />
+                    <PriceCards />
+                    <FirstImpression />
                 </div>
             )}
         </>

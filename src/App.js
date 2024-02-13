@@ -61,6 +61,7 @@ const App = () => {
                             <Route path="/productreview/:id" element={<SingleReview />} >
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
+                            <Route path="/news" element={<SingleReview/>}/>
                         </Route>
                         
                         <Route path="/dashboard" element={<Dashboard />}>

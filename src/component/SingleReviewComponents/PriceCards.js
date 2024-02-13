@@ -110,29 +110,37 @@ const PriceCards = () => {
                     </div>
                 </div>
             ) : (
-                <div className='px-11'>
+                <div className=' px-11'>
                     {cards.map((items, index) => {
                         return <div key={index} className='bg-[#F4F4F4] my-2 rounded-xl'>
                             <div className=' flex justify-between'>
-                                <div className='bg-[#026CC4] rounded-tl-xl rounded-br-xl px-5'>Fast delivery</div>
-                                <div className='flex'>
+                                <div className='bg-[#026CC4] rounded-tl-xl rounded-br-xl px-5 text-white font-semibold'>Fast delivery</div>
+                                <div className='flex items-center px-2 mx-2'>
                                     <div>{items.coupon_Code}</div>
-                                    <div><FaCopy/></div>
+                                    <div><FaCopy /></div>
                                 </div>
                             </div>
-                                <div className='flex px-5'>
-                                    <div className=''>
-                                        <h1>{items.title}</h1>
-                                        <p>{items.detail}</p>
-                                    </div>
-                                    <div>
-                                        <div>{items.price}</div>
-                                        <div className='flex'>Go to Website 
-                                            <div className='rounded full h-8 w-8 bg-[#026CC4]'>{<ArrowForwardIos fontSize='10'/>}</div>
+                            <div className='grid grid-cols-6 px-5 py-2'>
+                                <div className='col-span-3'>
+                                    <h1 className='text-xl font-bold'>{items.title}</h1>
+                                    <p className='line-clamp-5'>{items.detail}</p>
+                                </div>
+                                <div className='col-span-3 items-center justify-center py-2 '>
+                                    
+                                        <div className='flex items-center justify-center text-2xl font-bold'>
+                                            <div className='border-l-2 border-black py-7 pl-6'>
+                                            {items.price}
+                                            </div>
+                                        </div>
+                                    <div className='flex items-center justify-center bg-white mt-1 rounded-3xl py-2 px-4'>
+                                        <div className='pr-8 '>Go to Website</div>
+                                        <div className='flex items-center justify-center rounded-full h-8 w-12 bg-[#026CC4]'>
+                                            <ArrowForwardIos fontSize='6px' />
                                         </div>
                                     </div>
-
                                 </div>
+
+                            </div>
                         </div>
                     })}
                 </div>

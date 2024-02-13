@@ -1,5 +1,16 @@
 
-.slick-dots li button {
-    background-color: #1A67B8;
-    font-family: 'slick';
-}
+  .swiper-slide img {
+    display: block;
+    /* width: 100px; */
+    /* height: 100px; */
+    object-fit: cover;
+  }
+  .swiper-pagination-bullet{
+    height: 11px;
+    width: 11px;
+    
+  }
+  .swiper-pagination-bullets{
+    position: absolute;
+    bottom: -20px;
+  }
