@@ -80,7 +80,7 @@ const SLAView = () => {
                       />
                     ))}
                   </div>
-                  <p className="pb-4 text-neutral-700 text-xl font-light ">
+                  <p className="mb-2 text-neutral-700 text-xl font-light line-clamp-4">
                     {Cards.discription}
                   </p>
                   <div className="flex items-center pb-4">

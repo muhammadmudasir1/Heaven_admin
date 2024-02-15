@@ -50,27 +50,30 @@ const BeginnersGuidCard = ({ data, reload }) => {
 
     return (
         <div className='w-full h-[250px] rounded-md  grid grid-cols-4 gap-3 overflow-hidden bg-gray-200 shadow-md p-2 mb-2'>
-            <div className='w-full h-full  bg-cover bg-center'
+            <div className='w-full h-full  bg-cover bg-center '
                 style={{ backgroundImage: `url(/${data.image})` }}
             />
-            <div className=' col-span-3 h-full flex flex-col justify-between'>
-                <h3 className='w-full text-2xl py-2'>{data.Title}</h3>
-                <div className='w-full  line-clamp-6 py-1  h-3/5 overflow-hidden'
+            <div className=' col-span-3 h-full flex flex-col relative'>
+                <h3 className='w-full text-2xl py-2 h-2 absolute z-[999]'>{data.Title}</h3>
+                <div className='w-full flex justify-end absolute z-[999] h-10 bottom-2'>
+                    <button
+                        className='px-4 py-2 bg-gray-200 border-[2px] border-gray-400 rounded-md mr-1 hover:bg-customBlue hover:text-white'
+                        onClick={(e) => {
+                            navigate(`/dashboard/updateBeginnersGuid/${data.guidId}`)
+                        }}
+                    >Edit</button>
+                    <button
+                        className='px-4 py-2 bg-gray-200 border-[2px] border-gray-400  rounded-md ml-1 hover:bg-red-500 hover:text-white'
+                        onClick={(e) => {
+                            handleDelete()
+                        }}
+                    >
+                        Delete</button>
+                </div>
+                <div className='w-full  line-clamp-6 py-1 h-4/5 overflow-hidden absolute bottom-0'
                     dangerouslySetInnerHTML={{ __html: data.body }}
                 />
-                <div className='w-full flex justify-end'>
-                    <button
-                    className='px-4 py-2 bg-gray-200 rounded-md mr-1 hover:bg-customBlue hover:text-white'
-                    onClick={(e)=>{
-                        navigate(`/dashboard/updatebeginnersguid/${data.guidId}`)
-                    }}
-                    >Edit</button>
-                    <button className='px-4 py-2 bg-gray-200 rounded-md ml-1 hover:bg-red-500 hover:text-white'
-                    onClick={(e)=>{
-                        handleDelete()
-                    }}
-                    >Delete</button>
-                </div>
+                
             </div>
 
         </div>

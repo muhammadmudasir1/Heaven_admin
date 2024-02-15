@@ -5,6 +5,7 @@ import ComparisionCard from './ComparisionCard'
 import Api from '../../api/Api'
 import LoadingCard from '../LoadingCard'
 import SelectedCard from './SelectedCard'
+import CouponPopUp from './CouponPopUp'
 
 const StickyComparisonBar = (setIsSticky) => {
 
@@ -34,8 +35,21 @@ const CompareScrollandAdd = ({reload}) => {
     const [isSticky, setIsSticky] = useState(false);
     const navigation = useNavigate();
     const location=useLocation()
+    const [openCouponCArd,setOpenCouponCard]=useState(false)
+    const [CouponCardLocation,setCouponCardLocation]=useState(0)
+    const [coupons,setCoupons]=useState([])
     
-    
+    const handleCouponCard=(CouponCard,CouponYOffset,coupon)=>{
+        setOpenCouponCard(CouponCard)
+        setCouponCardLocation(CouponYOffset)
+        setCoupons(coupon)
+    }
+
+    const handleCloseCouponCard=()=>{
+        setOpenCouponCard(false)
+        setCouponCardLocation(0)
+        setCoupons([])
+    }
     
     
     useEffect(()=>{
@@ -187,7 +201,7 @@ const CompareScrollandAdd = ({reload}) => {
             <div className='mb-12'>
                 <div className='p-5 grid grid-cols-8 h-full '>
                     <div className='col-span-6 flex flex-col items-center justify-between pr-12'>
-                        <div className='w-full ml-5'>
+                        <div className='w-full ml-5 relative'>
 
                         
                         {
@@ -200,8 +214,14 @@ const CompareScrollandAdd = ({reload}) => {
                                 key={card.Id}
                                 card={card}
                                 selectedcards={selectedCards}
-                                handleCheckboxChange={handleCheckboxChange} />
+                                handleCheckboxChange={handleCheckboxChange}
+                                handleCouponCard={handleCouponCard}
+                                />
                             })
+                        }
+                        {
+                        openCouponCArd && <CouponPopUp offset={CouponCardLocation} Coupon={coupons} 
+                        close={handleCloseCouponCard}/>
                         }
                         </div>
                         <div>
@@ -210,6 +230,7 @@ const CompareScrollandAdd = ({reload}) => {
                                 cardsPerPage={cardPerPage}
                                 totalcards={cards}
                                 onPageChange={handlePageChange}
+                                
                             />
                         </div>
                     </div>

@@ -71,9 +71,14 @@ const AddBeginnersGuid = () => {
         setImages([])
 
         if (imageFromApi) {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${auth.accessToken}`
+                }
+            }
             try {
                 setIsLoading(true)
-                await Api.delete(`api/beginnersguid/image/${id}`)
+                await Api.delete(`api/beginnersguid/image/${id}`, config)
                 setImageFromApi(false)
                 setIsLoading(false)
 
@@ -105,19 +110,43 @@ const AddBeginnersGuid = () => {
     const SaveBeginnersGuid = async () => {
         const fd = new FormData()
         if (title && blog) {
-
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${auth.accessToken}`
+                }
+            }
             try {
                 fd.append("image", images[0])
                 fd.append("body", blog)
                 fd.append("Title", title)
-                // console.log(fd)
                 setIsLoading(true)
-                await Api.post('/api/beginnersguid', fd)
+                await Api.post('/api/beginnersguid', fd, config)
                 setIsLoading(false)
                 navigate('/dashboard/beginnersguid')
             } catch (error) {
                 console.log(error)
-                setIsLoading(false)
+                if (error.response?.status === 403) {
+                    const accessToken = await refresh()
+                    const config = {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                    }
+                    try {
+                        fd.append("image", images[0])
+                        fd.append("body", blog)
+                        fd.append("Title", title)
+                        setIsLoading(true)
+                        await Api.post('/api/beginnersguid', fd)
+                        setIsLoading(false)
+                        navigate('/dashboard/beginnersguid')
+
+                    } catch (error) {
+                        console.log(error)
+                        setIsLoading(false)
+                    }
+                }
             }
         }
         else {
@@ -128,6 +157,11 @@ const AddBeginnersGuid = () => {
     const updateBeginnersGuid = async () => {
         const fd = new FormData()
         if (title && blog) {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${auth.accessToken}`
+                }
+            }
             try {
                 if (!imageFromApi) {
                     fd.append("image", images[0])
@@ -135,7 +169,7 @@ const AddBeginnersGuid = () => {
                 fd.append("body", blog)
                 fd.append("Title", title)
                 setIsLoading(true)
-                await Api.patch(`/api/beginnersGuid/${id}`, fd)
+                await Api.patch(`/api/beginnersGuid/${id}`, fd, config)
                 setIsLoading(false)
                 setIsUpdated(true)
                 setTimeout(() => {
@@ -143,17 +177,38 @@ const AddBeginnersGuid = () => {
                 }, 5000)
             } catch (error) {
                 console.log(error)
-                setIsLoading(false)
+                if (error.response?.status === 403) {
+                    const accessToken = await refresh()
+                    const config = {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                    }
+                    try {
+                        if (!imageFromApi) {
+                            fd.append("image", images[0])
+                        }
+                        fd.append("body", blog)
+                        fd.append("Title", title)
+                        setIsLoading(true)
+                        await Api.patch(`/api/beginnersGuid/${id}`, fd, config)
+                        setIsLoading(false)
+                        setIsUpdated(true)
+                        setTimeout(() => {
+                            setIsUpdated(false)
+                        }, 5000)
+                    } catch (error) {
+                        console.log(error)
+                        setIsLoading(false)
+                    }
+                }
             }
         }
         else {
             console.log("All title & body first")
         }
     }
-
-
-
-
 
     return (
         <div className='w-full h-full  overflow-hidden p-6 relative'>
@@ -253,16 +308,16 @@ const AddBeginnersGuid = () => {
                 }
             </div>
             {
-                isLoading&&
+                isLoading &&
                 <div className='w-full h-full absolute left-0 top-0 flex justify-center items-center z-[9999]'>
                     <div className='w-full h-full absolute top-0  bg-gray-200 opacity-60' />
-                <ClipLoader
-                size={75}
-                loading={isLoading}
-                color={"#026CC4"}
-                />
+                    <ClipLoader
+                        size={75}
+                        loading={isLoading}
+                        color={"#026CC4"}
+                    />
 
-                </div>   
+                </div>
             }
 
             {

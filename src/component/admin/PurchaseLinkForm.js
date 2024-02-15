@@ -78,6 +78,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             },
         }
         try {
+            console.log(purchaseLinkId)
             await Api.post("/api/products/addPurchaseLinks", {
                 "productId": id,
                 "purchaseLink": {
@@ -134,12 +135,24 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                             visitingLink
                         }
                     }, config)
+                    setSiteType(1)
+                    setLink("")
+                    setVisitingLink("")
+                    setOriginalPrice("")
+                    setDiscountedPrice("")
+                    setUnit("")
+                    setRetrivePriceFlag(false)
+                    setTitle("")
+                    setCoupon("")
+                    setDiscription("")
+                    reRender()
+                    setEditData(null)
 
                 } catch (error) {
                     console.log(error)
                 }
             }
-            
+
         }
     }
 
@@ -182,8 +195,12 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     setLoading(false)
                     console.log(error)
                 }
+                
             }
-            
+            else{
+                setLoading(false)
+            }
+
         }
     }
 

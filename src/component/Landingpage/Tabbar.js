@@ -58,18 +58,18 @@ const Tabbar = () => {
   return (
     <div className={isDesktop ? ` bg-white shadow-md shadow-slate-300 w-full cursor-pointer relative ${isSticky && location.pathname!=="/comparision" ? 'fixednav w-full top-[8vh] lg:top-[10vh] z-[99999]' : ''}` : 'hidden'}>
       {isDesktop ? (
-        <div className='w-full h-full flex items-center pt-2'>
+        <div className='w-full h-full flex items-center'>
           <ul className='flex justify-evenly items-center gap-x-6  w-full relative'>
             <NavLink
               to={'/'}
               className='z-10 relative py-4 px-4 flex items-center text-neutral-800
               text-xl
               font-light
-              font-[Roboto]'>{t("HomePage")} </NavLink>  
-              <Link to={'/#topFive'} className='text-neutral-800 text-xl font-light font-[Roboto]'>{t('Bestlist')}</Link>
-            <div className=' relative'>
-              <div className='flex justify-center items-center'>
-                < p className={`py-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] ${pageOnPrinter?'active':''}`}
+              font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>{t("HomePage")} </NavLink>  
+              <Link to={'/#topFive'} className='text-neutral-800 text-xl font-light font-[Roboto] py-4 px-4 hover:text-white hover:bg-customBlue transition ease-linear duration-300  h-full'>{t('Bestlist')}</Link>
+            <div className=' relative  '>
+              <div className='flex justify-center items-center '>
+                < p className={`py-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300 px-4 ${pageOnPrinter?'active':''}`}
                 onClick={toggleDropdown} 
                 >{t("3dprinters")} 
                 <span>
@@ -104,31 +104,31 @@ const Tabbar = () => {
               setisOpen(false)
               setPageOnPrinter(false)
             }}
-            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Laser</NavLink>
+            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>Laser</NavLink>
             <NavLink to={'/product/scanner'} 
             onClick={(e)=>{
               setisOpen(false)
               setPageOnPrinter(false)
             }}
-            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Scanner</NavLink>
+            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>Scanner</NavLink>
             <NavLink to={'/filament'}
             onClick={(e)=>{
               setisOpen(false)
               setPageOnPrinter(false)
             }}
-            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>{t("Filament")}</NavLink>
+            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>{t("Filament")}</NavLink>
             <NavLink to={'/product/ratgeber'}
             onClick={(e)=>{
               setisOpen(false)
               setPageOnPrinter(false)
             }}
-            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>Ratgeber</NavLink>
+            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>Ratgeber</NavLink>
             <NavLink to={'/news'}
             onClick={(e)=>{
               setisOpen(false)
               setPageOnPrinter(false)
             }}
-            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto]'>News</NavLink>
+            className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>News</NavLink>
           </ul>
 
         </div>

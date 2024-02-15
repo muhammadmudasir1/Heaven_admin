@@ -109,8 +109,8 @@ const AddSpecs = () => {
         }
       }
       else {
-        setAuth(null)
-        navigate('/login')
+        console.log(error)
+        setIsLoading(false)
       }
     }
   }

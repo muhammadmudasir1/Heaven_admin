@@ -217,10 +217,9 @@ const AddProduct = () => {
                     setError("Saving Product is Failed")
                     setLoading(false)
                 }
-            }
-            else {
-                setAuth(null)
-                navigate('/login')
+            }else{
+                setError("Saving Product is Failed")
+                setLoading(false) 
             }
         }
 

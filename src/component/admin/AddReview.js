@@ -17,7 +17,7 @@ const AddReview = () => {
     const [pros, setPros] = useState('')
     const [cons, setCons] = useState('')
     const [review, setReview] = useState('')
-    const [seoKeys,setSeoKeys]=useState('')
+    const [seoKeys, setSeoKeys] = useState('')
     const [reviewId, setReviewId] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
@@ -52,7 +52,7 @@ const AddReview = () => {
         }
 
         try {
-            const data = { pros, cons, review,seoKeys }
+            const data = { pros, cons, review, seoKeys }
             setIsLoading(true)
             await Api.post(`/api/products/review/${id}`, data, config)
             setIsLoading(false)
@@ -66,6 +66,8 @@ const AddReview = () => {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${accessToken}`,
+                        maxBodyLength: 2000000, // Example: 2 MB (2000000 bytes)
+                        maxContentLength: 2000000,
                     },
                 }
                 try {
@@ -82,8 +84,8 @@ const AddReview = () => {
                 }
             }
             else {
-                setAuth(null)
-                navigate('/login')
+                console.log(error)
+                setIsLoading(false)
             }
         }
     }
@@ -129,8 +131,8 @@ const AddReview = () => {
                 }
             }
             else {
-                setAuth(null)
-                navigate('/login')
+                console.log(error)
+                setIsLoading(false)
             }
         }
     }
@@ -159,12 +161,12 @@ const AddReview = () => {
                     <div className='py-2 flex flex-col h-full'>
                         <h2 className='w-full mb-2'>SEO Keys:</h2>
                         <div className='w-full h-40 mb-6 '>
-                            <textarea 
-                            className='w-full h-full overflow-y-auto p-2 resize-none outline-none border-[1px] border-gray-300'
-                            value={seoKeys}
-                            onChange={(e)=>{
-                                setSeoKeys(e.target.value)
-                            }}
+                            <textarea
+                                className='w-full h-full overflow-y-auto p-2 resize-none outline-none border-[1px] border-gray-300'
+                                value={seoKeys}
+                                onChange={(e) => {
+                                    setSeoKeys(e.target.value)
+                                }}
                             />
                         </div>
 

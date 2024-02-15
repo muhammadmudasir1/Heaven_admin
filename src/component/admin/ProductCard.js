@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Api from "../../api/Api"
 import { useAuth } from "../../context/AuthContext"
+import useRefresh from "../../hooks/useRefresh"
+
 
 const ProductCard = ({ data, prevCards }) => {
     const [yellowStar, setYellowStar] = useState()
     const [grayStar, setGrayStar] = useState()
     const { auth, setAuth } = useAuth()
+    const refresh = useRefresh()
 
     useEffect(() => {
         setYellowStar(Array.from({ length: data.overall_rating }, (_, index) => index + 1))
@@ -20,10 +23,38 @@ const ProductCard = ({ data, prevCards }) => {
 
     const handleDelete = () => {
         const deleteProduct = async () => {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${auth.accessToken}`,
+                    maxBodyLength: 2000000, // Example: 2 MB (2000000 bytes)
+                    maxContentLength: 2000000,
+                },
+            }
             try {
-                await Api.delete(`/api/products/${data.Id}`)
+                await Api.delete(`/api/products/${data.Id}`, config)
+
             } catch (error) {
                 console.log(error)
+                if (error.response?.status === 403) {
+                    const accessToken = refresh()
+                    const config = {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${accessToken}`,
+                            maxBodyLength: 2000000, // Example: 2 MB (2000000 bytes)
+                            maxContentLength: 2000000,
+                        },
+                    }
+                    try {
+                        await Api.delete(`/api/products/${data.Id}`, config)
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+                else {
+                    console.log(error)
+                }
             }
         }
         deleteProduct()

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ClipLoader from 'react-spinners/ClipLoader';
 import Api from '../../api/Api'
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
 
 const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
     const purchaselinkId = data?data.purchaseLinksId:null
@@ -8,6 +10,8 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
     const [originalPrice, setOriginalPrice] = useState(null)
     const [unit, setUnit] = useState(null)
     const [loading, setLoading] = useState(false)
+    const {auth}=useAuth()
+    const refresh=useRefresh()
     useEffect(() => {
         const fetchPrice = async () => {
             setLoading(true)
@@ -53,11 +57,31 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
     }
 
     const handleDelete=async (e)=>{
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
         try {
-            await Api.delete(`/api/products/PurchaseLinks/${purchaselinkId}`)
+            await Api.delete(`/api/products/PurchaseLinks/${purchaselinkId}`,config)
             remove(purchaselinkId)
-        } catch (error) {
+        } catch (error){
             console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.delete(`/api/products/PurchaseLinks/${purchaselinkId}`,config)
+                    remove(purchaselinkId)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
         }
     }
     

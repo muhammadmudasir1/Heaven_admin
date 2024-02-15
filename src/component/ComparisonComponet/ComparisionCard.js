@@ -131,12 +131,74 @@ const PriceTile = ({ priceData }) => {
 
 
 
-const ComparisionCard = ({ card, selectedcards, handleCheckboxChange }) => {
+const ComparisionCard = ({ card, selectedcards, handleCheckboxChange,handleCouponCard }) => {
 
     const [isChecked, setIsChecked] = useState(false)
+    const [purchaselinks,setPurchaseLinks]=useState([])
     useEffect(()=>{
-        console.log("is Called From CArd")
-    })
+       let purchaselink=card.purchaseLinks.map((element) => {
+            if (element.coupon){
+                let site=""
+                switch (element.siteType) {
+                    case 1:
+                        site="Amazon"
+                        break;
+                    case 2:
+                        site="Ebay"
+                        break;
+                    case 3:
+                        site="Geeksbuying"
+                        break;
+                    case 4:
+                        site="TomTop"
+                        break;
+                    case 5:
+                        site="3D Jake"
+                        break;
+                    case 6:
+                        site="Ortur"
+                        break;
+                    case 7:
+                        site="AnyCubic"
+                        break;
+                    case 8:
+                        site="Artillery 3D"
+                        break;
+                    case 9:
+                        site="BambuLab"
+                        break;
+                    case 10:
+                        site="Creality"
+                        break;
+                    case 11:
+                        site="Elegoo"
+                        break;
+                    case 12:
+                        site="Revopoint"
+                        break;
+                    case 13:
+                        site="Sculpfun"
+                        break;
+                    case 14:
+                        site="Twotrees"
+                        break;
+                    case 15:
+                        site="Qidi"
+                        break;
+        
+                }
+                let result={'site':site,
+                        'coupon':element.coupon}
+                return result
+            }
+       });
+        purchaselink = purchaselink.filter((element)=>{
+        if(element){
+            return element
+        }
+       })
+       setPurchaseLinks(purchaselink)
+    },[])
 
     return (<div key={card.Id} className='flex items-center justify-between rounded-xl h-[350px] w-full mb-6'
         style={{ boxShadow: '-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgba(203,213,225,0.5)' }}>
@@ -227,10 +289,19 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange }) => {
                         }
 
                     </div>
-                    <button className='flex items-center bg-gray-200 my-2 px-4 py-2 rounded-md'>
+                    {
+                        purchaselinks && purchaselinks.length>0 && 
+
+                    <button className='flex items-center bg-gray-200 my-2 px-4 py-2 rounded-md'
+                    onClick={(e)=>{
+                        handleCouponCard(true,e.currentTarget.offsetTop,purchaselinks)
+                    }}
+                    >
                         <img src={imges} alt="" />
-                        <h1 className='mx-2'>{card.coupon}</h1>
+                        <h1 className='mx-2'>Coupon</h1>
                     </button>
+                        
+                    }
                 </div>
                 <div className='flex items-center'>
                     <input type='checkbox'

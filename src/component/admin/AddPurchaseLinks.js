@@ -30,9 +30,12 @@ const AddPurchaseLinks = () => {
 
           return link
         }
-
       })
-    })
+    }
+    )
+    if(data && data.purchaseLinksId=== id){
+      setData(null)
+    }
   }
 
   const addInPurchaseLinkList = (data) => {
