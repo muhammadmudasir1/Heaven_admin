@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { MdOutlineArrowDropUp } from "react-icons/md";
 import { NavLink,useLocation,Link,useNavigate} from "react-router-dom"
-import AnchorLink from "react-anchor-link-smooth-scroll";
 import "../../customStyle.css"
 
 
