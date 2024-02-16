@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { MdCancel } from "react-icons/md";
 
 const CouponPopUp = ({offset,Coupon,close}) => {
+  useEffect(()=>{
+    console.log(offset)
+  },[offset])
   return (
-    <div className=' w-full h-60 absolute flex justify-center items-center'
+    <div className=' w-full h-60 absolute  flex justify-center items-center'
     style={{top:offset-150}}
     >
         <div className='w-3/5 bg-gray-200 h-full rounded-2xl flex flex-col relative'>

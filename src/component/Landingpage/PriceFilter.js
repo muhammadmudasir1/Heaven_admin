@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import Api from '../../api/Api';
-import list from './list.json';
-
 const PriceFilter = ({ setPrice,price}) => {
 
     return (
-        <div className='flex flex-col items-center justify-between w-full mx-2 lg:relative'>
-            <select className='bg-white w-full lg:text-lg py-3 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white duration-500 active:text-white lg:pl-8 lg:pr-2 text-neutral-700 text-2xl font-light font-[Roboto]'
+        <div className='flex flex-col items-center justify-between w-full mx-2 relative'>
+            <select className='  bg-white w-full md:text-lg  md:py-3 py-1 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white  duration-500 active:text-white  pl-2 pr-2 md:pl-8 md:pr-2  text-neutral-700 text-lg font-light font-[Roboto]'
             value={price}
             onChange={(e)=>{
                 setPrice(e.target.value)
@@ -31,6 +28,7 @@ const PriceFilter = ({ setPrice,price}) => {
                 </option>
             </select>
 
+            <div className='absolute right-0 flex items-center h-full pl-2 pr-2 md:pl-8 md:pr-2 mr-1'> <ArrowDropDownIcon/> </div>
         </div>
     );
 };
