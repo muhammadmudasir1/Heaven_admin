@@ -9,10 +9,27 @@ import { useState } from 'react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './SingleReviwStyle.css'
+import Api from '../../api/Api';
+import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ReviewAndAdd = () => {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+    const { id } = useParams()
+    const [images, setImages] = useState([])
+    const [discription, setDiscription] = useState("")
+    const [productName, setProductName] = useState("")
+    const [customerService, setCustomerService] = useState(0)
+    const [price, setPrice] = useState(0)
+    const [processing, setProcessing] = useState(0)
+    const [innovation, setInnovation] = useState(0)
+    const [software, setSoftware] = useState(0)
+    const [overall, setOverall] = useState(0)
+    const [mainImage, setMainImage] = useState("")
+    const [specs,setSpecs]=useState({})
+    const [productType,setProductType]=useState(0)
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -23,6 +40,58 @@ const ReviewAndAdd = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await Api.get(`/api/products/${id}`)
+                const apiImages = result.data.ProductImages.filter((image) => {
+                    if (image.role !== 3) {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                }).sort((a, b) => {
+                    if (a.role > b.role) {
+                        return 1
+                    }
+                    if (a.role < b.role) {
+                        return -1
+                    }
+                    return 0
+                })
+                // console.log(apiImages)
+                setImages(apiImages)
+                setMainImage(apiImages[0])
+                setDiscription(result.data.discription)
+                setProductName(result.data.product_name)
+                setCustomerService(result.data.customer_service_rating)
+                setPrice(result.data.price_rating)
+                setProcessing(result.data.processing_rating)
+                setSoftware(result.data.software_rating)
+                setInnovation(result.data.software_rating)
+                setOverall(result.data.overall_rating)
+                setProductType(result.data.productType)
+                if(result.data.productType===1){
+                    setSpecs(result.data.SLA)
+                    
+                }
+                if(result.data.productType===2){
+                    setSpecs(result.data.FDM)
+                }
+                if(result.data.productType===3){
+                    setSpecs(result.data.LeaserCutter)
+                }
+                if(result.data.productType===4){
+                    setSpecs(result.data.scanner)
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+    }, [id])
 
     const mobileImageUrl = [
         {
@@ -70,8 +139,6 @@ const ReviewAndAdd = () => {
         }
     ]
 
-    const [mainImage, setMainImage] = useState('https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg');
-
     const imageUrls = [
         "https://static.wixstatic.com/media/5d104f_a809b58f7dd640c09a3263e0f36a3bb5~mv2.jpg/v1/crop/x_144,y_0,w_1856,h_1125/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
         "https://static.wixstatic.com/media/5d104f_eac9e31f29b6464f89fa2cf860552b99~mv2.jpg/v1/crop/x_71,y_0,w_1859,h_1125/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Creality%20Ender-5%20S1-2.jpg",
@@ -79,35 +146,35 @@ const ReviewAndAdd = () => {
         "https://static.wixstatic.com/media/5d104f_942ed39e2eb04f3690ce73118799546d~mv2.jpg/v1/crop/x_42,y_0,w_1115,h_675/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Creality%20K1.jpg"
     ];
 
-    const switchMainImage = (imageUrl) => {
-        setMainImage(imageUrl);
+    const switchMainImage = (picture) => {
+        setMainImage(picture);
     };
     return (
         <>
             {!isMobile ? (
                 <div className='grid-cols-8 grid pr-4'>
 
-                    <div className='col-span-6 '>
-                        <div className='lg:flex items-center justify-center pr-4 bg-slate-200 relative w-full'>
-                            <div className='flex mt-20 items-center lg:flex-col'>
-                                <div className='pl-4 pr-4'>
-                                    <img src={mainImage} alt="" />
-                                </div>
+                    <div className='col-span-6 pl-8'>
+                        <div className='lg:flex pt-4 pb-8 justify-center pr-4  relative w-full '>
+                            <div className='flex items-center lg:flex-col'>
+                                <div className='w-full h-64 bg-cover bg-center rounded-md shadow-md'
+                                    style={{ backgroundImage: `url(/${mainImage && mainImage.path})` }}
+                                />
                                 <div className='lg:flex items-center justify-center py-8 ' >
-                                    {imageUrls.map((url, index) => (
-                                        <div key={index} className='w-20 h-20 mx-1 hover:border-[#00CED1] border-4' onClick={() => switchMainImage(url)}>
-                                            <img src={url} alt="" className='w-full h-full' />
+                                    {images.map((picture) => (
+                                        <div key={picture.id} className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4' onClick={() => switchMainImage(picture)}>
+                                            <div className='w-full h-full bg-cover bg-center'
+                                                style={{ backgroundImage: `url(/${picture.path})` }}
+                                            />
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                            <div className=' lg:px-4 px-8'>
-                                <h1 className='py-8 text-neutral-800 text-2xl font-semibold'>Creality Ender 3 S1</h1>
-                                <p className='pb-8'>Der Ender 3 S1 ist die dritte Generation des erfolgreichen Creality Ender. <br />
-                                    Dieser 3D Drucker ist durch jahrelange Weiterentwicklung erprobt und <br />
-                                    bietet zahlreiche Erweiterungsmöglichkeiten.</p>
-                                <div className='flex items-center'>
-                                    <h1 className='text-xl font-semibold'>4.5</h1>
+                            <div className=' px-8'>
+                                <h1 className=' text-neutral-800 text-2xl font-semibold py-3 line-clamp-2'>{productName && productName}</h1>
+                                <p className='pb-6'>{discription && discription}</p>
+                                <div className='flex items-center mb-2'>
+                                    <h1 className='text-xl font-semibold pr-2'>{overall}</h1>
 
                                     {[...Array(5)].map((_, index) => (
 
@@ -116,25 +183,50 @@ const ReviewAndAdd = () => {
                                     ))}
                                 </div>
                                 <div>
-                                    {[...Array(5)].map((_, index2) => (
-
-                                        <div key={index2} className='flex items-center'>
-
-                                            <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                <div className='absolute w-40 h-2 bg-[#00CED1]' />
-                                            </div>
-                                            <h1 key={index2} className='pl-4'>
-                                                {names[index2].element}
-                                            </h1>
+                                    <div className='flex items-center py-1'>
+                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price===1?"w-1/5":price===2?"w-2/5":price===3?"w-3/5":price===4?"w-4/5":price===5?"w-full":""}`} />
                                         </div>
-
-
-                                    ))}
-
+                                        <h1 className='pl-4 font-light text-sm'>
+                                            Preis
+                                        </h1>
+                                    </div>
+                                    <div className='flex items-center py-1'>
+                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation===1?"w-1/5":innovation===2?"w-2/5":innovation===3?"w-3/5":innovation===4?"w-4/5":innovation===5?"w-full":""}`} />
+                                        </div>
+                                        <h1 className='pl-4 font-light text-sm'>
+                                            Innovation
+                                        </h1>
+                                    </div>
+                                    <div className='flex items-center py-1'>
+                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software===1?"w-1/5":software===2?"w-2/5":software===3?"w-3/5":software===4?"w-4/5":software===5?"w-full":""}`} />
+                                        </div>
+                                        <h1 className='pl-4 font-light text-sm'>
+                                            Software
+                                        </h1>
+                                    </div>
+                                    <div className='flex items-center py-1'>
+                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService===1?"w-1/5":customerService===2?"w-2/5":customerService===3?"w-3/5":customerService===4?"w-4/5":customerService===5?"w-full":""}`} />
+                                        </div>
+                                        <h1 className='pl-4 font-light text-sm'>
+                                        Kundenservice
+                                        </h1>
+                                    </div>
+                                    <div className='flex items-center py-1'>
+                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing===1?"w-1/5":processing===2?"w-2/5":processing===3?"w-3/5":processing===4?"w-4/5":processing===5?"w-full":""}`} />
+                                        </div>
+                                        <h1 className='pl-4 font-light text-sm'>
+                                        Verarbeitungen
+                                        </h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <SingleReviewPropertyCard />
+                        <SingleReviewPropertyCard specs={specs} productType={productType}/>
                         <ProsAndCons />
                         <PriceCards />
                         <FirstImpression />
@@ -143,16 +235,16 @@ const ReviewAndAdd = () => {
                 </div>
             ) : (
                 <div className=''>
-                    <Swiper 
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    spaceBetween={20}
-                    slidesPerView={1}
-                    // navigation
-                    pagination={{ clickable: true}}
-                    // scrollbar={{ draggable: true }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
-                     className='h-56 relative'>
+                    <Swiper
+                        modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        spaceBetween={20}
+                        slidesPerView={1}
+                        // navigation
+                        pagination={{ clickable: true }}
+                        // scrollbar={{ draggable: true }}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        onSlideChange={() => console.log('slide change')}
+                        className='h-56 relative'>
                         {mobileImageUrl.map((items, index) => {
                             return <SwiperSlide className=''>
                                 <img key={index} src={items.url} alt="" className='w-full h-56 mx-7 shadow-2xl shadow-[#1E1E1E]/50' />

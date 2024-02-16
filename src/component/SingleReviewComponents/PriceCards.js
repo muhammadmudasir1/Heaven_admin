@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { FaCopy } from "react-icons/fa";
 import { useEffect } from 'react';
 import { ArrowForwardIos } from '@mui/icons-material';
+import { useParams } from 'react-router-dom';
+import Api from '../../api/Api';
 
 const PriceCards = () => {
 
@@ -11,6 +13,8 @@ const PriceCards = () => {
     const [isClicked2, setIsClicked2] = useState(false);
     const [isClicked3, setIsClicked3] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const {id}=useParams()
+    const [purchaseLinks,setPurchaseLinsks]=useState([])
 
     const handleClick = () => {
         setIsClicked(!isClicked)
@@ -41,6 +45,20 @@ const PriceCards = () => {
         };
     }, []);
 
+    useEffect(()=>{
+        const fetchData=async ()=>{
+            try {
+                const result= await Api(`/api/products/PurchaseLinks/${id}`)
+                setPurchaseLinsks(result.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+    },[id])
+    
+    
+    
     const cards = [
         {
             title: "Geekbuying",
@@ -79,10 +97,21 @@ const PriceCards = () => {
                 <div className='flex flex-col items-center justify-center w-full'>
                     <div className='flex flex-col items-center justify-start w-full pl-8 pr-12'>
                         <div className='flex items-center justify-start w-full '>
-                            <button onBlur={(e) => { setIsClicked(false) }} onClick={handleClick} className={`${isClicked ? 'bg-zinc-100 text-sky-600 text-base font-semibold' : 'bg-sky-600 text-white text-base font-black'} flex items-center justify-center text-center w-56 py-4 mr-1 rounded-t-xl `}>Fastest delivery <br /> ab €400</button>
-                            <button onBlur={(e) => { setIsClicked1(false) }} onClick={handleClick1} className={`${isClicked1 ? 'bg-zinc-100 text-sky-600 text-base font-semibold' : 'bg-sky-600 text-white text-base font-black'} flex items-center justify-center text-center w-56 py-4 mx-1 rounded-t-xl `}>Beste Preis <br /> ab €350</button>
-                            <button onBlur={(e) => { setIsClicked2(false) }} onClick={handleClick2} className={`${isClicked2 ? 'bg-zinc-100 text-sky-600 text-base font-semibold' : 'bg-sky-600 text-white text-base font-black'} flex items-center justify-center text-center w-56 py-4 mx-1 rounded-t-xl  `}>Amazon <br /> ab €400</button>
-                            <button onBlur={(e) => { setIsClicked3(false) }} onClick={handleClick3} className={`${isClicked3 ? 'bg-zinc-100 text-sky-600 text-base font-semibold' : 'bg-sky-600 text-white text-base font-black'} flex items-center justify-center text-center w-56 py-4 mx-1 rounded-t-xl  `}>Kundensupport <br /> ab €400</button>
+                            {
+                                purchaseLinks.map((link)=>{
+                                    return <button 
+                                    onBlur={(e) => { setIsClicked3(false) }}
+                                    onClick={handleClick3}
+                                    className={`${isClicked3 ?
+                                        'bg-zinc-100 text-sky-600 text-base font-semibold'
+                                        :'bg-sky-600 text-white text-base font-black'}
+                                        flex items-center justify-center text-center w-56 py-4 mx-1 rounded-t-xl
+                                        `}>
+                                        {link.title}
+                                        <br /> ab €400</button>
+
+                                })
+                            }
                         </div>
                         <div onClick={handleClick} className='w-full bg-zinc-100 rounded-b-xl rounded-tr-xl'>
                             {isOpen && (

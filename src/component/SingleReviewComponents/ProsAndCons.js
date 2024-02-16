@@ -1,17 +1,40 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import Api from '../../api/Api';
 
 const ProsAndCons = () => {
     const [isToggled, setIsToggled] = useState(false);
     const [isToggledCons, setIsToggledCons] = useState(false);
-    
+    const [pros,setPros]=useState('')
+    const [cons,setCons]=useState('')
+    const {id}=useParams()
+
+
     const handleToggle = () => {
         setIsToggled(!isToggled);
     };
     const handleToggleCons = () => {
         setIsToggledCons(!isToggledCons);
     };
+
+    useEffect(()=>{
+        const fetchData=async ()=>{
+            try {
+               const result=await Api.get(`/api/products/review/${id}`)
+               setPros(result.data[0].pros)
+               setCons(result.data[0].cons)
+               console.log(result.data[0].pros)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+    },[id])
+    useEffect(()=>{
+        console.log(pros)
+    },[pros])
 
     return (
         <div className='my-8 pl-8 pr-12 '>
@@ -25,12 +48,10 @@ const ProsAndCons = () => {
                     </div>
                 </div>
                 {isToggled && (
-                    <ul className='list-disc px-16 bg-stone-50 text-neutral-700 text-xl font-medium pb-8'>
-                        <li>Pros Lorem ipsum dolor sit amet, consetetur sadipscing elitr </li>
-                        <li>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </li>
-                        <li>At vero eos et accusam et justo duo dolores et ea rebum. Stet </li>
-                        <li>clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
-                    </ul>
+                    <ul className='list-disc px-16 bg-stone-50 text-neutral-700 text-xl font-medium pb-8'
+                    
+                    dangerouslySetInnerHTML={{ __html: pros }}
+                    />
                 )}
             </div>
             <div onClick={handleToggleCons} className='mb-4'>
@@ -43,12 +64,9 @@ const ProsAndCons = () => {
                     </div>
                 </div>
                 {isToggledCons && (
-                    <ul className='list-disc px-16 bg-stone-50 text-neutral-700 text-xl font-medium pb-8'>
-                        <li>Pros Lorem ipsum dolor sit amet, consetetur sadipscing elitr </li>
-                        <li>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </li>
-                        <li>At vero eos et accusam et justo duo dolores et ea rebum. Stet </li>
-                        <li>clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</li>
-                    </ul>
+                    <ul className='list-disc px-16 bg-stone-50 text-neutral-700 text-xl font-medium pb-8'
+                    dangerouslySetInnerHTML={{ __html: cons }}
+                    />
                 )}
             </div>
         </div>

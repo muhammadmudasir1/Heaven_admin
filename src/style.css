@@ -1205,6 +1205,10 @@ video {
   height: 100vh;
 }
 
+.h-64 {
+  height: 16rem;
+}
+
 .max-h-72 {
   max-height: 18rem;
 }
@@ -1524,14 +1528,6 @@ video {
 
 .gap-8 {
   gap: 2rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
-}
-
-.gap-x-4 {
-  column-gap: 1rem;
 }
 
 .gap-x-6 {
@@ -1886,9 +1882,14 @@ video {
   background-color: rgb(38 38 38 / var(--tw-bg-opacity));
 }
 
-.bg-orange-400 {
+.bg-orange-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(251 146 60 / var(--tw-bg-opacity));
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity));
+}
+
+.bg-purple-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(192 132 252 / var(--tw-bg-opacity));
 }
 
 .bg-red-300 {
@@ -1975,6 +1976,16 @@ video {
 .bg-zinc-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(244 244 245 / var(--tw-bg-opacity));
+}
+
+.bg-green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
+}
+
+.bg-pink-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 72 153 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-40 {
@@ -2305,6 +2316,10 @@ video {
   padding-top: 300px;
 }
 
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -2572,10 +2587,9 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow {
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+.shadow-\[\#1E1E1E\]\/50 {
+  --tw-shadow-color: rgb(30 30 30 / 0.5);
+  --tw-shadow: var(--tw-shadow-colored);
 }
 
 .shadow-gray-400 {
@@ -2626,6 +2640,63 @@ video {
 
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.ease-linear {
+  transition-timing-function: linear;
+}
+
+.scrollbar {
+  scrollbar-color: var(--scrollbar-thumb, initial) var(--scrollbar-track, initial);
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track);
+  border-radius: var(--scrollbar-track-radius);
+}
+
+.scrollbar::-webkit-scrollbar-track:hover {
+  background-color: var(--scrollbar-track-hover, var(--scrollbar-track));
+}
+
+.scrollbar::-webkit-scrollbar-track:active {
+  background-color: var(--scrollbar-track-active, var(--scrollbar-track-hover, var(--scrollbar-track)));
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: var(--scrollbar-thumb-radius);
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover, var(--scrollbar-thumb));
+}
+
+.scrollbar::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar-thumb-active, var(--scrollbar-thumb-hover, var(--scrollbar-thumb)));
+}
+
+.scrollbar::-webkit-scrollbar-corner {
+  background-color: var(--scrollbar-corner);
+  border-radius: var(--scrollbar-corner-radius);
+}
+
+.scrollbar::-webkit-scrollbar-corner:hover {
+  background-color: var(--scrollbar-corner-hover, var(--scrollbar-corner));
+}
+
+.scrollbar::-webkit-scrollbar-corner:active {
+  background-color: var(--scrollbar-corner-active, var(--scrollbar-corner-hover, var(--scrollbar-corner)));
+}
+
+.scrollbar {
+  scrollbar-width: auto;
+}
+
+.scrollbar::-webkit-scrollbar {
+  display: block;
+  width: var(--scrollbar-width, 16px);
+  height: var(--scrollbar-height, 16px);
 }
 
 .group:hover .group-hover\:block {
@@ -3026,8 +3097,8 @@ video {
     padding-left: 2rem;
   }
 
-  .lg\:pr-2 {
-    padding-right: 0.5rem;
+  .lg\:pr-12 {
+    padding-right: 3rem;
   }
 
   .lg\:text-2xl {
