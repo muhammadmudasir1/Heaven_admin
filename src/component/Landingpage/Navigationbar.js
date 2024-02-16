@@ -166,7 +166,7 @@ const Navigationbar = () => {
                                 />
                             )}
                             {IsTranslated && (
-                                <div className='bg-white absolute top-6 right-0 flex flex-col items-center justify-center p-4 z-40 mt-2 shadow-md shadow-slate-400 rounded-xl'>
+                                <div className='bg-white absolute top-6 right-0 flex flex-col items-center justify-center p-4 z-30 mt-2 shadow-md shadow-slate-400 rounded-xl'>
                                     <button
                                         onClick={() => handleLanguageChange[setlang('de')]}
                                         className=' text-xl font-light font-[Roboto]'

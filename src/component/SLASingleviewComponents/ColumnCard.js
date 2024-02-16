@@ -10,7 +10,7 @@ import 'swiper/css/scrollbar';
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 
-const ColumnCard = () => {
+const SLAColumnCard = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
     const [swiperInstance, setSwiperInstance] = useState();
     const {t} = useTranslation()
@@ -255,6 +255,16 @@ const ColumnCard = () => {
                                     </div>
                                 })}
                             </div>
+                            <div className={`grid ${countLengt === 2 ? 'grid-cols-3' : countLengt === 3 ? 'grid-cols-4' : countLengt === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`} >
+                                <div className='flex items-center'>
+                                    <div className='text-[#222222]'>{t('Bauraumeinhausung:')}</div>
+                                </div>
+                                {columns.map((items, index) => {
+                                    return <div key={index} className='flex bg-white justify-center items-center'>
+                                        <div className='px-7'>{items.detail1}</div>
+                                    </div>
+                                })}
+                            </div>
                             <div className={`grid ${countLengt === 2 ? 'grid-cols-3' : countLengt === 3 ? 'grid-cols-4' : countLengt === 4 ? 'grid-cols-5' : ''} gap-4 h-4`}>
 
                             </div>
@@ -321,6 +331,7 @@ const ColumnCard = () => {
                             <div className='h-8 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center'> {t('Bauraumeinhausung:')}</div>
                             <div className='h-8 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center'> {t('Bauraumeinhausung:')}</div>
                             <div className='h-8 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center'> {t('Bauraumeinhausung:')}</div>
+                            <div className='h-8 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center'> {t('Bauraumeinhausung:')}</div>
                             <div className='h-4 mb-2 w-full  rounded-xl'></div>
                         </div>
                         <div className='absolute w-full h-full  grid grid-cols-3 px-2'>
@@ -360,6 +371,7 @@ const ColumnCard = () => {
                                                     <div className='h-8 mb-2 line-clamp-1'>{items.detail1}</div>
                                                     <div className='h-8 mb-2 line-clamp-1'>{items.detail1}</div>
                                                     <div className='h-8 mb-2 line-clamp-1'>{items.detail1}</div>
+                                                    <div className='h-8 mb-2 line-clamp-1'>{items.detail1}</div>
                                                     <div className='h-4 mb-2 line-clamp-1'></div>
                                                 </div>
                                             </div>
@@ -377,4 +389,4 @@ const ColumnCard = () => {
     )
 }
 
-export default ColumnCard
+export default SLAColumnCard
