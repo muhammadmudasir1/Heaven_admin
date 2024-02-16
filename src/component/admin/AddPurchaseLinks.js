@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import Api from '../../api/Api'
 import PurchaseLinkCard from './PurchaseLinkCard'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 const AddPurchaseLinks = () => {
   const { id } = useParams()
@@ -11,6 +12,16 @@ const AddPurchaseLinks = () => {
   const [OldPurchaseLinks, setOldPurchaseLinks] = useState(null)
   const [data, setData] = useState()
   const navigate = useNavigate()
+  const {auth}=useAuth()
+
+  useEffect(()=>{
+    console.log(auth)
+    if(auth && auth.role>=3){
+        navigate(`/dashboard/addreview/${id}`)
+    }
+},[auth,id])
+
+
 
   const removePurchaseLink = (id) => {
     setOldPurchaseLinks((prev) => {
@@ -19,9 +30,12 @@ const AddPurchaseLinks = () => {
 
           return link
         }
-
       })
-    })
+    }
+    )
+    if(data && data.purchaseLinksId=== id){
+      setData(null)
+    }
   }
 
   const addInPurchaseLinkList = (data) => {

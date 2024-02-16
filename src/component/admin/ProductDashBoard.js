@@ -55,7 +55,6 @@ const ProductDashboard = () => {
             console.log(error)
             if (error.response?.status === 403) {
                 const accessToken = await refresh()
-                console.log(auth)
                 const config = {
                     headers: {
                         'Content-Type': 'application/json',
@@ -129,10 +128,13 @@ const ProductDashboard = () => {
                     })
                 }
             </div>
-
-            <Link to={'/dashboard/addProduct'} className=" 2xl:h-16 2xl:w-16 xl:h-12 xl:w-12 bg-customBlue rounded-full flex justify-center items-center fixed bottom-4 right-6">
+            {
+            auth && auth.role<3 &&
+            <Link to={'/dashboard/addProduct'}
+            className=" 2xl:h-16 2xl:w-16 xl:h-12 xl:w-12 bg-customBlue rounded-full flex justify-center items-center fixed bottom-4 right-6">
                 <img src={plus} className="2xl:h-6 xl:h-4" />
             </Link>
+            }
             </div>
             {
                 isLoading &&

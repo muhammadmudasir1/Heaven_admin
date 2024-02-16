@@ -9,7 +9,7 @@ const AuthProvider=({children})=>{
 
     const login= (UserData)=>{
         setAuth(UserData)
-
+        console.log(UserData)
         localStorage.setItem('auth',JSON.stringify(UserData))
     }
 

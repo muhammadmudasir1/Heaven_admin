@@ -65,16 +65,16 @@ const ProductFilter = ({setFilterProduct,manufacturers,filterProduct}) => {
     <div className='flex flex-col items-center justify-between w-full mx-2 lg:relative'>
       <button
         onClick={toggleDropdown}
-        className='bg-white w-full lg:text-lg py-3 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white duration-500 active:text-white lg:pl-8 lg:pr-2 text-neutral-700 text-2xl font-light font-[Roboto]'
+        className='bg-white w-full md:text-lg  md:py-3 py-1 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white  duration-500 active:text-white text-center pl-2 pr-2 md:pl-8 md:pr-2  text-neutral-700 text-lg font-light font-[Roboto]'
       >
         All Products
         {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
       </button>
       {isOpen && (
-        <div className='flex flex-col absolute bg-white w-full top-full z-[999] p-4 h-[30vh] overflow-y-auto'>
+        <div className='flex flex-col md:absolute bg-white w-full top-full z-[999] p-4 h-[30vh] overflow-y-auto'>
           {
 
-productList.map((product) => {
+          productList.map((product) => {
               return <ProductElement element={product} setSelectedList={setFilterProduct} selectedList={filterProduct}/>
             })
           }
