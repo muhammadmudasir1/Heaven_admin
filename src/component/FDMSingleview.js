@@ -10,9 +10,9 @@ import FDMDetail from './FDMSingleviewComponent/Detail'
 const FDMSingleview = () => {
   return (
     <div>
-      <Tabbar />
+      {/* <Tabbar />
       <FDMBanner />
-      <FDMSingleReviewTabbar />
+      <FDMSingleReviewTabbar /> */}
       <FDMReviewAndAdd />
       <FDMEmptydiv/>
       <FDMColumnCard/>

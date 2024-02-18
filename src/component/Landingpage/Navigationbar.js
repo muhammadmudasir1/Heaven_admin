@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from 'react-icons/fa';
 import { PiMagnifyingGlass } from "react-icons/pi";
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import StickyFooter from './StickyFooter';
-import { Link } from 'react-router-dom';
 import SearchData from './SearchData.json'
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { MdOutlineArrowDropUp } from "react-icons/md";
@@ -15,6 +14,7 @@ import ukflag from '../../imges/ukflag.png'
 import { IoIosMenu } from "react-icons/io";
 import logo from '../Landingpage/logo.png'
 import { CiGlobe } from "react-icons/ci";
+import { ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroicons/react/24/outline';
 
 const Navigationbar = () => {
     const [nav, setnav] = useState(false);
@@ -98,28 +98,43 @@ const Navigationbar = () => {
                             <div className={nav ? 'w-full h-screen fixed left-0 top-0 flex-col z-10 bg-white/90 ease-in duration-500' : 'absolute top-0 left-[-100%] ease-in duration-500 z-10'}>
                                 <ul className='gap-8 flex lg:flex-row flex-col items-center justify-center h-screen w-full'>
                                     <li className='z-20 text-black hover:underline'>
-                                        <Link to='/' >startseite</Link>
+                                        <NavLink to={'/'} >startseite</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <a href="">Beste Liste</a>
+                                        <NavLink to={'/#topFive'}>Beste Liste</NavLink>
+                                    </li>
+                                    <li className='z-20 text-black relative'>
+                                        <NavLink onClick={SearchMenu} to={'/product'} className='flex ml-24 mr-20 text-center'>3D Druckers
+                                            {!IsOpen ? <ArrowDownCircleIcon /> : <ArrowUpCircleIcon />}
+                                        </NavLink>
+                                        {IsOpen && (
+                                            <div className='absolute right-0 top-0 bg-white py-2 px-4 z-30'>
+                                                <ul>
+                                                    <li>
+                                                        <NavLink to='/product/sla' className={`z-30`}>SLA</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to='/product/fdm' className={`z-30`}>FDM</NavLink>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </li>
+
+                                    <li className='z-20 text-black'>
+                                        <NavLink to={'/product/cutter'}>Laser</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <Link to='../Review' >3D Druckers</Link>
+                                        <NavLink to={'/product/scanner'}>Scanner</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <a href="">Laser</a>
+                                        <NavLink to={'/filament'}>Filamente</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <a href="">Scanner</a>
+                                        <NavLink to={'/ratgaber'}>Ratgeber</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <a href="">Filamente</a>
-                                    </li>
-                                    <li className='z-20 text-black'>
-                                        <a href="">Ratgeber</a>
-                                    </li>
-                                    <li className='z-20 text-black'>
-                                        <a href="">Newsr</a>
+                                        <NavLink to={'/news'}>News</NavLink>
                                     </li>
                                 </ul>
                             </div>

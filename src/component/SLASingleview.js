@@ -10,9 +10,9 @@ import SLADetail from './SLASingleviewComponent/Detail'
 const SLASingleview = () => {
   return (
     <div>
-      <Tabbar />
+      {/* <Tabbar />
       <SLABanner />
-      <SLASingleReviewTabbar />
+      <SLASingleReviewTabbar /> */}
       <SLAReviewAndAdd />
       <SLAEmptydiv/>
       <SLAColumnCard/>
