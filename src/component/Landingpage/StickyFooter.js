@@ -3,7 +3,7 @@ import { IoLogoInstagram } from "react-icons/io";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { useEffect } from 'react';
-
+import { NavLink } from 'react-router-dom';
 
 const StickyFooter = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -41,7 +41,7 @@ const StickyFooter = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-row bg-[#00CED1] py-4 justify-between px-6'>
+                    <div className='flex flex-row bg-[#4d6464] py-4 justify-between px-6'>
                         <div className='flex'>
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwme89cM8YZvHcybGrZl_Obd9U9p5QabozJQ&usqp=CAU" alt="" className='w-20 rounded-full' />
                             <div className='flex items-center justify-center pl-2'>
@@ -58,53 +58,38 @@ const StickyFooter = () => {
                     </div>
                 </>
             ) : (
-                <div className='flex flex-row justify-around items-start'>
-                    <div className=' bg-[#00CED1] flex flex-col justify-center items-center w-1/5 p-20'>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwme89cM8YZvHcybGrZl_Obd9U9p5QabozJQ&usqp=CAU" alt="" className='w-56 rounded-full' />
-                        <h1 className="text-2xl text-white font-normal font-[Avenir] py-8">Manuel Strauss</h1>
+                <div className='grid grid-cols-3 gap-x-10 items-center relative'>
+                    <div className=' bg-[#00CED1] flex flex-col justify-center items-center w-96 h-full rounded-xl ml-16'>
+                        <div className='w-52 pt-16 h-52 rounded-full bg-center bg-cover' style={{ backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwme89cM8YZvHcybGrZl_Obd9U9p5QabozJQ&usqp=CAU')` }} />
+                        <h1 className="text-2xl text-white font-normal  py-5">Manuel Strauss</h1>
                         <h1 className="  font-normal font-[Roboto]">3D printer enthusiat</h1>
                         <h1 className=" font-normal font-[Roboto]">abc@email.com</h1>
                     </div>
-                    <div className=''>
-                        <h1 className='text-neutral-100 text-3xl font-normal font-[Avenir] pt-4'>Quick links</h1>
+                    <div className='pl-32'>
+                        <h1 className='text-neutral-100 text-5xl font-bold pt-24'>Quick links</h1>
                         <div className='flex py-20'>
-                            <div className='pr-8'>
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
+                            <div className='pr-40'>
+                                <NavLink className={`text-2xl text-white`}>Home</NavLink><br />
+                                <NavLink className={`text-2xl text-white`}>News</NavLink><br />
+                                <NavLink className={`text-2xl text-white`}>Best Deals</NavLink><br />
                             </div>
                             <div className='pr-8'>
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                            </div>
-                            <div className='pr-8'>
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
-                                <a href="">Lorem ipsum dolor sit amet.</a><br />
+                                <NavLink className={`text-2xl text-white`}>SLA 3D Printer</NavLink><br />
+                                <NavLink className={`text-2xl text-white`}>FDM 3D Printer</NavLink><br />
+                                <NavLink className={`text-2xl text-white`}>Scanner</NavLink><br />
+                                <NavLink className={`text-2xl text-white`}>Laser</NavLink>
                             </div>
                         </div>
-                        <div className='flex flex-row justify-between'>
-                            <h1 className='text-neutral-100 text-3xl font-normal font-[Avenir]'>Our channels</h1>
-                            <div className='flex gap-2'>
-                                <IoLogoInstagram size={30} />
-                                <FaLinkedinIn size={30} />
-                                <FaYoutube size={30} />
-                            </div>
-                        </div>
+                        <h1 className='text-neutral-100 text-5xl font-bold '>Our channels</h1>
                     </div>
+
+                    <div className='flex bottom-0 right-60 absolute gap-x-5 pl-32'>
+                        <IoLogoInstagram size={65} className='text-white' />
+                        <FaLinkedinIn size={65} className='text-white' />
+                        <FaYoutube size={65} className='text-white' />
+                    </div>
+
+
                 </div >
             )}
 
