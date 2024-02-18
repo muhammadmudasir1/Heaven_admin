@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from 'react-icons/fa';
 import { PiMagnifyingGlass } from "react-icons/pi";
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet, Link } from 'react-router-dom';
 import StickyFooter from './StickyFooter';
-import { Link } from 'react-router-dom';
 import SearchData from './SearchData.json'
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { MdOutlineArrowDropUp } from "react-icons/md";
@@ -15,6 +14,7 @@ import ukflag from '../../imges/ukflag.png'
 import { IoIosMenu } from "react-icons/io";
 import logo from '../Landingpage/logo.png'
 import { CiGlobe } from "react-icons/ci";
+import { ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroicons/react/24/outline';
 
 const Navigationbar = () => {
     const [nav, setnav] = useState(false);
@@ -89,37 +89,97 @@ const Navigationbar = () => {
                 {isMobile ? (
                     <>
                         <div className='flex flex-row justify-between items-center'>
-                            <div className='ml-4 text-white text-xl'>
+                            {!IsOpen ? ('') : (<div className='ml-4 text-white text-xl'>
                                 Best deals
+                            </div>)}
+                            <div >
+                                <PiMagnifyingGlass onClick={SearchMenu} size={20} className='text-white relative z-20 cursor-pointer ml-2' />
                             </div>
-                            <PiMagnifyingGlass size={20} className='text-white z-20 cursor-pointer ml-2' />
-                            <CiGlobe size={20} className='text-white z-20 cursor-pointer ml-2' />
+                            <div className='absolute left-2 z-30'>
+                                {!IsOpen ? (
+                                    <div onMouseLeave={SearchMenu} className='relative w-[65vw]'>
+                                        {/* <div className='h-20 w-full p-4 rounded-tl-2xl rounded-bl-2xl border-none items-center '> */}
+                                        <input value={Input} onChange={(e) => handleChangeInput(e.target.value)} type='text' placeholder='What are you looking for?'
+                                            onBlur={(e) => { setResults(false) }}
+                                            className='pl-4 text-neutral-700 text-xl font-light h-full w-full rounded-xl py-3' />
+                                        {/* </div> */}
+                                        <div results={result} className='absolute z-40 bg-slate-50 w-full mt-2 rounded-lg overflow-y-scroll max-h-72'>
+                                            {result && result.map((printer) => (
+                                                <div key={printer.id} className='px-4 py-4'>
+                                                    {printer.printer}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : ('')}
+                            </div>
+                            <div onClick={() => handleLanguageChange[setlang('en')]}>
+                                <CiGlobe size={20} className='text-white z-20 cursor-pointer ml-2' />
+                                {/* {IsTranslated && (
+                                    <div className='bg-white absolute top-6 right-0 flex flex-col items-center justify-center p-4 z-30 mt-2 shadow-md shadow-slate-400 rounded-xl'>
+                                        <button
+                                            onClick={() => handleLanguageChange[setlang('de')]}
+                                            className=' text-xl font-light font-[Roboto]'
+                                        >
+                                            <div className='flex items-center justify-center'>
+                                                <img src={germanflag} alt="" className='h-2 w-4 pr-2' />
+                                                DE
+                                            </div>
+                                        </button>
+                                        <button
+                                            onClick={() => handleLanguageChange[setlang('en')]}
+                                            className=' text-xl font-light font-[Roboto]'
+                                        >
+                                            <div className='flex items-center justify-center py-2'>
+
+                                                <img src={ukflag} alt="" className='h-2 w-4 pr-2' />
+                                                EN
+                                            </div>
+                                        </button>
+                                    </div>
+                                )} */}
+                            </div>
                             <IoIosMenu onClick={handleNav} size={30} className='z-20 ml-2 cursor-pointer text-white' />
                             <div className={nav ? 'w-full h-screen fixed left-0 top-0 flex-col z-10 bg-white/90 ease-in duration-500' : 'absolute top-0 left-[-100%] ease-in duration-500 z-10'}>
                                 <ul className='gap-8 flex lg:flex-row flex-col items-center justify-center h-screen w-full'>
                                     <li className='z-20 text-black hover:underline'>
-                                        <Link to='/' >startseite</Link>
+                                        <NavLink to={'/'} >startseite</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <a href="">Beste Liste</a>
+                                        <Link to={'/#topFive'}>Beste Liste</Link>
+                                    </li>
+                                    <li className='z-20 text-black relative'>
+                                        <NavLink onClick={SearchMenu} to={'/product'} className='flex ml-24 mr-20 text-center'>3D Druckers
+                                            {!IsOpen ? <ArrowDownCircleIcon /> : <ArrowUpCircleIcon />}
+                                        </NavLink>
+                                        {IsOpen && (
+                                            <div className='absolute right-0 top-0 bg-white py-2 px-4 z-30'>
+                                                <ul>
+                                                    <li>
+                                                        <NavLink to='/product/sla' className={`z-30`}>SLA</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to='/product/fdm' className={`z-30`}>FDM</NavLink>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </li>
+
+                                    <li className='z-20 text-black'>
+                                        <NavLink to={'/product/cutter'}>Laser</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <Link to='../Review' >3D Druckers</Link>
+                                        <NavLink to={'/product/scanner'}>Scanner</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <a href="">Laser</a>
+                                        <NavLink to={'/filament'}>Filamente</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <a href="">Scanner</a>
+                                        <NavLink to={'/ratgaber'}>Ratgeber</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <a href="">Filamente</a>
-                                    </li>
-                                    <li className='z-20 text-black'>
-                                        <a href="">Ratgeber</a>
-                                    </li>
-                                    <li className='z-20 text-black'>
-                                        <a href="">Newsr</a>
+                                        <NavLink to={'/news'}>News</NavLink>
                                     </li>
                                 </ul>
                             </div>

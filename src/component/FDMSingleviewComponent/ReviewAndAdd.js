@@ -88,11 +88,12 @@ const FDMReviewAndAdd = () => {
                 <div className='grid-cols-8 grid pr-4'>
 
                     <div className='col-span-6 '>
-                        <div className='lg:flex items-center justify-center pr-4 bg-slate-200 relative w-full'>
-                            <div className='flex mt-20 items-center lg:flex-col'>
-                                <div className='pl-4 pr-4'>
-                                    <img src={mainImage} alt="" />
-                                </div>
+                        <div className='lg:flex items-center justify-start pr-4 bg-pink-200 relative w-full'>
+                            <div className='flex w-[318px] mt-20 items-center lg:flex-col'>
+                                <div className='h-96 bg-center bg-cover' style={{backgroundImage: `url(${mainImage})`}}/>
+                                {/* <div className='pl-4 pr-4'>
+                                    {/* <img src={mainImage} alt="" /> */}
+                                {/* </div> */} 
                                 <div className='lg:flex items-center justify-center py-8 ' >
                                     {imageUrls.map((url, index) => (
                                         <div key={index} className='w-20 h-20 mx-1 hover:border-[#00CED1] border-4' onClick={() => switchMainImage(url)}>

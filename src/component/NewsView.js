@@ -1,9 +1,9 @@
 import React from 'react'
 import NewsBanner from './NewsComponents/NewsBanner'
-import Tabbar from '../component/Landingpage/Tabbar'
+import Tabbar from './Landingpage/Tabbar'
 import AddAndNews from './NewsComponents/AddAndNews'
 
-const News = () => {
+const NewsView = () => {
   return (
     <div>
         <Tabbar/>
@@ -13,4 +13,4 @@ const News = () => {
   )
 }
 
-export default News
+export default NewsView

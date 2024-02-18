@@ -116,7 +116,7 @@ const Tabbar = () => {
               setPageOnPrinter(false)
             }}
             className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>{t("Filament")}</NavLink>
-            <NavLink to={'/product/ratgeber'}
+            <NavLink to={'/ratgaber'}
             onClick={(e)=>{
               setisOpen(false)
               setPageOnPrinter(false)

@@ -18,7 +18,6 @@ import AddReview from "./component/admin/AddReview"
 import UpdateProduct from "./component/admin/UpdateProduct"
 import "./customStyle.css"
 import SingleReview from "./component/SingleReview"
-import ScrollView from "./component/ReviewpageComponets.js/ScrollView"
 import SLAView from "./component/SLAComponents/SLAView"
 import FDMView from "./component/FDMAComponents/FDMView"
 import ScannerView from "./component/SCANNERComponents/ScannerView"
@@ -30,10 +29,9 @@ import AddNews from "./component/admin/AddNews"
 import BeginnersGuid from "./component/admin/BeginnersGuid"
 import AddBeginnersGuid from "./component/admin/AddBeginnersGuid"
 import UserPage from "./component/admin/users/UserPage"
-import FDMSingleview from "./component/FDMSingleview"
-import Result from "./component/ComparisonResult/Result"
 import News from "./component/News"
-
+import NewsView from "./component/NewsView"
+import Ratgaber from './component/Ratgaber'
 
 
 const App = () => {
@@ -48,6 +46,7 @@ const App = () => {
                             <Route path="/ComparisonPage" element={<ComparePage />} />
                             <Route path="/" element={<Home />} />
                             <Route path="/filament" element={<ShowFilament />} />
+                            <Route path="/ratgaber" element={<Ratgaber/>}/>
                             <Route path="/result/:fdm/:price/:product" element={<ComparePage />}/>
                             <Route path='/comparision' element={<CompareResult/>} />
                             <Route path="/result/sla/:price/:manufacture" element={<ComparePage />} />
@@ -62,7 +61,7 @@ const App = () => {
                             <Route path="/productreview/:id" element={<SingleReview />} >
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
-                            <Route path="/news" element={<News/>}>
+                            <Route path="/news" element={<NewsView/>}>
                             </Route>
                         </Route>
                         <Route element={ <PrivatePage/>}>

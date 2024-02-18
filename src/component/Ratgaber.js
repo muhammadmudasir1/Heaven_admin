@@ -1,13 +1,13 @@
 import React from 'react'
 import Tabbar from '../component/Landingpage/Tabbar'
 import RatgaberBanner from './Ratgaber/RatgaberBanner'
-import { RateReview } from '@mui/icons-material'
+import RatgaberView from './Ratgaber/RatgaberView'
 const Ratgaber = () => {
   return (
     <div>
       <Tabbar/>
       <RatgaberBanner/>
-      <RateReview/>
+      <RatgaberView/>
     </div>
   )
 }

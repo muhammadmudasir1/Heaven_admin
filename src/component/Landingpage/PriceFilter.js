@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 const PriceFilter = ({ setPrice,price}) => {
+    const [isOpen, setIsOpen] = useState(false)
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+      };
 
     return (
-        <div className='flex flex-col items-center justify-between w-full mx-2 relative'>
-            <select className='  bg-white w-full md:text-lg  md:py-3 py-1 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white  duration-500 active:text-white  pl-2 pr-2 md:pl-8 md:pr-2  text-neutral-700 text-lg font-light font-[Roboto]'
+        <div  className='flex flex-col items-center justify-between w-full mx-2 relative cursor-pointer'>
+            <select onClick={toggleDropdown} className='  bg-white w-full md:text-lg  md:py-3 py-1 m-1 flex cursor-pointer items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white  duration-500 active:text-white  pl-2 pr-2 md:pl-8 md:pr-2  text-neutral-700 text-lg font-light font-[Roboto]'
             value={price}
             onChange={(e)=>{
                 setPrice(e.target.value)
@@ -28,7 +32,7 @@ const PriceFilter = ({ setPrice,price}) => {
                 </option>
             </select>
 
-            <div className='absolute right-0 flex items-center h-full pl-2 pr-2 md:pl-8 md:pr-2 mr-1'> <ArrowDropDownIcon/> </div>
+            <div className='absolute right-0 flex items-center h-full pl-2 pr-2 md:pl-8 md:pr-2 mr-1'> {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />} </div>
         </div>
     );
 };
