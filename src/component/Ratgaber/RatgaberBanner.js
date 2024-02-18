@@ -1,8 +1,8 @@
 import React from 'react'
-import Banner from '../NewsComponents/Banner.png'
+import Banner from '../Ratgaber/Banner.png'
 import { useState, useEffect } from 'react';
 
-const NewsBanner = () => {
+const RatgaberBanner = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ const NewsBanner = () => {
   )
 }
 
-export default NewsBanner
+export default RatgaberBanner

@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Profilecontainer = () => {
     return (
@@ -7,9 +8,9 @@ const Profilecontainer = () => {
                 <h1 className='text-neutral-800 lg:text-5xl text-2xl font-bold '>
                     Beginner’s guide to buy <br/> the right 3D printer
                 </h1>
-                <button className='text-neutral-800 bg-white rounded-md flex items-center justify-center lg:px-8 px-4 lg:py-4 py-2 lg:mt-14 mt-4 lg:text-2xl font-medium '>
+                <NavLink to={'/reviews'} className='text-neutral-800 bg-white rounded-md flex items-center justify-center lg:px-8 px-4 lg:py-4 py-2 lg:mt-14 mt-4 lg:text-2xl font-medium '>
                     Beginner’s guide
-                </button>
+                </NavLink>
             </div>
             <div className='relative'>
             <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D" alt="" className='rounded-full lg:w-80 lg:h-80 w-40 h-40 lg:mr-24 mr-2 relative' />
