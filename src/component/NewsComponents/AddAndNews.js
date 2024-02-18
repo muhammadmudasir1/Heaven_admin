@@ -99,7 +99,7 @@ const AddAndNews = () => {
                                     style={
                                         { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                                     }>
-                                    <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[358.18px]' style={{ backgroundImage: `url(${Cards.url})` }} />
+                                    <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[358.18px]' style={{ backgroundImage: `url(/api/${Cards.url})` }} />
                                     <div className='lg:pl-8 w-3/5 '>
                                         <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.title}</h1>
                                         <p className='pb-4 text-neutral-700 text-xl font-light line-clamp-6'>{Cards.review}</p>
@@ -127,7 +127,7 @@ const AddAndNews = () => {
                             <div key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
                                 { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                             }>
-                                <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(${items.url})` }} />
+                                <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.url})` }} />
                                 <div className='col-span-2 ml-2 flex flex-col items-start justify-center'>
                                     <h1 className='mt-5 text-xl font-bold'>{items.title}</h1>
                                     <p className='line-clamp-3 pt-2  text-neutral-700'>{items.review}</p>

@@ -45,7 +45,7 @@ const SingleImageSilider = ({ images }) => {
                         >
                             <div className='w-full h-full flex justify-center items-center'>
                                 <div className="bg-cover bg-center 2xl:w-[480px] 2xl:h-[270px] w-[320px] h-[180px] border-2 rounded-md"
-                                    style={{ backgroundImage: `url(/${image.path})` }}
+                                    style={{ backgroundImage: `url(/api/${image.path})` }}
 
                                 >
                                 </div>

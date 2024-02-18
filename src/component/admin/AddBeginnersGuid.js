@@ -253,13 +253,13 @@ const AddBeginnersGuid = () => {
                                             {
                                                 imageFromApi ?
                                                     <img
-                                                        src={`/${picture}`}
+                                                        src={`/api/${picture}`}
                                                         key={index}
                                                         className='w-full'
                                                     />
                                                     :
                                                     <img
-                                                        src={picture.preview}
+                                                        src={`/api/${picture.preview}`}
                                                         key={index}
                                                         className='w-full'
                                                     />

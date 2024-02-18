@@ -380,7 +380,7 @@ return (
                                         >
                                             <img
                                                 className='bg-white w-12 h-12'
-                                                src={`/${product.ProductImages[0].path}`}
+                                                src={`/api/${product.ProductImages[0].path}`}
                                             />
                                             <p className=' grow overflow-hidden px-2 line-clamp-2' title={product.product_name}>
                                                 {product.product_name}

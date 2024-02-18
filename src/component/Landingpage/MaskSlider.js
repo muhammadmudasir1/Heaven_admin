@@ -89,7 +89,7 @@ const MaskSlider = () => {
                         <div className='w-full h-full relative flex flex-col '>
                           <div className=" w-full h-full bg-cover bg-center absolute top-0"
                             style={{
-                              backgroundImage: `url(${Product && Product.ProductImages[0].path})`
+                              backgroundImage: `url(/api/${Product && Product.ProductImages[0].path})`
                             }}
                           />
                           <div className={`w-full h-full absolute top-0 ${colors[index]}`} />
@@ -112,7 +112,7 @@ const MaskSlider = () => {
                         <div className='w-full h-full relative flex flex-col justify-center items-center'>
                           <div className=" w-full h-full bg-cover bg-center absolute top-0"
                             style={{
-                              backgroundImage: `url(${Product && Product.ProductImages[0].path})`
+                              backgroundImage: `url(/api/${Product && Product.ProductImages[0].path})`
                             }}
                           />
                           <div className={`w-full h-full absolute top-0 ${colors[index]}`} />

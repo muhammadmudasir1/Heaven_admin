@@ -105,7 +105,7 @@ const Doubleslider = () => {
                   >
                     <div className=" w-full h-52 bg-cover bg-center"
                     style={{
-                      backgroundImage: `url(${SLAproduct.ProductImages[0].path})`
+                      backgroundImage: `url(/api/${SLAproduct.ProductImages[0].path})`
                     }}
                     />
                     <h2 className="pt-8 px-6 font-bold line-clamp-1">{SLAproduct.product_name}</h2>
@@ -178,7 +178,7 @@ const Doubleslider = () => {
                   >
                     <div className=" w-full h-52 bg-cover bg-center"
                     style={{
-                      backgroundImage: `url(${FDMproduct.ProductImages[0].path})`
+                      backgroundImage: `url(/api/${FDMproduct.ProductImages[0].path})`
                     }}
                     />
                     <h2 className="pt-8 px-6 font-bold line-clamp-1">{FDMproduct.product_name}</h2>

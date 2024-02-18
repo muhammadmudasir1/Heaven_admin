@@ -70,7 +70,7 @@ const ProductCard = ({ data, prevCards }) => {
     return (
         <div className="flex justify-between shadow-sm w-full h-[180px] rounded-lg overflow-hidden mb-4 hover:bg-gray-100 p-2">
             <div className="bg-cover bg-center  w-[320px] h-full border-2 rounded-md"
-                style={{ backgroundImage: `url(/${data.ProductImages[0].path})` }}></div>
+                style={{ backgroundImage: `url(/api/${data.ProductImages[0].path})` }}></div>
             <div className=" w-[70%] h-full px-3 ">
                 <div className="flex items-center justify-between w-full">
                     <p className=" font-sans font-bold text-2xl w-3/4 line-clamp-2 ">{data.product_name}</p>

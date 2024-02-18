@@ -50,7 +50,7 @@ const NewsCard = ({ data, reload }) => {
     return (
         <div className='w-full h-[250px] rounded-md  grid grid-cols-4 gap-3 overflow-hidden bg-gray-200 shadow-md p-2 mb-2'>
             <div className='w-full h-full  bg-cover bg-center '
-                style={{ backgroundImage: `url(/${data.image})` }}
+                style={{ backgroundImage: `url(/api/${data.image})` }}
             />
             <div className=' col-span-3 h-full flex flex-col relative'>
                 <h3 className='w-full text-2xl py-2 h-2 absolute z-[999]'>{data.Title}</h3>

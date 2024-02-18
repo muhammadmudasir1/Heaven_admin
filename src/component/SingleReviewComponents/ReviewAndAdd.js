@@ -106,13 +106,13 @@ const ReviewAndAdd = () => {
                         <div className='lg:flex pt-4 pb-8 justify-center pr-4  relative w-full '>
                             <div className='flex items-center lg:flex-col'>
                                 <div className='w-full h-64 bg-cover bg-center rounded-md shadow-md'
-                                    style={{ backgroundImage: `url(/${mainImage && mainImage.path})` }}
+                                    style={{ backgroundImage: `url(/api/${mainImage && mainImage.path})` }}
                                 />
                                 <div className='lg:flex items-center justify-center py-8 ' >
                                     {images.map((picture) => (
                                         <div key={picture.id} className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4' onClick={() => switchMainImage(picture)}>
                                             <div className='w-full h-full bg-cover bg-center'
-                                                style={{ backgroundImage: `url(/${picture.path})` }}
+                                                style={{ backgroundImage: `url(/api/${picture.path})` }}
                                             />
                                         </div>
                                     ))}
@@ -203,7 +203,7 @@ const ReviewAndAdd = () => {
                             return <SwiperSlide className=''>
                                 <div className='w-full px-2'>
                                     <div className='w-full h-56 bg-cover bg-center'
-                                        style={{ backgroundImage: `url(/${item.path})` }}>
+                                        style={{ backgroundImage: `url(/api/${item.path})` }}>
                                     </div>
                                 </div>
                             </SwiperSlide>

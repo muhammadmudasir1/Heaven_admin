@@ -256,7 +256,7 @@ const AddNews = () => {
                                             {
                                                 imageFromApi ?
                                                     <img
-                                                        src={`/${picture}`}
+                                                        src={`/api/${picture}`}
                                                         key={index}
                                                         className='w-full'
                                                     />

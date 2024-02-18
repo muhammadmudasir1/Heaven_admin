@@ -26,13 +26,13 @@ import CutterView from "./component/CUTTERComponents/CutterView"
 import ComparePage from "./component/ComparisonComponet/ComparePage"
 import ShowFilament from "./component/ShowFilament"
 import TopFive from "./component/admin/TopFive"
-import News from "./component/admin/News"
 import AddNews from "./component/admin/AddNews"
 import BeginnersGuid from "./component/admin/BeginnersGuid"
 import AddBeginnersGuid from "./component/admin/AddBeginnersGuid"
 import UserPage from "./component/admin/users/UserPage"
 import FDMSingleview from "./component/FDMSingleview"
 import Result from "./component/ComparisonResult/Result"
+import News from "./component/News"
 
 
 
@@ -54,7 +54,6 @@ const App = () => {
                             <Route path="/result/scanner/:price/:manufacture" element={<ComparePage />} />
                             <Route path="/result/cutter/:price/:manufacture" element={<ComparePage />} />
                             <Route path="/product" element={<Review />} >
-                                {/* <Route path="all3dprinter" element={<ScrollView />} /> */}
                                 <Route path="fdm" element={<FDMView />} />
                                 <Route path="sla" element={<SLAView />} />
                                 <Route path="scanner" element={<ScannerView />} />
@@ -63,7 +62,7 @@ const App = () => {
                             <Route path="/productreview/:id" element={<SingleReview />} >
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
-                            <Route path="/news" element={<Result/>}>
+                            <Route path="/news" element={<News/>}>
                             </Route>
                         </Route>
                         <Route element={ <PrivatePage/>}>

@@ -85,7 +85,7 @@ const VariantCard = ({id,productId,reload}) => {
         }}
         >
             <div className='bg-cover bg-center h-full w-1/3 rounded-md'
-                style={{ backgroundImage: `url(/${thumbnail.path})` }}
+                style={{ backgroundImage: `url(/api/${thumbnail.path})` }}
             >
             </div>
             <div className='grow flex flex-col ml-2 justify-between h-full' >

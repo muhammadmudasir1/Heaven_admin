@@ -155,7 +155,7 @@ const Card = ({ data }) => {
         className='flex flex-col items-center rounded-lg mx-5 py-2 h-[300px] w-[250px] px-2'
         style={{ boxShadow: '-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgba(203,213,225,0.5)' }} >
         <div className='px-4 py-4 w-full h-32 bg-cover bg-center'
-          style={{ backgroundImage: `url(/${thumbnail})` }}
+          style={{ backgroundImage: `url(/api/${thumbnail})` }}
         />
         <h1 className='text-neutral-800 text-lg font-semibold line-clamp-2 text-center' title={data && data.product_name}>{data && data.product_name}</h1>
         <h1 className='line-through text-neutral-800 text-xl font-semibold'>
@@ -348,7 +348,7 @@ const Result = () => {
                     >
                       <div className='flex flex-col items-center rounded-lg  h-[300px] w-full overflow-hidden'>
                         <div className=' h-32 w-full  bg-cover bg-center '
-                          style={{ backgroundImage: `url(/${element.ProductImages && element.ProductImages[0].path})` }}
+                          style={{ backgroundImage: `url(/api/${element.ProductImages && element.ProductImages[0].path})` }}
                         />
                         <div className='px-1 '><h2 className=' line-clamp-2 text-center'>{element.product_name}</h2></div>
                         <p className='flex line-through'>

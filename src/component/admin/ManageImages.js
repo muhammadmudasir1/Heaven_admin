@@ -208,7 +208,7 @@ const ManageImages = ({ productId }) => {
                     images.length > 0 &&
                     <div
                         className='bg-cover b-center h-56 2xl:h-64 relative flex flex-col-reverse rounded-md overflow-hidden shadow-2xl border-[1px] border-customBlue '
-                        style={{ backgroundImage: `url(/${images[0].path})` }}>
+                        style={{ backgroundImage: `url(/api/${images[0].path})` }}>
                         <div className='w-full h-1/6 bg-customBlue text-center p-1 z-[999]'>
                             <p className='text-white'>Thumbnail</p>
                         </div>
@@ -225,7 +225,7 @@ const ManageImages = ({ productId }) => {
                                 return <div className='relative group rounded-md overflow-hidden shadow-md '>
                                     <div
                                         className='bg-cover b-center h-28 2xl:h-32 relative flex flex-col-reverse'
-                                        style={{ backgroundImage: `url(/${image.path})` }}>
+                                        style={{ backgroundImage: `url(/api/${image.path})` }}>
                                         <div className='absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-40'></div>
                                         <div
                                             className='w-full h-1/5 hidden group-hover:block bg-gray-400 text-center p-1 hover:bg-customBlue z-[999] cursor-pointer'
@@ -261,7 +261,7 @@ const ManageImages = ({ productId }) => {
                         return <div className='relative group rounded-md overflow-hidden shadow-md '>
                             <div
                                 className='bg-cover b-center h-32 2xl:h-44 relative flex flex-col-reverse'
-                                style={{ backgroundImage: `url(${image.preview})` }}
+                                style={{ backgroundImage: `url(/api/${image.preview})` }}
                             >
                                 <div className='absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-40'></div>
                                 <RxCross2 className='absolute top-1 right-1 bg-customBlue rounded-full text-white p-[1px] hover:bg-sky-500 hover:text-red-500 cursor-pointer'

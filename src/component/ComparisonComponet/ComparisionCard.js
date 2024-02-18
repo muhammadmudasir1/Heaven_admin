@@ -210,7 +210,7 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
             <div key={card.Id} className='flex items-center justify-between rounded-xl h-[350px] w-full mb-6'
                 style={{ boxShadow: '-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgba(203,213,225,0.5)' }}>
                 <div className=' w-1/3 h-full '>
-                    <div className={`bg-cover bg-center h-full w-full rounded-l-xl`} style={{ backgroundImage: `url(/${card.ProductImages[0].path})` }} />
+                    <div className={`bg-cover bg-center h-full w-full rounded-l-xl`} style={{ backgroundImage: `url(/api/${card.ProductImages[0].path})` }} />
                 </div>
                 <div className='flex items-center w-2/3 h-full pl-6'>
                     <div className=' w-3/5 flex flex-col justify-between h-full py-3'>
@@ -386,7 +386,7 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                 </div>
                 <div className='w-full grid grid-cols-8 flex-grow '>
                     <div className='  h-full col-span-3'>
-                        <div className={`bg-cover bg-center h-2/3 w-full mt-3`} style={{ backgroundImage: `url(/${card.ProductImages[0].path})` }} />
+                        <div className={`bg-cover bg-center h-2/3 w-full mt-3`} style={{ backgroundImage: `url(/api/${card.ProductImages[0].path})` }} />
                     </div>
                     <div className=' col-span-5 h-full'>
                         <h2 className='w-full line-clamp-2 pl-2 text-xl' title={card.product_name}>

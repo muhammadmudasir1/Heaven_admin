@@ -57,7 +57,7 @@ const CutterView = () => {
               >
                 <div
                   className="rounded-l-xl lg:w-1/3 bg-cover bg-center w-full h-[358.18px]"
-                  style={{ backgroundImage: `url(/${Cards.ProductImages[0].path})`, }}
+                  style={{ backgroundImage: `url(/api/${Cards.ProductImages[0].path})`, }}
                 >
                 </div>
                 <div className="lg:pl-8 w-3/5 ">
@@ -118,7 +118,7 @@ const CutterView = () => {
         <div key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
           { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
         }>
-          <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/${items.ProductImages[0].path})` }} />
+          <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.ProductImages[0].path})` }} />
           <div className='col-span-2 ml-2 flex flex-col items-start justify-center'>
             <h1 className='mt-5 text-xl font-bold pr-2 line-clamp-2'>{items.product_name}</h1>
             <div className='flex pt-2'>

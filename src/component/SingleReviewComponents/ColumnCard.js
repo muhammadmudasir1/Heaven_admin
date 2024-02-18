@@ -45,7 +45,7 @@ const FDMVarient = ({ specs }) => {
                         <div className=' h-12'></div>
                         {specs.map((items, index) => {
                             return <div key={index} className='flex justify-center flex-col'>
-                                <img src={`/${items.thumbnail}`} alt="" />
+                                <img src={`/api/${items.thumbnail}`} alt="" />
                                 <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
                                     {items.product_name}
                                 </div>
@@ -409,7 +409,7 @@ const FDMVarient = ({ specs }) => {
                                     return <SwiperSlide>
                                         <div className='bg-white'>
                                             <div className='h-16 mb-2'>
-                                                <img src={`/${items.thumbnail}`} alt="" className='h-full ' />
+                                                <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
                                             </div>
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.installationSpace}</div>
@@ -478,7 +478,7 @@ const SLAVarient = ({ specs }) => {
                         <div className=' h-12'></div>
                         {specs.map((items, index) => {
                             return <div key={index} className='flex justify-center flex-col'>
-                                <img src={`/${items.thumbnail}`} alt="" />
+                                <img src={`/api/${items.thumbnail}`} alt="" />
                                 <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
                                     {items.product_name}
                                 </div>
@@ -735,7 +735,7 @@ const SLAVarient = ({ specs }) => {
                                     return <SwiperSlide>
                                         <div className='bg-white'>
                                             <div className='h-16 mb-2'>
-                                                <img src={`/${items.thumbnail}`} alt="" className='h-full ' />
+                                                <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
                                             </div>
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.installationSpace}</div>
@@ -793,7 +793,7 @@ const LaserVarient = ({ specs }) => {
                         <div className=' h-12'></div>
                         {specs.map((items, index) => {
                             return <div key={index} className='flex justify-center flex-col'>
-                                <img src={`/${items.thumbnail}`} alt="" />
+                                <img src={`/api/${items.thumbnail}`} alt="" />
                                 <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
                                     {items.product_name}
                                 </div>
@@ -1029,7 +1029,7 @@ const LaserVarient = ({ specs }) => {
                                     return <SwiperSlide>
                                         <div className='bg-white'>
                                             <div className='h-16 mb-2'>
-                                                <img src={`/${items.thumbnail}`} alt="" className='h-full ' />
+                                                <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
                                             </div>
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.laserPower}</div>
@@ -1084,7 +1084,7 @@ const ScannarVarient = ({ specs }) => {
                         <div className=' h-12'></div>
                         {specs.map((items, index) => {
                             return <div key={index} className='flex justify-center flex-col'>
-                                <img src={`/${items.thumbnail}`} alt="" />
+                                <img src={`/api/${items.thumbnail}`} alt="" />
                                 <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
                                     {items.product_name}
                                 </div>
@@ -1331,7 +1331,7 @@ const ScannarVarient = ({ specs }) => {
                                     return <SwiperSlide>
                                         <div className='bg-white'>
                                             <div className='h-16 mb-2'>
-                                                <img src={`/${items.thumbnail}`} alt="" className='h-full ' />
+                                                <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
                                             </div>
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanningPrecision}</div>

@@ -32,7 +32,7 @@ const TopFiveCard = ({ data, index, up, down }) => {
             <div className='flex-grow w-full rounded-lg flex flex-col  py-1'>
                 <div className='h-2/3 px-4'>
                     <div className="bg-cover bg-center h-full  border-2 rounded-md"
-                        style={{ backgroundImage: `url(/${thumbnail})` }} />
+                        style={{ backgroundImage: `url(/api/${thumbnail})` }} />
 
                 </div>
                 <p className='flex w-full justify-center'>{data.product_name}</p>
