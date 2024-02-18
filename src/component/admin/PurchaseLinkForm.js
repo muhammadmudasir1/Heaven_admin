@@ -276,18 +276,18 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     <option value={1} >Amazon de</option>
                     <option value={2}>Ebay de</option>
                     <option value={3}>GeeksBuying</option>
-                    <option value={4}>TomTop</option>
-                    <option value={5}>3DJake</option>
-                    <option value={6}>Ortur</option>
-                    <option value={7}>AnyCubic</option>
-                    <option value={8}>Artillery3D</option>
-                    <option value={9}>BambuLab</option>
-                    <option value={10}>Creality </option>
-                    <option value={11}>Elegoo</option>
-                    <option value={12}>Revopoint</option>
-                    <option value={13}>Sculpfun</option>
+                    <option value={4}>TomTop de</option>
+                    <option value={5}>3DJake de</option>
+                    <option value={6}>Ortur de</option>
+                    <option value={7}>AnyCubic de</option>
+                    <option value={8}>Artillery3D de</option>
+                    <option value={9}>BambuLab de</option>
+                    <option value={10}>Creality de</option>
+                    <option value={11}>Elegoo de</option>
+                    <option value={12}>Revopoint de</option>
+                    <option value={13}>Sculpfun de</option>
                     <option value={14}>Two Trees</option>
-                    <option value={15}>Qidi Tech</option>
+                    <option value={15}>Qidi Tech de</option>
                 </select>
             </section>
 
