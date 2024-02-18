@@ -100,6 +100,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={scanningPrecision}
                             onChange={(e) => {
                                 setScanningPrecision(e.target.value)
                             }}
@@ -114,6 +115,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={scanAccuracy}
                             onChange={(e) => {
                                 setScanAccuracy(e.target.value)
                             }}
@@ -128,6 +130,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={scanningArea}
                             onChange={(e) => {
                                 setScanningArea(e.target.value)
                             }}
@@ -142,6 +145,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={scanningDistance}
                             onChange={(e) => {
                                 setScanningDistance(e.target.value)
                             }}
@@ -156,6 +160,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={scanSpeed}
                             onChange={(e) => {
                                 setScanSpeed(e.target.value)
                             }}
@@ -170,6 +175,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={objectDimension_handScan}
                             onChange={(e) => {
                                 setObjectDimensionHandScan(e.target.value)
                             }}
@@ -183,6 +189,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={objectDimension_turnTable}
                             onChange={(e) => {
                                 setObjectDimensionTurnTable(e.target.value)
                             }}
@@ -196,6 +203,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={lightSource}
                             onChange={(e) => {
                                 setLightSource(e.target.value)
                             }}
@@ -208,6 +216,7 @@ const ScannarSpecs = (props) => {
                         <input
                             type="text"
                             placeholder="Type Here"
+                            value={camera}
                             className='border-black border-[1px] rounded-md p-2 mt-1'
                             onChange={(e) => {
                                 setCamera(e.target.value)
@@ -222,6 +231,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={standardPackage}
                             onChange={(e) => {
                                 setStandardPackage(e.target.value)
                             }}
@@ -236,6 +246,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={premiumPackage}
                             onChange={(e) => {
                                 setPremiumPackage(e.target.value)
                             }}
@@ -250,6 +261,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={scanMinimumSize}
                             onChange={(e) => {
                                 setScanMinimumSize(e.target.value)
                             }}
@@ -264,6 +276,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={scanMaximumSize}
                             onChange={(e) => {
                                 setScanMaximumSize(e.target.value)
                             }}
@@ -278,6 +291,7 @@ const ScannarSpecs = (props) => {
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={scanQuality}
                             onChange={(e) => {
                                 setScanQuality(e.target.value)
                             }}

@@ -27,8 +27,8 @@ const ReviewAndAdd = () => {
     const [software, setSoftware] = useState(0)
     const [overall, setOverall] = useState(0)
     const [mainImage, setMainImage] = useState("")
-    const [specs,setSpecs]=useState({})
-    const [productType,setProductType]=useState(0)
+    const [specs, setSpecs] = useState({})
+    const [productType, setProductType] = useState(0)
 
 
     useEffect(() => {
@@ -40,6 +40,7 @@ const ReviewAndAdd = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -72,17 +73,17 @@ const ReviewAndAdd = () => {
                 setInnovation(result.data.software_rating)
                 setOverall(result.data.overall_rating)
                 setProductType(result.data.productType)
-                if(result.data.productType===1){
+                if (result.data.productType === 1) {
                     setSpecs(result.data.SLA)
-                    
+
                 }
-                if(result.data.productType===2){
+                if (result.data.productType === 2) {
                     setSpecs(result.data.FDM)
                 }
-                if(result.data.productType===3){
+                if (result.data.productType === 3) {
                     setSpecs(result.data.LeaserCutter)
                 }
-                if(result.data.productType===4){
+                if (result.data.productType === 4) {
                     setSpecs(result.data.scanner)
                 }
 
@@ -92,59 +93,6 @@ const ReviewAndAdd = () => {
         }
         fetchData()
     }, [id])
-
-    const mobileImageUrl = [
-        {
-
-            url: "https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-        },
-        {
-
-            url: "https://static.wixstatic.com/media/5d104f_a809b58f7dd640c09a3263e0f36a3bb5~mv2.jpg/v1/crop/x_144,y_0,w_1856,h_1125/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-        },
-        {
-            url: "https://static.wixstatic.com/media/5d104f_eac9e31f29b6464f89fa2cf860552b99~mv2.jpg/v1/crop/x_71,y_0,w_1859,h_1125/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Creality%20Ender-5%20S1-2.jpg",
-        },
-        {
-
-            url: "https://static.wixstatic.com/media/5d104f_1aa9f52a94d847f0a03803c46f26fa23~mv2.jpg/v1/crop/x_26,y_0,w_2325,h_1407/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Anycubic%20Vyper%20Gesamtansicht.jpg",
-        },
-        {
-
-            url: "https://static.wixstatic.com/media/5d104f_942ed39e2eb04f3690ce73118799546d~mv2.jpg/v1/crop/x_42,y_0,w_1115,h_675/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Creality%20K1.jpg"
-        }
-
-    ]
-
-    const names = [
-        {
-
-            element: 'Preis',
-        },
-        {
-
-            element: 'Innovation',
-        },
-        {
-
-            element: 'Software',
-        },
-        {
-
-            element: 'Kundenservice',
-        },
-        {
-
-            element: 'Verarbeitungen'
-        }
-    ]
-
-    const imageUrls = [
-        "https://static.wixstatic.com/media/5d104f_a809b58f7dd640c09a3263e0f36a3bb5~mv2.jpg/v1/crop/x_144,y_0,w_1856,h_1125/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg",
-        "https://static.wixstatic.com/media/5d104f_eac9e31f29b6464f89fa2cf860552b99~mv2.jpg/v1/crop/x_71,y_0,w_1859,h_1125/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Creality%20Ender-5%20S1-2.jpg",
-        "https://static.wixstatic.com/media/5d104f_1aa9f52a94d847f0a03803c46f26fa23~mv2.jpg/v1/crop/x_26,y_0,w_2325,h_1407/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Anycubic%20Vyper%20Gesamtansicht.jpg",
-        "https://static.wixstatic.com/media/5d104f_942ed39e2eb04f3690ce73118799546d~mv2.jpg/v1/crop/x_42,y_0,w_1115,h_675/fill/w_448,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Creality%20K1.jpg"
-    ];
 
     const switchMainImage = (picture) => {
         setMainImage(picture);
@@ -174,18 +122,27 @@ const ReviewAndAdd = () => {
                                 <h1 className=' text-neutral-800 text-2xl font-semibold py-3 line-clamp-2'>{productName && productName}</h1>
                                 <p className='pb-6'>{discription && discription}</p>
                                 <div className='flex items-center mb-2'>
-                                    <h1 className='text-xl font-semibold pr-2'>{overall}</h1>
+                                    <h1 className='text-2xl font-semibold pr-2'>{overall}</h1>
 
-                                    {[...Array(5)].map((_, index) => (
-
-                                        <CiStar key={index} size={30} className='text-yellow-400' />
-
+                                    {overall > 0 && [...Array.from({ length: overall }, (_, index) => index + 1)].map((_, index) => (
+                                        <CiStar
+                                            key={index}
+                                            size={50}
+                                            className=" text-[#00CED1]"
+                                        />
+                                    ))}
+                                    {[...Array.from({ length: 5 - overall}, (_, index) => index + 1)].map((_, index) => (
+                                        <CiStar
+                                            key={index}
+                                            size={50}
+                                            className="text-gray-500"
+                                        />
                                     ))}
                                 </div>
                                 <div>
                                     <div className='flex items-center py-1'>
                                         <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price===1?"w-1/5":price===2?"w-2/5":price===3?"w-3/5":price===4?"w-4/5":price===5?"w-full":""}`} />
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
                                         </div>
                                         <h1 className='pl-4 font-light text-sm'>
                                             Preis
@@ -193,7 +150,7 @@ const ReviewAndAdd = () => {
                                     </div>
                                     <div className='flex items-center py-1'>
                                         <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation===1?"w-1/5":innovation===2?"w-2/5":innovation===3?"w-3/5":innovation===4?"w-4/5":innovation===5?"w-full":""}`} />
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation === 1 ? "w-1/5" : innovation === 2 ? "w-2/5" : innovation === 3 ? "w-3/5" : innovation === 4 ? "w-4/5" : innovation === 5 ? "w-full" : ""}`} />
                                         </div>
                                         <h1 className='pl-4 font-light text-sm'>
                                             Innovation
@@ -201,7 +158,7 @@ const ReviewAndAdd = () => {
                                     </div>
                                     <div className='flex items-center py-1'>
                                         <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software===1?"w-1/5":software===2?"w-2/5":software===3?"w-3/5":software===4?"w-4/5":software===5?"w-full":""}`} />
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software === 1 ? "w-1/5" : software === 2 ? "w-2/5" : software === 3 ? "w-3/5" : software === 4 ? "w-4/5" : software === 5 ? "w-full" : ""}`} />
                                         </div>
                                         <h1 className='pl-4 font-light text-sm'>
                                             Software
@@ -209,27 +166,26 @@ const ReviewAndAdd = () => {
                                     </div>
                                     <div className='flex items-center py-1'>
                                         <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService===1?"w-1/5":customerService===2?"w-2/5":customerService===3?"w-3/5":customerService===4?"w-4/5":customerService===5?"w-full":""}`} />
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
                                         </div>
                                         <h1 className='pl-4 font-light text-sm'>
-                                        Kundenservice
+                                            Kundenservice
                                         </h1>
                                     </div>
                                     <div className='flex items-center py-1'>
                                         <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing===1?"w-1/5":processing===2?"w-2/5":processing===3?"w-3/5":processing===4?"w-4/5":processing===5?"w-full":""}`} />
+                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
                                         </div>
                                         <h1 className='pl-4 font-light text-sm'>
-                                        Verarbeitungen
+                                            Verarbeitungen
                                         </h1>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <SingleReviewPropertyCard specs={specs} productType={productType}/>
+                        <SingleReviewPropertyCard specs={specs} productType={productType} />
                         <ProsAndCons />
                         <PriceCards />
-                        <FirstImpression />
                     </div>
                     <div className='col-span-2 lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} ></div>
                 </div>
@@ -239,54 +195,91 @@ const ReviewAndAdd = () => {
                         modules={[Navigation, Pagination, Scrollbar, A11y]}
                         spaceBetween={20}
                         slidesPerView={1}
-                        // navigation
                         pagination={{ clickable: true }}
-                        // scrollbar={{ draggable: true }}
                         onSwiper={(swiper) => console.log(swiper)}
                         onSlideChange={() => console.log('slide change')}
                         className='h-56 relative'>
-                        {mobileImageUrl.map((items, index) => {
+                        {images.map((item, index) => {
                             return <SwiperSlide className=''>
-                                <img key={index} src={items.url} alt="" className='w-full h-56 mx-7 shadow-2xl shadow-[#1E1E1E]/50' />
+                                <div className='w-full px-2'>
+                                    <div className='w-full h-56 bg-cover bg-center'
+                                        style={{ backgroundImage: `url(/${item.path})` }}>
+                                    </div>
+                                </div>
                             </SwiperSlide>
                         })}
                     </Swiper>
+
                     <div className=' px-6 py-8 flex flex-col justify-center items-center'>
-                        <h1 className='py-8 text-neutral-800 text-2xl font-semibold '>Creality Ender 3 S1</h1>
-                        <p className='pb-4 text-center'>Der Ender 3 S1 ist die dritte Generation des erfolgreichen Creality Ender. <br />
-                            Dieser 3D Drucker ist durch jahrelange Weiterentwicklung erprobt und <br />
-                            bietet zahlreiche Erweiterungsmöglichkeiten.</p>
+                        <h1 className='py-8 text-neutral-800 text-2xl font-semibold '>{productName && productName}</h1>
+
+                        <p className='pb-4 text-center'>{discription && discription}</p>
                         <div className='flex items-center py-4'>
-                            <h1 className='text-xl font-semibold'>4.5</h1>
-
-                            {[...Array(5)].map((_, index) => (
-
-                                <CiStar key={index} color={'#00CED1'} size={30} className='text-[#00CED1] ' />
-
-                            ))}
+                            <h1 className='text-xl font-semibold'>{overall}</h1>
+                            {overall > 0 && [...Array.from({ length: overall }, (_, index) => index + 1)].map((_, index) => (
+                                        <CiStar
+                                            key={index}
+                                            size={30}
+                                            className=" text-[#00CED1]"
+                                        />
+                                    ))}
+                                    {[...Array.from({ length: 5 - overall}, (_, index) => index + 1)].map((_, index) => (
+                                        <CiStar
+                                            key={index}
+                                            size={30}
+                                            className="text-gray-500"
+                                        />
+                                    ))}
                         </div>
                         <div>
-                            {[...Array(5)].map((_, index2) => (
-
-                                <div key={index2} className='flex items-center'>
-
-                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                        <div className='absolute w-40 h-2 bg-[#00CED1]' />
+                            <div className=''>
+                                <div className='flex items-center py-1'>
+                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
                                     </div>
-                                    <h1 key={index2} className='pl-4'>
-                                        {names[index2].element}
+                                    <h1 className='pl-4 font-light text-sm'>
+                                        Preis
                                     </h1>
                                 </div>
-
-
-                            ))}
+                                <div className='flex items-center py-1'>
+                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation === 1 ? "w-1/5" : innovation === 2 ? "w-2/5" : innovation === 3 ? "w-3/5" : innovation === 4 ? "w-4/5" : innovation === 5 ? "w-full" : ""}`} />
+                                    </div>
+                                    <h1 className='pl-4 font-light text-sm'>
+                                        Innovation
+                                    </h1>
+                                </div>
+                                <div className='flex items-center py-1'>
+                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software === 1 ? "w-1/5" : software === 2 ? "w-2/5" : software === 3 ? "w-3/5" : software === 4 ? "w-4/5" : software === 5 ? "w-full" : ""}`} />
+                                    </div>
+                                    <h1 className='pl-4 font-light text-sm'>
+                                        Software
+                                    </h1>
+                                </div>
+                                <div className='flex items-center py-1'>
+                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
+                                    </div>
+                                    <h1 className='pl-4 font-light text-sm'>
+                                        Kundenservice
+                                    </h1>
+                                </div>
+                                <div className='flex items-center py-1'>
+                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
+                                    </div>
+                                    <h1 className='pl-4 font-light text-sm'>
+                                        Verarbeitungen
+                                    </h1>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
-                    <SingleReviewPropertyCard />
+                    <SingleReviewPropertyCard specs={specs} productType={productType} />
                     <ProsAndCons />
                     <PriceCards />
-                    <FirstImpression />
                 </div>
             )}
         </>

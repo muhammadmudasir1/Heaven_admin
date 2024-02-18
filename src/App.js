@@ -54,7 +54,7 @@ const App = () => {
                             <Route path="/result/scanner/:price/:manufacture" element={<ComparePage />} />
                             <Route path="/result/cutter/:price/:manufacture" element={<ComparePage />} />
                             <Route path="/product" element={<Review />} >
-                                <Route path="all3dprinter" element={<ScrollView />} />
+                                {/* <Route path="all3dprinter" element={<ScrollView />} /> */}
                                 <Route path="fdm" element={<FDMView />} />
                                 <Route path="sla" element={<SLAView />} />
                                 <Route path="scanner" element={<ScannerView />} />
@@ -64,7 +64,6 @@ const App = () => {
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
                             <Route path="/news" element={<Result/>}>
-                                {/* <Route path="/news" element={<ScrollView/>}/> */}
                             </Route>
                         </Route>
                         <Route element={ <PrivatePage/>}>

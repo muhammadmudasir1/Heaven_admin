@@ -1,39 +1,248 @@
 import React from 'react'
 import { useState } from 'react'
 import { FaCopy } from "react-icons/fa";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { ArrowForwardIos } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
+import ClipLoader from 'react-spinners/ClipLoader';
+
+
+
+const PriceTitle = ({ purchaseLink, activeCard, setActiveCard, ownIndex }) => {
+    const [price, setPrice] = useState(0)
+    const [unit, setUnit] = useState("")
+    const [isLoading, setIsloading] = useState(false)
+
+
+    useEffect(() => {
+        const fetchPrice = async () => {
+            setIsloading(true)
+            const result = await Api.get(`/api/products/Price/${purchaseLink.purchaseLinksId}`)
+            setIsloading(false)
+            setPrice(result.data.discountedPrice)
+            setUnit(result.data.unit)
+        }
+        fetchPrice()
+    }, [purchaseLink])
+
+    return (
+        <button
+            className={`${activeCard === ownIndex ? "bg-gray-100 text-customBlue" : "bg-customBlue text-white"}  text-base font-black flex flex-col items-center justify-center text-center w-full py-1 mx-1 rounded-t-xl hover:bg-sky-500 hover:text-white`}
+            onClick={(e) => {
+                setActiveCard(ownIndex)
+            }}
+        >
+            {purchaseLink.title}
+            <br />
+            <div className='py-2'>
+                <ClipLoader
+                    size={20}
+                    loading={isLoading}
+                    color={ownIndex === activeCard ? "#026CC4" : "#ffffff"}
+                />
+                {
+                    !isLoading && <p className='text-2xl font-light'>{price}<span className='px-1'>{unit}</span></p>
+                }
+            </div>
+        </button>
+    )
+}
+const Card = ({ link }) => {
+    const couponRef = useRef()
+    const [price, setPrice] = useState(0)
+    const [originalPrice, setOriginalPrice] = useState(0)
+    const [unit, setUnit] = useState("")
+    const [isLoading, setIsloading] = useState(false)
+
+
+    useEffect(() => {
+        const fetchPrice = async () => {
+            setIsloading(true)
+            const result = await Api.get(`/api/products/Price/${link.purchaseLinksId}`)
+            setIsloading(false)
+            setPrice(result.data.discountedPrice)
+            setOriginalPrice(result.data.originalPrice)
+            setUnit(result.data.unit)
+        }
+        fetchPrice()
+    }, [link])
+
+    const copyCoupon = () => {
+        if (couponRef.current) {
+            const copeid = couponRef.current.innerHTML;
+            console.log(copeid)
+            navigator.clipboard.writeText(copeid);
+        }
+    };
+
+
+    const sites = [
+        "Amazon",
+        "Ebay",
+        "GeekBuying",
+        "TomTop",
+        "3DJake",
+        "Ortur",
+        "AnyCubic",
+        "Artillery3D",
+        "BambuLab",
+        "Creality",
+        "Elegoo",
+        "Revopoint",
+        "Sculpfun",
+        "TwoTrees",
+        "QidiTech"]
+    return (
+        <div className='w-full bg-gray-100 rounded-b-xl rounded-tr-xl'>
+            <div className='flex items-center'>
+                <div className='w-3/4 px-8 py-5'>
+                    <h1 className='text-neutral-800 text-3xl font-black py-4'>{sites[link.siteType - 1]}</h1>
+                    <p className=''>{link.discription}</p>
+                    <div className='flex items-center gap-2'>
+                        <h1 className='text-neutral-700 text-xl font-bold'>Coupon code: <span ref={couponRef}>{link.coupon}</span></h1>
+                        <FaCopy
+                            className='hover:text-customBlue cursor-pointer'
+                            onClick={(e) => { copyCoupon() }}
+                            title="Copy"
+                        />
+                    </div>
+                </div>
+                <div className='w-[2px] h-36 bg-gray-500' />
+                <div className='flex flex-col items-center justify-center pl-8 pb-4'>
+                    <div className=''>
+                        <ClipLoader
+                            size={20}
+                            loading={isLoading}
+                            color={"#026CC4"}
+                        />
+                        {
+                            !isLoading && <div className='flex flex-col items-center'>
+                                {
+                                    originalPrice &&
+                                    <p className='text-neutral-800 text-xl font-light line-through pt-2 pb-1'>{originalPrice} <span className=''>{unit}</span></p>
+                                }
+                                <p className='text-neutral-800 text-3xl font-black pb-4'>{price}<span className='px-1'>{unit}</span></p>
+                            </div>
+                        }
+                    </div>
+                    <button className='rounded-xl px-8 bg-cyan-500 text-neutral-800 text-base font-black py-4'
+                        onClick={(e) => {
+                            window.open(link.visitingLink, "_blank")
+                        }}
+                    >Visit {sites[link.siteType - 1]}</button>
+                </div>
+            </div >
+        </div >
+    )
+}
+
+const MobileCard = ({ link }) => {
+    const couponRef = useRef()
+    const [price, setPrice] = useState(0)
+    const [originalPrice, setOriginalPrice] = useState(0)
+    const [unit, setUnit] = useState("")
+    const [isLoading, setIsloading] = useState(false)
+
+
+    useEffect(() => {
+        const fetchPrice = async () => {
+            setIsloading(true)
+            const result = await Api.get(`/api/products/Price/${link.purchaseLinksId}`)
+            setIsloading(false)
+            setPrice(result.data.discountedPrice)
+            setOriginalPrice(result.data.originalPrice)
+            setUnit(result.data.unit)
+        }
+        fetchPrice()
+    }, [link])
+
+    const copyCoupon = () => {
+        if (couponRef.current) {
+            const copeid = couponRef.current.innerHTML;
+            console.log(copeid)
+            navigator.clipboard.writeText(copeid);
+        }
+    };
+
+    const sites = [
+        "Amazon",
+        "Ebay",
+        "GeekBuying",
+        "TomTop",
+        "3DJake",
+        "Ortur",
+        "AnyCubic",
+        "Artillery3D",
+        "BambuLab",
+        "Creality",
+        "Elegoo",
+        "Revopoint",
+        "Sculpfun",
+        "TwoTrees",
+        "QidiTech"]
+    return (
+        <div className='bg-[#F4F4F4] my-2 rounded-xl'>
+            <div className=' flex justify-between'>
+                <div className='bg-[#026CC4] rounded-tl-xl rounded-br-xl px-5 text-white font-semibold'>{link.title}</div>
+                <div className='flex items-center p-2 mx-2'>
+                    <div>{link.coupon}</div>
+                    <div className='px-2'><FaCopy onClick={(e) => copyCoupon()} /></div>
+                </div>
+            </div>
+            <div className='grid grid-cols-6 px-5 py-2'>
+                <div className='col-span-3'>
+                    <h1 className='text-xl font-bold'>{sites[link.siteType - 1]}</h1>
+                    <p className=''>
+                        {link.discription}
+                    </p>
+                </div>
+                <div className='col-span-3 items-center justify-center py-2 '>
+
+                    <div className=' h-3/5 flex items-center justify-center text-2xl font-bold'>
+                        <div className='h-full border-l-[2px] border-black py-7 pl-6'>
+                            <div className=''>
+                                <ClipLoader
+                                    size={20}
+                                    loading={isLoading}
+                                    color={"#026CC4"}
+                                />
+                                {
+                                    !isLoading && <div className='flex flex-col items-center'>
+                                        {
+                                            originalPrice &&
+                                            <p className='text-neutral-800 text-xl font-light line-through pt-2 pb-1'>{originalPrice} <span className=''>{unit}</span></p>
+                                        }
+                                        <p className='text-neutral-800 text-3xl font-black pb-4'>{price}<span className='px-1'>{unit}</span></p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className='flex items-center justify-center bg-white mt-1 rounded-3xl py-2 px-4'
+                        onClick={(e) => {
+                            window.open(link.visitingLink, "_blank")
+                        }}
+                    >
+                        <div className='pr-8 '>Go to Website</div>
+                        <div className='flex items-center justify-center rounded-full h-8 w-12 bg-[#026CC4]'>
+                            <ArrowForwardIos fontSize='6px' className='text-white' />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    )
+}
+
 
 const PriceCards = () => {
-
-    const [isClicked, setIsClicked] = useState(false);
-    const [isClicked1, setIsClicked1] = useState(false);
-    const [isClicked2, setIsClicked2] = useState(false);
-    const [isClicked3, setIsClicked3] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-    const {id}=useParams()
-    const [purchaseLinks,setPurchaseLinsks]=useState([])
-
-    const handleClick = () => {
-        setIsClicked(!isClicked)
-        setIsOpen(!isOpen)
-    }
-    const handleClick1 = () => {
-        setIsClicked1(!isClicked1)
-        setIsOpen(!isOpen)
-    }
-    const handleClick2 = () => {
-        setIsClicked2(!isClicked2)
-        setIsOpen(!isOpen)
-    }
-    const handleClick3 = () => {
-        setIsClicked3(!isClicked3)
-        setIsOpen(!isOpen)
-    }
-
+    const [active, setActive] = useState(0)
+    const { id } = useParams()
+    const [purchaseLinks, setPurchaseLinsks] = useState([])
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -45,20 +254,21 @@ const PriceCards = () => {
         };
     }, []);
 
-    useEffect(()=>{
-        const fetchData=async ()=>{
+    useEffect(() => {
+        const fetchData = async () => {
             try {
-                const result= await Api(`/api/products/PurchaseLinks/${id}`)
+                const result = await Api(`/api/products/PurchaseLinks/${id}`)
                 setPurchaseLinsks(result.data)
+                console.log(result.data)
             } catch (error) {
                 console.log(error)
             }
         }
         fetchData()
-    },[id])
-    
-    
-    
+    }, [id])
+
+
+
     const cards = [
         {
             title: "Geekbuying",
@@ -91,86 +301,30 @@ const PriceCards = () => {
 
     ]
 
+
     return (
         <>
             {!isMobile ? (
                 <div className='flex flex-col items-center justify-center w-full'>
                     <div className='flex flex-col items-center justify-start w-full pl-8 pr-12'>
-                        <div className='flex items-center justify-start w-full '>
+                        <div className='grid grid-cols-4 w-full gap-2 '>
                             {
-                                purchaseLinks.map((link)=>{
-                                    return <button 
-                                    onBlur={(e) => { setIsClicked3(false) }}
-                                    onClick={handleClick3}
-                                    className={`${isClicked3 ?
-                                        'bg-zinc-100 text-sky-600 text-base font-semibold'
-                                        :'bg-sky-600 text-white text-base font-black'}
-                                        flex items-center justify-center text-center w-56 py-4 mx-1 rounded-t-xl
-                                        `}>
-                                        {link.title}
-                                        <br /> ab €400</button>
+                                purchaseLinks.map((link, index) => {
+                                    return <PriceTitle purchaseLink={link} ownIndex={index} activeCard={active} setActiveCard={setActive} />
 
                                 })
                             }
                         </div>
-                        <div onClick={handleClick} className='w-full bg-zinc-100 rounded-b-xl rounded-tr-xl'>
-                            {isOpen && (
-                                <div className='flex items-center'>
-                                    <div className='w-3/4 px-8 py-5'>
-                                        <h1 className='text-neutral-800 text-3xl font-black py-4'>Geekbuying</h1>
-                                        <p className=''>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                            <br />
-                                            nonumy eirmod tempor invidunt ut labore et dolore
-                                        </p>
-                                        <div className='flex items-center gap-2'>
-                                            <h1 className='text-neutral-700 text-xl font-bold'>Coupon code: NNNNW44fgg</h1>
-                                            <FaCopy />
-                                        </div>
-                                    </div>
-                                    <div className='w-1 h-36 bg-neutral-800' />
-                                    <div className='flex flex-col items-center justify-center pl-8 pb-4'>
-                                        <h1 className='text-neutral-800 text-3xl font-black py-4'>€400</h1>
-                                        <button className='rounded-xl px-8 bg-cyan-500 text-neutral-800 text-base font-black py-4'>Visit 3D Jake</button>
-                                    </div>
-                                </div>
-
-                            )}
-                        </div>
+                        {
+                            purchaseLinks.length > 0 &&
+                            <Card link={purchaseLinks[active]} />
+                        }
                     </div>
                 </div>
             ) : (
                 <div className=' px-11'>
-                    {cards.map((items, index) => {
-                        return <div key={index} className='bg-[#F4F4F4] my-2 rounded-xl'>
-                            <div className=' flex justify-between'>
-                                <div className='bg-[#026CC4] rounded-tl-xl rounded-br-xl px-5 text-white font-semibold'>Fast delivery</div>
-                                <div className='flex items-center px-2 mx-2'>
-                                    <div>{items.coupon_Code}</div>
-                                    <div><FaCopy /></div>
-                                </div>
-                            </div>
-                            <div className='grid grid-cols-6 px-5 py-2'>
-                                <div className='col-span-3'>
-                                    <h1 className='text-xl font-bold'>{items.title}</h1>
-                                    <p className='line-clamp-5'>{items.detail}</p>
-                                </div>
-                                <div className='col-span-3 items-center justify-center py-2 '>
-                                    
-                                        <div className='flex items-center justify-center text-2xl font-bold'>
-                                            <div className='border-l-2 border-black py-7 pl-6'>
-                                            {items.price}
-                                            </div>
-                                        </div>
-                                    <div className='flex items-center justify-center bg-white mt-1 rounded-3xl py-2 px-4'>
-                                        <div className='pr-8 '>Go to Website</div>
-                                        <div className='flex items-center justify-center rounded-full h-8 w-12 bg-[#026CC4]'>
-                                            <ArrowForwardIos fontSize='6px' />
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                    {purchaseLinks.map((item, index) => {
+                        return <MobileCard link={item} />
                     })}
                 </div>
             )}

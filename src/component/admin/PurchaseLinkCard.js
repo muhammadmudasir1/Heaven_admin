@@ -89,7 +89,7 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
     const sites = [
         "Amazon",
         "Ebay",
-        "GeeksBuying",
+        "GeekBuying",
         "TomTop",
         "3DJake",
         "Ortur",

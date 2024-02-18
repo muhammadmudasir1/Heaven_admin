@@ -21,7 +21,7 @@ const SLAspecs = ({ products }) => {
                 <div className={`w-full border-b-[2px] border-gray-500 py-2  `}>
                     <h2 className='text-2xl font-semibold'>{t('installationSpace')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -36,7 +36,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>Monoscreen</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -51,7 +51,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>{t('pixelResolution')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -66,7 +66,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>{t('XYPixelResolution')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -81,7 +81,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>{t('ZAxis')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -96,7 +96,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>{t('ZAxisResolution')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -111,7 +111,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>Platform</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -126,7 +126,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>Touchscreen</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -141,7 +141,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>{t('printSpeed')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -156,7 +156,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>{t('lightingTechnology')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -171,7 +171,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>{t('lightDensity')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -186,7 +186,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>{t('airPurificationSystem')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -201,7 +201,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>{t('interface')}</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
@@ -216,7 +216,7 @@ const SLAspecs = ({ products }) => {
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
                     <h2 className='text-2xl font-semibold'>Build Size</h2>
                 </div>
-                <div className={`w-full p-2 grid ${products.length>=4?"grid-cols-4":products.length>=3?"grid-cols-3":products.length>=2?"grid-cols-2":products.length>=1?"grid-cols-1":""}`}>
+                <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (

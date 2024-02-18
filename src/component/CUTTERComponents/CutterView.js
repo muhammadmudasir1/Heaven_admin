@@ -4,11 +4,12 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import PaginationClass from "../ComparisonComponet/PaginationClass";
 import Api from "../../api/Api";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const CutterView = () => {
   const [CardPerPage, setCardPerPage] = useState(5);
   const [CurrentPage, setCurrentPage] = useState(1);
-
+  const {width}=useWindowDimensions()
   const navigation = useNavigate();
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const CutterView = () => {
   };
 
   return (
+    width>600?
     <div className="flex flex-col items-center">
       <div className="grid grid-cols-7 p-5 w-full">
         <div className="col-span-5 h-325px pr-12 pl-6">
@@ -110,6 +112,43 @@ const CutterView = () => {
         onPageChange={handlePageChange}
       />
     </div>
+    :<div>
+    {Cards.map((items, index) => {
+      return <>
+        <div key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
+          { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
+        }>
+          <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/${items.ProductImages[0].path})` }} />
+          <div className='col-span-2 ml-2 flex flex-col items-start justify-center'>
+            <h1 className='mt-5 text-xl font-bold pr-2 line-clamp-2'>{items.product_name}</h1>
+            <div className='flex pt-2'>
+              {items.overall_rating > 0 && [...Array.from({ length: items.overall_rating }, (_, index) => index + 1)].map((_, index) => (
+                <CiStar
+                  key={index}
+                  size={25}
+                  className="text-amber-500"
+                />
+              ))}
+              {[...Array.from({ length: 5 - items.overall_rating }, (_, index) => index + 1)].map((_, index) => (
+                <CiStar
+                  key={index}
+                  size={25}
+                  className="text-gray-500"
+                />
+              ))}
+            </div>
+            <p className='line-clamp-3 pt-2 pr-2  text-neutral-700'>{items.discription}</p>
+            <div className='flex items-center py-2 mb-2'>
+              <Link to={`/productreview/${items.Id}`} className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>Read More</Link>
+              <MdKeyboardDoubleArrowRight size={20} />
+            </div>
+          </div>
+        </div>
+
+        {(index + 1) % 3 === 0 && index !== currentCard.length - 1 && <div key={``} className="h-12 bg-red-300" />}
+      </>
+    })}
+  </div>
   );
 };
 

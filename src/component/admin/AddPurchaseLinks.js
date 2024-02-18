@@ -47,7 +47,7 @@ const AddPurchaseLinks = () => {
   const fetchOldPurchaseLinks = async () => {
     try {
       setOldPurchaseLinks(null)
-      const result = await Api.get(`/api//products/purchaselinks/${id}`)
+      const result = await Api.get(`/api/products/purchaselinks/${id}`)
       setOldPurchaseLinks(result.data)
       console.log(result)
     } catch (error) {

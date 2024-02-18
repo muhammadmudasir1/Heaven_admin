@@ -46,7 +46,7 @@ const AddSpecs = () => {
           setFetchData(response.data.LeaserCutter)
         }
         else if (response.data.productType === 4) {
-          setFetchData(response.data.scannar)
+          setFetchData(response.data.scanner)
         }
 
       } catch (error) {
@@ -147,8 +147,7 @@ const AddSpecs = () => {
           }
         }
         else {
-          setAuth(null)
-          navigate('/login')
+          console.log(error)
         }
       }
 

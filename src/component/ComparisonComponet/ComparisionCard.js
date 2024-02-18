@@ -99,12 +99,12 @@ const PriceTile = ({ priceData }) => {
         fetchPrice()
     }, [priceData])
     return (
-        <div className='flex border-2 items-center justify-evenly border-blue-500 md:rounded-md rounded-xl py-2 md:h-14 h-10 my-2 w-full p-2' >
-            <div className='md:w-1/2 w-1/3 h-full flex justify-center items-center rounded-xl  p-2 bg-gray-300'>
+        <div className='flex border-2 items-center justify-evenly border-blue-500 md:rounded-md rounded-xl py-2 md:h-14 h-10 my-2 w-full p-2 hover:bg-customBlue cursor-pointer group' >
+            <div className='md:w-1/2 w-1/3 h-full flex justify-center items-center rounded-xl  p-2 bg-gray-300 '>
 
                 <img src={logo} alt="" className='w-full' />
             </div>
-            <div className=' flex justify-center items-center'>
+            <div className=' flex justify-center items-center group group-hover:text-white'>
                 {isLoading ?
                     <div className='flex flex-col justify-center items-center py-2'>
                         <ClipLoader
@@ -113,7 +113,7 @@ const PriceTile = ({ priceData }) => {
                             color={"#026CC4"}
                         />
                     </div>
-                    : <h1 className='pl-2 md:text-xl text-lg  font-bold '>
+                    : <h1 className='pl-2 md:text-xl text-lg  font-bold group-hover:text-white '>
                         {/* <span className='text-sm mt-1 font-light'>{unit === '€' && "Euro"}</span> */}
                         {price}
                         <span className='text-sm ml-1 font-light'>{unit === '$' ? "USD" : "Euro"}</span></h1>
@@ -138,6 +138,7 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
     const [purchaselinks, setPurchaseLinks] = useState([])
     const { width } = useWindowDimensions()
     useEffect(() => {
+        console.log(card)
         let purchaselink = card.purchaseLinks.map((element) => {
             if (element.coupon) {
                 let site = ""
@@ -337,7 +338,11 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                         <div className='flex flex-col  items-center justify-around my-7 w-full border-l-[2px] border-gray-300 '>
                             <div className='flex flex-col justify-start items-center h-1/5 '>
                                 <p className='text-lg'>Offical Price:</p>
-                                <h1 className=' font-bold text-xl'>{card.price}</h1>
+                                <h1 className=' font-bold text-xl'>
+                                <span className='font-light'>{card && card.unit == "€" && "Euro"}  </span>
+                                    {card && card.price}
+                                    <span className='font-light'>  {card && card.unit == "$" && "USD"}</span>
+                                </h1>
 
                             </div>
                             <div className='px-6 w-full'>
