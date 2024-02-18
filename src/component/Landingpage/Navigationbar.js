@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from 'react-icons/fa';
 import { PiMagnifyingGlass } from "react-icons/pi";
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, Link } from 'react-router-dom';
 import StickyFooter from './StickyFooter';
 import SearchData from './SearchData.json'
 import { MdOutlineArrowDropDown } from "react-icons/md";
@@ -146,7 +146,7 @@ const Navigationbar = () => {
                                         <NavLink to={'/'} >startseite</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <NavLink to={'/#topFive'}>Beste Liste</NavLink>
+                                        <Link to={'/#topFive'}>Beste Liste</Link>
                                     </li>
                                     <li className='z-20 text-black relative'>
                                         <NavLink onClick={SearchMenu} to={'/product'} className='flex ml-24 mr-20 text-center'>3D Druckers

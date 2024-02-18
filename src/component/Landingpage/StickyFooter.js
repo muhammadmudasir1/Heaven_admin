@@ -3,7 +3,7 @@ import { IoLogoInstagram } from "react-icons/io";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const StickyFooter = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -28,7 +28,7 @@ const StickyFooter = () => {
                             <div className='pr-8'>
                                 <NavLink to={'/'} className='text-white text-xl'>Home</NavLink><br />
                                 <NavLink to={'/news'} className='text-white text-xl'>News</NavLink><br />
-                                <NavLink to={'/#topFive'} className='text-white text-xl'>Top 5</NavLink><br />
+                                <Link to={'/#topFive'} className='text-white text-xl'>Top 5</Link><br />
                             </div>
                             <div className=' pr-6'>
                                 <NavLink to={'/product/sla'} className='text-white text-xl'>SLA</NavLink><br />
@@ -66,15 +66,15 @@ const StickyFooter = () => {
                         <h1 className='text-neutral-100 text-5xl font-bold pt-24'>Quick links</h1>
                         <div className='flex py-20'>
                             <div className='pr-40'>
-                                <NavLink to={'/'} className={`text-2xl text-white`}>Home</NavLink><br />
-                                <NavLink to={'/news'} className={`text-2xl text-white`}>News</NavLink><br />
-                                <NavLink to={'#topFive'} className={`text-2xl text-white`}>Best Deals</NavLink><br />
+                                <NavLink to={'/'} className={`text-2xl text-white pt-1`}>Home</NavLink><br />
+                                <NavLink to={'/news'} className={`text-2xl text-white pt-1`}>News</NavLink><br />
+                                <Link to={'#topFive'} className={`text-2xl text-white pt-1`}>Best Deals</Link><br />
                             </div>
-                            <div className='pr-8'>
-                                <NavLink to={'/product/sla'} className={`text-2xl text-white`}>SLA 3D Printer</NavLink><br />
-                                <NavLink to={'/product/fdm'} className={`text-2xl text-white`}>FDM 3D Printer</NavLink><br />
-                                <NavLink to={'/product/scanner'} className={`text-2xl text-white`}>Scanner</NavLink><br />
-                                <NavLink to={'/product/cutter'} className={`text-2xl text-white`}>Laser</NavLink>
+                            <div className='pr-8 '>
+                                <NavLink to={'/product/sla'} className={`text-2xl text-white pt-1`}>SLA 3D Printer</NavLink><br />
+                                <NavLink to={'/product/fdm'} className={`text-2xl text-white pt-1`}>FDM 3D Printer</NavLink><br />
+                                <NavLink to={'/product/scanner'} className={`text-2xl text-white pt-1`}>Scanner</NavLink><br />
+                                <NavLink to={'/product/cutter'} className={`text-2xl text-white pt-1`}>Laser</NavLink>
                             </div>
                         </div>
                         <h1 className='text-neutral-100 text-5xl font-bold '>Our channels</h1>
