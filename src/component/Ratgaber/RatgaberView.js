@@ -3,6 +3,7 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link, NavLink } from 'react-router-dom';
 import PaginationClass from '../ComparisonComponet/PaginationClass';
 import { useNavigate } from 'react-router-dom';
+import Api from '../../api/Api';
 
 const RatgaberView = () => {
 
@@ -26,57 +27,21 @@ const RatgaberView = () => {
     }, [CardPerPage])
 
     const [Cards, setCards] = useState([
-        {
-
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
     ]);
+    console.log('<osama></osama>')
+    useEffect (()=>{
+        const RATGABER = async ()=>{
+            try {
+                const response = await Api.get(`/api/beginnersGuid`);
+                console.log(response.data);
+                console.log('areesha osama')
+                setCards(response.data)
+            } catch (error) {
+                console.log(error,'osama error');
+            }
+        }
+        RATGABER();
+    },[])
 
     const indexOfLastCard = CurrentPage * CardPerPage;
     const indexOfFirstCard = indexOfLastCard - CardPerPage;

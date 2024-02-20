@@ -29,7 +29,8 @@ import AddNews from "./component/admin/AddNews"
 import BeginnersGuid from "./component/admin/BeginnersGuid"
 import AddBeginnersGuid from "./component/admin/AddBeginnersGuid"
 import UserPage from "./component/admin/users/UserPage"
-import News from "./component/News"
+// import News from "./component/News"
+import News from "./component/admin/News"
 import NewsView from "./component/NewsView"
 import Ratgaber from './component/Ratgaber'
 

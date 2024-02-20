@@ -8,7 +8,7 @@ const Profilecontainer = () => {
                 <h1 className='text-neutral-800 lg:text-5xl text-2xl font-bold '>
                     Beginner’s guide to buy <br/> the right 3D printer
                 </h1>
-                <NavLink to={'/reviews'} className='text-neutral-800 bg-white rounded-md flex items-center justify-center lg:px-8 px-4 lg:py-4 py-2 lg:mt-14 mt-4 lg:text-2xl font-medium '>
+                <NavLink to={'/ratgaber'} className='text-neutral-800 bg-white rounded-md flex items-center justify-center lg:px-8 px-4 lg:py-4 py-2 lg:mt-14 mt-4 lg:text-2xl font-medium '>
                     Beginner’s guide
                 </NavLink>
             </div>
