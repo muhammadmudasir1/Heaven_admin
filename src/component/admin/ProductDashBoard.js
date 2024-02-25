@@ -119,6 +119,13 @@ const ProductDashboard = () => {
                         setCurrentProductType(4)
                     }}
                 >3D Scannar</button>
+                <button
+                    className={
+                        `bg-gray-300 ${currentProducttype === 5 ? 'border-b-4 border-customBlue' : " "}  px-10 py-3`}
+                    onClick={(e) => {
+                        setCurrentProductType(5)
+                    }}
+                >Filament</button>
 
             </div>
             <div className="2xl:h-[700px] xl:h-[400px] w-full border-gray-200 border-2 p-2 overflow-scroll overflow-x-hidden ">

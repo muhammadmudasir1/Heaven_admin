@@ -190,8 +190,13 @@ const AddProduct = () => {
             const response = await Api.post('/api/products/', fd,config)
             populateProduct(response.data)
             setLoading(false)
-            navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
-            navigate(`/dashboard/addSpecs/${response.data}`)
+            if (productType!=5){
+                navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
+                navigate(`/dashboard/addSpecs/${response.data}`)
+            }
+            else{
+                navigate('/dashboard/product')
+            }
 
 
         } catch (error) {
@@ -208,8 +213,13 @@ const AddProduct = () => {
                     const response = await Api.post('/api/products/', fd,config)
                     populateProduct(response.data)
                     setLoading(false)
-                    navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
-                    navigate(`/dashboard/addSpecs/${response.data}`)
+                    if (productType!=5){
+                        navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
+                        navigate(`/dashboard/addSpecs/${response.data}`)
+                    }
+                    else{
+                        navigate('/dashboard/product')
+                    }
         
 
                 } catch (error) {
@@ -422,7 +432,7 @@ const AddProduct = () => {
                                 <option value={2}>FDM Printers</option>
                                 <option value={3}>Leaser Cutter</option>
                                 <option value={4}>3D Scannar</option>
-                                <option value={5}>Others</option>
+                                <option value={5}>Filament</option>
                             </select>
                             {productTypeError ? <p className='text-red-500 text-sm'>Product Type is Compulsory</p> : null}
                         </section>
@@ -507,7 +517,8 @@ const AddProduct = () => {
 
                         }
 
-
+                        {
+                        productType!=5 &&
                         <section className="flex justify-center">
                             <label className="ml-4">
                                 Include in Best Deals
@@ -520,6 +531,7 @@ const AddProduct = () => {
                                 }}
                             />
                         </section>
+                        }
                     </div>
 
 

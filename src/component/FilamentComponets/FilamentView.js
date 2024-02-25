@@ -44,9 +44,9 @@ const FilamentView = () => {
           {currentCard.map((Cards) => {
             return (
               <div
-                onClick={(e) => {
-                  navigation(`/productreview/${Cards.Id}`);
-                }}
+                // onClick={(e) => {
+                //   navigation(`/productreview/${Cards.Id}`);
+                // }}
                 className="flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer"
                 style={{
                     boxShadow:
@@ -55,7 +55,7 @@ const FilamentView = () => {
               >
                 <div
                   className="rounded-l-xl lg:w-1/3 bg-cover bg-center w-full h-[358.18px]"
-                  style={{ backgroundImage: `url(/${Cards.ProductImages[0].path})`, }}
+                  style={{ backgroundImage: `url(/api/${Cards.ProductImages[0].path})`, }}
                   
                 >
                 </div>
@@ -83,13 +83,13 @@ const FilamentView = () => {
                     {Cards.discription}
                   </p>
                   <div className="flex items-center pb-4">
-                    <Link
+                    {/* <Link
                       to={"../OneReview"}
                       className="underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal"
                     >
                       Read More
                     </Link>
-                    <MdKeyboardDoubleArrowRight size={25} />
+                    <MdKeyboardDoubleArrowRight size={25} /> */}
                   </div>
                 </div>
               </div>

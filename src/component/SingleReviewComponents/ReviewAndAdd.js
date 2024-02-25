@@ -4,7 +4,7 @@ import SingleReviewPropertyCard from './SingleReviewPropertyCard';
 import ProsAndCons from './ProsAndCons';
 import { useEffect } from 'react';
 import PriceCards from './PriceCards'
-import FirstImpression from './FirstImpression';
+import WarningBannar from './WarningBannar';
 import { useState } from 'react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -104,6 +104,13 @@ const ReviewAndAdd = () => {
         <>
             {!isMobile ? (
                 <div className='grid-cols-8 grid '>
+                    <div className=' col-span-6 p-4'>
+                    {
+                    productType===3 &&
+                    <WarningBannar/>
+                    }
+
+                    </div>
                     <div className=' col-span-8' id='alle'>
                         <h1 class="w-full py-8 bg-zinc-100 flex items-center px-20 text-neutral-800 text-[32px] font-semibold">
                             Alle Wichtigste</h1>

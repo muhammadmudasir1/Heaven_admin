@@ -16,15 +16,6 @@ const SingleReviewTabbar = () => {
         }
       }
       window.addEventListener('scroll', fixedTabbar)
-    //   useEffect(() => {
-    
-    //     window.addEventListener('resize', handleResize);
-    
-    //     return () => {
-    //       window.removeEventListener('resize', handleResize);
-    //     };
-    //   }, []);
-
 
     useEffect(() => {
         const handleResize = () => {
