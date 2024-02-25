@@ -26,18 +26,16 @@ const RatgaberView = () => {
         console.log(CardPerPage)
     }, [CardPerPage])
 
-    const [Cards, setCards] = useState([
-    ]);
-    console.log('<osama></osama>')
+    const [Cards, setCards] = useState([]);
+
     useEffect (()=>{
         const RATGABER = async ()=>{
             try {
                 const response = await Api.get(`/api/beginnersGuid`);
                 console.log(response.data);
-                console.log('areesha osama')
                 setCards(response.data)
             } catch (error) {
-                console.log(error,'osama error');
+                console.log(error);
             }
         }
         RATGABER();
@@ -59,14 +57,13 @@ const RatgaberView = () => {
 
                         <div className=' lg:col-span-5 h-full lg:pr-12' >
                             {currentCard.map(Cards => {
-                                return <div onClick={(e) => { navigate(`/productreview/${1}/allmostimportant`) }} className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
+                                return <div className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
                                     style={
                                         { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                                     }>
-                                    <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[358.18px]' style={{ backgroundImage: `url(${Cards.url})` }} />
+                                    <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[358.18px]' style={{ backgroundImage: `url(/api/${Cards.image})` }} />
                                     <div className='lg:pl-8 w-3/5 '>
-                                        <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.title}</h1>
-                                        <p className='pb-4 text-neutral-700 text-xl font-light line-clamp-6'>{Cards.review}</p>
+                                        <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.Title}</h1>
                                         <div className='flex items-center pb-4'>
                                             <Link to={'/product/all3dprinter/singlereview'} className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal'>Read More</Link>
                                             <MdKeyboardDoubleArrowRight size={25} />
@@ -91,13 +88,10 @@ const RatgaberView = () => {
                             <div key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
                                 { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                             }>
-                                <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(${items.url})` }} />
+                                <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.image})` }} />
                                 <div className='col-span-2 ml-2 flex flex-col items-start justify-center'>
-                                    <h1 className='mt-5 text-xl font-bold'>{items.title}</h1>
-                                    <p className='line-clamp-3 pt-2  text-neutral-700'>{items.review}</p>
+                                    <h1 className='mt-5 text-xl font-bold'>{items.Title}</h1>
                                     <div className='flex items-center py-2 mb-2'>
-                                        <Link to={'/product/all3dprinter/singlereview'} className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>Read More</Link>
-                                        <MdKeyboardDoubleArrowRight size={20} />
                                     </div>
                                 </div>
                             </div>

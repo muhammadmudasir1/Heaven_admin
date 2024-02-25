@@ -23,19 +23,19 @@ const StickyFooter = () => {
             {isMobile ? (
                 <>
                     <div className='px-4 '>
-                        <h1 className='text-neutral-100 text-3xl font-normal font-[Avenir] py-4'>Quick links</h1>
+                        <h1 className='text-neutral-100 text-3xl font-normal  py-4'>Quick links</h1>
                         <div className='flex py-4'>
                             <div className='pr-8'>
-                                <NavLink to={'/'} className='text-white text-xl'>Home</NavLink><br />
-                                <NavLink to={'/news'} className='text-white text-xl'>News</NavLink><br />
-                                <Link to={'/#topFive'} className='text-white text-xl'>Top 5</Link><br />
+                                <NavLink to={'/'} className='text-white text-base'>Home</NavLink><br />
+                                <NavLink to={'/news'} className='text-white text-base'>News</NavLink><br />
+                                <Link to={'/#topFive'} className='text-white text-base'>Top 5</Link><br />
                             </div>
                             <div className=' pr-6'>
-                                <NavLink to={'/product/sla'} className='text-white text-xl'>SLA</NavLink><br />
-                                <NavLink to={'/product/fdm'} className='text-white text-xl'>FDM</NavLink><br />
-                                <NavLink to={'/product/scanner'} className='text-white text-xl'>Scanner</NavLink><br />
+                                <NavLink to={'/product/sla'} className='text-white text-base'>SLA</NavLink><br />
+                                <NavLink to={'/product/fdm'} className='text-white text-base'>FDM</NavLink><br />
+                                <NavLink to={'/product/scanner'} className='text-white text-base'>Scanner</NavLink><br />
                             </div>
-                                <NavLink to={'/product/cutter'} className='text-white text-xl'>Cutter</NavLink><br />
+                                <NavLink to={'/product/cutter'} className='text-white text-base'>Cutter</NavLink><br />
                         </div>
                     </div>
                     <div className='flex flex-row bg-[#4d6464] py-4 justify-between px-6'>

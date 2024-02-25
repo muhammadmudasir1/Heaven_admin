@@ -4,6 +4,7 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link, NavLink } from 'react-router-dom';
 import PaginationClass from '../ComparisonComponet/PaginationClass';
 import { useNavigate } from 'react-router-dom';
+import Api from '../../api/Api';
 
 const AddAndNews = () => {
 
@@ -26,58 +27,20 @@ const AddAndNews = () => {
         console.log(CardPerPage)
     }, [CardPerPage])
 
-    const [Cards, setCards] = useState([
-        {
+    const [Cards, setCards] = useState([]);
 
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-        {
-            url: 'https://static.wixstatic.com/media/5d104f_67ee508823b24198b6122f43e47d5b08~mv2.jpg/v1/crop/x_66,y_0,w_1852,h_1125/fill/w_443,h_268,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%20Titelbild.jpg',
-
-            title: 'Two Trees SK-1',
-
-            review: `Lorem ipsum dolor sit amet consectetur adipisicing elit. ${<br />} Sit laudantium possimus cupiditate atque totam molestias consequuntur ratione ${<br />} repellat fugiat autem voluptates ut ex rerum dolores numquam temporibus dolorem, alias eos.`
-        },
-    ]);
+    useEffect (()=>{
+        const fetchData = async ()=>{
+            try {
+                const response = await Api.get(`/api/news`);
+                console.log(response.data);
+                setCards(response.data)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    },[])
 
     const indexOfLastCard = CurrentPage * CardPerPage;
     const indexOfFirstCard = indexOfLastCard - CardPerPage;
@@ -95,18 +58,13 @@ const AddAndNews = () => {
 
                         <div className=' lg:col-span-5 h-full lg:pr-12' >
                             {currentCard.map(Cards => {
-                                return <div onClick={(e) => { navigate(`/productreview/${1}/allmostimportant`) }} className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
+                                return <div className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
                                     style={
                                         { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                                     }>
-                                    <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[358.18px]' style={{ backgroundImage: `url(/api/${Cards.url})` }} />
+                                    <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[358.18px]' style={{ backgroundImage: `url(/api/${Cards.image})` }} />
                                     <div className='lg:pl-8 w-3/5 '>
-                                        <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.title}</h1>
-                                        <p className='pb-4 text-neutral-700 text-xl font-light line-clamp-6'>{Cards.review}</p>
-                                        <div className='flex items-center pb-4'>
-                                            <Link to={'/product/all3dprinter/singlereview'} className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal'>Read More</Link>
-                                            <MdKeyboardDoubleArrowRight size={25} />
-                                        </div>
+                                        <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.Title}</h1>
                                     </div>
                                 </div>
                             })}
@@ -127,14 +85,9 @@ const AddAndNews = () => {
                             <div key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
                                 { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                             }>
-                                <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.url})` }} />
+                                <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.image})` }} />
                                 <div className='col-span-2 ml-2 flex flex-col items-start justify-center'>
-                                    <h1 className='mt-5 text-xl font-bold'>{items.title}</h1>
-                                    <p className='line-clamp-3 pt-2  text-neutral-700'>{items.review}</p>
-                                    <div className='flex items-center py-2 mb-2'>
-                                        <Link to={'/product/all3dprinter/singlereview'} className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>Read More</Link>
-                                        <MdKeyboardDoubleArrowRight size={20} />
-                                    </div>
+                                    <h1 className='mt-5 text-xl font-bold'>{items.Title}</h1>
                                 </div>
                             </div>
 
