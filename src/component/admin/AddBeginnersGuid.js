@@ -262,7 +262,7 @@ const AddBeginnersGuid = () => {
                                                     />
                                                     :
                                                     <img
-                                                        src={`/api/${picture.preview}`}
+                                                        src={`${picture.preview}`}
                                                         key={index}
                                                         className='w-full'
                                                     />

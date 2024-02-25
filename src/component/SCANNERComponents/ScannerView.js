@@ -152,8 +152,8 @@ const ScannerView = () => {
                 <div className='flex items-center py-2 mb-2'>
                   <p 
                   onClick={(e) => {
-                    const name=Cards.product_name.replaceAll(' ','-')
-                    navigation(`/productreview/${name}/${Cards.Id}`);
+                    const name=items.product_name.replaceAll(' ','-')
+                    navigation(`/productreview/${name}/${items.Id}`);
                   }}
                   className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>Read More</p>
                   <MdKeyboardDoubleArrowRight size={20} />
