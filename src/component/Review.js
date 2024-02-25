@@ -35,9 +35,7 @@ const Review = () => {
             </div>
 
           </div>
-          {/* <ReviewTabbar /> */}
           <Outlet />
-          {/* <ScrollView /> */}
         </>
       ) : (
         <>
@@ -45,9 +43,7 @@ const Review = () => {
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZd8IFhFAzVB_AdUsDwZMmRzafOAhzsQ_JlQ&usqp=CAU" alt="" className='lg:w-60 lg:h-60 w-36 h-36 rounded-full ' />
             <h1 className='text-neutral-800 lg:text-5xl text-2xl mt-6 font-bold text-center'> Reviews from our <br /> 3D expert</h1>
           </div>
-          {/* <ReviewTabbar/> */}
           <Outlet />
-          {/* <ScrollView/> */}
         </>
       )}
 
