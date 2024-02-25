@@ -32,7 +32,7 @@ const PriceFilter = ({ setPrice,price}) => {
                 </option>
             </select>
 
-            <div className='absolute right-0 flex items-center h-full pl-2 pr-2 md:pl-8 md:pr-2 mr-1'> {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />} </div>
+            {/* <div className='absolute right-0 flex items-center h-full pl-2 pr-2 md:pl-8 md:pr-2 mr-1'> {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />} </div> */}
         </div>
     );
 };

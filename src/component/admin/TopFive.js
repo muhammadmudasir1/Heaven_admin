@@ -27,8 +27,14 @@ const SearchedLines = ({ product, selectedItems, setInCards, reRender }) => {
 
     const InsertProduct = () => {
         setInCards((cards) => {
-            cards.pop()
-            return [...cards, product]
+            if(cards.length>=5){
+                cards.pop()
+                return [...cards, product]
+            }
+            else{
+                return [...cards, product]
+
+            }
 
         })
         setIncludeInSelected(true)
@@ -38,7 +44,9 @@ const SearchedLines = ({ product, selectedItems, setInCards, reRender }) => {
     const popFromProduct = () => {
         setInCards((cards) => {
             const temp = cards.filter((card) => {
-                if (card.Id === product.Id) {
+                console.log(card)
+                console.log(product)
+                if (card &&  product && card.Id === product.Id) {
                     return false
 
                 }
@@ -47,7 +55,8 @@ const SearchedLines = ({ product, selectedItems, setInCards, reRender }) => {
                 }
 
             })
-            return [...temp, null]
+            console.log(temp)
+            return [...temp]
         })
         setIncludeInSelected(false)
 

@@ -32,6 +32,7 @@ const AddSpecs = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true)
         const response = await Api.get(`/api/products/${id}`)
         console.log(response.data)
         setProductType(response.data.productType)
@@ -48,8 +49,10 @@ const AddSpecs = () => {
         else if (response.data.productType === 4) {
           setFetchData(response.data.scanner)
         }
-
+        setIsLoading(false)
+        
       } catch (error) {
+        setIsLoading(false)
         setErr("Product is not Found")
       }
 

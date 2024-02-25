@@ -26,6 +26,7 @@ const AddBeginnersGuid = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setIsLoading(true)
                 const response = await Api.get(`api/BeginnersGuid/${id}`)
                 setTitle(response.data.Title)
                 setBlog(response.data.body)
@@ -33,7 +34,9 @@ const AddBeginnersGuid = () => {
                     setImages([response.data.image])
                     setImageFromApi(true)
                 }
+                setIsLoading(false)
             } catch (error) {
+                setIsLoading(false)
                 console.log(error)
             }
         }

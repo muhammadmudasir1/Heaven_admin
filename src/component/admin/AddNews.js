@@ -25,6 +25,7 @@ const AddNews = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setIsLoading(true)
                 const response = await Api.get(`api/news/${id}`)
                 setTitle(response.data.Title)
                 setBlog(response.data.body)
@@ -32,17 +33,15 @@ const AddNews = () => {
                     setImages([response.data.image])
                     setImageFromApi(true)
                 }
+                setIsLoading(false)
             } catch (error) {
+                setIsLoading(false)
                 console.log(error)
             }
         }
-        if (id) {
-            setIsLoading(true)
-            fetchData()
-            setIsLoading(false)
-        }
+        fetchData()
 
-    }, [id])
+    }, [])
 
     const onDropImages = useCallback((acceptedFiles) => {
         const NewFiles = acceptedFiles.map(file => {
@@ -111,7 +110,9 @@ const AddNews = () => {
         if (title && blog) {
             const config = {
                 headers: {
-                    Authorization: `Bearer ${auth.accessToken}`
+                    Authorization: `Bearer ${auth.accessToken}`,
+                    maxBodyLength: 2000000,
+                    maxContentLength: 2000000,
                 }
             }
             try {
@@ -130,6 +131,8 @@ const AddNews = () => {
                         headers: {
                             'Content-Type': 'application/json',
                             Authorization: `Bearer ${accessToken}`,
+                            maxBodyLength: 2000000,
+                            maxContentLength: 2000000,
                         },
                     }
                     try {
@@ -146,6 +149,9 @@ const AddNews = () => {
                         setIsLoading(false)
                     }
                 }
+                else {
+                    setIsLoading(false)
+                }
             }
         }
         else {
@@ -158,7 +164,9 @@ const AddNews = () => {
         if (title && blog) {
             const config = {
                 headers: {
-                    Authorization: `Bearer ${auth.accessToken}`
+                    Authorization: `Bearer ${auth.accessToken}`,
+                    maxBodyLength: 2000000,
+                    maxContentLength: 2000000,
                 }
             }
             try {
@@ -168,7 +176,7 @@ const AddNews = () => {
                 fd.append("body", blog)
                 fd.append("Title", title)
                 setIsLoading(true)
-                await Api.patch(`/api/news/${id}`, fd,config)
+                await Api.patch(`/api/news/${id}`, fd, config)
                 setIsLoading(false)
                 setIsUpdated(true)
                 setTimeout(() => {
@@ -182,6 +190,8 @@ const AddNews = () => {
                         headers: {
                             'Content-Type': 'application/json',
                             Authorization: `Bearer ${accessToken}`,
+                            maxBodyLength: 2000000,
+                            maxContentLength: 2000000,
                         },
                     }
                     try {
@@ -191,7 +201,7 @@ const AddNews = () => {
                         fd.append("body", blog)
                         fd.append("Title", title)
                         setIsLoading(true)
-                        await Api.patch(`/api/news/${id}`, fd,config)
+                        await Api.patch(`/api/news/${id}`, fd, config)
                         setIsLoading(false)
                         setIsUpdated(true)
                         setTimeout(() => {

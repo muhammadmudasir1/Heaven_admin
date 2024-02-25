@@ -3,15 +3,12 @@ import Result from '../component/ComparisonResult/Result'; // Import the Result 
 import Tabbar from './Landingpage/Tabbar';
 
 const CompareResult = () => {
-  // Assuming you have the selectedCards in the state or props
-  const selectedCards = []; // Replace this with your actual selectedCards
 
   return (
     <>
     <Tabbar/>
     <div>
-      {/* You can include other content related to CompareResult here */}
-      <Result selectedCards={selectedCards} />
+      <Result />
     </div>
     </>
   );

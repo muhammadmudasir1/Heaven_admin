@@ -7,6 +7,7 @@ import Api from '../../api/Api';
 const ProsAndCons = () => {
     const [isToggled, setIsToggled] = useState(false);
     const [isToggledCons, setIsToggledCons] = useState(false);
+    const [isLoading,setIsLoading]=useState(false)
     const [pros, setPros] = useState('')
     const [cons, setCons] = useState('')
     const { id } = useParams()
@@ -22,11 +23,13 @@ const ProsAndCons = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setIsLoading(true)
                 const result = await Api.get(`/api/products/review/${id}`)
                 setPros(result.data[0].pros)
                 setCons(result.data[0].cons)
-                console.log(result.data[0].pros)
+                setIsLoading(false)
             } catch (error) {
+                setIsLoading(false)
                 console.log(error)
             }
         }
@@ -37,7 +40,27 @@ const ProsAndCons = () => {
     }, [pros])
 
     return (
-        <div className='my-8 pl-8 pr-12 '>
+        isLoading ?
+        <div className='my-8 pl-8 pr-12' id='prosAndCons'>
+                <div className='mb-4'>
+                    <div className='flex justify-between px-8 py-4 bg-gray-100 rounded-xl animate-pulse'>
+                        <div className='text-neutral-700 text-2xl font-bold lg:font-medium '>
+                            Pros
+                        </div>
+                    </div>
+                  
+                </div>
+                <div className='mb-4'>
+                    <div className='flex justify-between px-8 py-4 bg-gray-100 rounded-xl animate-pulse'>
+                        <div className='text-neutral-700 font-bold text-2xl lg:font-medium '>
+                            Cons
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+        :
+        <div className='my-8 pl-8 pr-12' id='prosAndCons'>
             {
                 pros &&
                 <div onClick={handleToggle} className='mb-4'>

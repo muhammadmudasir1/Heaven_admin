@@ -5,7 +5,7 @@ import SingleReviewTabbar from './SingleReviewComponents/SingleReviewTabbar'
 import ReviewAndAdd from './SingleReviewComponents/ReviewAndAdd'
 import Emptydiv from './SingleReviewComponents/Emptydiv'
 import ColumnCard from './SingleReviewComponents/ColumnCard'
-import Detail from './SingleReviewComponents/Detail'
+import ScopeOfDelivery from './ScopeOfDelivery'
 const SingleReview = () => {
   return (
     <div>
@@ -15,7 +15,7 @@ const SingleReview = () => {
       <ReviewAndAdd />
       <Emptydiv/>
       <ColumnCard/>
-      <Detail/>
+      <ScopeOfDelivery/>
     </div>
   )
 }

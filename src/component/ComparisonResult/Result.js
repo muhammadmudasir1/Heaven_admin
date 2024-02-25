@@ -2,6 +2,9 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SLAspecs from './SLAspecs';
+import FDMSpecs from './FDMspecs';
+import LaserSpecs from './LaserSpecs';
+import ScannarSpecs from './ScannarSpecs';
 import Api from '../../api/Api';
 import ebay from '../../imges/EBay_logo.png'
 import amazon from '../../imges/amazon.png'
@@ -29,6 +32,10 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { useTranslation } from 'react-i18next';
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
+
+
+
+
 
 const PriceTile = ({ priceData }) => {
   const [price, setPrice] = useState(0)
@@ -199,6 +206,8 @@ const Result = () => {
   const [isEnd, setIsEnd] = useState(false)
   const [active, setActive] = useState(0)
   const { t } = useTranslation()
+  const [isLoading,setIsLoading]=useState(false)
+
   useEffect(() => {
     const Query = new URLSearchParams(location.search);
     let products = Query.get('products')
@@ -219,6 +228,7 @@ const Result = () => {
     }
     const fetchAllProductsData = async () => {
       let data = []
+      setIsLoading(true)
       for (let productId of products) {
         let responseData = await fetchData(productId)
         responseData.ProductImages = responseData.ProductImages.filter((image) => {
@@ -240,6 +250,7 @@ const Result = () => {
         data = [...data, responseData]
       }
       setSelectedProducts(data)
+      setIsLoading(false)
     }
     fetchAllProductsData()
   }, [location]);
@@ -258,10 +269,14 @@ const Result = () => {
   }
   window.addEventListener('scroll', fixedTabbar)
 
+  useEffect(()=>{
+    console.log(selectedProducts)
+  },[selectedProducts])
+
   return (
     width > 600 ?
       <>
-        <div className={`flex items-center justify-center w-full bg-white ${isSticky && "fixed top-[8vh] lg:top-[10vh] "}`} >
+        <div className={`flex items-center justify-center w-full bg-white ${isSticky && "fixed top-[8vh] lg:top-[10vh] z-[999]"}`} >
           <div className={`my-4 w-full px-4 grid grid-cols-4 `}>
             {selectedProducts.map((element) => {
               return <Card data={element} />
@@ -269,9 +284,20 @@ const Result = () => {
             }
           </div>
         </div>
-        <SLAspecs products={selectedProducts} />
+        {
+          selectedProducts.length>0 && selectedProducts[0].productType===1?
+          <SLAspecs products={selectedProducts} />
+          : selectedProducts.length>0 &&selectedProducts[0].productType===2?<FDMSpecs products={selectedProducts}/>
+          : selectedProducts.length>0 &&selectedProducts[0].productType===3?<LaserSpecs products={selectedProducts}/>
+          : selectedProducts.length>0 &&selectedProducts[0].productType===4&&<ScannarSpecs products={selectedProducts}/>
+        }
       </>
-      : <div className='w-full h-px-4'>
+      : 
+      <>
+      {
+      !isLoading &&
+      selectedProducts.length>0 && selectedProducts[0].productType===1&&
+      <div className='w-full h-px-4'>
         <div className=' w-screen h-10 flex items-center justify-end px-4  '>
           {
             !isBeginning ?
@@ -390,6 +416,398 @@ const Result = () => {
         </div>
 
       </div>
+
+      }
+      {
+      !isLoading&&
+      selectedProducts.length>0 && selectedProducts[0].productType===2&&
+      <div className='w-full h-px-4'>
+        <div className=' w-screen h-10 flex items-center justify-end px-4  '>
+          {
+            !isBeginning ?
+              <button className="text-3xl hover:text-customBlue text-gray-600"
+                onClick={(e) => {
+                  swiperInstance.slidePrev()
+                }}
+              >
+                <div className='bg-gray-200 rounded-full flex items-center justify-center p-[2px]'>
+                  <FaAngleLeft className=' text-xl' />
+                </div>
+              </button>
+              : <div></div>
+          }
+          <div className='flex items-center'>
+            {
+              selectedProducts.map((items, i) => {
+                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+              })
+            }
+          </div>
+          {
+            !isEnd && selectedProducts && selectedProducts.length > 1 ?
+              <button className="text-3xl hover:text-customBlue text-gray-600"
+                onClick={(e) => {
+                  swiperInstance.slideNext()
+                }}
+              >
+                <div className='bg-gray-200 rounded-full flex items-center justify-center p-[2px]'>
+                  <FaAngleRight className='text-xl' />
+                </div>
+              </button>
+              : <div />
+          }
+        </div>
+        <div className='w-full grid grid-cols-3'>
+          <div>
+            <div className='h-[300px] mb-2'></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('installationSpace')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('surfaceArea')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('DriveTech')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintVolume')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('ZAxisPrintingAccuracy')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintingAccuracyXYResolution')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintBedTechnology')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('FilamentCompatibility')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintSpeed')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('NozzleTempurature')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintBedTemperature')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PressureChamberTempurature')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('VibrationSuppression')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('AutomaticPrintBedMeasurement')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('AutomaticZOffsetCalibration')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('LidarScannar')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('DoorSensor')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('AirFilter')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('circulationFanPressureRoom')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('supportingComponentCooling')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('DataConnection')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintRoomCamera')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('LEDLight')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('motherboard')}</p></div>
+
+          </div>
+          <div className=' col-span-2  '>
+            <Swiper
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={4}
+              slidesPerView={2}
+              onSwiper={(swiper) => handleSwiper(swiper)}
+              onSlideChange={(swiperCurrent) => {
+                setIsBeginning(swiperCurrent.isBeginning)
+                setIsEnd(swiperCurrent.isEnd)
+                setActive((swiperCurrent.activeIndex))
+              }}
+              className=' w-full h-full '
+            >
+              {
+                selectedProducts.map((element) => {
+                  { console.log(element) }
+                  return <SwiperSlide
+                    className='w-full p-2 '
+                  >
+                    <div className='w-full  bg-white rounded-xl shadow-md'
+                    >
+                      <div className='flex flex-col items-center rounded-lg  h-[300px] w-full overflow-hidden'>
+                        <div className=' h-32 w-full  bg-cover bg-center '
+                          style={{ backgroundImage: `url(/api/${element.ProductImages && element.ProductImages[0].path})` }}
+                        />
+                        <div className='px-1 '><h2 className=' line-clamp-2 text-center'>{element.product_name}</h2></div>
+                        <p className='flex line-through'>
+
+                          <span className='font-light'>{element && element.unit == "€" && "Euro "}  </span>  {element && element.price} <span className='font-light'>  {element && element.unit == "$" && " USD"}</span>
+                        </p>
+                        <div className='px-3'>
+
+                          {
+                            element.purchaseLinks && element.purchaseLinks.map((link) => {
+                              return <PriceTile priceData={link} />
+                            })
+                          }
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.installationSpace}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.surfaceArea}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.driveTech}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printVolume}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.ZAxisPrintingAccuracy}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printingAccuracyXYResolution}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printBedTechnology}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.filamentCompatibility}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printSpeed}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.nozzleTempurature}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printTempurature}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.pressureChamberTempurature}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.vibrationSuppresion ? "YES" : "NO"}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.automaticPrintBedMeasurement ? "YES" : "NO"}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.automaticZOffsetCalibration ? "YES" : "NO"}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.liderScannar ? "YES" : "NO"}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.doorScannar ? "YES" : "NO"}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.airFilter}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.circulationFanPressureRoom ? "YES" : "NO"}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.supportingComponentCooling ? "YES" : "NO"}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.dataConnection}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printRoomCamera}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.LEDLighting ? "YES" : "NO"}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.motherboard}</p></div>
+
+                    </div>
+
+                  </SwiperSlide>
+                })
+              }
+            </Swiper>
+          </div>
+        </div>
+
+      </div>
+      }
+      {
+      !isLoading&&
+      selectedProducts.length>0 && selectedProducts[0].productType===3&&
+      <div className='w-full h-px-4'>
+        <div className=' w-screen h-10 flex items-center justify-end px-4  '>
+          {
+            !isBeginning ?
+              <button className="text-3xl hover:text-customBlue text-gray-600"
+                onClick={(e) => {
+                  swiperInstance.slidePrev()
+                }}
+              >
+                <div className='bg-gray-200 rounded-full flex items-center justify-center p-[2px]'>
+                  <FaAngleLeft className=' text-xl' />
+                </div>
+              </button>
+              : <div></div>
+          }
+          <div className='flex items-center'>
+            {
+              selectedProducts.map((items, i) => {
+                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+              })
+            }
+          </div>
+          {
+            !isEnd && selectedProducts && selectedProducts.length > 1 ?
+              <button className="text-3xl hover:text-customBlue text-gray-600"
+                onClick={(e) => {
+                  swiperInstance.slideNext()
+                }}
+              >
+                <div className='bg-gray-200 rounded-full flex items-center justify-center p-[2px]'>
+                  <FaAngleRight className='text-xl' />
+                </div>
+              </button>
+              : <div />
+          }
+        </div>
+        <div className='w-full grid grid-cols-3'>
+          <div>
+            <div className='h-[300px] mb-2'></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('diodeLaserOutputPower')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('laserWavelength')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('engravingAccuracy')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('engravingAreaSize')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('focusingMethod')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('airAssistCompressor')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('interface')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('powerSupplyOutputPower')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> Laser Software</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('Engraving Material')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('Cutting Material')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('workingArea')}</p></div>
+
+          </div>
+          <div className=' col-span-2  '>
+            <Swiper
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={4}
+              slidesPerView={2}
+              onSwiper={(swiper) => handleSwiper(swiper)}
+              onSlideChange={(swiperCurrent) => {
+                setIsBeginning(swiperCurrent.isBeginning)
+                setIsEnd(swiperCurrent.isEnd)
+                setActive((swiperCurrent.activeIndex))
+              }}
+              className=' w-full h-full '
+            >
+              {
+                selectedProducts.map((element) => {
+                  { console.log(element) }
+                  return <SwiperSlide
+                    className='w-full p-2 '
+                  >
+                    <div className='w-full  bg-white rounded-xl shadow-md'
+                    >
+                      <div className='flex flex-col items-center rounded-lg  h-[300px] w-full overflow-hidden'>
+                        <div className=' h-32 w-full  bg-cover bg-center '
+                          style={{ backgroundImage: `url(/api/${element.ProductImages && element.ProductImages[0].path})` }}
+                        />
+                        <div className='px-1 '><h2 className=' line-clamp-2 text-center'>{element.product_name}</h2></div>
+                        <p className='flex line-through'>
+
+                          <span className='font-light'>{element && element.unit == "€" && "Euro "}  </span>  {element && element.price} <span className='font-light'>  {element && element.unit == "$" && " USD"}</span>
+                        </p>
+                        <div className='px-3'>
+
+                          {
+                            element.purchaseLinks && element.purchaseLinks.map((link) => {
+                              return <PriceTile priceData={link} />
+                            })
+                          }
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.laserPower}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.laserWavelength}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.engravingAccuracy}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.engravingArea}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.focusingMethod}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.airAssistCompressor}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.interface}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.powerSupplyOutputPower}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.laserSoftware}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.engravingMaterial}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.cuttingMaterial}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.workingArea}</p></div>
+
+                    </div>
+
+                  </SwiperSlide>
+                })
+              }
+            </Swiper>
+          </div>
+        </div>
+
+      </div>
+      }
+      {
+      !isLoading&&
+      selectedProducts.length>0 && selectedProducts[0].productType===4&&
+      <div className='w-full h-px-4'>
+        <div className=' w-screen h-10 flex items-center justify-end px-4  '>
+          {
+            !isBeginning ?
+              <button className="text-3xl hover:text-customBlue text-gray-600"
+                onClick={(e) => {
+                  swiperInstance.slidePrev()
+                }}
+              >
+                <div className='bg-gray-200 rounded-full flex items-center justify-center p-[2px]'>
+                  <FaAngleLeft className=' text-xl' />
+                </div>
+              </button>
+              : <div></div>
+          }
+          <div className='flex items-center'>
+            {
+              selectedProducts.map((items, i) => {
+                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+              })
+            }
+          </div>
+          {
+            !isEnd && selectedProducts && selectedProducts.length > 1 ?
+              <button className="text-3xl hover:text-customBlue text-gray-600"
+                onClick={(e) => {
+                  swiperInstance.slideNext()
+                }}
+              >
+                <div className='bg-gray-200 rounded-full flex items-center justify-center p-[2px]'>
+                  <FaAngleRight className='text-xl' />
+                </div>
+              </button>
+              : <div />
+          }
+        </div>
+        <div className='w-full grid grid-cols-3'>
+          <div>
+            <div className='h-[300px] mb-2'></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scaningPrecision')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanAccuracy')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scaningArea')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanningDistance')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanSpeed')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('objectDimensionHandScan')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('objectDimensionTurnTable')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('lightSource')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('camera')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('standardPackage')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('premiumPackage')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanMinimumSize')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanMaximumSize')}</p></div>
+
+          </div>
+          <div className=' col-span-2  '>
+            <Swiper
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={4}
+              slidesPerView={2}
+              onSwiper={(swiper) => handleSwiper(swiper)}
+              onSlideChange={(swiperCurrent) => {
+                setIsBeginning(swiperCurrent.isBeginning)
+                setIsEnd(swiperCurrent.isEnd)
+                setActive((swiperCurrent.activeIndex))
+              }}
+              className=' w-full h-full '
+            >
+              {
+                selectedProducts.map((element) => {
+                  { console.log(element) }
+                  return <SwiperSlide
+                    className='w-full p-2 '
+                  >
+                    <div className='w-full  bg-white rounded-xl shadow-md'
+                    >
+                      <div className='flex flex-col items-center rounded-lg  h-[300px] w-full overflow-hidden'>
+                        <div className=' h-32 w-full  bg-cover bg-center '
+                          style={{ backgroundImage: `url(/api/${element.ProductImages && element.ProductImages[0].path})` }}
+                        />
+                        <div className='px-1 '><h2 className=' line-clamp-2 text-center'>{element.product_name}</h2></div>
+                        <p className='flex line-through'>
+
+                          <span className='font-light'>{element && element.unit == "€" && "Euro "}  </span>  {element && element.price} <span className='font-light'>  {element && element.unit == "$" && " USD"}</span>
+                        </p>
+                        <div className='px-3'>
+
+                          {
+                            element.purchaseLinks && element.purchaseLinks.map((link) => {
+                              return <PriceTile priceData={link} />
+                            })
+                          }
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanningPrecision}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanAccuracy}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanningArea}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanningDistance}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanSpeed}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.objectDimension_handScan}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.objectDimension_turnTable}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.lightSource}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.camera}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.standardPackage}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.premiumPackage}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanMinimumSize}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanMaximumSize}</p></div>
+
+                    </div>
+
+                  </SwiperSlide>
+                })
+              }
+            </Swiper>
+          </div>
+        </div>
+
+      </div>
+      }
+      </>
   );
 };
 

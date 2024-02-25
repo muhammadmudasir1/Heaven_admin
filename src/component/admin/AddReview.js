@@ -25,8 +25,9 @@ const AddReview = () => {
     const refresh = useRefresh()
 
     useEffect(() => {
-        try {
-            const fetchData = async () => {
+        const fetchData = async () => {
+            try {
+                setIsLoading(true)
                 const response = await Api.get(`/api/products/review/${id}`)
                 if (response.data[0]) {
                     setPros(response.data[0].pros)
@@ -35,19 +36,24 @@ const AddReview = () => {
                     setReviewId(response.data[0].id)
                     setSeoKeys(response.data[0].seoKeys)
                 }
+                setIsLoading(false)
+
+            } catch (error) {
+                setIsLoading(false)
+                console.log(error)
             }
-            fetchData()
-        } catch (error) {
-            console.log(error)
         }
-    }, [])
+        fetchData()
+    }, [id])
 
 
 
     const handleSave = async () => {
         const config = {
             headers: {
-                Authorization: `Bearer ${auth.accessToken}`
+                Authorization: `Bearer ${auth.accessToken}`,
+                maxBodyLength: 2000000,
+                maxContentLength: 2000000,
             }
         }
 
@@ -66,7 +72,7 @@ const AddReview = () => {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${accessToken}`,
-                        maxBodyLength: 2000000, // Example: 2 MB (2000000 bytes)
+                        maxBodyLength: 2000000,
                         maxContentLength: 2000000,
                     },
                 }

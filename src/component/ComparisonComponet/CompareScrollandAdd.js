@@ -80,7 +80,6 @@ const CompareScrollandAdd = ({ reload }) => {
         else if (priceParams == 5) {
             priceParams = 2500
         }
-        // console.log(priceParams)
 
         const fetchData = async () => {
             setSelectedCards([])

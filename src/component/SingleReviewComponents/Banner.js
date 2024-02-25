@@ -21,14 +21,14 @@ const Banner = () => {
     <>
       {!isMobile ? (
 
-        <div className='flex items-center justify-center bg-zinc-100 '>
+        <div className='flex items-center justify-center bg-zinc-100 py-4'>
           <h1 className='text-neutral-800 text-5xl font-bold pr-44'>Im Test Creality <br /> Ender 3 S1</h1>
           <img src={imageUrl} alt="" className='pl-44' />
         </div>
 
       ) : (
         <>
-          <div className='w-full relative'>
+          <div className='w-full relative '>
             <img src={image} alt="" className='w-full' />
             <h1 className='absolute text-start top-12 left-8 text-neutral-800 text-2xl font-bold '>I am Test Creality<br />Ender 3 S1</h1>
           </div>

@@ -202,7 +202,7 @@ const ManageSODImages = ({ productId }) => {
                         return <div className='relative group rounded-md overflow-hidden shadow-md '>
                             <div
                                 className='bg-cover b-center h-32 2xl:h-44 relative flex flex-col-reverse'
-                                style={{ backgroundImage: `url(/api/${image.preview})` }}
+                                style={{ backgroundImage: `url(${image.preview})` }}
                             >
                                 <div className='absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-40'></div>
                                 <RxCross2 className='absolute top-1 right-1 bg-customBlue rounded-full text-white p-[1px] hover:bg-sky-500 hover:text-red-500 cursor-pointer'

@@ -33,6 +33,7 @@ import UserPage from "./component/admin/users/UserPage"
 import News from "./component/admin/News"
 import NewsView from "./component/NewsView"
 import Ratgaber from './component/Ratgaber'
+import SearchView from "./component/SearchView"
 
 
 const App = () => {
@@ -48,16 +49,13 @@ const App = () => {
                             <Route path="/" element={<Home />} />
                             <Route path="/filament" element={<ShowFilament />} />
                             <Route path="/ratgaber" element={<Ratgaber/>}/>
-                            <Route path="/result/:fdm/:price/:product" element={<ComparePage />}/>
                             <Route path='/comparision' element={<CompareResult/>} />
-                            <Route path="/result/sla/:price/:manufacture" element={<ComparePage />} />
-                            <Route path="/result/scanner/:price/:manufacture" element={<ComparePage />} />
-                            <Route path="/result/cutter/:price/:manufacture" element={<ComparePage />} />
                             <Route path="/product" element={<Review />} >
                                 <Route path="fdm" element={<FDMView />} />
                                 <Route path="sla" element={<SLAView />} />
                                 <Route path="scanner" element={<ScannerView />} />
                                 <Route path="cutter" element={<CutterView />} />
+                                <Route path="search" element={<SearchView/>} />
                             </Route>
                             <Route path="/productreview/:id" element={<SingleReview />} >
                                 <Route path="allmostimportant" element={<SingleReview />} />

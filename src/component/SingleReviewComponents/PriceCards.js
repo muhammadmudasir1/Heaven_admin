@@ -28,7 +28,7 @@ const PriceTitle = ({ purchaseLink, activeCard, setActiveCard, ownIndex }) => {
 
     return (
         <button
-            className={`${activeCard === ownIndex ? "bg-gray-100 text-customBlue" : "bg-customBlue text-white"}  text-base font-black flex flex-col items-center justify-center text-center w-full py-1 mx-1 rounded-t-xl hover:bg-sky-500 hover:text-white`}
+            className={`${activeCard === ownIndex ? "bg-gray-100 text-customBlue" : "bg-customBlue text-white"}  text-base font-black flex flex-col items-center justify-center text-center w-full py-1 rounded-t-xl hover:bg-sky-500 hover:text-white`}
             onClick={(e) => {
                 setActiveCard(ownIndex)
             }}
@@ -94,7 +94,7 @@ const Card = ({ link }) => {
         "TwoTrees",
         "QidiTech"]
     return (
-        <div className='w-full bg-gray-100 rounded-b-xl rounded-tr-xl'>
+        <div className='w-full bg-gray-100 rounded-b-xl rounded-tr-xl p-4'>
             <div className='flex items-center'>
                 <div className='w-3/4 px-8 py-5'>
                     <h1 className='text-neutral-800 text-3xl font-black py-4'>{sites[link.siteType - 1]}</h1>
@@ -149,10 +149,10 @@ const MobileCard = ({ link }) => {
         const fetchPrice = async () => {
             setIsloading(true)
             const result = await Api.get(`/api/products/Price/${link.purchaseLinksId}`)
-            setIsloading(false)
             setPrice(result.data.discountedPrice)
             setOriginalPrice(result.data.originalPrice)
             setUnit(result.data.unit)
+            setIsloading(false)
         }
         fetchPrice()
     }, [link])
@@ -242,6 +242,7 @@ const PriceCards = () => {
     const { id } = useParams()
     const [purchaseLinks, setPurchaseLinsks] = useState([])
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+    const [isLoading, setIsLoading] = useState(false)
 
 
     useEffect(() => {
@@ -257,77 +258,89 @@ const PriceCards = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setIsLoading(true)
                 const result = await Api(`/api/products/PurchaseLinks/${id}`)
                 setPurchaseLinsks(result.data)
                 console.log(result.data)
+                setIsLoading(false)
             } catch (error) {
+                setIsLoading(false)
                 console.log(error)
             }
         }
         fetchData()
     }, [id])
 
-
-
-    const cards = [
-        {
-            title: "Geekbuying",
-            detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ",
-            price: "€400",
-            copy: FaCopy,
-            coupon_Code: "Coupon code: NNNNW44fgg",
-        },
-        {
-            title: "Best Price",
-            detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ",
-            price: "€400",
-            copy: FaCopy,
-            coupon_Code: "Coupon code: NNNNW44fgg",
-        },
-        {
-            title: "Amazon",
-            detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ",
-            price: "€400",
-            copy: FaCopy,
-            coupon_Code: "Coupon code: NNNNW44fgg",
-        },
-        {
-            title: "Creality",
-            detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ",
-            price: "€400",
-            copy: FaCopy,
-            coupon_Code: "Coupon code: NNNNW44fgg",
-        },
-
-    ]
-
-
     return (
         <>
-            {!isMobile ? (
-                <div className='flex flex-col items-center justify-center w-full'>
-                    <div className='flex flex-col items-center justify-start w-full pl-8 pr-12'>
-                        <div className='grid grid-cols-4 w-full gap-2 '>
-                            {
-                                purchaseLinks.map((link, index) => {
-                                    return <PriceTitle purchaseLink={link} ownIndex={index} activeCard={active} setActiveCard={setActive} />
+            {!isMobile ?
 
-                                })
-                            }
+                <div className='flex flex-col items-center justify-center w-full' id='purchaselinks'>
+                    {
+                        isLoading ?
+                            <div className='flex flex-col items-center justify-start w-full pl-8 pr-12'>
+                                <div className='grid grid-cols-4 w-full gap-2 '>
+                                    <div className='w-full h-20 bg-gray-100 rounded-t-xl animate-pulse'></div>
+                                </div>
+                                <div className='w-full h-[200px] bg-gray-100 grid grid-cols-4 gap-4 p-4 animate-pulse'>
+                                    <div className=' col-span-3 h-full animate-pulse'>
+                                        <div className='w-full h-12 bg-gray-200 rounded-2xl' />
+                                        <div className='w-full mt-4'>
+
+                                            <div className='w-full h-5 mt-1 bg-gray-200 rounded-2xl animate-pulse' />
+                                            <div className='w-full h-5 mt-1 bg-gray-200 rounded-2xl animate-pulse' />
+                                            <div className='w-full h-5 mt-1 bg-gray-200 rounded-2xl animate-pulse' />
+                                            <div className='w-full h-5 mt-1 bg-gray-200 rounded-2xl animate-pulse' />
+                                        </div>
+                                    </div>
+                                    <div className=' flex flex-col justify-between'>
+                                        <div className='w-full h-12 bg-gray-200 animate-pulse rounded-2xl' />
+                                        
+                                        <div className='w-full '>
+                                            <div className='w-full h-8 bg-gray-200 animate-pulse rounded-2xl' />
+                                            <div className='w-full h-8 mt-2 bg-gray-200 animate-pulse rounded-2xl' />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            :
+                            <div className='flex flex-col items-center justify-start w-full pl-8 pr-12'>
+                                <div className='grid grid-cols-4 w-full gap-2 '>
+                                    {
+                                        purchaseLinks.map((link, index) => {
+                                            return <PriceTitle purchaseLink={link} ownIndex={index} activeCard={active} setActiveCard={setActive} />
+
+                                        })
+                                    }
+                                </div>
+                                {
+                                    purchaseLinks.length > 0 &&
+                                    <Card link={purchaseLinks[active]} />
+                                }
+                            </div>
+                    }
+                </div>
+                :
+                <div className=' px-11' id='purchaselinks'>
+                    {
+                        isLoading?
+                        <div className='w-full h-[300px] bg-gray-200 rounded-xl p-4 animate-pulse'>
+                            <div className='w-full h-8 rounded-2xl bg-gray-300 animate-pulse'/>
+                            <div className='w-full h-4 mt-6 rounded-2xl bg-gray-300 animate-pulse'/>
+                            <div className='w-full h-4 mt-2 rounded-2xl bg-gray-300 animate-pulse'/>
+                            <div className='w-full h-4 mt-2 rounded-2xl bg-gray-300 animate-pulse'/>
+                            <div className='w-full h-4 mt-2 rounded-2xl bg-gray-300 animate-pulse'/>
+                            <div className='w-full h-24 mt-2 rounded-2xl bg-gray-300 animate-pulse'/>
                         </div>
-                        {
-                            purchaseLinks.length > 0 &&
-                            <Card link={purchaseLinks[active]} />
-                        }
-                    </div>
+                        :
+                        <>
+                        {purchaseLinks.map((item, index) => {
+                            return <MobileCard link={item} />
+                        })}
+                        </>
+                    }
                 </div>
-            ) : (
-                <div className=' px-11'>
-                    {purchaseLinks.map((item, index) => {
-                        return <MobileCard link={item} />
-                    })}
-                </div>
-            )}
+            }
         </>
     )
 }

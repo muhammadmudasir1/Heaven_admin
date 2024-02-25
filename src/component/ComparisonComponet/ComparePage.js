@@ -54,8 +54,6 @@ const ComparePage = () => {
     return (
         <>
             <Tabbar />
-            {/* <Filtersearch /> */}
-
             <div className='w-full bg-slate-100 flex flex-row justify-center p-5 lg:py-10'>
                 <div className='lg:w-11/12 w-full m-4 bg-white p-5 flex flex-col items-center rounded-lg '>
                     <div className='w-full flex items-center justify-center'>

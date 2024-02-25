@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
 
-const SLAspecs = ({ products }) => {
+const ScannarSpecs = ({ products }) => {
     const [isSticky, setIsSticky] = useState(false);
-    const {width}=useWindowDimensions
     const { t } = useTranslation()
     const fixedTabbar = () => {
         if (window.scrollY > 0) {
@@ -16,18 +14,22 @@ const SLAspecs = ({ products }) => {
       }
       window.addEventListener('scroll', fixedTabbar)
 
+    useEffect(()=>{
+        console.log(products)
+    },[products])
+
     return (
         <div className={`py-4 px-8 flex flex-col ${isSticky?"pt-[300px]":""}`}>
 
             <div className='w-full mb-2'>
                 <div className={`w-full border-b-[2px] border-gray-500 py-2  `}>
-                    <h2 className='text-2xl font-semibold'>{t('installationSpace')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('scaningPrecision')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.installationSpace}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanningPrecision}</p>
                             )
                         })
                     }
@@ -36,13 +38,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>Monoscreen</h2>
+                    <h2 className='text-2xl font-semibold'>{t('scanAccuracy')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.monoscreen}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanAccuracy}</p>
                             )
                         })
                     }
@@ -51,13 +53,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('pixelResolution')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('scaningArea')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.pixelResolution}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanningArea}</p>
                             )
                         })
                     }
@@ -66,13 +68,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('XYPixelResolution')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('scanningDistance')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.XYPixelResolution}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanningDistance}</p>
                             )
                         })
                     }
@@ -81,13 +83,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('ZAxis')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('scanSpeed')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.ZAxis}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanSpeed}</p>
                             )
                         })
                     }
@@ -96,13 +98,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('ZAxisResolution')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('objectDimensionHandScan')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.ZAxisResolution}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.objectDimension_handScan}</p>
                             )
                         })
                     }
@@ -111,13 +113,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>Platform</h2>
+                    <h2 className='text-2xl font-semibold'>{t('objectDimensionTurnTable')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.platform}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.objectDimension_turnTable}</p>
                             )
                         })
                     }
@@ -126,13 +128,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>Touchscreen</h2>
+                    <h2 className='text-2xl font-semibold'>{t('lightSource')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.touchScreen}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.lightSource}</p>
                             )
                         })
                     }
@@ -141,13 +143,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('printSpeed')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('camera')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.printSpeed}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.camera}</p>
                             )
                         })
                     }
@@ -156,13 +158,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('lightingTechnology')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('standardPackage')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.lightTechnology}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.standardPackage}</p>
                             )
                         })
                     }
@@ -171,13 +173,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('lightDensity')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('premiumPackage')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.lightDensity}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.premiumPackage}</p>
                             )
                         })
                     }
@@ -186,53 +188,36 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('airPurificationSystem')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('scanMinimumSize')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.airPurificationSystem}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanMinimumSize }</p>
                             )
                         })
                     }
                 </div>
-            </div>
+            </div>  
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('interface')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('scanMaximumSize')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.interface}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanMaximumSize }</p>
                             )
                         })
                     }
                 </div>
-            </div>
-
-            <div className='w-full mb-2'>
-                <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>Build Size</h2>
-                </div>
-                <div className={`w-full p-2 grid grid-cols-4`}>
-                    {
-                        products.map((product) => {
-                            return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.buildSize}</p>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-
-           
+            </div>           
 
         </div>
     );
 };
 
-export default SLAspecs;
+export default ScannarSpecs;

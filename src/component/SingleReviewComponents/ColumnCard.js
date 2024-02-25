@@ -23,7 +23,7 @@ const FDMVarient = ({ specs }) => {
     const [isBeginning, setIsBeginning] = useState(true)
     const [isEnd, setIsEnd] = useState(false)
     const [active, setActive] = useState(0)
-    const {width}=useWindowDimensions()
+    const { width } = useWindowDimensions()
 
     const handleSwiper = (swiper) => {
         setSwiperInstance(swiper)
@@ -38,22 +38,25 @@ const FDMVarient = ({ specs }) => {
     console.log("FROM FDM")
 
     return (
-        width>600 ?
+        width > 600 ?
             <div className='relative mx-5'>
                 <div className=''>
-                    <div className={` grid gap-4 ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''}  px-8`}>
-                        <div className=' h-12'></div>
-                        {specs.map((items, index) => {
-                            return <div key={index} className='flex justify-center flex-col'>
-                                <img src={`/api/${items.thumbnail}`} alt="" />
-                                <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
-                                    {items.product_name}
+                    {
+                        specs.length > 1 &&
+                        <div className={` grid gap-4 ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''}  px-8`}>
+                            <div className=' h-12'></div>
+                            {specs.map((items, index) => {
+                                return <div key={index} className='flex justify-center flex-col'>
+                                    <img src={`/api/${items.thumbnail}`} alt="" />
+                                    <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
+                                        {items.product_name}
+                                    </div>
                                 </div>
-                            </div>
-                        })}
-                    </div>
+                            })}
+                        </div>
+                    }
                     <div>
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t("installationSpace")}</div>
                             </div>
@@ -64,7 +67,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('DriveTech')}</div>
                             </div>
@@ -75,7 +78,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('PrintVolume')}</div>
                             </div>
@@ -86,7 +89,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('ZAxisPrintingAccuracy')}</div>
                             </div>
@@ -97,7 +100,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('PrintingAccuracyXYResolution')}</div>
                             </div>
@@ -108,7 +111,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('PrintBedTechnology')}</div>
                             </div>
@@ -119,7 +122,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('FilamentCompatibility')}</div>
                             </div>
@@ -130,7 +133,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('PrintSpeed')}</div>
                             </div>
@@ -141,7 +144,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('NozzleTempurature')}</div>
                             </div>
@@ -152,7 +155,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('PrintBedTemperature')}</div>
                             </div>
@@ -163,7 +166,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('PressureChamberTempurature')}</div>
                             </div>
@@ -174,7 +177,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('VibrationSuppression')}</div>
                             </div>
@@ -185,7 +188,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('AutomaticPrintBedMeasurement')}</div>
                             </div>
@@ -196,7 +199,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('AutomaticZOffsetCalibration')}</div>
                             </div>
@@ -207,7 +210,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('LidarScannar')}</div>
                             </div>
@@ -218,7 +221,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('DoorSensor')}</div>
                             </div>
@@ -229,7 +232,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('AirFilter')}</div>
                             </div>
@@ -239,30 +242,30 @@ const FDMVarient = ({ specs }) => {
                                 </div>
                             })}
                         </div>
-                        
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('circulationFanPressureRoom')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.circulationFanPressureRoom ?"YES":"NO"}</div>
+                                    <div className=' '>{items.circulationFanPressureRoom ? "YES" : "NO"}</div>
                                 </div>
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('supportingComponentCooling')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.supportingComponentCooling ?"YES":"NO"}</div>
+                                    <div className=' '>{items.supportingComponentCooling ? "YES" : "NO"}</div>
                                 </div>
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('DataConnection')}</div>
                             </div>
@@ -273,7 +276,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('PrintRoomCamera')}</div>
                             </div>
@@ -284,17 +287,17 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('LEDLight')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.LEDLighting?"YES":"NO"}</div>
+                                    <div className=' '>{items.LEDLighting ? "YES" : "NO"}</div>
                                 </div>
                             })}
                         </div>
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('motherboard')}</div>
                             </div>
@@ -305,7 +308,7 @@ const FDMVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center' />
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
@@ -316,14 +319,14 @@ const FDMVarient = ({ specs }) => {
 
                     </div>
                 </div>
-                <div className={`${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
+                <div className={`${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
                     <div></div>
                     {specs.map((item) => {
                         return <div className='shadow-lg h-full rounded-b-2xl' />
                     })}
                 </div>
             </div>
-            : 
+            :
             <div className='mx-2 relative'>
                 <h1 className='flex items-center justify-center text-2xl font-bold py-8'>Product Comparison</h1>
                 <div className='flex items-center justify-end mx-2  mb-4'>
@@ -342,8 +345,8 @@ const FDMVarient = ({ specs }) => {
                     }
                     <div className='flex items-center'>
                         {
-                            specs.map((items, i) => {
-                                return <div className={`mx-1 ${active===i || active+1==i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+                            specs.length > 1 && specs.map((items, i) => {
+                                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
                             })
                         }
                     </div>
@@ -363,7 +366,10 @@ const FDMVarient = ({ specs }) => {
                 </div>
                 <div className='relative h-[1700px] w-full'>
                     <div className='absolute w-full h-8  '>
-                        <div className='h-16 mb-2 '></div>
+                        {
+                            specs.length > 1 &&
+                            <div className='h-16 mb-2 '></div>
+                        }
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('installationSpace')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('surfaceArea')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('DriveTech')}</p></div>
@@ -390,9 +396,9 @@ const FDMVarient = ({ specs }) => {
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('motherboard')}</p></div>
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
-                    <div className='absolute w-full h-full  grid grid-cols-3 px-2'>
+                    <div className={`absolute w-full h-full px-2 grid ${specs.length > 1 ? "grid-cols-3" : "grid-cols-2"}`}>
                         <div className=''></div>
-                        <div className=' col-span-2 h-full '>
+                        <div className={`${specs.length > 1 && "col-span-2"} h-full`}>
                             <Swiper
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={7}
@@ -408,9 +414,12 @@ const FDMVarient = ({ specs }) => {
                                 {specs.map((items, index) => {
                                     return <SwiperSlide>
                                         <div className='bg-white'>
-                                            <div className='h-16 mb-2'>
-                                                <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
-                                            </div>
+                                            {
+                                                specs.length > 1 &&
+                                                <div className='h-16 mb-2'>
+                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
+                                                </div>
+                                            }
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.installationSpace}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.surfaceArea}</div>
@@ -424,17 +433,17 @@ const FDMVarient = ({ specs }) => {
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.nozzleTempurature}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printTempurature}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.pressureChamberTempurature}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.vibrationSuppresion?"YES":"NO"}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.automaticPrintBedMeasurement?"YES":"NO"}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.automaticZOffsetCalibration?"YES":"NO"}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.liderScannar?"YES":"NO"}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.doorScannar?"YES":"NO"}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.vibrationSuppresion ? "YES" : "NO"}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.automaticPrintBedMeasurement ? "YES" : "NO"}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.automaticZOffsetCalibration ? "YES" : "NO"}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.liderScannar ? "YES" : "NO"}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.doorScannar ? "YES" : "NO"}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.airFilter}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.circulationFanPressureRoom ?"YES":"NO"}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.supportingComponentCooling?"YES":"NO"}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.circulationFanPressureRoom ? "YES" : "NO"}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.supportingComponentCooling ? "YES" : "NO"}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.dataConnection}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printRoomCamera}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.LEDLighting?"YES":"NO"}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.LEDLighting ? "YES" : "NO"}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.motherboard}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
                                             </div>
@@ -451,6 +460,7 @@ const FDMVarient = ({ specs }) => {
     )
 }
 const SLAVarient = ({ specs }) => {
+    // console.log(specs)
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
     const { id } = useParams()
     const { t } = useTranslation()
@@ -458,7 +468,7 @@ const SLAVarient = ({ specs }) => {
     const [isBeginning, setIsBeginning] = useState(true)
     const [isEnd, setIsEnd] = useState(false)
     const [active, setActive] = useState(0)
-    const {width}=useWindowDimensions()
+    const { width } = useWindowDimensions()
 
     const handleSwiper = (swiper) => {
         setSwiperInstance(swiper)
@@ -471,22 +481,25 @@ const SLAVarient = ({ specs }) => {
     }, [swiperInstance])
 
     return (
-        width>600 ?
+        width > 600 ?
             <div className='relative mx-5'>
                 <div className=''>
-                    <div className={` grid gap-4 ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''}  px-8`}>
-                        <div className=' h-12'></div>
-                        {specs.map((items, index) => {
-                            return <div key={index} className='flex justify-center flex-col'>
-                                <img src={`/api/${items.thumbnail}`} alt="" />
-                                <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
-                                    {items.product_name}
+                    {
+                        specs.length > 1 &&
+                        <div className={` grid gap-4 ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''}  px-8`}>
+                            <div className=' h-12'></div>
+                            {specs.map((items, index) => {
+                                return <div key={index} className='flex justify-center flex-col'>
+                                    <img src={`/api/${items.thumbnail}`} alt="" />
+                                    <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
+                                        {items.product_name}
+                                    </div>
                                 </div>
-                            </div>
-                        })}
-                    </div>
+                            })}
+                        </div>
+                    }
                     <div>
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t("installationSpace")}</div>
                             </div>
@@ -497,7 +510,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>Monoscreen</div>
                             </div>
@@ -508,7 +521,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('pixelResolution')}</div>
                             </div>
@@ -519,7 +532,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('XYPixelResolution')}</div>
                             </div>
@@ -530,7 +543,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('ZAxis')}</div>
                             </div>
@@ -541,7 +554,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('ZAxisResolution')}</div>
                             </div>
@@ -552,7 +565,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>Platform</div>
                             </div>
@@ -563,7 +576,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>Touchscreen</div>
                             </div>
@@ -574,7 +587,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('printSpeed')}</div>
                             </div>
@@ -585,7 +598,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('lightingTechnology')}</div>
                             </div>
@@ -596,7 +609,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('lightDensity')}</div>
                             </div>
@@ -607,7 +620,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('airPurificationSystem')}</div>
                             </div>
@@ -618,7 +631,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('interface')}</div>
                             </div>
@@ -629,7 +642,7 @@ const SLAVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>Build Size</div>
                             </div>
@@ -639,7 +652,7 @@ const SLAVarient = ({ specs }) => {
                                 </div>
                             })}
                         </div>
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center' />
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
@@ -650,14 +663,14 @@ const SLAVarient = ({ specs }) => {
 
                     </div>
                 </div>
-                <div className={`${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
+                <div className={`${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
                     <div></div>
                     {specs.map((item) => {
                         return <div className='shadow-lg h-full rounded-b-2xl' />
                     })}
                 </div>
             </div>
-            : 
+            :
             <div className='mx-2 relative'>
                 <h1 className='flex items-center justify-center text-2xl font-bold py-8'>Product Comparison</h1>
                 <div className='flex items-center justify-end mx-2  mb-4'>
@@ -676,8 +689,8 @@ const SLAVarient = ({ specs }) => {
                     }
                     <div className='flex items-center'>
                         {
-                            specs.map((items, i) => {
-                                return <div className={`mx-1 ${active===i || active+1==i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+                            specs.length > 1 && specs.map((items, i) => {
+                                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
                             })
                         }
                     </div>
@@ -697,7 +710,11 @@ const SLAVarient = ({ specs }) => {
                 </div>
                 <div className='relative h-[1000px] w-full'>
                     <div className='absolute w-full h-8 '>
-                        <div className='h-16 mb-2'></div>
+                        {
+                            specs.length > 1 &&
+                            <div className='h-16 mb-2'></div>
+
+                        }
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('installationSpace')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Monoscreen</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('XYPixelResolution')}</p></div>
@@ -713,16 +730,13 @@ const SLAVarient = ({ specs }) => {
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Build Size</p></div>
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
-                    <div className='absolute w-full h-full  grid grid-cols-3 px-2'>
+                    <div className={`absolute w-full h-full  grid px-2 ${specs.length > 1 ? "grid-cols-3" : "grid-cols-2"}`}>
                         <div className=''></div>
-                        <div className=' col-span-2 h-full '>
+                        <div className={`${specs.length > 1 && "col-span-2"} h-full`}>
                             <Swiper
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={7}
-                                slidesPerView={2}
-                                // navigation
-                                // pagination={{ clickable: true }}
-                                // scrollbar={{ draggable: true }}
+                                slidesPerView={specs.length > 1 ? 2 : 1}
                                 onSwiper={(swiper) => handleSwiper(swiper)}
                                 onSlideChange={(swiperCurrent) => {
                                     setIsBeginning(swiperCurrent.isBeginning)
@@ -734,9 +748,12 @@ const SLAVarient = ({ specs }) => {
                                 {specs.map((items, index) => {
                                     return <SwiperSlide>
                                         <div className='bg-white'>
-                                            <div className='h-16 mb-2'>
-                                                <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
-                                            </div>
+                                            {
+                                                specs.length > 1 &&
+                                                <div className='h-16 mb-2'>
+                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
+                                                </div>
+                                            }
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.installationSpace}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.monoscreen}</div>
@@ -773,7 +790,7 @@ const LaserVarient = ({ specs }) => {
     const [isBeginning, setIsBeginning] = useState(true)
     const [isEnd, setIsEnd] = useState(false)
     const [active, setActive] = useState(0)
-    const {width}=useWindowDimensions()
+    const { width } = useWindowDimensions()
 
     const handleSwiper = (swiper) => {
         setSwiperInstance(swiper)
@@ -786,22 +803,24 @@ const LaserVarient = ({ specs }) => {
     }, [swiperInstance])
 
     return (
-        width>600 ?
+        width > 600 ?
             <div className='relative mx-5'>
                 <div className=''>
-                    <div className={` grid gap-4 ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''}  px-8`}>
-                        <div className=' h-12'></div>
-                        {specs.map((items, index) => {
-                            return <div key={index} className='flex justify-center flex-col'>
-                                <img src={`/api/${items.thumbnail}`} alt="" />
-                                <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
-                                    {items.product_name}
+                    {specs.length > 1 &&
+                        <div className={` grid gap-4 ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''}  px-8`}>
+                            <div className=' h-12'></div>
+                            {specs.map((items, index) => {
+                                return <div key={index} className='flex justify-center flex-col'>
+                                    <img src={`/api/${items.thumbnail}`} alt="" />
+                                    <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
+                                        {items.product_name}
+                                    </div>
                                 </div>
-                            </div>
-                        })}
-                    </div>
+                            })}
+                        </div>
+                    }
                     <div>
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('diodeLaserOutputPower')}</div>
                             </div>
@@ -812,7 +831,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('laserWavelength')}</div>
                             </div>
@@ -823,7 +842,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('engravingAccuracy')}</div>
                             </div>
@@ -834,7 +853,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('engravingAreaSize')}</div>
                             </div>
@@ -845,7 +864,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('focusingMethod')}</div>
                             </div>
@@ -856,7 +875,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('airAssistCompressor')}</div>
                             </div>
@@ -867,7 +886,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('interface')}</div>
                             </div>
@@ -878,7 +897,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('powerSupplyOutputPower')}</div>
                             </div>
@@ -889,7 +908,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>Laser Software</div>
                             </div>
@@ -900,7 +919,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('Engraving Material')}</div>
                             </div>
@@ -911,7 +930,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('Cutting Material')}</div>
                             </div>
@@ -922,7 +941,7 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('workingArea')}</div>
                             </div>
@@ -933,8 +952,8 @@ const LaserVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
+
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center' />
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
@@ -945,14 +964,14 @@ const LaserVarient = ({ specs }) => {
 
                     </div>
                 </div>
-                <div className={`${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
+                <div className={`${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
                     <div></div>
                     {specs.map((item) => {
                         return <div className='shadow-lg h-full rounded-b-2xl' />
                     })}
                 </div>
             </div>
-            : 
+            :
             <div className='mx-2 relative'>
                 <h1 className='flex items-center justify-center text-2xl font-bold py-8'>Product Comparison</h1>
                 <div className='flex items-center justify-end mx-2  mb-4'>
@@ -971,8 +990,9 @@ const LaserVarient = ({ specs }) => {
                     }
                     <div className='flex items-center'>
                         {
+                            specs.length > 1 &&
                             specs.map((items, i) => {
-                                return <div className={`mx-1 ${active===i || active+1==i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+                                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
                             })
                         }
                     </div>
@@ -992,7 +1012,10 @@ const LaserVarient = ({ specs }) => {
                 </div>
                 <div className='relative h-[1000px] w-full'>
                     <div className='absolute w-full h-8 '>
-                        <div className='h-16 mb-2'></div>
+                        {
+                            specs.length > 1 &&
+                            <div className='h-16 mb-2'></div>
+                        }
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('diodeLaserOutputPower')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('laserWavelength')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('engravingAccuracy')}</p></div>
@@ -1007,16 +1030,13 @@ const LaserVarient = ({ specs }) => {
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('workingArea')}</p></div>
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
-                    <div className='absolute w-full h-full  grid grid-cols-3 px-2'>
+                    <div className={`absolute w-full h-full  px-2 grid ${specs.length > 1 ? "grid-cols-3" : "grid-cols-2"}`}>
                         <div className=''></div>
-                        <div className=' col-span-2 h-full '>
+                        <div className={`${specs.length > 1 && "col-span-2"} h-full`}>
                             <Swiper
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={7}
                                 slidesPerView={2}
-                                // navigation
-                                // pagination={{ clickable: true }}
-                                // scrollbar={{ draggable: true }}
                                 onSwiper={(swiper) => handleSwiper(swiper)}
                                 onSlideChange={(swiperCurrent) => {
                                     setIsBeginning(swiperCurrent.isBeginning)
@@ -1028,9 +1048,12 @@ const LaserVarient = ({ specs }) => {
                                 {specs.map((items, index) => {
                                     return <SwiperSlide>
                                         <div className='bg-white'>
-                                            <div className='h-16 mb-2'>
-                                                <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
-                                            </div>
+                                            {
+                                                specs.length > 1 &&
+                                                <div className='h-16 mb-2'>
+                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
+                                                </div>
+                                            }
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.laserPower}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.laserWavelength}</div>
@@ -1064,7 +1087,7 @@ const ScannarVarient = ({ specs }) => {
     const [isBeginning, setIsBeginning] = useState(true)
     const [isEnd, setIsEnd] = useState(false)
     const [active, setActive] = useState(0)
-    const {width}=useWindowDimensions()
+    const { width } = useWindowDimensions()
 
     const handleSwiper = (swiper) => {
         setSwiperInstance(swiper)
@@ -1077,22 +1100,25 @@ const ScannarVarient = ({ specs }) => {
     }, [swiperInstance])
 
     return (
-        width>600 ?
+        width > 600 ?
             <div className='relative mx-5'>
                 <div className=''>
-                    <div className={` grid gap-4 ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''}  px-8`}>
-                        <div className=' h-12'></div>
-                        {specs.map((items, index) => {
-                            return <div key={index} className='flex justify-center flex-col'>
-                                <img src={`/api/${items.thumbnail}`} alt="" />
-                                <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
-                                    {items.product_name}
+                    {
+                        specs.length > 1 &&
+                        <div className={` grid gap-4 ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''}  px-8`}>
+                            <div className=' h-12'></div>
+                            {specs.map((items, index) => {
+                                return <div key={index} className='flex justify-center flex-col'>
+                                    <img src={`/api/${items.thumbnail}`} alt="" />
+                                    <div className='flex justify-center items-center bg-gray-300 line-clamp-2 h-16 px-2 py-2 font-semibold text-center'>
+                                        {items.product_name}
+                                    </div>
                                 </div>
-                            </div>
-                        })}
-                    </div>
+                            })}
+                        </div>
+                    }
                     <div>
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('scaningPrecision')}</div>
                             </div>
@@ -1103,7 +1129,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('scanAccuracy')}</div>
                             </div>
@@ -1114,7 +1140,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('scaningArea')}</div>
                             </div>
@@ -1125,7 +1151,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('scanningDistance')}</div>
                             </div>
@@ -1136,7 +1162,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('scanSpeed')}</div>
                             </div>
@@ -1147,7 +1173,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('objectDimensionHandScan')}</div>
                             </div>
@@ -1158,7 +1184,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('objectDimensionTurnTable')}</div>
                             </div>
@@ -1169,7 +1195,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('lightSource')}</div>
                             </div>
@@ -1180,7 +1206,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('camera')}</div>
                             </div>
@@ -1191,7 +1217,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('standardPackage')}</div>
                             </div>
@@ -1202,7 +1228,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('premiumPackage')}</div>
                             </div>
@@ -1213,7 +1239,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('scanMinimumSize')}</div>
                             </div>
@@ -1223,7 +1249,7 @@ const ScannarVarient = ({ specs }) => {
                                 </div>
                             })}
                         </div>
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('scanMaximumSize')}</div>
                             </div>
@@ -1234,8 +1260,8 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
+
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center' />
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
@@ -1246,14 +1272,14 @@ const ScannarVarient = ({ specs }) => {
 
                     </div>
                 </div>
-                <div className={`${specs.length === 1 ? 'grid-cols-2':specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
+                <div className={`${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
                     <div></div>
                     {specs.map((item) => {
                         return <div className='shadow-lg h-full rounded-b-2xl' />
                     })}
                 </div>
             </div>
-            : 
+            :
             <div className='mx-2 relative'>
                 <h1 className='flex items-center justify-center text-2xl font-bold py-8'>Product Comparison</h1>
                 <div className='flex items-center justify-end mx-2  mb-4'>
@@ -1271,9 +1297,9 @@ const ScannarVarient = ({ specs }) => {
                             : <div></div>
                     }
                     <div className='flex items-center'>
-                        {
+                        {specs.length > 1 &&
                             specs.map((items, i) => {
-                                return <div className={`mx-1 ${active===i || active+1==i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+                                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
                             })
                         }
                     </div>
@@ -1293,7 +1319,10 @@ const ScannarVarient = ({ specs }) => {
                 </div>
                 <div className='relative h-[1000px] w-full'>
                     <div className='absolute w-full h-8 '>
-                        <div className='h-16 mb-2'></div>
+                        {
+                            specs.length > 1 &&
+                            <div className='h-16 mb-2'></div>
+                        }
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scaningPrecision')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanAccuracy')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scaningArea')}</p></div>
@@ -1309,16 +1338,13 @@ const ScannarVarient = ({ specs }) => {
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanMaximumSize')}</p></div>
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
-                    <div className='absolute w-full h-full  grid grid-cols-3 px-2'>
+                    <div className={`absolute w-full h-full px-2 grid ${specs.length>1?"grid-cols-3":"grid-cols-2"}`}>
                         <div className=''></div>
-                        <div className=' col-span-2 h-full '>
+                        <div className={`${specs.length>1&&"col-span-2"} h-full`}>
                             <Swiper
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={7}
                                 slidesPerView={2}
-                                // navigation
-                                // pagination={{ clickable: true }}
-                                // scrollbar={{ draggable: true }}
                                 onSwiper={(swiper) => handleSwiper(swiper)}
                                 onSlideChange={(swiperCurrent) => {
                                     setIsBeginning(swiperCurrent.isBeginning)
@@ -1365,7 +1391,7 @@ const ScannarVarient = ({ specs }) => {
 
 const ColumnCard = () => {
     const [specs, setSpecs] = useState([])
-    const [productType,setProductType]=useState(0)
+    const [productType, setProductType] = useState(0)
     const { id } = useParams()
 
     useEffect(() => {
@@ -1378,7 +1404,7 @@ const ColumnCard = () => {
                     setProductType(1)
                     let mainProduct = result.data.SLA
                     const responsImage = await Api.get(`/api/products/getThumbnail/${id}`)
-                    
+
                     mainProduct['thumbnail'] = responsImage.data[0].path
                     mainProduct['product_name'] = result.data.product_name
                     tempSpecs.push(mainProduct)
@@ -1396,7 +1422,6 @@ const ColumnCard = () => {
                     setProductType(3)
                     let mainProduct = result.data.LeaserCutter
                     const responsImage = await Api.get(`/api/products/getThumbnail/${id}`)
-                    // console.log(responsImage.data[0].path)
                     mainProduct['thumbnail'] = responsImage.data[0].path
                     mainProduct['product_name'] = result.data.product_name
                     tempSpecs.push(mainProduct)
@@ -1450,30 +1475,30 @@ const ColumnCard = () => {
         }
         fetchData()
     }, [id])
-    
+
     useEffect(() => {
         console.log(specs)
     }, [specs])
 
     return (
-        <div className='w-full mb-12'>
+        <div className='w-full mb-12' id='specs'>
             {
-                productType===1 &&
+                productType === 1 && specs && specs.length > 0 &&
                 <SLAVarient specs={specs} />
             }
             {
-                productType===2 &&
+                productType === 2 && specs && specs.length > 0 &&
                 <FDMVarient specs={specs} />
             }
             {
-                productType===3 &&
+                productType === 3 && specs && specs.length > 0 &&
                 <LaserVarient specs={specs} />
             }
             {
-                productType===4 &&
+                productType === 4 && specs && specs.length > 0 &&
                 <ScannarVarient specs={specs} />
             }
-            
+
         </div>
     )
 }

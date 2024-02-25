@@ -29,6 +29,7 @@ const ReviewAndAdd = () => {
     const [mainImage, setMainImage] = useState("")
     const [specs, setSpecs] = useState({})
     const [productType, setProductType] = useState(0)
+    const [isLoading, setIsloading] = useState(false)
 
 
     useEffect(() => {
@@ -44,6 +45,7 @@ const ReviewAndAdd = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setIsloading(true)
                 const result = await Api.get(`/api/products/${id}`)
                 const apiImages = result.data.ProductImages.filter((image) => {
                     if (image.role !== 3) {
@@ -61,7 +63,6 @@ const ReviewAndAdd = () => {
                     }
                     return 0
                 })
-                // console.log(apiImages)
                 setImages(apiImages)
                 setMainImage(apiImages[0])
                 setDiscription(result.data.discription)
@@ -86,8 +87,10 @@ const ReviewAndAdd = () => {
                 if (result.data.productType === 4) {
                     setSpecs(result.data.scanner)
                 }
+                setIsloading(false)
 
             } catch (error) {
+                setIsloading(false)
                 console.log(error)
             }
         }
@@ -100,184 +103,359 @@ const ReviewAndAdd = () => {
     return (
         <>
             {!isMobile ? (
-                <div className='grid-cols-8 grid pr-4'>
-
-                    <div className='col-span-6 pl-8'>
-                        <div className='lg:flex pt-4 pb-8 justify-center pr-4  relative w-full '>
-                            <div className='flex items-center lg:flex-col'>
-                                <div className='w-full h-64 bg-cover bg-center rounded-md shadow-md'
-                                    style={{ backgroundImage: `url(/api/${mainImage && mainImage.path})` }}
-                                />
-                                <div className='lg:flex items-center justify-center py-8 ' >
-                                    {images.map((picture) => (
-                                        <div key={picture.id} className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4' onClick={() => switchMainImage(picture)}>
-                                            <div className='w-full h-full bg-cover bg-center'
-                                                style={{ backgroundImage: `url(/api/${picture.path})` }}
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className=' px-8'>
-                                <h1 className=' text-neutral-800 text-2xl font-semibold py-3 line-clamp-2'>{productName && productName}</h1>
-                                <p className='pb-6'>{discription && discription}</p>
-                                <div className='flex items-center mb-2'>
-                                    <h1 className='text-2xl font-semibold pr-2'>{overall}</h1>
-
-                                    {overall > 0 && [...Array.from({ length: overall }, (_, index) => index + 1)].map((_, index) => (
-                                        <CiStar
-                                            key={index}
-                                            size={50}
-                                            className=" text-[#00CED1]"
-                                        />
-                                    ))}
-                                    {[...Array.from({ length: 5 - overall}, (_, index) => index + 1)].map((_, index) => (
-                                        <CiStar
-                                            key={index}
-                                            size={50}
-                                            className="text-gray-500"
-                                        />
-                                    ))}
-                                </div>
-                                <div>
-                                    <div className='flex items-center py-1'>
-                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
-                                        </div>
-                                        <h1 className='pl-4 font-light text-sm'>
-                                            Preis
-                                        </h1>
-                                    </div>
-                                    <div className='flex items-center py-1'>
-                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation === 1 ? "w-1/5" : innovation === 2 ? "w-2/5" : innovation === 3 ? "w-3/5" : innovation === 4 ? "w-4/5" : innovation === 5 ? "w-full" : ""}`} />
-                                        </div>
-                                        <h1 className='pl-4 font-light text-sm'>
-                                            Innovation
-                                        </h1>
-                                    </div>
-                                    <div className='flex items-center py-1'>
-                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software === 1 ? "w-1/5" : software === 2 ? "w-2/5" : software === 3 ? "w-3/5" : software === 4 ? "w-4/5" : software === 5 ? "w-full" : ""}`} />
-                                        </div>
-                                        <h1 className='pl-4 font-light text-sm'>
-                                            Software
-                                        </h1>
-                                    </div>
-                                    <div className='flex items-center py-1'>
-                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
-                                        </div>
-                                        <h1 className='pl-4 font-light text-sm'>
-                                            Kundenservice
-                                        </h1>
-                                    </div>
-                                    <div className='flex items-center py-1'>
-                                        <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                            <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
-                                        </div>
-                                        <h1 className='pl-4 font-light text-sm'>
-                                            Verarbeitungen
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <SingleReviewPropertyCard specs={specs} productType={productType} />
-                        <ProsAndCons />
-                        <PriceCards />
+                <div className='grid-cols-8 grid '>
+                    <div className=' col-span-8' id='alle'>
+                        <h1 class="w-full py-8 bg-zinc-100 flex items-center px-20 text-neutral-800 text-[32px] font-semibold">
+                            Alle Wichtigste</h1>
                     </div>
-                    <div className='col-span-2 lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} ></div>
+                    {
+                        isLoading ?
+                            <div className='col-span-6 pl-8'>
+                                <div className='lg:flex pt-4 pb-8 justify-center pr-4  relative w-full'>
+                                    <div className='flex items-center lg:flex-col w-[400px]'>
+                                        <div className='w-full h-64  rounded-md shadow-md bg-gray-200 animate-pulse'
+                                        />
+                                        <div className='lg:flex items-center justify-center py-8 animate-pulse ' >
+                                            <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
+                                                <div className='w-full h-full ' />
+                                            </div>
+                                            <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
+                                                <div className='w-full h-full ' />
+                                            </div>
+                                            <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
+                                                <div className='w-full h-full ' />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div className=' px-8 w-3/5'>
+                                        <h1 className=' py-5 bg-gray-200 rounded-2xl animate-pulse'></h1>
+                                        <p className='pb-6'></p>
+                                        <div className='flex items-center mb-2 animate-pulse'>
+
+                                            {overall > 0 && [...Array.from({ length: 5 }, (_, index) => index + 1)].map((_, index) => (
+                                                <CiStar
+                                                    key={index}
+                                                    size={50}
+                                                    className=" text-[#00CED1]"
+                                                />
+                                            ))}
+                                        </div>
+                                        <div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-3/5 animate-pulse`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Preis
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-2/5 animate-pulse`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Innovation
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-4/5 animate-pulse`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Software
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-3/5 animate-pulse`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Kundenservice
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-2/5`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Verarbeitungen
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='w-full h-[200px] bg-gray-200 animate-pulse' />
+
+                            </div>
+                            : <div className='col-span-6 pl-8'>
+                                <div className='lg:flex pt-4 pb-8 justify-center pr-4  relative w-full'>
+                                    <div className='flex items-center lg:flex-col w-[400px]'>
+                                        <div className='w-full h-64 bg-cover bg-center rounded-md shadow-md'
+                                            style={{ backgroundImage: `url(/api/${mainImage && mainImage.path})` }}
+                                        />
+                                        <div className='lg:flex items-center justify-center py-8 ' >
+                                            {images.map((picture) => (
+                                                <div key={picture.id} className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4' onClick={() => switchMainImage(picture)}>
+                                                    <div className='w-full h-full bg-cover bg-center'
+                                                        style={{ backgroundImage: `url(/api/${picture.path})` }}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className=' px-8 grow'>
+                                        <h1 className=' text-neutral-800 text-2xl font-semibold py-3 line-clamp-2'>{productName && productName}</h1>
+                                        <p className='pb-6'>{discription && discription}</p>
+                                        <div className='flex items-center mb-2'>
+                                            <h1 className='text-2xl font-semibold pr-2'>{overall}</h1>
+
+                                            {overall > 0 && [...Array.from({ length: overall }, (_, index) => index + 1)].map((_, index) => (
+                                                <CiStar
+                                                    key={index}
+                                                    size={50}
+                                                    className=" text-[#00CED1]"
+                                                />
+                                            ))}
+                                            {[...Array.from({ length: 5 - overall }, (_, index) => index + 1)].map((_, index) => (
+                                                <CiStar
+                                                    key={index}
+                                                    size={50}
+                                                    className="text-gray-500"
+                                                />
+                                            ))}
+                                        </div>
+                                        <div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Preis
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation === 1 ? "w-1/5" : innovation === 2 ? "w-2/5" : innovation === 3 ? "w-3/5" : innovation === 4 ? "w-4/5" : innovation === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Innovation
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software === 1 ? "w-1/5" : software === 2 ? "w-2/5" : software === 3 ? "w-3/5" : software === 4 ? "w-4/5" : software === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Software
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Kundenservice
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Verarbeitungen
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <SingleReviewPropertyCard specs={specs} productType={productType} />
+                                <ProsAndCons />
+                                <PriceCards />
+                            </div>
+                    }
+
+                    <div className=' min-h-[600px] col-span-2 lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203,213,225,0.2), 0 8px 15px rgb(203,213,225,0.2)' }} ></div>
                 </div>
             ) : (
-                <div className=''>
-                    <Swiper
-                        modules={[Navigation, Pagination, Scrollbar, A11y]}
-                        spaceBetween={20}
-                        slidesPerView={1}
-                        pagination={{ clickable: true }}
-                        onSwiper={(swiper) => console.log(swiper)}
-                        onSlideChange={() => console.log('slide change')}
-                        className='h-56 relative'>
-                        {images.map((item, index) => {
-                            return <SwiperSlide className=''>
-                                <div className='w-full px-2'>
-                                    <div className='w-full h-56 bg-cover bg-center'
-                                        style={{ backgroundImage: `url(/api/${item.path})` }}>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-                        })}
-                    </Swiper>
+                <div className='' id='alle'>
+                    {
+                        isLoading ?
+                            <>
+                                <Swiper
+                                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                                    spaceBetween={20}
+                                    slidesPerView={1}
+                                    pagination={{ clickable: true }}
+                                    onSwiper={(swiper) => console.log(swiper)}
+                                    onSlideChange={() => console.log('slide change')}
+                                    className='h-56 relative'>
+                                    {images.map((item, index) => {
+                                        return <SwiperSlide className=''>
+                                            <div className='w-full px-2'>
+                                                <div className='w-full h-56 bg-gray-200 animate-pulse'>
+                                                </div>
+                                            </div>
+                                        </SwiperSlide>
+                                    })}
+                                </Swiper>
+                                <div className=' px-6 py-8 flex flex-col justify-center items-center'>
+                                    <h1 className='h-12 w-full rounded-2xl bg-gray-200 animate-pulse'/>
 
-                    <div className=' px-6 py-8 flex flex-col justify-center items-center'>
-                        <h1 className='py-8 text-neutral-800 text-2xl font-semibold '>{productName && productName}</h1>
+                                    <p className='mt-3 h-4 w-full rounded-2xl bg-gray-200 animate-pulse'/>
+                                    <p className='mt-1 h-4 w-full rounded-2xl bg-gray-200 animate-pulse'/>
+                                    <div className='flex items-center py-4'>
+                                        {overall > 0 && [...Array.from({ length: 5 }, (_, index) => index + 1)].map((_, index) => (
+                                            <CiStar
+                                                key={index}
+                                                size={30}
+                                                className=" text-gray-200 animate-pulse"
+                                            />
+                                        ))}
+                                    </div>
+                                    <div>
+                                        <div className=''>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg animate-pulse'>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-2/3`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Preis
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg animate-pulse '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-3/5`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Innovation
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg animate-pulse'>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-4/5`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Software
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg animate-pulse'>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-2/5`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Kundenservice
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg animate-pulse'>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-4/5`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Verarbeitungen
+                                                </h1>
+                                            </div>
+                                        </div>
 
-                        <p className='pb-4 text-center'>{discription && discription}</p>
-                        <div className='flex items-center py-4'>
-                            <h1 className='text-xl font-semibold'>{overall}</h1>
-                            {overall > 0 && [...Array.from({ length: overall }, (_, index) => index + 1)].map((_, index) => (
-                                        <CiStar
-                                            key={index}
-                                            size={30}
-                                            className=" text-[#00CED1]"
-                                        />
-                                    ))}
-                                    {[...Array.from({ length: 5 - overall}, (_, index) => index + 1)].map((_, index) => (
-                                        <CiStar
-                                            key={index}
-                                            size={30}
-                                            className="text-gray-500"
-                                        />
-                                    ))}
-                        </div>
-                        <div>
-                            <div className=''>
-                                <div className='flex items-center py-1'>
-                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
-                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
                                     </div>
-                                    <h1 className='pl-4 font-light text-sm'>
-                                        Preis
-                                    </h1>
                                 </div>
-                                <div className='flex items-center py-1'>
-                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
-                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation === 1 ? "w-1/5" : innovation === 2 ? "w-2/5" : innovation === 3 ? "w-3/5" : innovation === 4 ? "w-4/5" : innovation === 5 ? "w-full" : ""}`} />
-                                    </div>
-                                    <h1 className='pl-4 font-light text-sm'>
-                                        Innovation
-                                    </h1>
+                                <div className='w-full h-48 bg-gray-200 grid grid-cols-2 grid-rows-2 p-5 gap-2 animate-pulse'>
+                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse'/>
+                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse'/>
+                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse'/>
+                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse'/>
                                 </div>
-                                <div className='flex items-center py-1'>
-                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
-                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software === 1 ? "w-1/5" : software === 2 ? "w-2/5" : software === 3 ? "w-3/5" : software === 4 ? "w-4/5" : software === 5 ? "w-full" : ""}`} />
-                                    </div>
-                                    <h1 className='pl-4 font-light text-sm'>
-                                        Software
-                                    </h1>
-                                </div>
-                                <div className='flex items-center py-1'>
-                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
-                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
-                                    </div>
-                                    <h1 className='pl-4 font-light text-sm'>
-                                        Kundenservice
-                                    </h1>
-                                </div>
-                                <div className='flex items-center py-1'>
-                                    <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
-                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
-                                    </div>
-                                    <h1 className='pl-4 font-light text-sm'>
-                                        Verarbeitungen
-                                    </h1>
-                                </div>
-                            </div>
+                            </>
+                            : <>
+                                <Swiper
+                                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                                    spaceBetween={20}
+                                    slidesPerView={1}
+                                    pagination={{ clickable: true }}
+                                    onSwiper={(swiper) => console.log(swiper)}
+                                    onSlideChange={() => console.log('slide change')}
+                                    className='h-56 relative'>
+                                    {images.map((item, index) => {
+                                        return <SwiperSlide className=''>
+                                            <div className='w-full px-2'>
+                                                <div className='w-full h-56 bg-cover bg-center'
+                                                    style={{ backgroundImage: `url(/api/${item.path})` }}>
+                                                </div>
+                                            </div>
+                                        </SwiperSlide>
+                                    })}
+                                </Swiper>
+                                <div className=' px-6 py-8 flex flex-col justify-center items-center'>
+                                    <h1 className='py-8 text-neutral-800 text-2xl font-semibold '>{productName && productName}</h1>
 
-                        </div>
-                    </div>
-                    <SingleReviewPropertyCard specs={specs} productType={productType} />
+                                    <p className='pb-4 text-center'>{discription && discription}</p>
+                                    <div className='flex items-center py-4'>
+                                        <h1 className='text-xl font-semibold'>{overall}</h1>
+                                        {overall > 0 && [...Array.from({ length: overall }, (_, index) => index + 1)].map((_, index) => (
+                                            <CiStar
+                                                key={index}
+                                                size={30}
+                                                className=" text-[#00CED1]"
+                                            />
+                                        ))}
+                                        {[...Array.from({ length: 5 - overall }, (_, index) => index + 1)].map((_, index) => (
+                                            <CiStar
+                                                key={index}
+                                                size={30}
+                                                className="text-gray-500"
+                                            />
+                                        ))}
+                                    </div>
+                                    <div>
+                                        <div className=''>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Preis
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation === 1 ? "w-1/5" : innovation === 2 ? "w-2/5" : innovation === 3 ? "w-3/5" : innovation === 4 ? "w-4/5" : innovation === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Innovation
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software === 1 ? "w-1/5" : software === 2 ? "w-2/5" : software === 3 ? "w-3/5" : software === 4 ? "w-4/5" : software === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Software
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Kundenservice
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    Verarbeitungen
+                                                </h1>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <SingleReviewPropertyCard specs={specs} productType={productType} />
+                            </>
+                    }
+
                     <ProsAndCons />
                     <PriceCards />
                 </div>

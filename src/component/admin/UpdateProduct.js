@@ -54,6 +54,7 @@ const UpdateProduct = () => {
 
     const getProductData = async (id) => {
         try {
+            setIsLoading(true)
             const result = await Api.get(`/api/products/${id}`)
             let images = result.data.ProductImages.filter((image) => {
                 if (image.role !== 3) {
@@ -96,7 +97,9 @@ const UpdateProduct = () => {
             setIncludeInBestDeals(result.data.include_in_BestDeals)
             setPrice(result.data.price)
             setUnit(result.data.unit)
+            setIsLoading(false)
         } catch (error) {
+            setIsLoading(false)
             console.log(error)
         }
     }

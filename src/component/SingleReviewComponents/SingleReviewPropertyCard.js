@@ -36,7 +36,7 @@ const SingleReviewPropertyCard = ({ specs, productType }) => {
     return (
         width>600 ?
             <div className='bg-[#C2DCF0] w-full flex flex-col row-span-3 relative'>
-                {productType === 1 && <>
+                {productType === 1 && specs &&<>
                     <div className='flex items-center justify-evenly pt-8 pb-4'>
                         <div className='flex items-center'>
                             <MdOutlineSpeed size={60} />
@@ -72,7 +72,7 @@ const SingleReviewPropertyCard = ({ specs, productType }) => {
                         </div>
                     </div>
                 </>}
-                {productType === 2 && <>
+                {productType === 2 && specs && <>
                     <div className='flex items-center justify-evenly pt-8 pb-4'>
                         <div className='flex items-center'>
                             <MdOutlineSpeed size={60} />
@@ -111,7 +111,7 @@ const SingleReviewPropertyCard = ({ specs, productType }) => {
 
             </div>
             : <div className='grid grid-cols-2 px-6 gap-2'>
-                {productType === 1 && <>
+                {productType === 1 && specs &&<>
                         <div className='flex items-center justify-center bg-gray-200 rounded-lg'>
                             <MdOutlineSpeed size={40} />
                             <div className='px-3'>
