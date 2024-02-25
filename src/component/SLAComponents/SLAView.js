@@ -51,7 +51,8 @@ const SLAView = () => {
                 return (
                   <div
                     onClick={(e) => {
-                      navigation(`/productreview/${Cards.Id}`);
+                      const name = Cards.product_name.replaceAll(' ', '-')
+                      navigation(`/productreview/${name}/${Cards.Id}`);
                     }}
                     className="flex items-center mb-6 shadow-for-app bg-white/95 rounded-lg cursor-pointer"
                     style={{
@@ -89,12 +90,15 @@ const SLAView = () => {
                         {Cards.discription}
                       </p>
                       <div className="flex items-center pb-4">
-                        <Link
-                          to={"../OneReview"}
+                        <p
+                          onClick={(e) => {
+                            const name = Cards.product_name.replaceAll(' ', '-')
+                            navigation(`/productreview/${name}/${Cards.Id}`);
+                          }}
                           className="underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal"
                         >
                           Read More
-                        </Link>
+                        </p>
                         <MdKeyboardDoubleArrowRight size={25} />
                       </div>
                     </div>
@@ -147,7 +151,12 @@ const SLAView = () => {
                 </div>
                 <p className='line-clamp-3 pt-2 pr-2  text-neutral-700'>{items.discription}</p>
                 <div className='flex items-center py-2 mb-2'>
-                  <Link to={`/productreview/${items.Id}`} className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>Read More</Link>
+                  <p
+                    onClick={(e) => {
+                      const name = Cards.product_name.replaceAll(' ', '-')
+                      navigation(`/productreview/${name}/${Cards.Id}`);
+                    }}
+                    className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>Read More</p>
                   <MdKeyboardDoubleArrowRight size={20} />
                 </div>
               </div>

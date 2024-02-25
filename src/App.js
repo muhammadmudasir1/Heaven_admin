@@ -57,7 +57,7 @@ const App = () => {
                                 <Route path="cutter" element={<CutterView />} />
                                 <Route path="search" element={<SearchView/>} />
                             </Route>
-                            <Route path="/productreview/:id" element={<SingleReview />} >
+                            <Route path="/productreview/:productName/:id" element={<SingleReview />} >
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
                             <Route path="/news" element={<NewsView/>}>
