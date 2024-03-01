@@ -1,12 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const Profilecontainer = () => {
+    const {t}=useTranslation()
     return (
         <div className='bg-[#00CED1] py-12 flex flex-row items-center justify-between '>
             <div className='lg:ml-12 ml-6 flex flex-col justify-start items-start'>
                 <h1 className='text-neutral-800 lg:text-5xl text-2xl font-bold '>
-                    Beginner’s guide to buy <br/> the right 3D printer
+                    {t('beginnersGuidBannar')}
                 </h1>
                 <NavLink to={'/ratgaber'} className='text-neutral-800 bg-white rounded-md flex items-center justify-center lg:px-8 px-4 lg:py-4 py-2 lg:mt-14 mt-4 lg:text-2xl font-medium '>
                     Beginner’s guide

@@ -19,6 +19,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
     const [coupon, setCoupon] = useState('')
     const [discription, setDiscription] = useState('')
     const [visitingLink, setVisitingLink] = useState('')
+    const [siteName, setSiteName] = useState(null)
     const [purchaseLinkId, setPurchaseLinkId] = useState(null)
     const [editData, setEditData] = useState(null)
     const { auth, setAuth } = useAuth()
@@ -36,6 +37,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
         setCoupon(data.coupon)
         setDiscription(data.discription)
         setVisitingLink(data.visitingLink)
+        setSiteName(data.siteName)
         setTimeout(() => {
             setRetrivePriceFlag(data.retrivePriceFlag)
 
@@ -92,7 +94,8 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     title,
                     coupon,
                     discription,
-                    visitingLink
+                    visitingLink,
+                    siteName
                 }
             }, config)
             setSiteType(1)
@@ -100,6 +103,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             setVisitingLink("")
             setOriginalPrice("")
             setDiscountedPrice("")
+            setSiteName("")
             setUnit("")
             setRetrivePriceFlag(false)
             setTitle("")
@@ -195,9 +199,9 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     setLoading(false)
                     console.log(error)
                 }
-                
+
             }
-            else{
+            else {
                 setLoading(false)
             }
 
@@ -288,36 +292,54 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     <option value={13}>Sculpfun de</option>
                     <option value={14}>Two Trees</option>
                     <option value={15}>Qidi Tech de</option>
+                    <option value={16}>Others</option>
                 </select>
             </section>
-
-            <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
-                <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Site Link:</label>
-                <div className='w-full flex '>
-                    <input
-                        type='text'
-                        className='grow px-2 py-1 outline-none border-2 border-gray-400 rounded-md'
-                        value={link}
-                        onChange={(e) => {
-                            setLink(e.target.value)
-                        }}
-                    />
-
-                    {
-                        retrivePriceFlag ?
-                            <img src={checkIcon} className=' w-5 mx-2' />
-                            :
-                            <button
-                                className='px-2 py-1 bg-customBlue ml-2 text-white hover:bg-blue-500 rounded-md'
-                                onClick={(e) => {
-                                    handleCheckLink()
+            {
+                siteType != 16 ?
+                    <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
+                        <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Site Link:</label>
+                        <div className='w-full flex '>
+                            <input
+                                type='text'
+                                className='grow px-2 py-1 outline-none border-2 border-gray-400 rounded-md'
+                                value={link}
+                                onChange={(e) => {
+                                    setLink(e.target.value)
                                 }}
-                            >Check</button>
-                    }
-                </div>
+                            />
+
+                            {
+                                retrivePriceFlag ?
+                                    <img src={checkIcon} className=' w-5 mx-2' />
+                                    :
+                                    <button
+                                        className='px-2 py-1 bg-customBlue ml-2 text-white hover:bg-blue-500 rounded-md'
+                                        onClick={(e) => {
+                                            handleCheckLink()
+                                        }}
+                                    >Check</button>
+                            }
+                        </div>
 
 
-            </section>
+                    </section>
+                    : <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
+                        <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Site Name:</label>
+                        <div className='w-full flex '>
+                            <input
+                                type='text'
+                                className='grow px-2 py-1 outline-none border-2 border-gray-400 rounded-md'
+                                value={siteName}
+                                onChange={(e) => {
+                                    setSiteName(e.target.value)
+                                }}
+                            />
+                        </div>
+
+
+                    </section>
+            }
             <section className='p-0 2xl:p-2 flex items-start flex-col 2xl:flex-row 2xl:items-center w-full'>
                 <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Visiting Link:</label>
                 <input
@@ -355,6 +377,21 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                         ]}
                     />
                 </section>
+                {
+                    siteType == 16 &&
+                    <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center'>
+                        <label className='mr-2 pl-1 pt-1 2xl:w-2/6 2xl:p-0 text-sm 2xl:text-base'>Unit:</label>
+                        <select
+                            onChange={
+                                (e) => {
+                                    setUnit(e.target.value)
+                                }}
+                        >
+                            <option value={"€"}>Euro (€)</option>
+                            <option value={"$"}>USD ($)</option>
+                        </select>
+                    </section>
+                }
             </div>
 
 

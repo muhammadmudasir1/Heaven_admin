@@ -44,9 +44,6 @@ const FilamentView = () => {
           {currentCard.map((Cards) => {
             return (
               <div
-                // onClick={(e) => {
-                //   navigation(`/productreview/${Cards.Id}`);
-                // }}
                 className="flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer"
                 style={{
                     boxShadow:

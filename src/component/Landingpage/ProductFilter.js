@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import Api from '../../api/Api';
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 
 const ProductElement = ({ element,setSelectedList,selectedList}) => {
@@ -41,17 +43,23 @@ const ProductElement = ({ element,setSelectedList,selectedList}) => {
 const ProductFilter = ({setFilterProduct,manufacturers,filterProduct}) => {
   const [isOpen, setIsOpen] = useState(false)
   const [productList, setProductList] = useState([])
+  const {t}=useTranslation()
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await Api.post(`/api/products/productList`,{
-        manufacturers
-      })
-      if (Array.isArray(response.data)){
-        setProductList(response.data)
-      }
-      else{
-        setProductList([])
+      try {
+        const response = await Api.post(`/api/products/productList`,{
+          manufacturers
+        })
+        if (Array.isArray(response.data)){
+          setProductList(response.data)
+        }
+        else{
+          setProductList([])
+        }
+        
+      } catch (error) {
+        console.log(error)
       }
     }
     fetchData()
@@ -67,7 +75,7 @@ const ProductFilter = ({setFilterProduct,manufacturers,filterProduct}) => {
         onClick={toggleDropdown}
         className='bg-white w-full md:text-lg  md:py-3 py-1 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white  duration-500 active:text-white text-center pl-2 pr-2 md:pl-8 md:pr-2  text-neutral-700 text-lg font-light font-[Roboto]'
       >
-        All Products
+        {t('products')}
         {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
       </button>
       {isOpen && (

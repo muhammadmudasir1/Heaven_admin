@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const CompareTabbar = () => {
     const [productType,setProductType]=useState(1)
-
+    const {t}=useTranslation()
 
     return (
         <>
@@ -17,28 +18,29 @@ const CompareTabbar = () => {
                     setProductType(1)
                 }}
                 >
-                   <p>SLA Printer</p>
+                   <p>{t('SLA')}</p>
                 </li>
                 <li className={`py-3 cursor-pointer px-2 ${productType==2 && "active"}`}
                 onClick={(e)=>{
                     setProductType(2)
                 }}
                 >
-                    <p>FDM Printer</p>
+                    <p>{t('fdm')}</p>
                 </li>
                 <li className={`py-3 cursor-pointer px-2 ${productType==3 && "active"}`}
                 onClick={(e)=>{
                     setProductType(3)
                 }}
+                
                 >
-                    <p>Laser Cutter</p>
+                    <p>{t('laserCutter')}</p>
                 </li>
                 <li className={`py-3 cursor-pointer px-2 ${productType==4 && "active"}`}
                 onClick={(e)=>{
                     setProductType(4)
                 }}
                 >
-                    <p>3D Scannar</p>
+                    <p>{t('3DScanner')}</p>
                 </li>
                 </div>
             </ul>

@@ -101,8 +101,10 @@ const PriceTile = ({ priceData }) => {
     return (
         <div className='flex border-2 items-center justify-evenly border-blue-500 md:rounded-md rounded-xl py-2 md:h-14 h-10 my-2 w-full p-2 hover:bg-customBlue cursor-pointer group' >
             <div className='md:w-1/2 w-1/3 h-full flex justify-center items-center rounded-xl  p-2 bg-gray-300 '>
-
-                <img src={logo} alt="" className='w-full' />
+                {priceData.siteType==16?
+                <p className=' text-xs'>{priceData.siteName}</p>
+                :<img src={logo} alt="" className='w-full' />
+                }
             </div>
             <div className=' flex justify-center items-center group group-hover:text-white'>
                 {isLoading ?
@@ -188,6 +190,8 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                     case 15:
                         site = "Qidi"
                         break;
+                    case 16:
+                        site= element.siteName 
 
                 }
                 let result = {

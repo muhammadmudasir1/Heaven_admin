@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { useTranslation } from 'react-i18next';
 import Api from '../../api/Api';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const ManufacturerElement = ({ element,setSelectedList,selectedList}) => {
   const [selected,setSelected]=useState(selectedList.includes(element))
+  
 
   useEffect(()=>{
     if(selected){
@@ -41,11 +42,16 @@ const ManufacturerElement = ({ element,setSelectedList,selectedList}) => {
 const Manufacturers = ({setFilterManufacturer,filterManufacturer}) => {
   const [isOpen, setIsOpen] = useState(false)
   const [manufacturerList, setManufacturerList] = useState([])
-
+  const {t}=useTranslation()
+  
   useEffect(() => {
     const fetchData = async () => {
-      const response = await Api.get(`/api/products/manufacturerList/0`)
-      setManufacturerList(response.data)
+      try {
+        const response = await Api.get(`/api/products/manufacturerList/0`)
+        setManufacturerList(response.data)
+      } catch (error) {
+        console.log(error)
+      }
     }
     fetchData()
   }, [])
@@ -60,7 +66,7 @@ const Manufacturers = ({setFilterManufacturer,filterManufacturer}) => {
         onClick={toggleDropdown}
         className='bg-white w-full md:text-lg  md:py-3 py-1 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white  duration-500 active:text-white text-center pl-2 pr-2 md:pl-8 md:pr-2  text-neutral-700 text-lg font-light font-[Roboto]'
       >
-        Manufacturers
+        {t("Manufacturer")}
         {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
       </button>
       {isOpen && (

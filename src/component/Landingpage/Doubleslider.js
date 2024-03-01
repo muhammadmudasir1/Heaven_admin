@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper/modules";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { useTranslation } from "react-i18next";
 import Api from "../../api/Api";
 import "swiper/css/bundle";
 import "swiper/css/navigation";
@@ -12,13 +13,11 @@ import "swiper/css";
 import LoadingCard from "../LoadingCard";
 
 const Doubleslider = () => {
-
-
-  //SLA
   const [swiperInstanceSLA, setSwiperInstanceSLA] = useState(null);
   const [isBeginningSLA, setIsBeginningSLA] = useState(true);
   const [isEndSLA, setIsEndSLA] = useState(false);
   const [SLAproducts, setSLAproducts] = useState([])
+  const {t}=useTranslation()
   const handleSwiperSLA = (swiper) => {
     setSwiperInstanceSLA(swiper);
   };
@@ -35,8 +34,6 @@ const Doubleslider = () => {
     }
     SLA()
   }, [])
-
-  ///FDM
   const [swiperInstanceFDM, setSwiperInstanceFDM] = useState(null);
   const [isBeginningFDM, setIsBeginningFDM] = useState(true);
   const [isEndFDM, setIsEndFDM] = useState(false);
@@ -73,7 +70,7 @@ const Doubleslider = () => {
         <div className="lg:col-span-6 lg:relative my-8">
           <div className=" flex justify-center items-center">
             <h1 className="text-neutral-800 text-2xl font-normal">
-              Latest on SLA printer
+              {t('LatestSLA')}
             </h1>
           </div>
           {isLoader ? (<LoadingCard />) : (
@@ -148,7 +145,7 @@ const Doubleslider = () => {
         <div className="lg:col-span-6 lg:relative my-8">
           <div class=" flex justify-center items-center">
             <h1 class="text-neutral-800 text-2xl font-normal ">
-              Latest on FDM Printer
+              {t('LatestFDM')}
             </h1>
           </div>
           {isLoader ? (<LoadingCard />) : (

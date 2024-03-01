@@ -11,10 +11,8 @@ const Tabbar = () => {
   const [isOpen, setisOpen] = useState(false);
   const [pageOnPrinter, setPageOnPrinter] = useState(false);
   const location = useLocation();
-
-
-
   const { t } = useTranslation();
+  
   const toggleDropdown = () => {
     setisOpen(!isOpen)
   }
@@ -82,21 +80,21 @@ const Tabbar = () => {
               </div>
               {isOpen && (
                 <div className='absolute top-12 right-0 flex flex-col items-start justify-evenly bg-white w-40 shadow-md shadow-slate-400'>
-                  <NavLink to={'/product/sla'}
-                    onClick={(e) => {
-                      setisOpen(false)
-                      setPageOnPrinter(true)
-                    }}
-                    className='hover:bg-[#EEEEEE] w-full p-3 text-neutral-700 text-xl font-light font-[Roboto]'>
-                    SLA printer
-                  </NavLink>
                   <NavLink to={'/product/fdm'}
                     onClick={(e) => {
                       setisOpen(false)
                       setPageOnPrinter(true)
                     }}
                     className='hover:bg-[#EEEEEE] w-full p-3 text-neutral-700 text-xl font-light font-[Roboto]'>
-                    FDM printer
+                    FDM
+                  </NavLink>
+                  <NavLink to={'/product/sla'}
+                    onClick={(e) => {
+                      setisOpen(false)
+                      setPageOnPrinter(true)
+                    }}
+                    className='hover:bg-[#EEEEEE] w-full p-3 text-neutral-700 text-xl font-light font-[Roboto]'>
+                    {t('SLA')}
                   </NavLink>
                 </div>
               )}
@@ -106,13 +104,13 @@ const Tabbar = () => {
                 setisOpen(false)
                 setPageOnPrinter(false)
               }}
-              className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>Laser</NavLink>
+              className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>{t('laserCutter')}</NavLink>
             <NavLink to={'/product/scanner'}
               onClick={(e) => {
                 setisOpen(false)
                 setPageOnPrinter(false)
               }}
-              className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>Scanner</NavLink>
+              className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>{t('3DScanner')}</NavLink>
             <NavLink to={'/filament'}
               onClick={(e) => {
                 setisOpen(false)
@@ -124,7 +122,7 @@ const Tabbar = () => {
                 setisOpen(false)
                 setPageOnPrinter(false)
               }}
-              className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>Ratgeber</NavLink>
+              className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>Tutorials</NavLink>
             <NavLink to={'/news'}
               onClick={(e) => {
                 setisOpen(false)

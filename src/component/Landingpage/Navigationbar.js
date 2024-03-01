@@ -25,7 +25,7 @@ const Navigationbar = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
     const [Input, setInput] = useState("");
     const [result, setResults] = useState([]);
-    const [IsOpen, setIsOpen] = useState(false);
+    const [IsOpen, setIsOpen] = useState(true);
     const [IsTranslated, setIsTranslated] = useState(false);
     const navigate = useNavigate()
     const [language, setLanguage] = useState('DE');
@@ -101,14 +101,16 @@ const Navigationbar = () => {
     return (
         <>
             <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-[9999] ${isSticky ? 'fixed w-full top-0' : ''}`}>
-                <div className='z-20 flex items-center'>
-                    <img src={logo} alt="" className='lg:w-14 lg:h-14 w-6 h-6' />
-                    <h1 className='text-white lg:text-2xl text-lg font-bold'>3D heavens</h1>
+                <div className='z-20 flex items-center cursor-pointer' onClick={(e)=>{
+                    navigate('/')
+                }}>
+                    <img src={logo} alt="" className='md:w-14 md:h-14 w-6 h-6' />
+                    <h1 className='text-white md:text-2xl text-base font-bold'>3D heavens</h1>
                 </div>
                 {isMobile ? (
                     <>
                         <div className='flex flex-row justify-between items-center'>
-                            {!IsOpen ? ('') : (<div className='ml-4 text-white text-lg'>
+                            {!IsOpen ? ('') : (<div className='ml-4 text-white text-base '>
                                 Best deals
                             </div>)}
                             <div >
@@ -117,12 +119,23 @@ const Navigationbar = () => {
                             <div className='absolute left-2 z-30'>
                                 {!IsOpen ? (
                                     <div onMouseLeave={SearchMenu} className='relative w-[65vw]'>
-                                        <input value={Input} onChange={(e) => setInput(e.target.value)} type='text' placeholder='What are you looking for?'
-                                            onBlur={(e) => { setResults(false) }}
-                                            className='pl-4 text-neutral-700 text-xl font-light h-full w-full rounded-xl py-3' />
+                                        <input value={Input} onChange={(e) => setInput(e.target.value)} type='text' placeholder={t("search")}
+                                            onBlur={(e) => {
+                                                setTimeout(() => {
+                                                    setResults(false)
+                                                }, 200)
+                                                setIsOpen(false)
+                                                setIsOpen(false)
+                                            }}
+
+                                            className='pl-4 text-neutral-700 md:text-xl text-base font-light h-full w-full md:rounded-xl rounded-full md:py-3 py-1' />
                                         <div className='absolute z-40 bg-slate-50 w-full mt-2 rounded-lg overflow-y-scroll max-h-72'>
                                             {result.length > 0 && result.map((ele) => (
-                                                <div key={ele.Id} className='px-4 py-4'>
+                                                <div key={ele.Id} className='px-4 py-4'
+                                                onClick={(e)=>{
+                                                    navigate(`/productreview/${ele.product_name}/${ele.Id}`)
+                                                }}
+                                                >
                                                     {ele.product_name}
                                                 </div>
                                             ))}
@@ -143,17 +156,17 @@ const Navigationbar = () => {
                                         <Link to={'/#topFive'} onClick={closeDashboard}>Beste Liste</Link>
                                     </li>
                                     <li className='z-20 text-black relative'>
-                                        <NavLink onClick={SearchMenu}  className='flex ml-24 mr-20 text-center'>3D Druckers
+                                        <NavLink onClick={SearchMenu}  className='flex ml-24 mr-20 text-center'>{t('3dprinters')}
                                             {!IsOpen ? <ArrowDownCircleIcon /> : <ArrowUpCircleIcon />}
                                         </NavLink>
                                         {IsOpen && (
                                             <div className='absolute right-0 top-0 bg-white py-2 px-4 z-30'>
                                                 <ul>
                                                     <li>
-                                                        <NavLink to='/product/sla' onClick={closeDashboard} className={`z-30`}>SLA</NavLink>
+                                                        <NavLink to='/product/fdm' onClick={closeDashboard} className={`z-30`}>FDM</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink onClick={closeDashboard} to='/product/fdm' className={`z-30`}>FDM</NavLink>
+                                                        <NavLink onClick={closeDashboard} to='/product/sla' className={`z-30`}>{t('SLA')}</NavLink>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -183,7 +196,7 @@ const Navigationbar = () => {
                     <div className='hidden md:flex items-center'>
                         <div onMouseLeave={SearchMenu} className='relative w-[40vw]'>
                             <div className='h-20 w-full p-4 rounded-tl-2xl rounded-bl-2xl border-none items-center grid grid-cols-8'>
-                                <input value={Input} onChange={(e) => setInput(e.target.value)} type='text' placeholder='What are you looking for?'
+                                <input value={Input} onChange={(e) => setInput(e.target.value)} type='text' placeholder={t("search")}
                                     onBlur={(e) => {
                                         setTimeout(() => {
                                             setResults(false)
@@ -202,16 +215,16 @@ const Navigationbar = () => {
                                     <div key={ele.Id} className='px-4 py-4'>
                                         <p className='hover:text-customBlue cursor-pointer'
                                             onClick={(e) => {
-                                                navigate(`/productreview/${ele.Id}`)
+                                                navigate(`/productreview/${ele.product_name}/${ele.Id}`)
                                             }}
                                         >{ele.product_name}</p>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <a href="" className='ml-4 text-white text-xl font-light font-[Roboto] hover:underline'>
+                        <Link to={'/ComparisonPage'} className='ml-4 text-white text-xl font-light font-[Roboto]'>
                             ⚡️{t("BestDeals")}
-                        </a>
+                        </Link>
                         <div className='px-8 flex items-center relative'>
                             <button
                                 onBlur={(e) => { setIsTranslated(false) }}

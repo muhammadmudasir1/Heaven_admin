@@ -50,7 +50,8 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
         "coupon":data.coupon,
         "discription":data.discription,
         "siteType":data.siteType,
-        "visitingLink":data.visitingLink
+        "visitingLink":data.visitingLink,
+        "siteName":data.siteName
         }
         setUpdateData(newdata)
         remove(purchaselinkId)
@@ -126,7 +127,7 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
             </div>
             <div className='grid grid-cols-8'>
                 <div className=' col-span-6 border-r-2 mb-4'>
-                    <h3 className=' text-2xl font-bold'>{sites[data.siteType - 1]}</h3>
+                    <h3 className=' text-2xl font-bold'>{data.siteType==16?data.siteName:sites[data.siteType - 1]}</h3>
                     <p>{data.discription}</p>
 
                     {
