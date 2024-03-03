@@ -25,7 +25,7 @@ const Navigationbar = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
     const [Input, setInput] = useState("");
     const [result, setResults] = useState([]);
-    const [IsOpen, setIsOpen] = useState(false);
+    const [IsOpen, setIsOpen] = useState(true);
     const [IsTranslated, setIsTranslated] = useState(false);
     const navigate = useNavigate()
     const [language, setLanguage] = useState('DE');
@@ -103,7 +103,7 @@ const Navigationbar = () => {
             <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-[9999] ${isSticky ? 'fixed w-full top-0' : ''}`}>
                 <div className='z-20 flex items-center'>
                     <img src={logo} alt="" className='lg:w-14 lg:h-14 w-6 h-6' />
-                    <h1 className='text-white lg:text-2xl text-lg font-bold'>3D heavens</h1>
+                    <a href='/' className='text-white lg:text-2xl text-lg font-bold'>3D heavens</a>
                 </div>
                 {isMobile ? (
                     <>
@@ -137,23 +137,23 @@ const Navigationbar = () => {
                             <div className={nav ? 'w-full h-screen fixed left-0 top-0 flex-col z-10 bg-white/90 ease-in duration-500' : 'absolute top-0 left-[-100%] ease-in duration-500 z-10'}>
                                 <ul className='gap-8 flex lg:flex-row flex-col items-center justify-center h-screen w-full'>
                                     <li className='z-20 text-black hover:underline'>
-                                        <NavLink to={'/'} onClick={closeDashboard} >startseite</NavLink>
+                                        <NavLink to={'/'} onClick={closeDashboard} className={'text-xl font-normal'}>Startseite</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <Link to={'/#topFive'} onClick={closeDashboard}>Beste Liste</Link>
+                                        <Link to={'/#topFive'}  className={'text-xl font-normal'} onClick={closeDashboard}>Beste Liste</Link>
                                     </li>
                                     <li className='z-20 text-black relative'>
-                                        <NavLink onClick={SearchMenu}  className='flex ml-24 mr-20 text-center'>3D Druckers
+                                        <NavLink onClick={SearchMenu}  className='flex ml-24 mr-20 text-center text-xl font-normal'>3D Druckers
                                             {!IsOpen ? <ArrowDownCircleIcon /> : <ArrowUpCircleIcon />}
                                         </NavLink>
-                                        {IsOpen && (
+                                        {!IsOpen && (
                                             <div className='absolute right-0 top-0 bg-white py-2 px-4 z-30'>
                                                 <ul>
                                                     <li>
-                                                        <NavLink to='/product/sla' onClick={closeDashboard} className={`z-30`}>SLA</NavLink>
+                                                        <NavLink to='/product/sla' onClick={closeDashboard} className={`z-30 text-xl font-normal`}>SLA</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink onClick={closeDashboard} to='/product/fdm' className={`z-30`}>FDM</NavLink>
+                                                        <NavLink onClick={closeDashboard} to='/product/fdm' className={`z-30 text-xl font-normal`}>FDM</NavLink>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -161,19 +161,19 @@ const Navigationbar = () => {
                                     </li>
 
                                     <li className='z-20 text-black'>
-                                        <NavLink to={'/product/cutter'} onClick={closeDashboard}>Laser</NavLink>
+                                        <NavLink to={'/product/cutter'}  className={'text-xl font-normal'} onClick={closeDashboard}>Laser</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <NavLink to={'/product/scanner'} onClick={closeDashboard}>Scanner</NavLink>
+                                        <NavLink to={'/product/scanner'} className={'text-xl font-normal'} onClick={closeDashboard}>Scanner</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <NavLink to={'/filament'} onClick={closeDashboard}>Filamente</NavLink>
+                                        <NavLink to={'/filament'} className={'text-xl font-normal'} onClick={closeDashboard}>Filamente</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <NavLink to={'/ratgaber'} onClick={closeDashboard}>Ratgeber</NavLink>
+                                        <NavLink to={'/ratgaber'} className={'text-xl font-normal'} onClick={closeDashboard}>Ratgeber</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <NavLink to={'/news'} onClick={closeDashboard}>News</NavLink>
+                                        <NavLink to={'/news'} onClick={closeDashboard} className={'text-xl font-normal'}>News</NavLink>
                                     </li>
                                 </ul>
                             </div>

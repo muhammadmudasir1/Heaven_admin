@@ -63,7 +63,7 @@ const Doubleslider = () => {
   const [slidesToShow, setSlidesToShow] = useState(3);
 
   useEffect(() => {
-    const noOfSlides = width <= 480 ? 1 : width <= 1380 ? 3 : 4;
+    const noOfSlides = width <= 480 ? 1 : width <= 1380 ? 3 : 3;
     setSlidesToShow(noOfSlides);
   }, [width]);
 

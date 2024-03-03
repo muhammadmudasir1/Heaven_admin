@@ -6,6 +6,7 @@ import PaginationClass from "../ComparisonComponet/PaginationClass";
 import Api from "../../api/Api";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import LoadingCard from "../LoadingCard";
+import LoadingCardMobile from "../LoadingCardMobile";
 
 const CutterView = () => {
   const [CardPerPage, setCardPerPage] = useState(5);
@@ -19,12 +20,14 @@ const CutterView = () => {
 
   const [Cards, setCards] = useState([]);
   const [isLoader, setIsLoader] = useState(true);
+  const [isMobileLoader,setIsMobileLoader]=useState(true);
   useEffect(() => {
     const Laser = async () => {
       try {
         const response = await Api.get(`api/products/type/3`);
         setCards(response.data);
         setIsLoader(false);
+        setIsMobileLoader(false)
       } catch (error) {
         console.log(error);
       }
@@ -123,47 +126,64 @@ const CutterView = () => {
         )}
       </div>
       : <div>
-        {Cards.map((items, index) => {
-          return <>
-            <div 
-            key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
-              { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
-            }>
-              <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.ProductImages[0].path})` }} />
-              <div className='col-span-2 ml-2 flex flex-col items-start justify-center'>
-                <h1 className='mt-5 text-xl font-bold pr-2 line-clamp-2'>{items.product_name}</h1>
-                <div className='flex pt-2'>
-                  {items.overall_rating > 0 && [...Array.from({ length: items.overall_rating }, (_, index) => index + 1)].map((_, index) => (
-                    <CiStar
-                      key={index}
-                      size={25}
-                      className="text-amber-500"
-                    />
-                  ))}
-                  {[...Array.from({ length: 5 - items.overall_rating }, (_, index) => index + 1)].map((_, index) => (
-                    <CiStar
-                      key={index}
-                      size={25}
-                      className="text-gray-500"
-                    />
-                  ))}
-                </div>
-                <p className='line-clamp-3 pt-2 pr-2  text-neutral-700'>{items.discription}</p>
-                <div className='flex items-center py-2 mb-2'>
-                  <p 
-                  onClick={(e) => {
-                    const name=items.product_name.replaceAll(' ','-')
-                    navigation(`/productreview/${name}/${items.Id}`);
-                  }}
-                  className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>Read More</p>
-                  <MdKeyboardDoubleArrowRight size={20} />
+        {isMobileLoader?(
+          <div>
+            <LoadingCardMobile/>
+            <LoadingCardMobile/>
+            <LoadingCardMobile/>
+            <LoadingCardMobile/>
+            <LoadingCardMobile/>
+            <LoadingCardMobile/>
+            <LoadingCardMobile/>
+            <LoadingCardMobile/>
+            <LoadingCardMobile/>
+            <LoadingCardMobile/>
+          </div>
+        ):(
+          <>
+          {Cards.map((items, index) => {
+            return <>
+              <div 
+              key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
+                { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
+              }>
+                <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.ProductImages[0].path})` }} />
+                <div className='col-span-2 ml-2 flex flex-col items-start justify-center'>
+                  <h1 className='mt-5 text-xl font-bold pr-2 line-clamp-2'>{items.product_name}</h1>
+                  <div className='flex pt-2'>
+                    {items.overall_rating > 0 && [...Array.from({ length: items.overall_rating }, (_, index) => index + 1)].map((_, index) => (
+                      <CiStar
+                        key={index}
+                        size={25}
+                        className="text-amber-500"
+                      />
+                    ))}
+                    {[...Array.from({ length: 5 - items.overall_rating }, (_, index) => index + 1)].map((_, index) => (
+                      <CiStar
+                        key={index}
+                        size={25}
+                        className="text-gray-500"
+                      />
+                    ))}
+                  </div>
+                  <p className='line-clamp-3 pt-2 pr-2  text-neutral-700'>{items.discription}</p>
+                  <div className='flex items-center py-2 mb-2'>
+                    <p 
+                    onClick={(e) => {
+                      const name=items.product_name.replaceAll(' ','-')
+                      navigation(`/productreview/${name}/${items.Id}`);
+                    }}
+                    className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>Read More</p>
+                    <MdKeyboardDoubleArrowRight size={20} />
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {(index + 1) % 3 === 0 && index !== currentCard.length - 1 && <div key={``} className="h-12 bg-red-300" />}
+  
+              {(index + 1) % 3 === 0 && index !== currentCard.length - 1 && <div key={``} className="h-12 bg-red-300" />}
+            </>
+          })}
           </>
-        })}
+        )}
       </div>
   );
 };
