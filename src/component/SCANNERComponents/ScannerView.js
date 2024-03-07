@@ -6,13 +6,14 @@ import PaginationClass from "../ComparisonComponet/PaginationClass";
 import Api from "../../api/Api";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import LoadingCard from "../LoadingCard";
+import { useTranslation } from "react-i18next";
 
 const ScannerView = () => {
   const [CardPerPage, setCardPerPage] = useState(5);
   const [CurrentPage, setCurrentPage] = useState(1);
   const navigation = useNavigate();
   const { width } = useWindowDimensions()
-
+  const {t}=useTranslation()
   useEffect(() => {
     console.log(CardPerPage);
   }, [CardPerPage]);
@@ -96,7 +97,7 @@ const ScannerView = () => {
                           }}
                           className="underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal"
                         >
-                          Read More
+                         {t('Readmore')}
                         </p>
                         <MdKeyboardDoubleArrowRight size={25} />
                       </div>
@@ -155,7 +156,7 @@ const ScannerView = () => {
                     const name=items.product_name.replaceAll(' ','-')
                     navigation(`/productreview/${name}/${items.Id}`);
                   }}
-                  className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>Read More</p>
+                  className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 font-normal '>{t('Readmore')}</p>
                   <MdKeyboardDoubleArrowRight size={20} />
                 </div>
               </div>

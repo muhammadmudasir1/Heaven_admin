@@ -23,13 +23,13 @@ const LaserSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className={`w-full border-b-[2px] border-gray-500 py-2  `}>
-                    <h2 className='text-2xl font-semibold'>{t('diodeLaserOutputPower')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('workSurface')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.laserPower}</p>
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.workSurface}</p>
                             )
                         })
                     }
@@ -38,13 +38,13 @@ const LaserSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('laserWavelength')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('machineWeight')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.laserWavelength}</p>
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.machineWeight}</p>
                             )
                         })
                     }
@@ -53,13 +53,13 @@ const LaserSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('engravingAccuracy')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('guides')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.engravingAccuracy}</p>
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.guides}</p>
                             )
                         })
                     }
@@ -68,13 +68,28 @@ const LaserSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('engravingAreaSize')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('laserOpticalOutputPower')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.engravingArea}</p>
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.laserOpticalOutputPower}</p>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+            <div className='w-full mb-2'>
+                <div className='w-full border-b-[2px] border-gray-500 py-2'>
+                    <h2 className='text-2xl font-semibold'>{t('pinpointAccuracy')}</h2>
+                </div>
+                <div className={`w-full p-2 grid grid-cols-4`}>
+                    {
+                        products.map((product) => {
+                            return (
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.pinpointAccuracy}</p>
                             )
                         })
                     }
@@ -98,28 +113,13 @@ const LaserSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('airAssistCompressor')}</h2>
+                    <h2 className='text-2xl font-semibold'>Air Assist</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.airAssistCompressor}</p>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-
-            <div className='w-full mb-2'>
-                <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('interface')}</h2>
-                </div>
-                <div className={`w-full p-2 grid grid-cols-4`}>
-                    {
-                        products.map((product) => {
-                            return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.interface}</p>
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.airAssist}</p>
                             )
                         })
                     }
@@ -143,13 +143,13 @@ const LaserSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>Laser Software</h2>
+                    <h2 className='text-2xl font-semibold'>{t('interface')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.laserSoftware}</p>
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.interface}</p>
                             )
                         })
                     }
@@ -158,13 +158,13 @@ const LaserSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('Engraving Material')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('possibleEngravingMaterials')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.engravingMaterial}</p>
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.possibleEngravingMaterials}</p>
                             )
                         })
                     }
@@ -173,13 +173,13 @@ const LaserSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('Cutting Material')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('PossibleCuttingThicknesses')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.cuttingMaterial}</p>
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.possibleCuttingThicknesses}</p>
                             )
                         })
                     }
@@ -188,13 +188,13 @@ const LaserSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('workingArea')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('securityFeatures')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.workingArea }</p>
+                                <p className='text-lg w-full text-center'>{product.LeaserCutter && product.LeaserCutter.securityFeatures }</p>
                             )
                         })
                     }

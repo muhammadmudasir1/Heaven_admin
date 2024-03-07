@@ -30,7 +30,7 @@ const ReviewAndAdd = () => {
     const [specs, setSpecs] = useState({})
     const [productType, setProductType] = useState(0)
     const [isLoading, setIsloading] = useState(false)
-
+    const {t}=useTranslation()
 
     useEffect(() => {
         const handleResize = () => {
@@ -113,7 +113,7 @@ const ReviewAndAdd = () => {
                     </div>
                     <div className=' col-span-8' id='alle'>
                         <h1 class="w-full py-8 bg-zinc-100 flex items-center px-20 text-neutral-800 text-[32px] font-semibold">
-                            Alle Wichtigste</h1>
+                            {t("coreData")}</h1>
                     </div>
                     {
                         isLoading ?
@@ -154,7 +154,15 @@ const ReviewAndAdd = () => {
                                                     <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-3/5 animate-pulse`} />
                                                 </div>
                                                 <h1 className='pl-4 font-light text-sm'>
-                                                    Preis
+                                                    {t('price')}
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-2/5`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    {t('processing')}
                                                 </h1>
                                             </div>
                                             <div className='flex items-center py-1 animate-pulse'>
@@ -178,17 +186,10 @@ const ReviewAndAdd = () => {
                                                     <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-3/5 animate-pulse`} />
                                                 </div>
                                                 <h1 className='pl-4 font-light text-sm'>
-                                                    Kundenservice
+                                                    {t('customerSupport')}
                                                 </h1>
                                             </div>
-                                            <div className='flex items-center py-1 animate-pulse'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-2/5`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    Verarbeitungen
-                                                </h1>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -238,7 +239,15 @@ const ReviewAndAdd = () => {
                                                     <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
                                                 </div>
                                                 <h1 className='pl-4 font-light text-sm'>
-                                                    Preis
+                                                    {t('price')}
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    {t('processing')}
                                                 </h1>
                                             </div>
                                             <div className='flex items-center py-1'>
@@ -262,17 +271,10 @@ const ReviewAndAdd = () => {
                                                     <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
                                                 </div>
                                                 <h1 className='pl-4 font-light text-sm'>
-                                                    Kundenservice
+                                                    {t('customerSupport')}
                                                 </h1>
                                             </div>
-                                            <div className='flex items-center py-1'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    Verarbeitungen
-                                                </h1>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -327,7 +329,15 @@ const ReviewAndAdd = () => {
                                                     <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-2/3`} />
                                                 </div>
                                                 <h1 className='pl-4 font-light text-sm'>
-                                                    Preis
+                                                    {t('price')}
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1 animate-pulse'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg animate-pulse'>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-4/5`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    {t('processing')}
                                                 </h1>
                                             </div>
                                             <div className='flex items-center py-1 animate-pulse'>
@@ -351,17 +361,10 @@ const ReviewAndAdd = () => {
                                                     <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-2/5`} />
                                                 </div>
                                                 <h1 className='pl-4 font-light text-sm'>
-                                                    Kundenservice
+                                                    {t('customerSupport')}
                                                 </h1>
                                             </div>
-                                            <div className='flex items-center py-1 animate-pulse'>
-                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg animate-pulse'>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-4/5`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    Verarbeitungen
-                                                </h1>
-                                            </div>
+                                            
                                         </div>
 
                                     </div>
@@ -420,7 +423,15 @@ const ReviewAndAdd = () => {
                                                     <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
                                                 </div>
                                                 <h1 className='pl-4 font-light text-sm'>
-                                                    Preis
+                                                    {t('price')}
+                                                </h1>
+                                            </div>
+                                            <div className='flex items-center py-1'>
+                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
+                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
+                                                </div>
+                                                <h1 className='pl-4 font-light text-sm'>
+                                                    {t('processing')}
                                                 </h1>
                                             </div>
                                             <div className='flex items-center py-1'>
@@ -444,17 +455,10 @@ const ReviewAndAdd = () => {
                                                     <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
                                                 </div>
                                                 <h1 className='pl-4 font-light text-sm'>
-                                                    Kundenservice
+                                                    {t('customerSupport')}
                                                 </h1>
                                             </div>
-                                            <div className='flex items-center py-1'>
-                                                <div className='h-2 w-[57vw] relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    Verarbeitungen
-                                                </h1>
-                                            </div>
+                                            
                                         </div>
 
                                     </div>

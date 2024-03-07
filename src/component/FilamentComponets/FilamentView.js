@@ -4,12 +4,14 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import PaginationClass from "../ComparisonComponet/PaginationClass";
 import Api from "../../api/Api";
+import { useTranslation } from "react-i18next";
+
 
 const FilamentView = () => {
   const [CardPerPage, setCardPerPage] = useState(5);
   const [CurrentPage, setCurrentPage] = useState(1);
   const navigation = useNavigate();
-
+  const {t}=useTranslation()
   useEffect(() => {
     console.log(CardPerPage);
   }, [CardPerPage]);

@@ -3,19 +3,19 @@ import { useTranslation } from 'react-i18next'
 
 const FDMSpecs = (props) => {
     const { saveData, oldData, update } = props
-    const [installationSpace, setInstallationSpace] = useState('')
-    const [surfaceArea, setSurfaceArea] = useState('')
-    const [driveTech, setDriveTech] = useState('')
-    const [installatingSpaceEnclouser, setInstallatingSpaceEnclouser] = useState('')
-    const [printVolume, setPrintVolume] = useState('')
-    const [ZAxisPrintingAccuracy, setZAxisPrintingAccuracy] = useState('')
-    const [printingAccuracyXYResolution, setPrintingAccuracyXYResolution] = useState('')
-    const [printBedTechnology, setPrintBedTechnology] = useState('')
+    const [installationSpace, setInstallationSpace] = useState('') //done
+    // const [surfaceArea, setSurfaceArea] = useState('')
+    const [driveTech, setDriveTech] = useState('') //done
+    const [installatingSpaceEnclouser, setInstallatingSpaceEnclouser] = useState('') //done
+    // const [printVolume, setPrintVolume] = useState('')
+    // const [ZAxisPrintingAccuracy, setZAxisPrintingAccuracy] = useState('')
+    // const [printingAccuracyXYResolution, setPrintingAccuracyXYResolution] = useState('')
+    const [printBedTechnology, setPrintBedTechnology] = useState('') //done
     const [filamentCompatibility, setFilamentCompatibility] = useState('')
     const [printSpeed, setPrintSpeed] = useState('')
-    const [nozzleTempurature, setNozzleTempurature] = useState('')
-    const [printTempurature, setPrintTempurature] = useState('')
-    const [pressureChamberTempurature, setPressureChamberTempurature] = useState('')
+    // const [nozzleTempurature, setNozzleTempurature] = useState('')
+    // const [printTempurature, setPrintTempurature] = useState('')
+    const [pressureChamberTempurature, setPressureChamberTempurature] = useState('') //done
     const [vibrationSuppresion, setVibrationSuppresion] = useState(false)
     const [automaticPrintBedMeasurement, setAutomaticPrintBedMeasurement] = useState(false)
     const [automaticZOffsetCalibration, setAutomaticZOffsetCalibration] = useState(false)
@@ -30,12 +30,21 @@ const FDMSpecs = (props) => {
     const [printRoomCamera, setPrintCamera] = useState("")
     const [LEDLighting, setLEDLighting] = useState(false)
     const [specsId, setSpecsId] = useState(null)
+    const [guides, setGuides] = useState("")
+    const [frameMaterial, setFrameMaterial] = useState("")
+    const [printAccuracy, setPrintAccuracy] = useState("")
+    const [text, setText] = useState("")
+    const [realisticPrintingSpeed, setRealisticPrintingSpeed] = useState("")
+    const [maximumAcceleration, setMaximumAcceleration] = useState("")
+    const [maximumPressureNozzleTemperature, setMaximumPressureNozzleTemperature] = useState("")
+    const [maximumPressureChamberTemperature, setMaximumPressureChamberTemperature] = useState("")
+    const [maximumPrintBedTemperature, setMaximumPrintBedTemperature] = useState("")
     const { t } = useTranslation()
 
     useEffect(() => {
         if(oldData){
             setLEDLighting(oldData.LEDLighting)
-            setZAxisPrintingAccuracy(oldData.ZAxisPrintingAccuracy)
+            // setZAxisPrintingAccuracy(oldData.ZAxisPrintingAccuracy)
             setAirFilter(oldData.airFilter)
             setAutomaticPrintBedMeasurement(oldData.automaticPrintBedMeasurement)
             setAutomaticZOffsetCalibration(oldData.automaticZOffsetCalibration)
@@ -49,17 +58,26 @@ const FDMSpecs = (props) => {
             setInstallationSpace(oldData.installationSpace)
             setLidarScannar(oldData.liderScannar)
             setMotherboard(oldData.motherboard)
-            setNozzleTempurature(oldData.nozzleTempurature)
+            // setNozzleTempurature(oldData.nozzleTempurature)
             setPressureChamberTempurature(oldData.pressureChamberTempurature)
             setPrintBedTechnology(oldData.printBedTechnology)
             setPrintCamera(oldData.printRoomCamera)
             setPrintSpeed(oldData.printSpeed)
-            setPrintTempurature(oldData.printTempurature)
-            setPrintVolume(oldData.printVolume)
-            setPrintingAccuracyXYResolution(oldData.printingAccuracyXYResolution)
+            // setPrintTempurature(oldData.printTempurature)
+            // setPrintVolume(oldData.printVolume)
+            // setPrintingAccuracyXYResolution(oldData.printingAccuracyXYResolution)
             setSupportingComponentCooling(oldData.supportingComponentCooling)
-            setSurfaceArea(oldData.surfaceArea)
+            // setSurfaceArea(oldData.surfaceArea)
             setVibrationSuppresion(oldData.vibrationSuppresion)
+            setGuides(oldData.guides)
+            setFrameMaterial(oldData.frameMaterial)
+            setPrintAccuracy(oldData.printAccuracy)
+            setText(oldData.text)
+            setRealisticPrintingSpeed(oldData.realisticPrintingSpeed)
+            setMaximumAcceleration(oldData.maximumAcceleration)
+            setMaximumPressureNozzleTemperature(oldData.maximumPressureNozzleTemperature)
+            setMaximumPressureChamberTemperature(oldData.maximumPressureChamberTemperature)
+            setMaximumPrintBedTemperature(oldData.maximumPrintBedTemperature)
             setSpecsId(oldData.id)
 
         }
@@ -71,17 +89,17 @@ const FDMSpecs = (props) => {
     const handleSave = () => {
         const data = {
             installationSpace,
-            surfaceArea,
+            // surfaceArea,
             driveTech,
             installatingSpaceEnclouser,
-            printVolume,
-            ZAxisPrintingAccuracy,
-            printingAccuracyXYResolution,
+            // printVolume,
+            // ZAxisPrintingAccuracy,
+            // printingAccuracyXYResolution,
             printBedTechnology,
             filamentCompatibility,
             printSpeed,
-            nozzleTempurature,
-            printTempurature,
+            // nozzleTempurature,
+            // printTempurature,
             pressureChamberTempurature,
             vibrationSuppresion,
             automaticPrintBedMeasurement,
@@ -95,7 +113,16 @@ const FDMSpecs = (props) => {
             dataConnection,
             motherboard,
             printRoomCamera,
-            LEDLighting
+            LEDLighting,
+            guides,
+            frameMaterial,
+            printAccuracy,
+            text,
+            realisticPrintingSpeed,
+            maximumAcceleration,
+            maximumPressureNozzleTemperature,
+            maximumPressureChamberTemperature,
+            maximumPrintBedTemperature
         }
         saveData(data)
     }
@@ -103,17 +130,17 @@ const FDMSpecs = (props) => {
     const handleUpdate = async () => {
         const data = {
             installationSpace,
-            surfaceArea,
+            // surfaceArea,
             driveTech,
             installatingSpaceEnclouser,
-            printVolume,
-            ZAxisPrintingAccuracy,
-            printingAccuracyXYResolution,
+            // printVolume,
+            // ZAxisPrintingAccuracy,
+            // printingAccuracyXYResolution,
             printBedTechnology,
             filamentCompatibility,
             printSpeed,
-            nozzleTempurature,
-            printTempurature,
+            // nozzleTempurature,
+            // printTempurature,
             pressureChamberTempurature,
             vibrationSuppresion,
             automaticPrintBedMeasurement,
@@ -127,7 +154,16 @@ const FDMSpecs = (props) => {
             dataConnection,
             motherboard,
             printRoomCamera,
-            LEDLighting
+            LEDLighting,
+            guides,
+            frameMaterial,
+            printAccuracy,
+            text,
+            realisticPrintingSpeed,
+            maximumAcceleration,
+            maximumPressureNozzleTemperature,
+            maximumPressureChamberTemperature,
+            maximumPrintBedTemperature
         }
         console.log(data)
         await update(oldData.product, 2, specsId, data)
@@ -141,7 +177,7 @@ const FDMSpecs = (props) => {
                 <div className='w-full grid grid-cols-3 gap-4 border-b-2 pb-4 border-gray-400'>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>Installation Space</label>
+                        <label className='text-sm'>{t('installationSpace')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
@@ -154,7 +190,7 @@ const FDMSpecs = (props) => {
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('installationSpace')}</label>
+                        <label className='text-sm'>{t('installationSpaceEnclouser')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
@@ -167,14 +203,15 @@ const FDMSpecs = (props) => {
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('surfaceArea')}</label>
+                        <label className='text-sm'>{t('frameMaterial')}</label>
+                        {/* changeApi */}
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={surfaceArea}
+                            value={frameMaterial}
                             onChange={(e) => {
-                                setSurfaceArea(e.target.value)
+                                setFrameMaterial(e.target.value)
                             }}
                         />
                     </section>
@@ -191,42 +228,44 @@ const FDMSpecs = (props) => {
                             }}
                         />
                     </section>
-
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('PrintVolume')}</label>
+                        <label className='text-sm'>{t('guides')}</label>
+                        {/* changeApi */}
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={printVolume}
+                            value={guides}
                             onChange={(e) => {
-                                setPrintVolume(e.target.value)
+                                setGuides(e.target.value)
                             }}
                         />
                     </section>
-
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('ZAxisPrintingAccuracy')}</label>
+                        <label className='text-sm'>{t('PrintAccuracy')}</label>
+                        {/* changeApi */}
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={ZAxisPrintingAccuracy}
+                            value={printAccuracy}
                             onChange={(e) => {
-                                setZAxisPrintingAccuracy(e.target.value)
+                                setPrintAccuracy(e.target.value)
                             }}
                         />
                     </section>
+                    
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('PrintingAccuracyXYResolution')}</label>
+                        <label className='text-sm'>Text</label>
+                        {/* changeApi */}
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={printingAccuracyXYResolution}
+                            value={text}
                             onChange={(e) => {
-                                setPrintingAccuracyXYResolution(e.target.value)
+                                setText(e.target.value)
                             }}
                         />
                     </section>
@@ -271,33 +310,36 @@ const FDMSpecs = (props) => {
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('NozzleTempurature')}</label>
+                        <label className='text-sm'>{t('RealisticPrintingSpeed')}</label>
+                        {/* changeApi */}
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={nozzleTempurature}
+                            value={realisticPrintingSpeed}
                             onChange={(e) => {
-                                setNozzleTempurature(e.target.value)
+                                setRealisticPrintingSpeed(e.target.value)
                             }}
                         />
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('PrintBedTemperature')}</label>
+                        <label className='text-sm'>{t('maximumAcceleration')}</label>
+                        {/* changeApi */}
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={printTempurature}
+                            value={maximumAcceleration}
                             onChange={(e) => {
-                                setPrintTempurature(e.target.value)
+                                setMaximumAcceleration(e.target.value)
                             }}
                         />
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('PressureChamberTempurature')}</label>
+                        <label className='text-sm'>{t('maximumPressureNozzleTemperature')}</label>
+                        {/* changeApi */}
                         <input
                             type="text"
                             placeholder="Type Here"
@@ -305,6 +347,34 @@ const FDMSpecs = (props) => {
                             className='border-black border-[1px] rounded-md p-2 mt-1'
                             onChange={(e) => {
                                 setPressureChamberTempurature(e.target.value)
+                            }}
+                        />
+                    </section>
+
+                    <section className='flex flex-col'>
+                        <label className='text-sm'>{t('MaximumPrintBedTemperature')}</label>
+                        {/* changeApi */}
+                        <input
+                            type="text"
+                            placeholder="Type Here"
+                            value={maximumPrintBedTemperature}
+                            className='border-black border-[1px] rounded-md p-2 mt-1'
+                            onChange={(e) => {
+                                setMaximumPrintBedTemperature(e.target.value)
+                            }}
+                        />
+                    </section>
+
+                    <section className='flex flex-col'>
+                        <label className='text-sm'>{t('MaximumPressureChamberTemperature')}</label>
+                        {/* changeApi */}
+                        <input
+                            type="text"
+                            placeholder="Type Here"
+                            value={maximumPressureChamberTemperature}
+                            className='border-black border-[1px] rounded-md p-2 mt-1'
+                            onChange={(e) => {
+                                setMaximumPressureChamberTemperature(e.target.value)
                             }}
                         />
                     </section>

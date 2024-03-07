@@ -4,13 +4,14 @@ import { Link, NavLink } from 'react-router-dom';
 import PaginationClass from '../ComparisonComponet/PaginationClass';
 import { useNavigate } from 'react-router-dom';
 import Api from '../../api/Api';
+import { useTranslation } from 'react-i18next';
 
 const RatgaberView = () => {
-
     const navigate = useNavigate();
     const [CardPerPage, setCardPerPage] = useState(5);
     const [CurrentPage, setCurrentPage] = useState(1);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+    const {t}=useTranslation()
 
     useEffect(() => {
         const handleResize = () => {
@@ -65,7 +66,7 @@ const RatgaberView = () => {
                                     <div className='lg:pl-8 w-3/5 '>
                                         <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.Title}</h1>
                                         <div className='flex items-center pb-4'>
-                                            <Link to={'/product/all3dprinter/singlereview'} className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal'>Read More</Link>
+                                            <Link to={'/product/all3dprinter/singlereview'} className='underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal'>{t('Readmore')}</Link>
                                             <MdKeyboardDoubleArrowRight size={25} />
                                         </div>
                                     </div>

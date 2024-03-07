@@ -7,6 +7,7 @@ import LoadingCard from '../LoadingCard'
 import SelectedCard from './SelectedCard'
 import CouponPopUp from './CouponPopUp'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
+import { useTranslation } from 'react-i18next'
 
 const StickyComparisonBar = (setIsSticky) => {
 
@@ -40,7 +41,8 @@ const CompareScrollandAdd = ({ reload }) => {
     const [CouponCardLocation, setCouponCardLocation] = useState(0)
     const [coupons, setCoupons] = useState([])
     const { width } = useWindowDimensions()
-
+    const {t}=useTranslation()
+    
     const handleCouponCard = (CouponCard, CouponYOffset, coupon) => {
         setOpenCouponCard(CouponCard)
         setCouponCardLocation(CouponYOffset)
@@ -178,28 +180,28 @@ const CompareScrollandAdd = ({ reload }) => {
                                 setProductType(1)
                             }}
                         >
-                            <p>SLA Printer</p>
+                            <p>{t('SLA')}</p>
                         </li>
                         <li className={`py-3 cursor-pointer px-2 ${productType == 2 && "active"}`}
                             onClick={(e) => {
                                 setProductType(2)
                             }}
                         >
-                            <p>FDM Printer</p>
+                            <p>{t('fdm')}</p>
                         </li>
                         <li className={`py-3 cursor-pointer px-2 ${productType == 3 && "active"}`}
                             onClick={(e) => {
                                 setProductType(3)
                             }}
                         >
-                            <p>Laser Cutter</p>
+                            <p>{t('laserCutter')}</p>
                         </li>
                         <li className={`py-3 cursor-pointer px-2 ${productType == 4 && "active"}`}
                             onClick={(e) => {
                                 setProductType(4)
                             }}
                         >
-                            <p>3D Scannar</p>
+                            <p>{t('3DScanner')}</p>
                         </li>
                     </div>
                 </ul>
@@ -254,7 +256,7 @@ const CompareScrollandAdd = ({ reload }) => {
                             className='border-hidden h-16 px-4 bg-customBlue hover:bg-sky-500 flex items-center justify-center rounded-md cursor-pointer text-white'
                         >
 
-                            Comparison
+                            {t('compare')}
                         </button>
 
                     </div>
@@ -270,16 +272,16 @@ const CompareScrollandAdd = ({ reload }) => {
                             }}
                         >
                             <option className='text-center' value={1}>
-                                SLA Printers
+                                {t('SLA')}
                             </option>
                             <option className='text-center' value={2}>
-                                FDM Printers
+                                {t('fdm')}
                             </option>
                             <option className='text-center' value={3}>
-                                Leaser Cutter
+                            {t('laserCutter')}
                             </option>
                             <option className='text-center' value={4}>
-                                3D Scannar
+                            {t('3DScanner')}
                             </option>
                         </select>
                         <div className='w-full my-12'>
@@ -318,7 +320,7 @@ const CompareScrollandAdd = ({ reload }) => {
                                 className='border-hidden md:h-16 h-10 md:px-4 px-1 bg-customBlue hover:bg-sky-500 flex items-center justify-center rounded-md cursor-pointer text-white mx-2'
                             >
 
-                                Comparison
+                                {t('compare')}
                             </button>
                         </div>
 

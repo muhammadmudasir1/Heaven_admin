@@ -35,8 +35,6 @@ const FDMVarient = ({ specs }) => {
         }
     }, [swiperInstance])
 
-    console.log("FROM FDM")
-
     return (
         width > 600 ?
             <div className='relative mx-5'>
@@ -69,6 +67,28 @@ const FDMVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
+                                <div className=''>{t('installationSpaceEnclouser')}</div>
+                            </div>
+                            {specs.map((items, index) => {
+                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
+                                    <div className=' '>{items.installatingSpaceEnclouser}</div>
+                                </div>
+                            })}
+                        </div>
+
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                            <div className='flex items-center'>
+                                <div className=''>{t('frameMaterial')}</div>
+                            </div>
+                            {specs.map((items, index) => {
+                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
+                                    <div className=' '>{items.frameMaterial}</div>
+                                </div>
+                            })}
+                        </div>
+
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                            <div className='flex items-center'>
                                 <div className=''>{t('DriveTech')}</div>
                             </div>
                             {specs.map((items, index) => {
@@ -80,33 +100,33 @@ const FDMVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('PrintVolume')}</div>
+                                <div className=''>{t('guides')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.printVolume}</div>
+                                    <div className=' '>{items.guides}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('ZAxisPrintingAccuracy')}</div>
+                                <div className=''>{t('PrintAccuracy')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.ZAxisPrintingAccuracy}</div>
+                                    <div className=' '>{items.printAccuracy}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('PrintingAccuracyXYResolution')}</div>
+                                <div className=''>Text</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.printingAccuracyXYResolution}</div>
+                                    <div className=' '>{items.text}</div>
                                 </div>
                             })}
                         </div>
@@ -146,33 +166,55 @@ const FDMVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('NozzleTempurature')}</div>
+                                <div className=''>{t('RealisticPrintingSpeed')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.nozzleTempurature}</div>
+                                    <div className=' '>{items.realisticPrintingSpeed}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('PrintBedTemperature')}</div>
+                                <div className=''>{t('maximumAcceleration')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.printTempurature}</div>
+                                    <div className=' '>{items.maximumAcceleration}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('PressureChamberTempurature')}</div>
+                                <div className=''>{t('maximumPressureNozzleTemperature')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.pressureChamberTempurature}</div>
+                                    <div className=' '>{items.maximumPressureNozzleTemperature}</div>
+                                </div>
+                            })}
+                        </div>
+
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                            <div className='flex items-center'>
+                                <div className=''>{t('MaximumPrintBedTemperature')}</div>
+                            </div>
+                            {specs.map((items, index) => {
+                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
+                                    <div className=' '>{items.maximumPrintBedTemperature}</div>
+                                </div>
+                            })}
+                        </div>
+
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                            <div className='flex items-center'>
+                                <div className=''>{t('MaximumPressureChamberTemperature')}</div>
+                            </div>
+                            {specs.map((items, index) => {
+                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
+                                    <div className=' '>{items.maximumPressureChamberTemperature}</div>
                                 </div>
                             })}
                         </div>
@@ -371,17 +413,20 @@ const FDMVarient = ({ specs }) => {
                             <div className='h-16 mb-2 '></div>
                         }
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('installationSpace')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('surfaceArea')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('installationSpaceEnclouser')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('frameMaterial')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('DriveTech')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('PrintVolume')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('ZAxisPrintingAccuracy')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('PrintingAccuracyXYResolution')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('guides')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('PrintAccuracy')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> Text</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('PrintBedTechnology')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('FilamentCompatibility')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('PrintSpeed')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('NozzleTempurature')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('PrintBedTemperature')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('PressureChamberTempurature')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('RealisticPrintingSpeed')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('maximumAcceleration')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('maximumPressureNozzleTemperature')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('MaximumPrintBedTemperature')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('MaximumPressureChamberTemperature')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('VibrationSuppression')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('AutomaticPrintBedMeasurement')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('AutomaticZOffsetCalibration')}</p></div>
@@ -422,17 +467,20 @@ const FDMVarient = ({ specs }) => {
                                             }
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.installationSpace}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.surfaceArea}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.installatingSpaceEnclouser}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.frameMaterial}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.driveTech}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printVolume}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.ZAxisPrintingAccuracy}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printingAccuracyXYResolution}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.guides}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printAccuracy}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.text}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printBedTechnology}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.filamentCompatibility}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printSpeed}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.nozzleTempurature}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printTempurature}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.pressureChamberTempurature}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.realisticPrintingSpeed}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.maximumAcceleration}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.maximumPressureNozzleTemperature}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.maximumPrintBedTemperature}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.maximumPressureChamberTemperature}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.vibrationSuppresion ? "YES" : "NO"}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.automaticPrintBedMeasurement ? "YES" : "NO"}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.automaticZOffsetCalibration ? "YES" : "NO"}</div>
@@ -523,11 +571,11 @@ const SLAVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('pixelResolution')}</div>
+                                <div className=''>{t('ZAxis')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.pixelResolution}</div>
+                                    <div className=' '>{items.ZAxis}</div>
                                 </div>
                             })}
                         </div>
@@ -545,17 +593,6 @@ const SLAVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('ZAxis')}</div>
-                            </div>
-                            {specs.map((items, index) => {
-                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.ZAxis}</div>
-                                </div>
-                            })}
-                        </div>
-
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
-                            <div className='flex items-center'>
                                 <div className=''>{t('ZAxisResolution')}</div>
                             </div>
                             {specs.map((items, index) => {
@@ -567,7 +604,7 @@ const SLAVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>Platform</div>
+                                <div className=''>{t('printingPlatform')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
@@ -578,11 +615,11 @@ const SLAVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>Touchscreen</div>
+                                <div className=''>{t("userInterface")}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.touchScreen}</div>
+                                    <div className=' '>{items.userInterface}</div>
                                 </div>
                             })}
                         </div>
@@ -644,19 +681,11 @@ const SLAVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>Build Size</div>
+                                <div className=''>Extras</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.buildSize}</div>
-                                </div>
-                            })}
-                        </div>
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
-                            <div className='flex items-center' />
-                            {specs.map((items, index) => {
-                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-
+                                    <div className=' '>{items.extras}</div>
                                 </div>
                             })}
                         </div>
@@ -717,17 +746,17 @@ const SLAVarient = ({ specs }) => {
                         }
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('installationSpace')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Monoscreen</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('XYPixelResolution')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('ZAxis')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('XYPixelResolution')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('ZAxisResolution')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Platform</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Touchscreen</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('printingPlatform')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t("userInterface")}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('printSpeed')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('lightingTechnology')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('lightDensity')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('airPurificationSystem')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('interface')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Build Size</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Extras</p></div>
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
                     <div className={`absolute w-full h-full  grid px-2 ${specs.length > 1 ? "grid-cols-3" : "grid-cols-2"}`}>
@@ -757,17 +786,17 @@ const SLAVarient = ({ specs }) => {
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.installationSpace}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.monoscreen}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.XYPixelResolution}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.ZAxis}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.XYPixelResolution}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.ZAxisResolution}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.platform}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.touchScreen}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.userInterface}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printSpeed}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.lightTechnology}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.lightDensity}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.airPurificationSystem}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.interface}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.buildSize}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.extras}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
                                             </div>
                                         </div>
@@ -822,44 +851,55 @@ const LaserVarient = ({ specs }) => {
                     <div>
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('diodeLaserOutputPower')}</div>
+                                <div className=''>{t('workSurface')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.laserPower}</div>
+                                    <div className=' '>{items.workSurface}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('laserWavelength')}</div>
+                                <div className=''>{t('machineWeight')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.laserWavelength}</div>
+                                    <div className=' '>{items.machineWeight}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('engravingAccuracy')}</div>
+                                <div className=''>{t('guides')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.engravingAccuracy}</div>
+                                    <div className=' '>{items.guides}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('engravingAreaSize')}</div>
+                                <div className=''>{t('laserOpticalOutputPower')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.engravingArea}</div>
+                                    <div className=' '>{items.laserOpticalOutputPower}</div>
+                                </div>
+                            })}
+                        </div>
+
+                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                            <div className='flex items-center'>
+                                <div className=''>{t('pinpointAccuracy')}</div>
+                            </div>
+                            {specs.map((items, index) => {
+                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
+                                    <div className=' '>{items.pinpointAccuracy}</div>
                                 </div>
                             })}
                         </div>
@@ -877,22 +917,11 @@ const LaserVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('airAssistCompressor')}</div>
+                                <div className=''>Air Assist</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.airAssistCompressor}</div>
-                                </div>
-                            })}
-                        </div>
-
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
-                            <div className='flex items-center'>
-                                <div className=''>{t('interface')}</div>
-                            </div>
-                            {specs.map((items, index) => {
-                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.interface}</div>
+                                    <div className=' '>{items.airAssist}</div>
                                 </div>
                             })}
                         </div>
@@ -910,44 +939,44 @@ const LaserVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>Laser Software</div>
+                                <div className=''>{t('interface')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.laserSoftware}</div>
+                                    <div className=' '>{items.interface}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('Engraving Material')}</div>
+                                <div className=''>{t('possibleEngravingMaterials')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.engravingMaterial}</div>
+                                    <div className=' '>{items.possibleEngravingMaterials}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('Cutting Material')}</div>
+                                <div className=''>{t('PossibleCuttingThicknesses')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.cuttingMaterial}</div>
+                                    <div className=' '>{items.possibleCuttingThicknesses}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('workingArea')}</div>
+                                <div className=''>{t('securityFeatures')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.workingArea}</div>
+                                    <div className=' '>{items.securityFeatures}</div>
                                 </div>
                             })}
                         </div>
@@ -1016,18 +1045,18 @@ const LaserVarient = ({ specs }) => {
                             specs.length > 1 &&
                             <div className='h-16 mb-2'></div>
                         }
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('diodeLaserOutputPower')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('laserWavelength')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('engravingAccuracy')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('engravingAreaSize')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('workSurface')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('machineWeight')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('guides')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('laserOpticalOutputPower')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('pinpointAccuracy')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('focusingMethod')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('airAssistCompressor')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('interface')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Air Assist</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('powerSupplyOutputPower')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Laser Software</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('Engraving Material')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('Cutting Material')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('workingArea')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('interface')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('possibleEngravingMaterials')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('PossibleCuttingThicknesses')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('securityFeatures')}</p></div>
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
                     <div className={`absolute w-full h-full  px-2 grid ${specs.length > 1 ? "grid-cols-3" : "grid-cols-2"}`}>
@@ -1055,18 +1084,18 @@ const LaserVarient = ({ specs }) => {
                                                 </div>
                                             }
                                             <div className='bg-white shadow-lg'>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.laserPower}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.laserWavelength}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.engravingAccuracy}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.engravingArea}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.workSurface}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.machineWeight}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.guides}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.laserOpticalOutputPower}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.pinpointAccuracy}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.focusingMethod}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.airAssistCompressor}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.interface}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.airAssist}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.powerSupplyOutputPower}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.laserSoftware}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.engravingMaterial}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.cuttingMaterial}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.workingArea}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.interface}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.possibleEngravingMaterials}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.possibleCuttingThicknesses}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.securityFeatures}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
                                             </div>
                                         </div>
@@ -1140,7 +1169,7 @@ const ScannarVarient = ({ specs }) => {
                             })}
                         </div>
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                        {/* <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('scaningArea')}</div>
                             </div>
@@ -1149,15 +1178,15 @@ const ScannarVarient = ({ specs }) => {
                                     <div className=' '>{items.scanningArea}</div>
                                 </div>
                             })}
-                        </div>
+                        </div> */}
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('scanningDistance')}</div>
+                                <div className=''>{t('workspaceScanWindow')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.scanningDistance}</div>
+                                    <div className=' '>{items.workspaceScanWindow}</div>
                                 </div>
                             })}
                         </div>
@@ -1175,33 +1204,33 @@ const ScannarVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('objectDimensionHandScan')}</div>
+                                <div className=''>{t('imageCaptureRate')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.objectDimension_handScan}</div>
+                                    <div className=' '>{items.imageCaptureRate}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('objectDimensionTurnTable')}</div>
+                                <div className=''>{t('minimumObjectSize_handScan')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.objectDimension_turnTable}</div>
+                                    <div className=' '>{items.minimumObjectSize_handScan}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('lightSource')}</div>
+                                <div className=''>{t('minimumObjectSize_turnTable')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.lightSource}</div>
+                                    <div className=' '>{items.minimumObjectSize_turnTable}</div>
                                 </div>
                             })}
                         </div>
@@ -1219,56 +1248,38 @@ const ScannarVarient = ({ specs }) => {
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('standardPackage')}</div>
+                                <div className=''>{t('lightSource')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.standardPackage}</div>
+                                    <div className=' '>{items.lightSource}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('premiumPackage')}</div>
+                                <div className=''>{t('portableBattery')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.premiumPackage}</div>
+                                    <div className=' '>{items.portableBattery}</div>
                                 </div>
                             })}
                         </div>
 
                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
-                                <div className=''>{t('scanMinimumSize')}</div>
+                                <div className=''>{t('accesories')}</div>
                             </div>
                             {specs.map((items, index) => {
                                 return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.scanMinimumSize}</div>
-                                </div>
-                            })}
-                        </div>
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
-                            <div className='flex items-center'>
-                                <div className=''>{t('scanMaximumSize')}</div>
-                            </div>
-                            {specs.map((items, index) => {
-                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.scanMaximumSize}</div>
+                                    <div className=' '>{items.accesories}</div>
                                 </div>
                             })}
                         </div>
 
 
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4rounded-full overflow-hidden px-8 my-2`}>
-                            <div className='flex items-center' />
-                            {specs.map((items, index) => {
-                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-
-                                </div>
-                            })}
-                        </div>
 
                     </div>
                 </div>
@@ -1325,17 +1336,17 @@ const ScannarVarient = ({ specs }) => {
                         }
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scaningPrecision')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanAccuracy')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scaningArea')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanningDistance')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('workspaceScanWindow')}</p></div>
+                        {/* <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanningDistance')}</p></div> */}
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanSpeed')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('objectDimensionHandScan')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('objectDimensionTurnTable')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('lightSource')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('imageCaptureRate')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('minimumObjectSize_handScan')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('minimumObjectSize_turnTable')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('camera')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('standardPackage')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('premiumPackage')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanMinimumSize')}</p></div>
-                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanMaximumSize')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('lightSource')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('portableBattery')}</p></div>
+                        <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('accesories')}</p></div>
+                        {/* <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanMaximumSize')}</p></div> */}
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
                     <div className={`absolute w-full h-full px-2 grid ${specs.length>1?"grid-cols-3":"grid-cols-2"}`}>
@@ -1362,17 +1373,18 @@ const ScannarVarient = ({ specs }) => {
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanningPrecision}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanAccuracy}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanningArea}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanningDistance}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.workspaceScanWindow}</div>
+                                                {/* <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanningDistance}</div> */}
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanSpeed}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.objectDimension_handScan}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.objectDimension_turnTable}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.lightSource}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.imageCaptureRate}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.minimumObjectSize_handScan}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.minimumObjectSize_turnTable}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.camera}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.standardPackage}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.premiumPackage}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanMinimumSize}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanMaximumSize}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.lightSource}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.portableBattery}</div>
+                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.accesories}</div>
+                                                {/* <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanMaximum
+                                                    Size}</div> */}
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
                                             </div>
                                         </div>

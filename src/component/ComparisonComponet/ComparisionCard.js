@@ -21,13 +21,13 @@ import Api from '../../api/Api'
 import ClipLoader from 'react-spinners/ClipLoader';
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import { FaAnglesDown } from "react-icons/fa6";
+import { useTranslation } from 'react-i18next'
 
 const PriceTile = ({ priceData }) => {
     const [price, setPrice] = useState(0)
     const [unit, setUnit] = useState('')
     const [logo, setLogo] = useState()
     const [isLoading, setIsLoading] = useState(false)
-    const { width } = useWindowDimensions()
 
     useEffect(() => {
 
@@ -129,16 +129,12 @@ const PriceTile = ({ priceData }) => {
     )
 }
 
-
-
-
-
-
 const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCouponCard }) => {
 
     const [isChecked, setIsChecked] = useState(false)
     const [purchaselinks, setPurchaseLinks] = useState([])
     const { width } = useWindowDimensions()
+    const {t}=useTranslation()
     useEffect(() => {
         console.log(card)
         let purchaselink = card.purchaseLinks.map((element) => {
@@ -335,13 +331,13 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                                     }
                                 }}
                                 className='h-5 w-5 mr-4' />
-                            <h1 className=" text-lg font-light">Add to Comparison</h1>
+                            <h1 className=" text-lg font-light">{t('addToCompare')}</h1>
                         </div>
                     </div>
                     <div className=' flex justify-center w-2/5 h-full '>
                         <div className='flex flex-col  items-center justify-around my-7 w-full border-l-[2px] border-gray-300 '>
                             <div className='flex flex-col justify-start items-center h-1/5 '>
-                                <p className='text-lg'>Offical Price:</p>
+                                <p className='text-lg'>{t('officialPrice')}:</p>
                                 <h1 className=' font-bold text-xl'>
                                 <span className='font-light'>{card && card.unit == "€" && "Euro"}  </span>
                                     {card && card.price}
@@ -386,7 +382,7 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                                     }
                                 }}
                                 className='h-5 w-5 mr-4 rounded-full' />
-                                <h2>Add to Comparison</h2>
+                                <h2>{t('addToCompare')}</h2>
                 </div>
                 <div className='w-full grid grid-cols-8 flex-grow '>
                     <div className='  h-full col-span-3'>

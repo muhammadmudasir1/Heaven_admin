@@ -34,8 +34,9 @@ const Navigationbar = () => {
     const setlang = useLanguage()
 
     const handleLanguageChange = (setlang) => {
-        setIsTranslated(false);
         setLanguage(setlang);
+        setIsTranslated(false);
+        
     };
 
     const dropDown = () => {

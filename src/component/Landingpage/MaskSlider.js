@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { useNavigate } from 'react-router-dom';
 import Api from "../../api/Api";
 import "swiper/css/bundle";
 import "swiper/css/navigation";
@@ -20,6 +21,7 @@ const MaskSlider = () => {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [TopFiveProducts, setTopFiveProducts] = useState([])
+  const navigate=useNavigate()
   const handleSwiperTopFive = (swiper) => {
     setSwiperInstanceTopFive(swiper);
   }
@@ -38,7 +40,7 @@ const MaskSlider = () => {
     topfive()
   }, [])
   useEffect(() => {
-    const noOfSlides = width <= 480 ? 1 : width <= 1380 ? 4 : 5;
+    const noOfSlides = width <= 480 ? 1 : width <= 1500 ? 4 : 5;
     setSlidesToShow(noOfSlides);
   }, [width]);
 
@@ -80,10 +82,14 @@ const MaskSlider = () => {
                   Product ?
                     <SwiperSlide key={Product.Id} className=" relative my-3">
                       <div
-                        className=" rounded-xl overflow-hidden flex flex-col   bg-white h-[400px]"
+                        className=" rounded-xl overflow-hidden flex flex-col   bg-white h-[400px] cursor-pointer"
                         style={{
                           boxShadow:
                             "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
+                        }}
+                        onClick={(e) => {
+                          const name=Product.product_name.replaceAll(' ','-')
+                          navigate(`/productreview/${name}/${Product.Id}`);
                         }}
                       >
                         <div className='w-full h-full relative flex flex-col '>

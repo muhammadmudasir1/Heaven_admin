@@ -3,36 +3,53 @@ import { useTranslation } from 'react-i18next'
 
 const LaserCutterSpecs = (props) => {
     const { saveData, oldData, update } = props
-    const [laserPower, setLaserPower] = useState('')
-    const [laserWavelength, setLaserWavelength] = useState('')
-    const [engravingAccuracy, setEngravingAccuaracy] = useState('')
-    const [engravingArea, setEngravingArea] = useState('')
+    // const [laserPower, setLaserPower] = useState('')
+    // const [laserWavelength, setLaserWavelength] = useState('')
+    // const [engravingAccuracy, setEngravingAccuaracy] = useState('')
+    // const [engravingArea, setEngravingArea] = useState('')
     const [focusingMethod, setFocusingMethod] = useState('')
-    const [airAssistCompressor, setAirAssistCompressor] = useState('')
+    // const [airAssistCompressor, setAirAssistCompressor] = useState('')
     const [Interface, setInterface] = useState('')
     const [powerSupplyOutputPower, setPowerSupplyOutputPower] = useState('')
-    const [laserSoftware, setLaserSoftware] = useState('')
-    const [engravingMaterial, setEngravingMaterial] = useState('')
-    const [cuttingMaterial, setCuttingMaterial] = useState('')
+    // const [laserSoftware, setLaserSoftware] = useState('')
+    // const [engravingMaterial, setEngravingMaterial] = useState('')
+    // const [cuttingMaterial, setCuttingMaterial] = useState('')
     const [airAssist, setAirAssist] = useState('')
     const [workingArea, setWorkingArea] = useState('')
+    const [workSurface, setWorkSurface] = useState('')
+    const [machineWeight, setMachineWeight] = useState('')
+    const [guides, setGuides] = useState('')
+    const [laserOpticalOutputPower, setLaserOpticalOutputPower] = useState('')
+    const [pinpointAccuracy, setPinpointAccuracy] = useState('')
+    const [possibleEngravingMaterials, setPossibleEngravingMaterials] = useState('')
+    const [possibleCuttingThicknesses, setPossibleCuttingThicknesses] = useState('')
+    const [securityFeatures, setSecurityFeatures] = useState('')
     const [specsId, setSpecsId] = useState(null)
+    
 
     useEffect(() => {
         if (oldData) {
             setAirAssist(oldData.airAssist)
-            setAirAssistCompressor(oldData.airAssistCompressor)
-            setCuttingMaterial(oldData.cuttingMaterial)
-            setEngravingAccuaracy(oldData.engravingAccuracy)
-            setEngravingArea(oldData.engravingArea)
-            setEngravingMaterial(oldData.engravingMaterial)
+            // setAirAssistCompressor(oldData.airAssistCompressor)
+            // setCuttingMaterial(oldData.cuttingMaterial)
+            // setEngravingAccuaracy(oldData.engravingAccuracy)
+            // setEngravingArea(oldData.engravingArea)
+            // setEngravingMaterial(oldData.engravingMaterial)
             setFocusingMethod(oldData.focusingMethod)
             setInterface(oldData.interface)
-            setLaserPower(oldData.laserPower)
-            setLaserSoftware(oldData.laserSoftware)
-            setLaserWavelength(oldData.laserWavelength)
+            // setLaserPower(oldData.laserPower)
+            // setLaserSoftware(oldData.laserSoftware)
+            // setLaserWavelength(oldData.laserWavelength)
             setPowerSupplyOutputPower(oldData.powerSupplyOutputPower)
             setWorkingArea(oldData.workingArea)
+            setMachineWeight(oldData.machineWeight)
+            setGuides(oldData.guides)
+            setLaserOpticalOutputPower(oldData.laserOpticalOutputPower)
+            setPinpointAccuracy(oldData.pinpointAccuracy)
+            setPossibleEngravingMaterials(oldData.possibleEngravingMaterials)
+            setPossibleCuttingThicknesses(oldData.possibleCuttingThicknesses)
+            setSecurityFeatures(oldData.securityFeatures)
+            setWorkSurface(oldData.workSurface)
             setSpecsId(oldData.id)
         }
 
@@ -44,17 +61,26 @@ const LaserCutterSpecs = (props) => {
     const handleSave = () => {
         const data = {
             "interface": Interface,
-            laserPower,
-            laserWavelength,
-            engravingAccuracy,
-            engravingArea,
+            // laserPower,
+            // laserWavelength,
+            // engravingAccuracy,
+            // engravingArea,
             focusingMethod,
-            airAssistCompressor,
+            // airAssistCompressor,
+            airAssist,
             powerSupplyOutputPower,
-            laserSoftware,
-            engravingMaterial,
-            cuttingMaterial,
+            // laserSoftware,
+            // engravingMaterial,
+            // cuttingMaterial,
             workingArea,
+            machineWeight,
+            guides,
+            laserOpticalOutputPower,
+            pinpointAccuracy,
+            possibleEngravingMaterials,
+            possibleCuttingThicknesses,
+            securityFeatures,
+            workSurface
         }
         saveData(data)
 
@@ -63,17 +89,26 @@ const LaserCutterSpecs = (props) => {
     const handleUpdate = async () => {
         const data = {
             "interface": Interface,
-            laserPower,
-            laserWavelength,
-            engravingAccuracy,
-            engravingArea,
+            // laserPower,
+            // laserWavelength,
+            // engravingAccuracy,
+            // engravingArea,
             focusingMethod,
-            airAssistCompressor,
+            // airAssistCompressor,
+            airAssist,
             powerSupplyOutputPower,
-            laserSoftware,
-            engravingMaterial,
-            cuttingMaterial,
+            // laserSoftware,
+            // engravingMaterial,
+            // cuttingMaterial,
             workingArea,
+            machineWeight,
+            guides,
+            laserOpticalOutputPower,
+            pinpointAccuracy,
+            possibleEngravingMaterials,
+            possibleCuttingThicknesses,
+            securityFeatures,
+            workSurface
         }
         console.log(data)
         await update(oldData.product, 3, specsId, data)
@@ -88,53 +123,66 @@ const LaserCutterSpecs = (props) => {
                 <div className='w-full grid grid-cols-3 gap-4 border-b-2 pb-4 border-gray-400'>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('diodeLaserOutputPower')}</label>
+                        <label className='text-sm'>{t('workSurface')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={laserPower}
+                            value={workSurface}
                             onChange={(e) => {
-                                setLaserPower(e.target.value)
+                                setWorkSurface(e.target.value)
                             }}
                         />
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('laserWavelength')}</label>
+                        <label className='text-sm'>{t('machineWeight')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={laserWavelength}
+                            value={machineWeight}
                             onChange={(e) => {
-                                setLaserWavelength(e.target.value)
+                                setMachineWeight(e.target.value)
                             }}
                         />
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('engravingAccuracy')}</label>
+                        <label className='text-sm'>{t('guides')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={engravingAccuracy}
+                            value={guides}
                             onChange={(e) => {
-                                setEngravingAccuaracy(e.target.value)
+                                setGuides(e.target.value)
                             }}
                         />
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('engravingAreaSize')}</label>
+                        <label className='text-sm'>{t('laserOpticalOutputPower')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={engravingArea}
+                            value={laserOpticalOutputPower}
                             onChange={(e) => {
-                                setEngravingArea(e.target.value)
+                                setLaserOpticalOutputPower(e.target.value)
+                            }}
+                        />
+                    </section>
+
+                    <section className='flex flex-col'>
+                        <label className='text-sm'>{t('pinpointAccuracy')}</label>
+                        <input
+                            type="text"
+                            placeholder="Type Here"
+                            className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={pinpointAccuracy}
+                            onChange={(e) => {
+                                setPinpointAccuracy(e.target.value)
                             }}
                         />
                     </section>
@@ -153,27 +201,14 @@ const LaserCutterSpecs = (props) => {
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('airAssistCompressor')}</label>
+                        <label className='text-sm'>Air Assist</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={airAssistCompressor}
+                            value={airAssist}
                             onChange={(e) => {
-                                setAirAssistCompressor(e.target.value)
-                            }}
-                        />
-                    </section>
-
-                    <section className='flex flex-col'>
-                        <label className='text-sm'>{t('interface')}</label>
-                        <input
-                            type="text"
-                            placeholder="Type Here"
-                            className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={Interface}
-                            onChange={(e) => {
-                                setInterface(e.target.value)
+                                setAirAssist(e.target.value)
                             }}
                         />
                     </section>
@@ -192,70 +227,56 @@ const LaserCutterSpecs = (props) => {
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>Laser Software</label>
+                        <label className='text-sm'>{t('interface')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={laserSoftware}
+                            value={Interface}
                             onChange={(e) => {
-                                setLaserSoftware(e.target.value)
+                                setInterface(e.target.value)
                             }}
                         />
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('Engraving Material')}</label>
+                        <label className='text-sm'>{t('possibleEngravingMaterials')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={engravingMaterial}
+                            value={possibleEngravingMaterials}
                             onChange={(e) => {
-                                setEngravingMaterial(e.target.value)
+                                setPossibleEngravingMaterials(e.target.value)
                             }}
                         />
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('Cutting Material')}</label>
+                        <label className='text-sm'>{t('PossibleCuttingThicknesses')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={cuttingMaterial}
+                            value={possibleCuttingThicknesses}
                             onChange={(e) => {
-                                setCuttingMaterial(e.target.value)
+                                setPossibleCuttingThicknesses(e.target.value)
                             }}
                         />
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('workingArea')}</label>
+                        <label className='text-sm'>{t('securityFeatures')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={workingArea}
+                            value={securityFeatures}
                             onChange={(e) => {
-                                setWorkingArea(e.target.value)
+                                setSecurityFeatures(e.target.value)
                             }}
                         />
                     </section>
-
-
-
-                    {/* <section className='flex flex-col'>
-                    <label className='text-sm'>Air Assist</label>
-                    <input
-                    type="text"
-                    placeholder="Type Here"
-                    className='border-black border-[1px] rounded-md p-2 mt-1'
-                    onChange={(e)=>{
-                        setAirAssist(e.target.value)
-                    }}
-                    />
-                </section> */}
 
                 </div>
 

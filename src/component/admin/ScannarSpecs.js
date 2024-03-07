@@ -5,11 +5,11 @@ const ScannarSpecs = (props) => {
     const { saveData, oldData, update } = props
     const [scanningPrecision, setScanningPrecision] = useState('')
     const [scanAccuracy, setScanAccuracy] = useState('')
-    const [scanningArea, setScanningArea] = useState('')
-    const [scanningDistance, setScanningDistance] = useState('')
+    // const [scanningArea, setScanningArea] = useState('')
+    // const [scanningDistance, setScanningDistance] = useState('')
     const [scanSpeed, setScanSpeed] = useState('')
-    const [objectDimension_handScan, setObjectDimensionHandScan] = useState('')
-    const [objectDimension_turnTable, setObjectDimensionTurnTable] = useState('')
+    // const [objectDimension_handScan, setObjectDimensionHandScan] = useState('')
+    // const [objectDimension_turnTable, setObjectDimensionTurnTable] = useState('')
     const [lightSource, setLightSource] = useState('')
     const [camera, setCamera] = useState('')
     const [standardPackage, setStandardPackage] = useState('')
@@ -17,7 +17,15 @@ const ScannarSpecs = (props) => {
     const [scanMinimumSize, setScanMinimumSize] = useState('')
     const [scanQuality, setScanQuality] = useState('')
     const [scanMaximumSize, setScanMaximumSize] = useState('')
+    const [workspaceScanWindow, setWorkspaceScanWindow] = useState('')
+    const [imageCaptureRate, setImageCaptureRate] = useState('')
+    const [minimumObjectSize_handScan, setMinimumObjectSize_handScan] = useState('')
+    const [minimumObjectSize_turnTable, setMinimumObjectSize_turnTable] = useState('')
+    const [maximumObjectSize, setMaximumObjectSize] = useState('')
+    const [portableBattery, setPortableBattery] = useState('')
+    const [accesories, setAccesories] = useState('')
     const [specsId, setSpecsId] = useState(null)
+
 
     const { t } = useTranslation()
 
@@ -25,18 +33,25 @@ const ScannarSpecs = (props) => {
         if (oldData) {
             setCamera(oldData.camera)
             setLightSource(oldData.lightSource)
-            setObjectDimensionHandScan(oldData.objectDimension_handScan)
-            setObjectDimensionTurnTable(oldData.objectDimension_turnTable)
+            // setObjectDimensionHandScan(oldData.objectDimension_handScan)
+            // setObjectDimensionTurnTable(oldData.objectDimension_turnTable)
             setPremiumPackage(oldData.premiumPackage)
             setScanAccuracy(oldData.scanAccuracy)
             setScanMaximumSize(oldData.scanMaximumSize)
             setScanMinimumSize(oldData.scanMinimumSize)
             setScanQuality(oldData.scanQuality)
             setScanSpeed(oldData.scanSpeed)
-            setScanningArea(oldData.scanningArea)
-            setScanningDistance(oldData.scanningDistance)
+            // setScanningArea(oldData.scanningArea)
+            // setScanningDistance(oldData.scanningDistance)
             setScanningPrecision(oldData.scanningPrecision)
             setStandardPackage(oldData.standardPackage)
+            setWorkspaceScanWindow(oldData.workspaceScanWindow)
+            setImageCaptureRate(oldData.imageCaptureRate)
+            setMinimumObjectSize_handScan(oldData.minimumObjectSize_handScan)
+            setMinimumObjectSize_turnTable(oldData.minimumObjectSize_turnTable)
+            setMaximumObjectSize(oldData.maximumObjectSize)
+            setPortableBattery(oldData.portableBattery)
+            setAccesories(oldData.accesories)
             setSpecsId(oldData.id)
         }
         console.log(oldData)
@@ -46,18 +61,25 @@ const ScannarSpecs = (props) => {
         const data = {
             scanningPrecision,
             scanAccuracy,
-            scanningArea,
-            scanningDistance,
+            // scanningArea,
+            // scanningDistance,
             scanSpeed,
-            objectDimension_handScan,
-            objectDimension_turnTable,
+            // objectDimension_handScan,
+            // objectDimension_turnTable,
             lightSource,
             camera,
             standardPackage,
             premiumPackage,
             scanMinimumSize,
             scanQuality,
-            scanMaximumSize
+            scanMaximumSize,
+            workspaceScanWindow,
+            imageCaptureRate,
+            minimumObjectSize_handScan,
+            minimumObjectSize_turnTable,
+            maximumObjectSize,
+            portableBattery,
+            accesories
         }
         saveData(data)
 
@@ -67,21 +89,29 @@ const ScannarSpecs = (props) => {
         const data = {
             scanningPrecision,
             scanAccuracy,
-            scanningArea,
-            scanningDistance,
+            // scanningArea,
+            // scanningDistance,
             scanSpeed,
-            objectDimension_handScan,
-            objectDimension_turnTable,
+            // objectDimension_handScan,
+            // objectDimension_turnTable,
             lightSource,
             camera,
             standardPackage,
             premiumPackage,
             scanMinimumSize,
             scanQuality,
-            scanMaximumSize
+            scanMaximumSize,
+            workspaceScanWindow,
+            imageCaptureRate,
+            minimumObjectSize_handScan,
+            minimumObjectSize_turnTable,
+            maximumObjectSize,
+            portableBattery,
+            accesories
+
         }
         console.log(data)
-        await update(oldData.product, 2, specsId, data)
+        await update(oldData.product, 4, specsId, data)
     }
 
 
@@ -123,31 +153,16 @@ const ScannarSpecs = (props) => {
 
                     </section>
 
-                    <section className='flex flex-col'>
-                        <label className='text-sm'>{t('scaningArea')}</label>
 
+                    <section className='flex flex-col'>
+                        <label className='text-sm'>{t('workspaceScanWindow')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={scanningArea}
+                            value={workspaceScanWindow}
                             onChange={(e) => {
-                                setScanningArea(e.target.value)
-                            }}
-                        />
-
-                    </section>
-
-                    <section className='flex flex-col'>
-                        <label className='text-sm'>{t('scanningDistance')}</label>
-
-                        <input
-                            type="text"
-                            placeholder="Type Here"
-                            className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={scanningDistance}
-                            onChange={(e) => {
-                                setScanningDistance(e.target.value)
+                                setWorkspaceScanWindow(e.target.value)
                             }}
                         />
 
@@ -169,36 +184,73 @@ const ScannarSpecs = (props) => {
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('objectDimensionHandScan')}</label>
-
+                        <label className='text-sm'>{t('imageCaptureRate')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={objectDimension_handScan}
+                            value={imageCaptureRate}
                             onChange={(e) => {
-                                setObjectDimensionHandScan(e.target.value)
+                                setImageCaptureRate(e.target.value)
                             }}
                         />
 
                     </section>
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('objectDimensionTurnTable')}</label>
-
+                        <label className='text-sm'>{t('minimumObjectSize_handScan')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={objectDimension_turnTable}
+                            value={minimumObjectSize_handScan}
                             onChange={(e) => {
-                                setObjectDimensionTurnTable(e.target.value)
+                                setMinimumObjectSize_handScan(e.target.value)
                             }}
                         />
 
                     </section>
+                    <section className='flex flex-col'>
+                        <label className='text-sm'>{t('minimumObjectSize_turnTable')}</label>
+                        <input
+                            type="text"
+                            placeholder="Type Here"
+                            className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={minimumObjectSize_turnTable}
+                            onChange={(e) => {
+                                setMinimumObjectSize_turnTable(e.target.value)
+                            }}
+                        />
+
+                    </section>
+                    <section className='flex flex-col'>
+                        <label className='text-sm'>{t('maximumObjectSize')}</label>
+                        <input
+                            type="text"
+                            placeholder="Type Here"
+                            value={maximumObjectSize}
+                            className='border-black border-[1px] rounded-md p-2 mt-1'
+                            onChange={(e) => {
+                                setMaximumObjectSize(e.target.value)
+                            }}
+                        />
+
+                    </section>
+                    <section className='flex flex-col'>
+                        <label className='text-sm'>{t('camera')}</label>
+                        <input
+                            type="text"
+                            placeholder="Type Here"
+                            className='border-black border-[1px] rounded-md p-2 mt-1'
+                            value={camera}
+                            onChange={(e) => {
+                                setCamera(e.target.value)
+                            }}
+                        />
+
+                    </section>
+
                     <section className='flex flex-col'>
                         <label className='text-sm'>{t('lightSource')}</label>
-
                         <input
                             type="text"
                             placeholder="Type Here"
@@ -210,81 +262,36 @@ const ScannarSpecs = (props) => {
                         />
 
                     </section>
+
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('camera')}</label>
-
-                        <input
-                            type="text"
-                            placeholder="Type Here"
-                            value={camera}
-                            className='border-black border-[1px] rounded-md p-2 mt-1'
-                            onChange={(e) => {
-                                setCamera(e.target.value)
-                            }}
-                        />
-
-                    </section>
-                    <section className='flex flex-col'>
-                        <label className='text-sm'>{t('standardPackage')}</label>
-
+                        <label className='text-sm'>{t('portableBattery')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={standardPackage}
+                            value={portableBattery}
                             onChange={(e) => {
-                                setStandardPackage(e.target.value)
+                                setPortableBattery(e.target.value)
                             }}
                         />
 
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>{t('premiumPackage')}</label>
-
+                        <label className='text-sm'>{t('accesories')}</label>
                         <input
                             type="text"
                             placeholder="Type Here"
                             className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={premiumPackage}
+                            value={accesories}
                             onChange={(e) => {
-                                setPremiumPackage(e.target.value)
+                                setAccesories(e.target.value)
                             }}
                         />
 
                     </section>
 
-                    <section className='flex flex-col'>
-                        <label className='text-sm'>{t('scanMinimumSize')}</label>
-
-                        <input
-                            type="text"
-                            placeholder="Type Here"
-                            className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={scanMinimumSize}
-                            onChange={(e) => {
-                                setScanMinimumSize(e.target.value)
-                            }}
-                        />
-
-                    </section>
-
-                    <section className='flex flex-col'>
-                        <label className='text-sm'>{t('scanMaximumSize')}</label>
-
-                        <input
-                            type="text"
-                            placeholder="Type Here"
-                            className='border-black border-[1px] rounded-md p-2 mt-1'
-                            value={scanMaximumSize}
-                            onChange={(e) => {
-                                setScanMaximumSize(e.target.value)
-                            }}
-                        />
-
-                    </section>
-
-                    <section className='flex flex-col'>
+                    {/* <section className='flex flex-col'>
                         <label className='text-sm'>{t('scanQuality')}</label>
 
                         <input
@@ -297,7 +304,7 @@ const ScannarSpecs = (props) => {
                             }}
                         />
 
-                    </section>
+                    </section> */}
 
                 </div>
 

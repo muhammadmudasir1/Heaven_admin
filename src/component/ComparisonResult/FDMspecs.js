@@ -38,13 +38,28 @@ const FDMSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('surfaceArea')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('installationSpaceEnclouser')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.surfaceArea}</p>
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.installatingSpaceEnclouser}</p>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+            <div className='w-full mb-2'>
+                <div className='w-full border-b-[2px] border-gray-500 py-2'>
+                    <h2 className='text-2xl font-semibold'>{t('frameMaterial')}</h2>
+                </div>
+                <div className={`w-full p-2 grid grid-cols-4`}>
+                    {
+                        products.map((product) => {
+                            return (
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.frameMaterial}</p>
                             )
                         })
                     }
@@ -68,13 +83,13 @@ const FDMSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('PrintVolume')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('guides')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.printVolume}</p>
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.guides}</p>
                             )
                         })
                     }
@@ -83,13 +98,13 @@ const FDMSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('ZAxisPrintingAccuracy')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('PrintAccuracy')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.ZAxisPrintingAccuracy}</p>
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.printAccuracy}</p>
                             )
                         })
                     }
@@ -98,13 +113,13 @@ const FDMSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('PrintingAccuracyXYResolution')}</h2>
+                    <h2 className='text-2xl font-semibold'>Text</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.printingAccuracyXYResolution}</p>
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.text}</p>
                             )
                         })
                     }
@@ -134,7 +149,7 @@ const FDMSpecs = ({ products }) => {
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.filamentCompatibility}</p>
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.FilamentCompatibility}</p>
                             )
                         })
                     }
@@ -143,7 +158,7 @@ const FDMSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('printSpeed')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('PrintSpeed')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
@@ -158,13 +173,13 @@ const FDMSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('NozzleTempurature')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('RealisticPrintingSpeed')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.nozzleTempurature}</p>
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.realisticPrintingSpeed}</p>
                             )
                         })
                     }
@@ -173,13 +188,13 @@ const FDMSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('PrintBedTemperature')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('maximumAcceleration')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.printTempurature}</p>
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.maximumAcceleration}</p>
                             )
                         })
                     }
@@ -188,13 +203,43 @@ const FDMSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('PressureChamberTempurature')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('maximumPressureNozzleTemperature')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.pressureChamberTempurature}</p>
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.maximumPressureNozzleTemperature}</p>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+            <div className='w-full mb-2'>
+                <div className='w-full border-b-[2px] border-gray-500 py-2'>
+                    <h2 className='text-2xl font-semibold'>{t('MaximumPrintBedTemperature')}</h2>
+                </div>
+                <div className={`w-full p-2 grid grid-cols-4`}>
+                    {
+                        products.map((product) => {
+                            return (
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.maximumPrintBedTemperature}</p>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+            <div className='w-full mb-2'>
+                <div className='w-full border-b-[2px] border-gray-500 py-2'>
+                    <h2 className='text-2xl font-semibold'>{t('MaximumPressureChamberTemperature')}</h2>
+                </div>
+                <div className={`w-full p-2 grid grid-cols-4`}>
+                    {
+                        products.map((product) => {
+                            return (
+                                <p className='text-lg w-full text-center'>{product.FDM && product.FDM.maximumPressureChamberTemperature}</p>
                             )
                         })
                     }

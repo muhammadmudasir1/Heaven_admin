@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/a11y";
 import "swiper/css";
 import LoadingCard from "../LoadingCard";
+import { useNavigate } from "react-router-dom";
 
 const Doubleslider = () => {
   const [swiperInstanceSLA, setSwiperInstanceSLA] = useState(null);
@@ -18,6 +19,7 @@ const Doubleslider = () => {
   const [isEndSLA, setIsEndSLA] = useState(false);
   const [SLAproducts, setSLAproducts] = useState([])
   const {t}=useTranslation()
+  const navigate=useNavigate()
   const handleSwiperSLA = (swiper) => {
     setSwiperInstanceSLA(swiper);
   };
@@ -60,7 +62,7 @@ const Doubleslider = () => {
   const [slidesToShow, setSlidesToShow] = useState(3);
 
   useEffect(() => {
-    const noOfSlides = width <= 480 ? 1 : width <= 1380 ? 3 : 4;
+    const noOfSlides = width <= 480 ? 1 : width <= 1500 ? 3 : 4;
     setSlidesToShow(noOfSlides);
   }, [width]);
 
@@ -98,10 +100,14 @@ const Doubleslider = () => {
                 {SLAproducts.map((SLAproduct, index) => (
                   <SwiperSlide key={SLAproduct} className=" relative my-3">
                     <div
-                      className="rounded-xl  flex flex-col items-start  bg-white/95 h-[400px]"
+                      className="rounded-xl  flex flex-col items-start  bg-white/95 h-[400px] cursor-pointer"
                       style={{
                         boxShadow:
                           "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
+                      }}
+                      onClick={(e) => {
+                        const name=SLAproduct.product_name.replaceAll(' ','-')
+                        navigate(`/productreview/${name}/${SLAproduct.Id}`);
                       }}
                     >
                       <div className=" w-full h-52 bg-cover bg-center"
@@ -173,10 +179,14 @@ const Doubleslider = () => {
                 {FDMproducts.map((FDMproduct) => (
                   <SwiperSlide key={FDMproduct} className="relative my-3">
                     <div
-                      className="rounded-xl  flex flex-col items-start  bg-white/95 h-[400px]"
+                      className="rounded-xl  flex flex-col items-start  bg-white/95 h-[400px] cursor-pointer"
                       style={{
                         boxShadow:
                           "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
+                      }}
+                      onClick={(e) => {
+                        const name=FDMproduct.product_name.replaceAll(' ','-')
+                        navigate(`/productreview/${name}/${FDMproduct.Id}`);
                       }}
                     >
                       <div className=" w-full h-52 bg-cover bg-center"

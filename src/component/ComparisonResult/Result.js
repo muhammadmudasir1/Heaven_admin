@@ -338,17 +338,17 @@ const Result = () => {
             <div className='h-[300px] mb-2'></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('installationSpace')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> Monoscreen</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('XYPixelResolution')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('ZAxis')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('XYPixelResolution')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('ZAxisResolution')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> Platform</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> Touchscreen</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('printingPlatform')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t("userInterface")}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('printSpeed')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('lightingTechnology')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('lightDensity')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('airPurificationSystem')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('interface')}</p></div>
-            <div className='h-14  w-ful  px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> Build Size</p></div>
+            <div className='h-14  w-ful  px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> Extras</p></div>
 
           </div>
           <div className=' col-span-2  '>
@@ -394,17 +394,17 @@ const Result = () => {
                     <div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.installationSpace}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.monoscreen}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.XYPixelResolution}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.ZAxis}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.XYPixelResolution}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.ZAxisResolution}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.platform}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.touchScreen}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.userInterface}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.printSpeed}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.lightTechnology}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.lightDensity}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.airPurificationSystem}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.interface}</p></div>
-                      <div className='h-14 w-ful  text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.buildSize}</p></div>
+                      <div className='h-14 w-ful  text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.SLA && element.SLA.extras}</p></div>
 
                     </div>
 
@@ -461,17 +461,20 @@ const Result = () => {
           <div>
             <div className='h-[300px] mb-2'></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('installationSpace')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('surfaceArea')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('installationSpaceEnclouser')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('frameMaterial')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('DriveTech')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintVolume')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('ZAxisPrintingAccuracy')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintingAccuracyXYResolution')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('guides')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintAccuracy')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> Text</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintBedTechnology')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('FilamentCompatibility')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintSpeed')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('NozzleTempurature')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PrintBedTemperature')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PressureChamberTempurature')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('RealisticPrintingSpeed')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('maximumAcceleration')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('maximumPressureNozzleTemperature')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('MaximumPrintBedTemperature')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('MaximumPressureChamberTemperature')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('VibrationSuppression')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('AutomaticPrintBedMeasurement')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('AutomaticZOffsetCalibration')}</p></div>
@@ -528,17 +531,20 @@ const Result = () => {
                     </div>
                     <div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.installationSpace}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.surfaceArea}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.installatingSpaceEnclouser}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.frameMaterial}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.driveTech}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printVolume}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.ZAxisPrintingAccuracy}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printingAccuracyXYResolution}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.guides}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printAccuracy}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.text}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printBedTechnology}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.filamentCompatibility}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printSpeed}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.nozzleTempurature}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.printTempurature}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.pressureChamberTempurature}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.realisticPrintingSpeed}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.maximumAcceleration}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.maximumPressureNozzleTemperature}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.maximumPrintBedTemperature}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.maximumPressureChamberTemperature}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.vibrationSuppresion ? "YES" : "NO"}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.automaticPrintBedMeasurement ? "YES" : "NO"}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.FDM && element.FDM.automaticZOffsetCalibration ? "YES" : "NO"}</p></div>
@@ -605,18 +611,18 @@ const Result = () => {
         <div className='w-full grid grid-cols-3'>
           <div>
             <div className='h-[300px] mb-2'></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('diodeLaserOutputPower')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('laserWavelength')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('engravingAccuracy')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('engravingAreaSize')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('workSurface')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('machineWeight')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('guides')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('laserOpticalOutputPower')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('pinpointAccuracy')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('focusingMethod')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('airAssistCompressor')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('interface')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> Air Assist</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('powerSupplyOutputPower')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> Laser Software</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('Engraving Material')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('Cutting Material')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('workingArea')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('interface')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('possibleEngravingMaterials')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('PossibleCuttingThicknesses')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('securityFeatures')}</p></div>
 
           </div>
           <div className=' col-span-2  '>
@@ -660,18 +666,18 @@ const Result = () => {
                       </div>
                     </div>
                     <div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.laserPower}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.laserWavelength}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.engravingAccuracy}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.engravingArea}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.workSurface}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.machineWeight}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.guides}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.laserOpticalOutputPower}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.pinpointAccuracy}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.focusingMethod}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.airAssistCompressor}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.interface}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.airAssist}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.powerSupplyOutputPower}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.laserSoftware}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.engravingMaterial}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.cuttingMaterial}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.workingArea}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.interface}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.possibleEngravingMaterials}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.possibleCuttingThicknesses}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.LeaserCutter && element.LeaserCutter.securityFeatures}</p></div>
 
                     </div>
 
@@ -728,17 +734,18 @@ const Result = () => {
             <div className='h-[300px] mb-2'></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scaningPrecision')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanAccuracy')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scaningArea')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanningDistance')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('workspaceScanWindow')}</p></div>
+            {/* <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanningDistance')}</p></div> */}
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanSpeed')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('objectDimensionHandScan')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('objectDimensionTurnTable')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('lightSource')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('imageCaptureRate')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('minimumObjectSize_handScan')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('minimumObjectSize_turnTable')}</p></div>
             <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('camera')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('standardPackage')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('premiumPackage')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanMinimumSize')}</p></div>
-            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanMaximumSize')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('lightSource')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('portableBattery')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('accesories')}</p></div>
+            {/* <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanMinimumSize')}</p></div>
+            <div className='h-14  w-full px-1 bg-gray-100 flex items-center text-sm'><p className='w-1/3'> {t('scanMaximumSize')}</p></div> */}
 
           </div>
           <div className=' col-span-2  '>
@@ -784,17 +791,17 @@ const Result = () => {
                     <div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanningPrecision}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanAccuracy}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanningArea}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanningDistance}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.workspaceScanWindow}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanSpeed}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.objectDimension_handScan}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.objectDimension_turnTable}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.lightSource}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.imageCaptureRate}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.minimumObjectSize_handScan}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.minimumObjectSize_turnTable}</p></div>
                       <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.camera}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.standardPackage}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.premiumPackage}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanMinimumSize}</p></div>
-                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanMaximumSize}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.lightSource}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.portableBattery}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.accesories}</p></div>
+                      {/* <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanMinimumSize}</p></div>
+                      <div className='h-14 w-full text-center  px-1 bg-gray-100 flex items-center text-sm'><p className='w-full'> {element.scanner && element.scanner.scanMaximumSize}</p></div> */}
 
                     </div>
 

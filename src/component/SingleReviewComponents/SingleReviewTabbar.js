@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { useTranslation } from 'react-i18next';
 
 const SingleReviewTabbar = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedName,setSelectedName]=useState("Alle Wichtigste")
     const [isSticky, setIsSticky] = useState(false);
+    const {t}=useTranslation()
 
     const fixedTabbar = () => {
         if (window.scrollY > 0) {
@@ -52,7 +53,7 @@ const SingleReviewTabbar = () => {
                                     });
                                 }}
                             >
-                                Alle Wichtigste
+                                {t('coreData')}
                             </button>
                             <button
                                 className='text-neutral-800 text-xl font-normal'
@@ -131,7 +132,7 @@ const SingleReviewTabbar = () => {
                                             });
                                         }}
                                     >
-                                        Alle Wichtigste
+                                        {t('coreData')}
                                     </button>
                                     <button
                                         className='text-neutral-800 text-xl font-normal'

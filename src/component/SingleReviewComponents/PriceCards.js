@@ -17,11 +17,15 @@ const PriceTitle = ({ purchaseLink, activeCard, setActiveCard, ownIndex }) => {
 
     useEffect(() => {
         const fetchPrice = async () => {
-            setIsloading(true)
-            const result = await Api.get(`/api/products/Price/${purchaseLink.purchaseLinksId}`)
-            setIsloading(false)
-            setPrice(result.data.discountedPrice)
-            setUnit(result.data.unit)
+            try {
+                setIsloading(true)
+                const result = await Api.get(`/api/products/Price/${purchaseLink.purchaseLinksId}`)
+                setIsloading(false)
+                setPrice(result.data.discountedPrice)
+                setUnit(result.data.unit)
+            } catch (error) {
+                console.log(error)
+            }
         }
         fetchPrice()
     }, [purchaseLink])
@@ -58,12 +62,16 @@ const Card = ({ link }) => {
 
     useEffect(() => {
         const fetchPrice = async () => {
-            setIsloading(true)
-            const result = await Api.get(`/api/products/Price/${link.purchaseLinksId}`)
-            setIsloading(false)
-            setPrice(result.data.discountedPrice)
-            setOriginalPrice(result.data.originalPrice)
-            setUnit(result.data.unit)
+            try {
+                setIsloading(true)
+                const result = await Api.get(`/api/products/Price/${link.purchaseLinksId}`)
+                setIsloading(false)
+                setPrice(result.data.discountedPrice)
+                setOriginalPrice(result.data.originalPrice)
+                setUnit(result.data.unit)
+            } catch (error) {
+                console.log(error)
+            }
         }
         fetchPrice()
     }, [link])

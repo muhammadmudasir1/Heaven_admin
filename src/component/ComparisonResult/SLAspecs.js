@@ -51,13 +51,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('pixelResolution')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('ZAxis')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.pixelResolution}</p>
+                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.ZAxis}</p>
                             )
                         })
                     }
@@ -81,13 +81,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('ZAxis')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('ZAxisResolution')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.ZAxis}</p>
+                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.ZAxisResolution}</p>
                             )
                         })
                     }
@@ -111,7 +111,7 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>Platform</h2>
+                    <h2 className='text-2xl font-semibold'>{t('printingPlatform')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
@@ -126,13 +126,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>Touchscreen</h2>
+                    <h2 className='text-2xl font-semibold'>{t("userInterface")}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.touchScreen}</p>
+                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.userInterface}</p>
                             )
                         })
                     }
@@ -216,13 +216,13 @@ const SLAspecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>Build Size</h2>
+                    <h2 className='text-2xl font-semibold'>Extras</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.buildSize}</p>
+                                <p className='text-lg w-full text-center'>{product.SLA && product.SLA.extras}</p>
                             )
                         })
                     }

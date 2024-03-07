@@ -16,7 +16,9 @@ const SLASpecs = (props) => {
     const [lightDensity, setLightDensity] = useState('')
     const [airPurificationSystem, setAirPurificationSystem] = useState('')
     const [Interface, setInterface] = useState('')
+    const [userInterface, setUserInterface] = useState('')
     const [buildSize, setBuildSize] = useState('')
+    const [extras, setExtras] = useState('')
     const [specsId,setSpecsId]=useState(null)
 
     useEffect(()=>{
@@ -29,6 +31,7 @@ const SLASpecs = (props) => {
             setBuildSize(oldData.buildSize)
             setInstallationSpace(oldData.installationSpace)
             setInterface(oldData.interface)
+            setUserInterface(oldData.userInterface)
             setLightDensity(oldData.lightDensity)
             setLightTechnology(oldData.lightTechnology)
             setMonoscreen(oldData.monoscreen)
@@ -36,6 +39,7 @@ const SLASpecs = (props) => {
             setPlatform(oldData.platform)
             setPrintSpeed(oldData.printSpeed)
             setTouchScreen(oldData.touchScreen)
+            setExtras(oldData.extras)
             setSpecsId(oldData.id)
         }
         console.log(oldData)
@@ -59,6 +63,8 @@ const SLASpecs = (props) => {
             lightTechnology,
             lightDensity,
             airPurificationSystem,
+            userInterface,
+            extras,
             "interface":Interface,
             buildSize
         }
@@ -79,6 +85,8 @@ const SLASpecs = (props) => {
             lightTechnology,
             lightDensity,
             airPurificationSystem,
+            userInterface,
+            extras,
             "interface":Interface,
             buildSize
         }
@@ -125,6 +133,20 @@ const SLASpecs = (props) => {
                     </section>
 
                     <section className='flex flex-col'>
+                        <label className='text-sm'>{t('ZAxis')}</label>
+                        
+                        <input
+                        type="text"
+                        placeholder="Type Here"
+                        className='border-black border-[1px] rounded-md p-2 mt-1'
+                        onChange={(e)=>{
+                            setZAxis(e.target.value)
+                        }}
+                        value={ZAxis}
+                        />
+                    </section>
+
+                    {/* <section className='flex flex-col'>
                         <label className='text-sm'>{t('pixelResolution')}</label>
                         
                         <input
@@ -137,7 +159,7 @@ const SLASpecs = (props) => {
                         value={pixelResolution}
                         />
 
-                    </section>
+                    </section> */}
 
                     <section className='flex flex-col'>
                         <label className='text-sm'>{t('XYPixelResolution')}</label>
@@ -153,20 +175,7 @@ const SLASpecs = (props) => {
                         />
 
                     </section>
-                    <section className='flex flex-col'>
-                        <label className='text-sm'>{t('ZAxis')}</label>
-                        
-                        <input
-                        type="text"
-                        placeholder="Type Here"
-                        className='border-black border-[1px] rounded-md p-2 mt-1'
-                        onChange={(e)=>{
-                            setZAxis(e.target.value)
-                        }}
-                        value={ZAxis}
-                        />
-
-                    </section>
+                    
                     <section className='flex flex-col'>
                         <label className='text-sm'>{t('ZAxisResolution')}</label>
                         
@@ -182,7 +191,7 @@ const SLASpecs = (props) => {
 
                     </section>
                     <section className='flex flex-col'>
-                        <label className='text-sm'>Platform</label>
+                        <label className='text-sm'>{t('printingPlatform')}</label>
 
                         <input
                         type="text"
@@ -196,6 +205,20 @@ const SLASpecs = (props) => {
 
                     </section>
                     <section className='flex flex-col'>
+                        <label className='text-sm'>{t('userInterface')}</label>
+                        <input
+                        type="text"
+                        placeholder="Type Here"
+                        className='border-black border-[1px] rounded-md p-2 mt-1'
+                        onChange={(e)=>{
+                            setUserInterface(e.target.value)
+                        }}
+                        value={userInterface}
+                        />
+
+                    </section>
+
+                    {/* <section className='flex flex-col'>
                         <label className='text-sm'>Touchscreen</label>
                         
                         <input
@@ -208,7 +231,8 @@ const SLASpecs = (props) => {
                         value={touchScreen}
                         />
 
-                    </section>
+                    </section> */}
+
                     <section className='flex flex-col'>
                         <label className='text-sm'>{t('printSpeed')}</label>
                         
@@ -280,16 +304,15 @@ const SLASpecs = (props) => {
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>Build Size</label>
-                        
+                        <label className='text-sm'>Extras</label>
                         <input
                         type="text"
                         placeholder="Type Here"
                         className='border-black border-[1px] rounded-md p-2 mt-1'
                         onChange={(e)=>{
-                            setBuildSize(e.target.value)
+                            setExtras(e.target.value)
                         }}
-                        value={buildSize}
+                        value={extras}
                         />
 
                     </section>

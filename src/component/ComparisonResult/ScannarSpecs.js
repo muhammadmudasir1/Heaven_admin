@@ -53,28 +53,13 @@ const ScannarSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('scaningArea')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('workspaceScanWindow')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanningArea}</p>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-
-            <div className='w-full mb-2'>
-                <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('scanningDistance')}</h2>
-                </div>
-                <div className={`w-full p-2 grid grid-cols-4`}>
-                    {
-                        products.map((product) => {
-                            return (
-                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanningDistance}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.workspaceScanWindow}</p>
                             )
                         })
                     }
@@ -98,13 +83,13 @@ const ScannarSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('objectDimensionHandScan')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('imageCaptureRate')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.objectDimension_handScan}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.imageCaptureRate}</p>
                             )
                         })
                     }
@@ -113,13 +98,13 @@ const ScannarSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('objectDimensionTurnTable')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('minimumObjectSize_handScan')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.objectDimension_turnTable}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.minimumObjectSize_handScan}</p>
                             )
                         })
                     }
@@ -128,13 +113,13 @@ const ScannarSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('lightSource')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('minimumObjectSize_turnTable')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.lightSource}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.minimumObjectSize_turnTable}</p>
                             )
                         })
                     }
@@ -158,13 +143,29 @@ const ScannarSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('standardPackage')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('lightSource')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.standardPackage}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.lightSource}</p>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+            
+            <div className='w-full mb-2'>
+                <div className='w-full border-b-[2px] border-gray-500 py-2'>
+                    <h2 className='text-2xl font-semibold'>{t('portableBattery')}</h2>
+                </div>
+                <div className={`w-full p-2 grid grid-cols-4`}>
+                    {
+                        products.map((product) => {
+                            return (
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.portableBattery}</p>
                             )
                         })
                     }
@@ -173,48 +174,18 @@ const ScannarSpecs = ({ products }) => {
 
             <div className='w-full mb-2'>
                 <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('premiumPackage')}</h2>
+                    <h2 className='text-2xl font-semibold'>{t('accesories')}</h2>
                 </div>
                 <div className={`w-full p-2 grid grid-cols-4`}>
                     {
                         products.map((product) => {
                             return (
-                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.premiumPackage}</p>
+                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.accesories}</p>
                             )
                         })
                     }
                 </div>
-            </div>
-
-            <div className='w-full mb-2'>
-                <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('scanMinimumSize')}</h2>
-                </div>
-                <div className={`w-full p-2 grid grid-cols-4`}>
-                    {
-                        products.map((product) => {
-                            return (
-                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanMinimumSize }</p>
-                            )
-                        })
-                    }
-                </div>
-            </div>  
-
-            <div className='w-full mb-2'>
-                <div className='w-full border-b-[2px] border-gray-500 py-2'>
-                    <h2 className='text-2xl font-semibold'>{t('scanMaximumSize')}</h2>
-                </div>
-                <div className={`w-full p-2 grid grid-cols-4`}>
-                    {
-                        products.map((product) => {
-                            return (
-                                <p className='text-lg w-full text-center'>{product.scanner && product.scanner.scanMaximumSize }</p>
-                            )
-                        })
-                    }
-                </div>
-            </div>           
+            </div>         
 
         </div>
     );
