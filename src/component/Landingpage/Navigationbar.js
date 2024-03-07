@@ -33,9 +33,12 @@ const Navigationbar = () => {
 
     const setlang = useLanguage()
 
-    const handleLanguageChange = (setlang) => {
-        setLanguage(setlang);
-        setIsTranslated(false);
+    const handleLanguageChange = (lang) => {
+        setlang(lang)
+        setLanguage(lang.toUpperCase());
+        setTimeout(()=>{
+            setIsTranslated(false);
+        },200)
         
     };
 
@@ -248,10 +251,10 @@ const Navigationbar = () => {
                                 />
                             )}
                             {IsTranslated && (
-                                <div className='bg-white absolute top-6 right-0 flex flex-col items-center justify-center p-4 z-30 mt-2 shadow-md shadow-slate-400 rounded-xl'>
+                                <div className='bg-white absolute top-6 right-0 flex flex-col items-center justify-center  z-30 mt-2 shadow-md shadow-slate-400 rounded-xl overflow-hidden'>
                                     <button
-                                        onClick={() => handleLanguageChange[setlang('de')]}
-                                        className=' text-xl font-light font-[Roboto]'
+                                        onClick={() => handleLanguageChange('de')}
+                                        className=' text-xl font-light font-[Roboto] hover:bg-gray-200 py-2 px-2'
                                     >
                                         <div className='flex items-center justify-center'>
                                             <img src={germanflag} alt="" className='h-10 w-12 pr-2' />
@@ -259,8 +262,8 @@ const Navigationbar = () => {
                                         </div>
                                     </button>
                                     <button
-                                        onClick={() => handleLanguageChange[setlang('en')]}
-                                        className=' text-xl font-light font-[Roboto]'
+                                        onClick={() => handleLanguageChange('en')}
+                                        className=' text-xl font-light font-[Roboto] hover:bg-gray-200 py-2 px-2'
                                     >
                                         <div className='flex items-center justify-center py-2'>
 
