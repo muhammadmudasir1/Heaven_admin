@@ -33,6 +33,8 @@ import News from "./component/admin/News"
 import NewsView from "./component/NewsView"
 import Ratgaber from './component/Ratgaber'
 import SearchView from "./component/SearchView"
+import DetailNews from "./component/NewsComponents/DetailNew"
+import DetailBeginnersGuid from "./component/Ratgaber/DetailBeginnersGuid"
 
 
 const App = () => {
@@ -47,7 +49,9 @@ const App = () => {
                             <Route path="/ComparisonPage" element={<ComparePage />} />
                             <Route path="/" element={<Home />} />
                             <Route path="/filament" element={<ShowFilament />} />
-                            <Route path="/ratgaber" element={<Ratgaber/>}/>
+                            <Route path="/ratgaber" element={<Ratgaber/>}>
+                                <Route path="beginnersGuid/:id" element={<DetailBeginnersGuid/>}/>
+                            </Route>
                             <Route path='/comparision' element={<CompareResult/>} />
                             <Route path="/product" element={<Review />} >
                                 <Route path="fdm" element={<FDMView />} />
@@ -60,6 +64,7 @@ const App = () => {
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
                             <Route path="/news" element={<NewsView/>}>
+                                <Route path="" element={<DetailNews/>}/>
                             </Route>
                         </Route>
                         <Route element={ <PrivatePage/>}>

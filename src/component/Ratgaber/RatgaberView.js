@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PaginationClass from '../ComparisonComponet/PaginationClass';
 import Api from '../../api/Api';
 import LoadingCard from '../LoadingCard';
 import LoadingCardMobile from '../LoadingCardMobile';
 
 const RatgaberView = () => {
-    const [CardPerPage, setCardPerPage] = useState(5);
+    const [CardPerPage] = useState(5);
     const [CurrentPage, setCurrentPage] = useState(1);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+    const navigation= useNavigate();
 
     useEffect(() => {
         const handleResize = () => {
@@ -70,7 +71,10 @@ const RatgaberView = () => {
                         ) : (
                             <div className=' lg:col-span-5 h-full lg:pr-12' >
                                 {currentCard.map(Cards => {
-                                    return <div className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
+                                    return <div onClick={(e)=>{
+                                        // const guid=Cards.product_name.replaceAll(' ','-')
+                                        navigation(`/beginnersGuid/${Cards.Id}`)
+                                    }} className='flex items-center w-full mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
                                         style={
                                             { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                                         }>
@@ -116,7 +120,10 @@ const RatgaberView = () => {
                         <>
                             {Cards.map((items, index) => {
                                 return <>
-                                    <div key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
+                                    <div key={index} onClick={(e)=>{
+                                        // const guid= items.product_name.replaceAll(' ','-');
+                                        navigation(`/beginnersGuidsra/${items.Id}`)
+                                    }} className='grid grid-cols-3 m-4 rounded-xl' style={
                                         { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                                     }>
                                         <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.image})` }} />

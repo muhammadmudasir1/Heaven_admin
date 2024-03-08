@@ -10,8 +10,8 @@ import LoadingCardMobile from '../LoadingCardMobile';
 
 const AddAndNews = () => {
 
-    const navigate = useNavigate();
-    const [CardPerPage, setCardPerPage] = useState(5);
+    const navigation = useNavigate();
+    const [CardPerPage] = useState(5);
     const [CurrentPage, setCurrentPage] = useState(1);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
 
@@ -70,7 +70,9 @@ const AddAndNews = () => {
                             </div>) : (
                             <div className=' lg:col-span-5 h-full lg:pr-12' >
                                 {currentCard.map(Cards => {
-                                    return <div className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
+                                    return <div onClick={(e)=>{
+                                        navigation(`/detail/${Cards.Id}`)
+                                    }} className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
                                         style={
                                             { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                                         }>
@@ -108,7 +110,10 @@ const AddAndNews = () => {
                         <>
                             {Cards.map((items, index) => {
                                 return <>
-                                    <div key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
+                                    <div key={index} onClick={(e)=>{
+                                        navigation(`/detail/${items.Id}`)
+                                    }
+                                    } className='grid grid-cols-3 m-4 rounded-xl' style={
                                         { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                                     }>
                                         <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.image})` }} />

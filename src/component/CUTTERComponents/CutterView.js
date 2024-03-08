@@ -9,7 +9,7 @@ import LoadingCard from "../LoadingCard";
 import LoadingCardMobile from "../LoadingCardMobile";
 
 const CutterView = () => {
-  const [CardPerPage, setCardPerPage] = useState(5);
+  const [CardPerPage] = useState(5);
   const [CurrentPage, setCurrentPage] = useState(1);
   const { width } = useWindowDimensions()
   const navigation = useNavigate();
@@ -46,7 +46,20 @@ const CutterView = () => {
   return (
     width > 600 ?
       <div className="flex flex-col items-center">
-        {isLoader ? (<LoadingCard />) : (
+        {isLoader ? (
+        <div>
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+          </div>
+          ) : (
+        
           <div className="grid grid-cols-7 p-5 w-full">
             <div className="col-span-5 h-325px pr-12 pl-6">
               {currentCard.map((Cards) => {
