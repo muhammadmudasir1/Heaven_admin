@@ -10,7 +10,6 @@ import CurrentProductProvider from "./context/CurrentProductContext"
 import Home from "./component/Home"
 import Navigationbar from "./component/Landingpage/Navigationbar"
 import Review from "./component/Review"
-import ComparisonPage from "./component/ComparisonPage"
 import CompareResult from "./component/CompareResult"
 import NavigationForAddForm from "./component/admin/NavigationForAddForm"
 import AddPurchaseLinks from "./component/admin/AddPurchaseLinks"
@@ -34,6 +33,8 @@ import News from "./component/admin/News"
 import NewsView from "./component/NewsView"
 import Ratgaber from './component/Ratgaber'
 import SearchView from "./component/SearchView"
+import DetailNews from "./component/NewsComponents/DetailNew"
+import DetailBeginnersGuid from "./component/Ratgaber/DetailBeginnersGuid"
 
 
 const App = () => {
@@ -48,7 +49,9 @@ const App = () => {
                             <Route path="/ComparisonPage" element={<ComparePage />} />
                             <Route path="/" element={<Home />} />
                             <Route path="/filament" element={<ShowFilament />} />
-                            <Route path="/ratgaber" element={<Ratgaber/>}/>
+                            <Route path="/ratgaber" element={<Ratgaber/>}>
+                                <Route path="beginnersGuid/:id" element={<DetailBeginnersGuid/>}/>
+                            </Route>
                             <Route path='/comparision' element={<CompareResult/>} />
                             <Route path="/product" element={<Review />} >
                                 <Route path="fdm" element={<FDMView />} />
@@ -61,6 +64,7 @@ const App = () => {
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
                             <Route path="/news" element={<NewsView/>}>
+                                <Route path="" element={<DetailNews/>}/>
                             </Route>
                         </Route>
                         <Route element={ <PrivatePage/>}>
