@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { CiStar } from 'react-icons/ci';
-import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { Link, NavLink } from 'react-router-dom';
 import PaginationClass from '../ComparisonComponet/PaginationClass';
 import { useNavigate } from 'react-router-dom';
 import Api from '../../api/Api';
@@ -58,20 +55,25 @@ const AddAndNews = () => {
     return (
         <>
             {!isMobile ? (
-                <div className='flex flex-col items-center pt-20'>
-                    <div className='lg:grid lg:grid-cols-7 p-5 '>
+                <div className='flex flex-col items-center pt-20 w-full'>
+                    <div className='lg:grid lg:grid-cols-7 p-5 w-full '>
                         {isLoader ? (
-                            <div>
+                            <div className='col-span-5 h-full lg:pr-12 '>
                                 <LoadingCard />
                                 <LoadingCard />
                                 <LoadingCard />
                                 <LoadingCard />
                                 <LoadingCard />
                             </div>) : (
-                            <div className=' lg:col-span-5 h-full lg:pr-12' >
+                            // <div className="w-full h-40 bg-yellow-400 ">
+
+                            <div className=' col-span-5 h-full lg:pr-12 ' >
                                 {currentCard.map(Cards => {
                                     return <div onClick={(e)=>{
-                                        navigation(`/detail/${Cards.Id}`)
+
+                                        const name=Cards.Title.replaceAll(' ','-')
+                                        navigation(`/news/${name}/${Cards.newsId}`)
+
                                     }} className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
                                         style={
                                             { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
@@ -82,9 +84,10 @@ const AddAndNews = () => {
                                         </div>
                                     </div>
                                 })}
-                            </div>
+                            </div> 
+                            // </div>
                         )}
-                        <div className='lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
+                        <div className='lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600 min-h-[600px]' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
                     </div>
                     {!isLoader && (
                         <PaginationClass
@@ -111,9 +114,10 @@ const AddAndNews = () => {
                             {Cards.map((items, index) => {
                                 return <>
                                     <div key={index} onClick={(e)=>{
-                                        navigation(`/detail/${items.Id}`)
+                                        const name=items.Title.replaceAll(' ','-')
+                                        navigation(`/news/${name}/${items.newsId}`)
                                     }
-                                    } className='grid grid-cols-3 m-4 rounded-xl' style={
+                                    } className='grid grid-cols-3 m-4 rounded-xl p-4' style={
                                         { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                                     }>
                                         <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.image})` }} />
@@ -122,7 +126,7 @@ const AddAndNews = () => {
                                         </div>
                                     </div>
 
-                                    {(index + 1) % 3 === 0 && index !== currentCard.length - 1 && <div key={``} className="h-12 bg-red-300" />}
+                                    {(index + 1) % 3 === 0 && index !== currentCard.length - 1 && <div key={``} className="h-12" />}
                                 </>
                             })}
                         </>

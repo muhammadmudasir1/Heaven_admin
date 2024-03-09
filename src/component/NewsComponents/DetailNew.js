@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
+import Tabbar from '../Landingpage/Tabbar';
 
 const DetailNews = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
@@ -13,9 +14,9 @@ const DetailNews = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true)
-        const result = await Api.get(`/api/new/${id}`)
-        setData(result.data[0])
-        console.log(result.data[0])
+        const result = await Api.get(`/api/news/${id}`)
+        setData(result.data)
+        console.log(result.data)
         setIsLoading(false)
       } catch (error) {
         setIsLoading(false)
@@ -34,14 +35,13 @@ const DetailNews = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  if (data) {
 
     return (
       <>
+        <Tabbar/>
 
         {!isMobile ? (
-
-          <div className='pt-9 pb-24 px-4' id="review">
+          <div className='pt-9 pb-24 px-4 w-full'>
             {isLoading ?
               <div className='py-10 bg-gray-100 w-full h-96 animate-pulse px-4'>
                 <div className='w-full h-12 bg-gray-200 rounded-2xl animate-pulse ' />
@@ -58,8 +58,8 @@ const DetailNews = () => {
               </div>
               :
               <>
-                <div className='hidden' dangerouslySetInnerHTML={{ __html: data.seoKeys }} />
-                <div className='py-10 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.review }} />
+                <img src={`/api/${data.image}`} className='w-full'/>
+                <div className='py-10 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.body }} />
               </>
             }
           </div>
@@ -81,8 +81,8 @@ const DetailNews = () => {
               </div>
               :
               <>
-                <div className='hidden' dangerouslySetInnerHTML={{ __html: data.seoKeys }} />
-                <div className='py-10 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.review }} />
+                <img src={`/api/${data.image}`} className='w-full'/>
+                <div className='py-10 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.body }} />
               </>
 
             }
@@ -93,6 +93,6 @@ const DetailNews = () => {
 
     )
   }
-}
+
 
 export default DetailNews

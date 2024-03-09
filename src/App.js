@@ -49,9 +49,8 @@ const App = () => {
                             <Route path="/ComparisonPage" element={<ComparePage />} />
                             <Route path="/" element={<Home />} />
                             <Route path="/filament" element={<ShowFilament />} />
-                            <Route path="/ratgaber" element={<Ratgaber/>}>
-                                <Route path="beginnersGuid/:id" element={<DetailBeginnersGuid/>}/>
-                            </Route>
+                            <Route path="/ratgaber" element={<Ratgaber/>}/>
+                            <Route path="/ratgaber/:title/:id" element={<DetailBeginnersGuid/>}/>
                             <Route path='/comparision' element={<CompareResult/>} />
                             <Route path="/product" element={<Review />} >
                                 <Route path="fdm" element={<FDMView />} />
@@ -63,9 +62,8 @@ const App = () => {
                             <Route path="/productreview/:productName/:id" element={<SingleReview />} >
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
-                            <Route path="/news" element={<NewsView/>}>
-                                <Route path="" element={<DetailNews/>}/>
-                            </Route>
+                            <Route path="/news" element={<NewsView/>}/>
+                            <Route path="/news/:title/:id" element={<DetailNews/>}/>
                         </Route>
                         <Route element={ <PrivatePage/>}>
                         <Route path="/dashboard" element={<Dashboard />}>

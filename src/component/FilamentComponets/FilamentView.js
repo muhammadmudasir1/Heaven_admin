@@ -52,7 +52,7 @@ const FilamentView = () => {
       <div className="grid grid-cols-7 p-5 w-full">
       {isLoader?
       (
-      <div>
+      <div className="col-span-5">
       <LoadingCard/>
       <LoadingCard/>
       <LoadingCard/>
@@ -110,7 +110,7 @@ const FilamentView = () => {
         </div>
       )}
         <div
-          className="lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600"
+          className="lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600 min-h-[600px]"
           style={{
             boxShadow:
               "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
