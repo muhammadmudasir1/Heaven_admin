@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { useState } from 'react';
 const PriceFilter = ({ setPrice,price}) => {
     const [isOpen, setIsOpen] = useState(false)
     const toggleDropdown = () => {
@@ -15,20 +13,23 @@ const PriceFilter = ({ setPrice,price}) => {
                 setPrice(e.target.value)
             }}
             >
-                <option className=' text-gray-500 py-1' value={1}>
-                    upto 500 Euro
+                <option className=' text-gray-500 py-1' value={0}>
+                    {'>300,00 Euro'}
+                </option>
+                <option className='text-gray-500 py-1' value={1}>
+                    {'>500,00 Euro'}
                 </option>
                 <option className=' text-gray-500 py-1' value={2}>
-                    upto 1000 Euro
+                    {'>800,00 Euro'}
                 </option>
                 <option className=' text-gray-500 py-1' value={3}>
-                    upto 1500 Euro
+                    {'>1.000,00 Euro'}
                 </option>
                 <option className=' text-gray-500 py-1' value={4}>
-                    upto 2000 Euro
+                    {'>1.500 Euro'}
                 </option>
                 <option className=' text-gray-500 py-1' value={5}>
-                    upto 2500 Euro
+                    {'<1.500 Euro'}
                 </option>
             </select>
 

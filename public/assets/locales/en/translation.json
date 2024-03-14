@@ -46,6 +46,7 @@
     "PrintRoomCamera":"Print Room Camera",
     "LEDLight":"LED Light",
     "HomePage": "Home",
+    "search": "Search...",
     "BestDeals": "Best deals & offers",
     "Filament": "Filaments",
     "Bestlist": "Advisetory Guides",
@@ -121,5 +122,6 @@
     "minimumObjectSize_handScan": "Minimum Object Size(Hand Scan)",
     "minimumObjectSize_turnTable": "Minimum Object Size(Drehteller)",
     "maximumObjectSize": "Maximum Object Size",
-    "search:": "Search..."
+    "search:": "Search...",
+    "Beginner’s_guide": "Beginner’s guide"
 }

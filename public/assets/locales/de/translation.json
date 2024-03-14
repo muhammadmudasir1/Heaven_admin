@@ -46,10 +46,11 @@
     "PrintRoomCamera":"Druckraumkamera",
     "LEDLight":"LED Beleuchtung",
     "HomePage": "Home",
+    "search": "Suche…",
     "BestDeals": "Best Deals & Angebote",
     "Filament": "Filamente",
     "Bestlist": "Bestenlisten",
-    "3dprinters": "3D Druckers",
+    "3dprinters": "3D-Druckers",
     "SLA": "Resindrucker",
     "laserCutter":"Laser-Cutter",
     "3DScanner":"3D-Scanner",
@@ -60,7 +61,7 @@
     "LatestSLA":"Aktuelle Testberichte über Resindrucker",
     "beginnersGuidBannar":"Leitfaden für Einsteiger: Welcher Drucker passt zu welchem Projekt?",
     "newsBannarHeading":"News aus der Welt der additiven Fertigung",
-    "fdm":"FDM 3D-Drucker",
+    "fdm":"FDM-3D-Drucker",
     "officialPrice":"Offizieller Händlerpreis",
     "addToCompare":"Zum Vergleich hinzufügen",
     "compare":"Vergleichen",
@@ -121,5 +122,6 @@
     "minimumObjectSize_handScan": "Minimale Objektgröße (Hand-Scan)",
     "minimumObjectSize_turnTable": "Minimale Objektgröße (Drehteller)",
     "maximumObjectSize": "Maximale Object Size",
-    "search:": "Suche...:"
+    "search:": "Suche...:",
+    "Beginner’s_guide": "Leitfaden"
 }

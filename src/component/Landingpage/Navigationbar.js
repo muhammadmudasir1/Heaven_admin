@@ -116,7 +116,7 @@ const Navigationbar = () => {
             <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-[9999] ${isSticky ? 'fixed w-full top-0' : ''}`}>
                 <div className='z-20 flex items-center'>
                     <img src={logo} alt="" className='lg:w-14 lg:h-14 w-6 h-6' />
-                    <a href='/' className='text-white lg:text-2xl text-lg font-bold'>3D heavens</a>
+                    <a href='/' className='text-white lg:text-2xl text-lg font-bold'>3DHeaven</a>
                 </div>
                 {isMobile ? (
                     <>
@@ -199,7 +199,7 @@ const Navigationbar = () => {
                                             <div className='absolute right-0 top-0 bg-white py-2 px-4 z-30'>
                                                 <ul>
                                                     <li>
-                                                        <NavLink to='/product/fdm' onClick={closeDashboard} className={`z-30`}>FDM</NavLink>
+                                                        <NavLink to='/product/fdm' onClick={closeDashboard} className={`z-30`}>{t('fdm')}</NavLink>
                                                     </li>
                                                     <li>
                                                         <NavLink onClick={closeDashboard} to='/product/sla' className={`z-30`}>{t('SLA')}</NavLink>

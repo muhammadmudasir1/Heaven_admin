@@ -30,7 +30,7 @@ const NewsAndEvent = () => {
                     onClick={(e)=>{
                         navigate('/news')
                     }}
-                    className='text-neutral-800 bg-cyan-500 rounded-xl px-8 py-4 text-2xl font-medium font-[Roboto]'>News and events</button>
+                    className='text-neutral-800 bg-cyan-500 rounded-xl px-8 py-4 text-2xl font-medium font-[Roboto]'>News and Events</button>
                 </div>
                 <div className='px-8'>
                     <img src={Illustration} alt="" />
@@ -48,7 +48,7 @@ const NewsAndEvent = () => {
                     onClick={(e)=>{
                         navigate('/news')
                     }}
-                    className='text-neutral-800 bg-cyan-500 rounded-xl px-8 py-3 text-2xl font-medium font-[Roboto]'>News and events</button>
+                    className='text-neutral-800 bg-cyan-500 rounded-xl px-8 py-3 text-2xl font-medium font-[Roboto]'>News and Events</button>
                 </div>
             </div>
         )}

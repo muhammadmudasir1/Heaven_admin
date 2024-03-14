@@ -4,9 +4,12 @@ import { FaLinkedinIn } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import manu_profile from '../../imges/manu_profile.png';
+import { useTranslation } from 'react-i18next';
 
 const StickyFooter = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const {t}=useTranslation();
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 1000);
@@ -40,7 +43,7 @@ const StickyFooter = () => {
                     </div>
                     <div className='flex flex-row bg-[#4d6464] py-4 justify-between px-6'>
                         <div className='flex'>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwme89cM8YZvHcybGrZl_Obd9U9p5QabozJQ&usqp=CAU" alt="" className='w-20 rounded-full' />
+                            <img src={manu_profile} alt="" className='w-20 rounded-full' />
                             <div className='flex items-center justify-center pl-2'>
                                 <h1>
                                     Manuel Strauss<br />info@manu-com
@@ -57,7 +60,7 @@ const StickyFooter = () => {
             ) : (
                 <div className='grid grid-cols-3 gap-x-10 items-center relative'>
                     <div className=' bg-[#00CED1] flex flex-col justify-center items-center w-96 h-full rounded-xl ml-16'>
-                        <div className='w-52 pt-16 h-52 rounded-full bg-center bg-cover' style={{ backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwme89cM8YZvHcybGrZl_Obd9U9p5QabozJQ&usqp=CAU')` }} />
+                        <div className='w-52 pt-16 h-52 rounded-full bg-center bg-cover' style={{ backgroundImage: `url(${manu_profile})` }} />
                         <h1 className="text-2xl text-white font-normal  py-5">Manuel Strauss</h1>
                         <h1 className="  font-normal font-[Roboto]">3D printer enthusiat</h1>
                         <h1 className=" font-normal font-[Roboto]">abc@email.com</h1>
@@ -66,15 +69,15 @@ const StickyFooter = () => {
                         <h1 className='text-neutral-100 text-5xl font-bold pt-24'>Quick links</h1>
                         <div className='flex py-20'>
                             <div className='pr-40'>
-                                <NavLink to={'/'} className={`text-2xl text-white pt-1`}>Home</NavLink><br />
+                                <NavLink to={'/'} className={`text-2xl text-white pt-1`}>{t('HomePage')}</NavLink><br />
                                 <NavLink to={'/news'} className={`text-2xl text-white pt-1`}>News</NavLink><br />
-                                <Link to={'#topFive'} className={`text-2xl text-white pt-1`}>Best Deals</Link><br />
+                                <Link to={'#topFive'} className={`text-2xl text-white pt-1`}>{t('BestDeals')}</Link><br />
                             </div>
                             <div className='pr-8 '>
-                                <NavLink to={'/product/sla'} className={`text-2xl text-white pt-1`}>SLA 3D Printer</NavLink><br />
-                                <NavLink to={'/product/fdm'} className={`text-2xl text-white pt-1`}>FDM 3D Printer</NavLink><br />
-                                <NavLink to={'/product/scanner'} className={`text-2xl text-white pt-1`}>Scanner</NavLink><br />
-                                <NavLink to={'/product/cutter'} className={`text-2xl text-white pt-1`}>Laser</NavLink>
+                                <NavLink to={'/product/sla'} className={`text-2xl text-white pt-1`}>{t('SLA')}</NavLink><br />
+                                <NavLink to={'/product/fdm'} className={`text-2xl text-white pt-1`}>{t('fdm')}</NavLink><br />
+                                <NavLink to={'/product/scanner'} className={`text-2xl text-white pt-1`}>{t('3DScanner')}</NavLink><br />
+                                <NavLink to={'/product/cutter'} className={`text-2xl text-white pt-1`}>{t('laserCutter')}</NavLink>
                             </div>
                         </div>
                         <h1 className='text-neutral-100 text-5xl font-bold '>Our channels</h1>

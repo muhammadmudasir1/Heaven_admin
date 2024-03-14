@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { MdOutlineArrowDropUp } from "react-icons/md";
-import { NavLink, useLocation, Link, useNavigate } from "react-router-dom"
+import { NavLink, useLocation, Link} from "react-router-dom"
 import "../../customStyle.css"
 
 
@@ -79,14 +79,14 @@ const Tabbar = () => {
                 </p>
               </div>
               {isOpen && (
-                <div className='absolute top-12 right-0 flex flex-col items-start justify-evenly bg-white w-40 shadow-md shadow-slate-400'>
+                <div className='absolute top-12 right-0 flex flex-col items-start justify-evenly bg-white w-48 shadow-md shadow-slate-400'>
                   <NavLink to={'/product/fdm'}
                     onClick={(e) => {
                       setisOpen(false)
                       setPageOnPrinter(true)
                     }}
                     className='hover:bg-[#EEEEEE] w-full p-3 text-neutral-700 text-xl font-light font-[Roboto]'>
-                    FDM
+                    {t('fdm')}
                   </NavLink>
                   <NavLink to={'/product/sla'}
                     onClick={(e) => {
