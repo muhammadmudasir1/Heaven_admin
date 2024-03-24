@@ -23,7 +23,7 @@ const NewsAndEvent = () => {
         <>
         {!isMobile ?(
             
-            <div className='flex justify-between items-center bg-[#F5F2F9] my-8'>
+            <div className='flex justify-between items-center bg-[#F5F2F9] my-8 '>
                 <div className='px-8'>
                     <h1 className='text-neutral-800 text-5xl font-bold font-[Roboto] py-8'>{t("newsBannarHeading")}</h1>
                     <button
@@ -43,7 +43,7 @@ const NewsAndEvent = () => {
                     <img src={Illustration} alt="" />
                 </div>
                 <div className='px-8'>
-                    <h1 className='text-neutral-800 text-center text-xl font-bold font-[Roboto] py-8 bg-orange-400'>{t("newsBannarHeading")}</h1>
+                    <h1 className='text-neutral-800 text-center text-xl font-bold font-[Roboto] py-8 '>{t("newsBannarHeading")}</h1>
                     <button
                     onClick={(e)=>{
                         navigate('/news')

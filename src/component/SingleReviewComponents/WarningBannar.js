@@ -7,7 +7,7 @@ const WarningBannar = () => {
             <div className='p-2 w-8 h-8 bg-[#EFBE25] rounded-full flex justify-center items-center'>
                 <p className=' text-2xl text-gray-500'>!</p>
             </div>    
-            <h2 className='text-2xl px-2'>Hinweis auf Gefahrenquelle: &lt;link&gt; Bundesamt für Strahlenschutz&lt;link&gt;  </h2>
+            <h2 className='text-2xl px-2'>Hinweis auf Gefahrenquelle: <a className='text-blue-500' href='https://www.bfs.de/DE/themen/opt/anwendung-alltag-technik/laser/schutz/schutz-laser.html'>Bundesamt für Strahlenschutz</a> </h2>
         </div>
         <div className='w-full mt-4'>
         <p className='mt-2'>Ferner sei auf Folgendes exemplarisch hingewiesen:</p>   
@@ -17,8 +17,7 @@ const WarningBannar = () => {
             <li className='ml-6 list-disc'>können giftige Gase und Feinpartikel entstehen</li>    
             <li className='ml-6 list-disc'>der direkte und reflektierte Laserstrahl kann zu Schäden für Haut und insbesondere dem Augenlicht führen.</li>    
         </ul>   
-        <p className='mt-2'>Empfehlenswerte Schutzmaßnahmen wie eine feuerfeste Einhausung, Absaugung und Laserschutzbrille sind beispielhaft und nicht abschließend. Generell sollte keinem Dritten Zugriff gewährt werden.</p>   
-        <p className='mt-2'>Schutzeinhausung ab &lt;link&lt;89,00 Euro&lt;link&lt; mit Code: NNNSCU720</p>   
+        <p className='mt-2'>Empfehlenswerte Schutzmaßnahmen wie eine feuerfeste Einhausung, Absaugung und Laserschutzbrille sind beispielhaft und nicht abschließend. Generell sollte keinem Dritten Zugriff gewährt werden.</p>    
         </div>
     </div>
   )

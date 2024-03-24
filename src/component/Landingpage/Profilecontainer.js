@@ -6,8 +6,8 @@ import manu_profile from '../../imges/manu_profile.png'
 const Profilecontainer = () => {
     const {t}=useTranslation()
     return (
-        <div className='bg-[#00CED1] py-12 flex flex-row items-center justify-between '>
-            <div className='lg:ml-12 ml-6 flex flex-col justify-start items-start'>
+        <div className='bg-[#00CED1] py-12 flex items-center justify-between p-8  '>
+            <div className='flex flex-col justify-start items-start w-9/12'>
                 <h1 className='text-neutral-800 lg:text-5xl text-2xl font-bold '>
                     {t('beginnersGuidBannar')}
                 </h1>
@@ -15,12 +15,13 @@ const Profilecontainer = () => {
                     {t('Beginner’s_guide')}
                 </NavLink>
             </div>
+
+            <div className='flex justify-center'>
             <div className='relative'>
-            <img src={manu_profile} alt="" className='rounded-full lg:w-80 lg:h-80 w-40 h-40 lg:mr-24 mr-2 relative' />
-            
-            <div className='bg-white rounded-full lg:w-20 lg:h-20 w-10 h-10 absolute  top-0 left-0'/>
-            {/* <div className='bg-white rounded-full lg:w-16 lg:h-16 w-8 h-8 absolute  lg:bottom-0 -bottom-4 right-28'/> */}
-            {/* <div className='bg-white rounded-full lg:w-20 lg:h-20 w-10 h-10 absolute top-10 -right-3 lg:right-16 border-cyan-400 border-spacing-10 border-solid'/> */}
+            <img src={manu_profile} alt="" className='rounded-full lg:w-80 lg:h-80 w-40 h-40 relative' />
+            <div className='bg-white rounded-full lg:w-20 lg:h-20 w-10 h-10 absolute top-0 left-0'/>
+
+            </div>
                 
             </div>
         </div>

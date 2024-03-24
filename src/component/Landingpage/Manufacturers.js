@@ -71,7 +71,7 @@ const Manufacturers = ({setFilterManufacturer,filterManufacturer}) => {
       </button>
       {isOpen && (
 
-        <div className='flex flex-col md:absolute bg-white w-full top-full z-[999] p-4 h-[30vh] overflow-y-auto'>
+        <div className='flex flex-col md:absolute bg-white w-full top-full z-[10] p-4 h-[30vh] overflow-y-auto'>
           {
 
             manufacturerList.map((manufacturer,index) => {

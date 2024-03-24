@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Manufacturers from './Manufacturers';
 import ProductFilter from './ProductFilter';
 import PriceFilter from './PriceFilter';
+import PriceFilterTemp from './PriceFilterTemp'
 import { IoSearch } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';

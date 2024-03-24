@@ -11,7 +11,8 @@ import useLanguage from '../../hooks/useLanguage';
 import germanflag from '../../imges/germanflag.png';
 import ukflag from '../../imges/ukflag.png'
 import { IoIosMenu } from "react-icons/io";
-import logo from '../Landingpage/logo.png'
+import logo from '../Landingpage/logo.png';
+import svgLogo from '../../imges/logo.svg'
 import { CiGlobe } from "react-icons/ci";
 import { ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroicons/react/24/outline';
 import Api from '../../api/Api';
@@ -115,8 +116,11 @@ const Navigationbar = () => {
         <>
             <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-[9999] ${isSticky ? 'fixed w-full top-0' : ''}`}>
                 <div className='z-20 flex items-center'>
-                    <img src={logo} alt="" className='lg:w-14 lg:h-14 w-6 h-6' />
-                    <a href='/' className='text-white lg:text-2xl text-lg font-bold'>3DHeaven</a>
+                    {/* <img src={svgLogo} alt="" className='' /> */}
+                    <Link href='/'>
+                    <img src={svgLogo} alt="" className='lg:w-32 lg:h-32 w-6 h-6' />
+                    </Link>
+                    {/* <a href='/' className='text-white lg:text-2xl text-lg font-bold'>3DHeaven</a> */}
                 </div>
                 {isMobile ? (
                     <>

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 
 
-const PriceFilter = ({setPrice,price}) => {
+const ProductFilter = ({setPrice,price}) => {
   const [isOpen, setIsOpen] = useState(false)
   const {t}=useTranslation()
 
@@ -28,7 +28,7 @@ const PriceFilter = ({setPrice,price}) => {
         {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
       </button>
       {isOpen && (
-        <div className='flex flex-col md:absolute bg-white w-full top-full z-[10] p-4 h-[30vh] overflow-y-auto'>
+        <div className='flex flex-col md:absolute bg-white w-full top-full z-[999] p-4 h-[30vh] overflow-y-auto'>
             <div className='p-2 border-b-[1px] border-gray-300 flex hover:bg-customBlue cursor-pointer hover:text-white'
             onClick={()=>{
                 setPrice(0)
@@ -77,4 +77,4 @@ const PriceFilter = ({setPrice,price}) => {
   );
 };
 
-export default PriceFilter;
+export default ProductFilter;

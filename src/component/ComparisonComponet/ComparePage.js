@@ -65,6 +65,7 @@ const ComparePage = () => {
                         <Manufacturers setFilterManufacturer={setFilterManufacturer} filterManufacturer={filterManufacturer} />
                         <ProductFilter setFilterProduct={setFilterProduct} manufacturers={filterManufacturer} filterProduct={filterProduct} />
                         <PriceFilter setPrice={setPriceLimit} price={priceLimit} />
+                        
                         <button className='bg-[#00CED1] text-white lg:mx-2 w-full lg:w-auto px-4 py-2 lg:px-4 lg:py-4 lg:text-lg flex items-center justify-center rounded-md my-1 font-bold tracking-wider border-4 border-transparent active:border-white duration-500 active:text-black cursor-pointer'
                             onClick={(e) => {
                                 handleFilter()
