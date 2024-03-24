@@ -82,7 +82,7 @@ const MaskSlider = () => {
                   Product ?
                     <SwiperSlide key={Product.Id} className=" relative my-3">
                       <div
-                        className=" rounded-xl overflow-hidden flex flex-col   bg-white h-[400px] cursor-pointer"
+                        className=" rounded-xl overflow-hidden flex flex-col   bg-white lg:h-[400px] h-[300px] cursor-pointer"
                         style={{
                           boxShadow:
                             "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",

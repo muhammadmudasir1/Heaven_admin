@@ -117,9 +117,9 @@ const Navigationbar = () => {
             <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-[9999] ${isSticky ? 'fixed w-full top-0' : ''}`}>
                 <div className='z-20 flex items-center'>
                     {/* <img src={svgLogo} alt="" className='' /> */}
-                    <Link href='/'>
-                    <img src={svgLogo} alt="" className='lg:w-32 lg:h-32 w-6 h-6' />
-                    </Link>
+                    <a href='/'>
+                    <img src={svgLogo} alt="" className='lg:w-32 lg:h-32 h-[35px] ' />
+                    </a>
                     {/* <a href='/' className='text-white lg:text-2xl text-lg font-bold'>3DHeaven</a> */}
                 </div>
                 {isMobile ? (
@@ -190,15 +190,14 @@ const Navigationbar = () => {
                                         <NavLink to={'/'} onClick={closeDashboard} className={'text-xl font-normal'}>{t('HomePage')}</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <Link to={'/#topFive'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('BestDeals')}</Link>
+                                        <Link to={'/#topFive'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('Bestlist')}</Link>
                                     </li>
-                                    <li className='z-20 text-black relative'>
+                                    <li className='z-20 text-black relative w-full flex justify-center'>
                                         <p onClick={(e) => {
-                                            console.log("is clicked")
                                             handlePrinterDropDown()
-                                        }} className='flex text-xl ml-24 mr-20 text-center'>{t('3dprinters')}
-                                            {dropDownOpen ? <ArrowDownCircleIcon /> : <ArrowUpCircleIcon />}
+                                        }} className='flex text-xl text-center '>{t('3dprinters')}
                                         </p>
+                                            {dropDownOpen ? <ArrowDownCircleIcon className='w-5'/> : <ArrowUpCircleIcon className='w-5'/>}
                                         {dropDownOpen && (
                                             <div className='absolute right-0 top-0 bg-white py-2 px-4 z-30'>
                                                 <ul>

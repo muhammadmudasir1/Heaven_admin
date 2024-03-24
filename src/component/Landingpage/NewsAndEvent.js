@@ -42,13 +42,13 @@ const NewsAndEvent = () => {
                 <div className='px-8'>
                     <img src={Illustration} alt="" />
                 </div>
-                <div className='px-8'>
+                <div className='px-8 flex flex-col items-center'>
                     <h1 className='text-neutral-800 text-center text-xl font-bold font-[Roboto] py-8 '>{t("newsBannarHeading")}</h1>
                     <button
                     onClick={(e)=>{
                         navigate('/news')
                     }}
-                    className='text-neutral-800 bg-cyan-500 rounded-xl px-8 py-3 text-2xl font-medium font-[Roboto]'>News & Events</button>
+                    className='text-neutral-800 bg-cyan-500 rounded-xl px-8 py-3 text-2xl font-medium font-[Roboto] w-3/4'>News & Events</button>
                 </div>
             </div>
         )}

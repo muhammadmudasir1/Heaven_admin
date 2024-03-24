@@ -111,7 +111,7 @@ const SingleReviewTabbar = () => {
                     </ul>
                 </div>
             ) : (
-                <div className={`flex items-center justify-center py-8 bg-white w-full z-[99] ${isSticky?"fixed top-14 ":"relative"}`}>
+                <div className={`flex items-center justify-center py-8 bg-white w-full z-[99] ${isSticky?"fixed top-12 ":"relative"}`}>
                     <div onClick={handleToggle} className='flex border-2 border-black items-center justify-between w-64 px-1 py-2 rounded-lg bg-white'>
                         {selectedName}
                         <div onClick={handleToggle} className=''>
@@ -124,7 +124,7 @@ const SingleReviewTabbar = () => {
                                         className='text-neutral-800 text-xl font-normal'
                                         onClick={() => {
                                             const comp = document.getElementById('alle')
-                                            handleNameSelect('Alle Wichtigste')
+                                            handleNameSelect(t('coreData'))
                                             const rect = comp.getBoundingClientRect();
                                             window.scrollTo({
                                                 top: rect.top - 200,
@@ -152,7 +152,7 @@ const SingleReviewTabbar = () => {
                                         className='text-neutral-800 text-xl font-normal'
                                         onClick={() => {
                                             const comp = document.getElementById('purchaselinks')
-                                            handleNameSelect('Purchase Links')
+                                            handleNameSelect(t('purchaseLinks'))
                                             const rect = comp.getBoundingClientRect();
                                             window.scrollTo({
                                                 top: rect.top - 200,
@@ -166,7 +166,7 @@ const SingleReviewTabbar = () => {
                                         className='text-neutral-800 text-xl font-normal'
                                         onClick={() => {
                                             const comp = document.getElementById('review')
-                                            handleNameSelect('Review')
+                                            handleNameSelect(t('review'))
                                             const rect = comp.getBoundingClientRect();
                                             window.scrollTo({
                                                 top: rect.top - 200,
@@ -174,13 +174,13 @@ const SingleReviewTabbar = () => {
                                             });
                                         }}
                                     >
-                                        Review
+                                    {t('review')}
                                     </button>
                                     <button
                                         className='text-neutral-800 text-xl font-normal'
                                         onClick={() => {
                                             const comp = document.getElementById('specs')
-                                            handleNameSelect('Specs')
+                                            handleNameSelect(t('TechnicalData'))
                                             const rect = comp.getBoundingClientRect();
                                             window.scrollTo({
                                                 top: rect.top - 200,
@@ -188,7 +188,7 @@ const SingleReviewTabbar = () => {
                                             });
                                         }}
                                     >
-                                        Specs
+                                        {t('TechnicalData')}
                                     </button>
                                 </div>
                             )}

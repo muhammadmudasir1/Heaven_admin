@@ -30,7 +30,7 @@ const ReviewAndAdd = () => {
     const [specs, setSpecs] = useState({})
     const [productType, setProductType] = useState(0)
     const [isLoading, setIsloading] = useState(false)
-    const {t}=useTranslation()
+    const { t } = useTranslation()
 
     useEffect(() => {
         const handleResize = () => {
@@ -105,10 +105,10 @@ const ReviewAndAdd = () => {
             {!isMobile ? (
                 <div className='grid-cols-8 grid '>
                     <div className=' col-span-6 p-4'>
-                    {
-                    productType===3 &&
-                    <WarningBannar/>
-                    }
+                        {
+                            productType === 3 &&
+                            <WarningBannar />
+                        }
 
                     </div>
                     <div className=' col-span-8' id='alle'>
@@ -189,7 +189,7 @@ const ReviewAndAdd = () => {
                                                     {t('customerSupport')}
                                                 </h1>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -274,7 +274,7 @@ const ReviewAndAdd = () => {
                                                     {t('customerSupport')}
                                                 </h1>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -288,6 +288,13 @@ const ReviewAndAdd = () => {
                 </div>
             ) : (
                 <div className='' id='alle'>
+                    {
+                        productType === 3 &&
+                        <div className='px-4 py-4'>
+
+                            <WarningBannar />
+                        </div>
+                    }
                     {
                         isLoading ?
                             <>
@@ -309,10 +316,10 @@ const ReviewAndAdd = () => {
                                     })}
                                 </Swiper>
                                 <div className=' px-6 py-8 flex flex-col justify-center items-center'>
-                                    <h1 className='h-12 w-full rounded-2xl bg-gray-200 animate-pulse'/>
+                                    <h1 className='h-12 w-full rounded-2xl bg-gray-200 animate-pulse' />
 
-                                    <p className='mt-3 h-4 w-full rounded-2xl bg-gray-200 animate-pulse'/>
-                                    <p className='mt-1 h-4 w-full rounded-2xl bg-gray-200 animate-pulse'/>
+                                    <p className='mt-3 h-4 w-full rounded-2xl bg-gray-200 animate-pulse' />
+                                    <p className='mt-1 h-4 w-full rounded-2xl bg-gray-200 animate-pulse' />
                                     <div className='flex items-center py-4'>
                                         {overall > 0 && [...Array.from({ length: 5 }, (_, index) => index + 1)].map((_, index) => (
                                             <CiStar
@@ -364,16 +371,16 @@ const ReviewAndAdd = () => {
                                                     {t('customerSupport')}
                                                 </h1>
                                             </div>
-                                            
+
                                         </div>
 
                                     </div>
                                 </div>
                                 <div className='w-full h-48 bg-gray-200 grid grid-cols-2 grid-rows-2 p-5 gap-2 animate-pulse'>
-                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse'/>
-                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse'/>
-                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse'/>
-                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse'/>
+                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse' />
+                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse' />
+                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse' />
+                                    <div className='w-full h-full bg-gray-300 rounded-2xl animate-pulse' />
                                 </div>
                             </>
                             : <>
@@ -458,7 +465,7 @@ const ReviewAndAdd = () => {
                                                     {t('customerSupport')}
                                                 </h1>
                                             </div>
-                                            
+
                                         </div>
 
                                     </div>
