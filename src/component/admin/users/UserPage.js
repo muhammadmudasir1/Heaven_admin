@@ -563,7 +563,7 @@ const UserPage = () => {
                   {user.role == 3 && <p>Editor</p>}
                 </div>
                 <div className='w-full flex justify-around py-1'>
-                  <button className='px-4 bg-gray-100 rounded-xl hover:bg-customBlue hover:text-white'>Edit</button>
+                  {/* <button className='px-4 bg-gray-100 rounded-xl hover:bg-customBlue hover:text-white'>Edit</button> */}
                   {
                     user.id!==auth.userId && 
                     <button className='px-4 bg-gray-100 rounded-xl hover:bg-customBlue hover:text-white'

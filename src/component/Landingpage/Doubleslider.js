@@ -124,10 +124,10 @@ const Doubleslider = () => {
                 ))}
               </Swiper>
               {width >= 480 && (
-                <div className=" h-full w-1/12 absolute right-0 z-[99] bg-gradient-to-l from-white to-transparent from-60% " />
+                <div className=" h-full w-1/12 absolute right-0 bg-gradient-to-l from-white to-transparent from-60% z-[10]" />
               )}
               {width >= 480 && !isEndSLA && SLAproducts.length > slidesToShow ? (
-                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-0 z-[999]">
+                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-0 z-[10]">
                   <FaAngleRight
                     onClick={(e) => {
                       swiperInstanceSLA.slideNext();
@@ -203,10 +203,10 @@ const Doubleslider = () => {
                 ))}
               </Swiper>
               {width >= 480 && (
-                <div className=" h-full w-1/12 absolute right-0 z-[99] bg-gradient-to-l from-white to-transparent from-60% " />
+                <div className=" h-full w-1/12 absolute right-0 bg-gradient-to-l from-white to-transparent from-60% z-[10]" />
               )}
               {width >= 480 && !isEndFDM && FDMproducts.length > slidesToShow ? (
-                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-0 z-[999]">
+                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-0 z-[10]">
                   <FaAngleRight
                     onClick={(e) => {
                       swiperInstanceFDM.slideNext();

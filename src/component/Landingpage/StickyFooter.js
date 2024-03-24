@@ -65,13 +65,13 @@ const StickyFooter = () => {
                         <h1 className="  font-normal font-[Roboto]">3D printer enthusiat</h1>
                         <h1 className=" font-normal font-[Roboto]">abc@email.com</h1>
                     </div>
-                    <div className='pl-32'>
+                    <div className='ml-16 col-span-2'>
                         <h1 className='text-neutral-100 text-5xl font-bold pt-24'>Quick links</h1>
                         <div className='flex py-20'>
                             <div className='pr-40'>
                                 <NavLink to={'/'} className={`text-2xl text-white pt-1`}>{t('HomePage')}</NavLink><br />
                                 <NavLink to={'/news'} className={`text-2xl text-white pt-1`}>News</NavLink><br />
-                                <Link to={'#topFive'} className={`text-2xl text-white pt-1`}>{t('BestDeals')}</Link><br />
+                                <Link to={'/ComparisonPage'} className={`text-2xl text-white pt-1`}>{t('BestDeals')}</Link><br />
                             </div>
                             <div className='pr-8 '>
                                 <NavLink to={'/product/sla'} className={`text-2xl text-white pt-1`}>{t('SLA')}</NavLink><br />
@@ -80,13 +80,13 @@ const StickyFooter = () => {
                                 <NavLink to={'/product/cutter'} className={`text-2xl text-white pt-1`}>{t('laserCutter')}</NavLink>
                             </div>
                         </div>
-                        <h1 className='text-neutral-100 text-5xl font-bold '>Our channels</h1>
+                        <h1 className='text-neutral-100 text-4xl font-bold '>Our channels</h1>
                     </div>
 
                     <div className='flex bottom-0 right-60 absolute gap-x-5 pl-32'>
-                        <IoLogoInstagram size={65} className='text-white' />
-                        <FaLinkedinIn size={65} className='text-white' />
-                        <FaYoutube size={65} className='text-white' />
+                        <IoLogoInstagram size={50} className='text-white' />
+                        <FaLinkedinIn size={50} className='text-white' />
+                        <FaYoutube size={50} className='text-white' />
                     </div>
 
 

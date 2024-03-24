@@ -44,7 +44,7 @@ const Dashboard = () => {
                 <div>
                     <div className=" bg-sky-700 flex justify-center items-center p-4">
                         <img src={Logo} className=" w-2/12" />
-                        <h1 className=" font-sans font-bold text-white">3D Heaven</h1>
+                        <h1 className=" font-sans font-bold text-white">3DHeaven</h1>
                     </div>
 
                     <div className="flex flex-col mt-5 ">
@@ -66,7 +66,7 @@ const Dashboard = () => {
                         </Link>
                         <Link to={'beginnersGuid'} className="flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
                             <img src={barChart} className=" w-4 ml-7" />
-                            <p className="pl-2">Beginners Guid</p>
+                            <p className="pl-2">Tutorials</p>
                         </Link>
                     </div>
 
@@ -75,7 +75,7 @@ const Dashboard = () => {
                     <Link to={'users'}
                         className=" flex items-center text-white font-sans font-bold text-lg py-3 hover:text-gray-300">
                         <img src={person} className=" w-4 ml-7" />
-                        <p className="pl-2">User Account</p>
+                        <p className="pl-2">Account</p>
                     </Link>
                     <button
                         className=" flex items-center text-white font-sans font-bold text-lg py-3 hover:text-gray-300"

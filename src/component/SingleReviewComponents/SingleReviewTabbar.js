@@ -79,7 +79,7 @@ const SingleReviewTabbar = () => {
                                     });
                                 }}
                             >
-                                Purchase Links
+                                {t('purchaseLinks')}
                             </button>
                             <button
                                 className='text-neutral-800 text-xl font-normal'
@@ -92,7 +92,7 @@ const SingleReviewTabbar = () => {
                                     });
                                 }}
                             >
-                                Review
+                                {t('review')}
                             </button>
                             <button
                                 className='text-neutral-800 text-xl font-normal'
@@ -105,7 +105,7 @@ const SingleReviewTabbar = () => {
                                     });
                                 }}
                             >
-                                Specs
+                            {t('TechnicalData')}
                             </button>
                         </li>
                     </ul>

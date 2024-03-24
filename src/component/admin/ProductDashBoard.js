@@ -7,6 +7,7 @@ import useRefresh from "../../hooks/useRefresh"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import ClipLoader from 'react-spinners/ClipLoader';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -19,6 +20,7 @@ const ProductDashboard = () => {
     const [products, setProducts] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [reload,setReload]=useState(false)
+    const {t}=useTranslation()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -97,35 +99,35 @@ const ProductDashboard = () => {
                     onClick={(e) => {
                         setCurrentProductType(1)
                     }}
-                >SLA</button>
+                >{t("SLA")}</button>
                 <button
                     className={
                         `bg-gray-300 ${currentProducttype === 2 ? 'border-b-4 border-customBlue' : " "}  px-10 py-3`}
                     onClick={(e) => {
                         setCurrentProductType(2)
                     }}
-                >FDM</button>
+                >{t("fdm")}</button>
                 <button
                     className={
                         `bg-gray-300 ${currentProducttype === 3 ? 'border-b-4 border-customBlue' : " "}  px-10 py-3`}
                     onClick={(e) => {
                         setCurrentProductType(3)
                     }}
-                >Leaser Cutter</button>
+                >{t("laserCutter")}</button>
                 <button
                     className={
                         `bg-gray-300 ${currentProducttype === 4 ? 'border-b-4 border-customBlue' : " "}  px-10 py-3`}
                     onClick={(e) => {
                         setCurrentProductType(4)
                     }}
-                >3D Scannar</button>
+                >{t('3DScanner')}</button>
                 <button
                     className={
                         `bg-gray-300 ${currentProducttype === 5 ? 'border-b-4 border-customBlue' : " "}  px-10 py-3`}
                     onClick={(e) => {
                         setCurrentProductType(5)
                     }}
-                >Filament</button>
+                >{t("Filament")}</button>
 
             </div>
             <div className="2xl:h-[700px] xl:h-[400px] w-full border-gray-200 border-2 p-2 overflow-scroll overflow-x-hidden ">

@@ -201,7 +201,7 @@ const LaserCutterSpecs = (props) => {
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>Air Assist</label>
+                        <label className='text-sm'>Air-Assist</label>
                         <input
                             type="text"
                             placeholder="Type Here"

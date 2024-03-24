@@ -3,19 +3,13 @@ import { useTranslation } from 'react-i18next'
 
 const FDMSpecs = (props) => {
     const { saveData, oldData, update } = props
-    const [installationSpace, setInstallationSpace] = useState('') //done
-    // const [surfaceArea, setSurfaceArea] = useState('')
-    const [driveTech, setDriveTech] = useState('') //done
-    const [installatingSpaceEnclouser, setInstallatingSpaceEnclouser] = useState('') //done
-    // const [printVolume, setPrintVolume] = useState('')
-    // const [ZAxisPrintingAccuracy, setZAxisPrintingAccuracy] = useState('')
-    // const [printingAccuracyXYResolution, setPrintingAccuracyXYResolution] = useState('')
-    const [printBedTechnology, setPrintBedTechnology] = useState('') //done
+    const [installationSpace, setInstallationSpace] = useState('')
+    const [driveTech, setDriveTech] = useState('')
+    const [installatingSpaceEnclouser, setInstallatingSpaceEnclouser] = useState('')
+    const [printBedTechnology, setPrintBedTechnology] = useState('')
     const [filamentCompatibility, setFilamentCompatibility] = useState('')
     const [printSpeed, setPrintSpeed] = useState('')
-    // const [nozzleTempurature, setNozzleTempurature] = useState('')
-    // const [printTempurature, setPrintTempurature] = useState('')
-    const [pressureChamberTempurature, setPressureChamberTempurature] = useState('') //done
+    const [pressureChamberTempurature, setPressureChamberTempurature] = useState('')
     const [vibrationSuppresion, setVibrationSuppresion] = useState(false)
     const [automaticPrintBedMeasurement, setAutomaticPrintBedMeasurement] = useState(false)
     const [automaticZOffsetCalibration, setAutomaticZOffsetCalibration] = useState(false)
@@ -44,7 +38,6 @@ const FDMSpecs = (props) => {
     useEffect(() => {
         if(oldData){
             setLEDLighting(oldData.LEDLighting)
-            // setZAxisPrintingAccuracy(oldData.ZAxisPrintingAccuracy)
             setAirFilter(oldData.airFilter)
             setAutomaticPrintBedMeasurement(oldData.automaticPrintBedMeasurement)
             setAutomaticZOffsetCalibration(oldData.automaticZOffsetCalibration)
@@ -58,16 +51,11 @@ const FDMSpecs = (props) => {
             setInstallationSpace(oldData.installationSpace)
             setLidarScannar(oldData.liderScannar)
             setMotherboard(oldData.motherboard)
-            // setNozzleTempurature(oldData.nozzleTempurature)
             setPressureChamberTempurature(oldData.pressureChamberTempurature)
             setPrintBedTechnology(oldData.printBedTechnology)
             setPrintCamera(oldData.printRoomCamera)
             setPrintSpeed(oldData.printSpeed)
-            // setPrintTempurature(oldData.printTempurature)
-            // setPrintVolume(oldData.printVolume)
-            // setPrintingAccuracyXYResolution(oldData.printingAccuracyXYResolution)
             setSupportingComponentCooling(oldData.supportingComponentCooling)
-            // setSurfaceArea(oldData.surfaceArea)
             setVibrationSuppresion(oldData.vibrationSuppresion)
             setGuides(oldData.guides)
             setFrameMaterial(oldData.frameMaterial)
@@ -89,17 +77,11 @@ const FDMSpecs = (props) => {
     const handleSave = () => {
         const data = {
             installationSpace,
-            // surfaceArea,
             driveTech,
             installatingSpaceEnclouser,
-            // printVolume,
-            // ZAxisPrintingAccuracy,
-            // printingAccuracyXYResolution,
             printBedTechnology,
             filamentCompatibility,
             printSpeed,
-            // nozzleTempurature,
-            // printTempurature,
             pressureChamberTempurature,
             vibrationSuppresion,
             automaticPrintBedMeasurement,
@@ -130,17 +112,11 @@ const FDMSpecs = (props) => {
     const handleUpdate = async () => {
         const data = {
             installationSpace,
-            // surfaceArea,
             driveTech,
             installatingSpaceEnclouser,
-            // printVolume,
-            // ZAxisPrintingAccuracy,
-            // printingAccuracyXYResolution,
             printBedTechnology,
             filamentCompatibility,
             printSpeed,
-            // nozzleTempurature,
-            // printTempurature,
             pressureChamberTempurature,
             vibrationSuppresion,
             automaticPrintBedMeasurement,
@@ -257,7 +233,7 @@ const FDMSpecs = (props) => {
                     
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>Text</label>
+                        <label className='text-sm'>Extras</label>
                         {/* changeApi */}
                         <input
                             type="text"

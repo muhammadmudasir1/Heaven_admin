@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import { useTranslation } from 'react-i18next';
 
 const NavigationForAddForm = () => {
     const [scroll,setScroll]=useState(false)
     const {auth}=useAuth()
     const {id}=useParams()
+    const {t}=useTranslation()
+
     useEffect(() => {
 
         const handleScroll = () => {
@@ -36,19 +39,19 @@ const NavigationForAddForm = () => {
             <NavLink 
             className='py-4 px-2 2xl:py-6 2xl:px-3 text-lg hover:bg-customBlue hover:text-white'
             to={id?`/dashboard/updateproduct/${id}`:'/dashboard/addproduct'}
-            > Basic Details</NavLink>
+            >{t("coreData")}</NavLink>
             {
                 id ?
                 <>
-                <NavLink to={`/dashboard/addspecs/${id}`} className='py-4 px-2 2xl:py-6 2xl:px-3 text-lg hover:bg-customBlue hover:text-white '> Specs</NavLink>
-                <NavLink to={`/dashboard/addpurchaselinks/${id}`} className='py-4 px-2 2xl:py-6 2xl:px-3 text-lg hover:bg-customBlue hover:text-white'> Purchase Links</NavLink>
-                <NavLink to={`/dashboard/addreview/${id}`} className='py-4 px-2 2xl:py-6 2xl:px-3 text-lg hover:bg-customBlue hover:text-white'> Review</NavLink>
+                <NavLink to={`/dashboard/addspecs/${id}`} className='py-4 px-2 2xl:py-6 2xl:px-3 text-lg hover:bg-customBlue hover:text-white '>{t('TechnicalData')}</NavLink>
+                <NavLink to={`/dashboard/addpurchaselinks/${id}`} className='py-4 px-2 2xl:py-6 2xl:px-3 text-lg hover:bg-customBlue hover:text-white'>{t('affiliateLinks')}</NavLink>
+                <NavLink to={`/dashboard/addreview/${id}`} className='py-4 px-2 2xl:py-6 2xl:px-3 text-lg hover:bg-customBlue hover:text-white'>{t('review')}</NavLink>
                 </>
                 :
                 <>
-                <p className='text-gray-500 cursor-not-allowed py-4 px-2 2xl:py-6 2xl:px-3 text-lg'> Specs</p>
-                <p className='text-gray-500 cursor-not-allowed py-4 px-2 2xl:py-6 2xl:px-3 text-lg'> Purchase Links</p>
-                <p className='text-gray-500 cursor-not-allowed py-4 px-2 2xl:py-6 2xl:px-3 text-lg'> Review</p>
+                <p className='text-gray-500 cursor-not-allowed py-4 px-2 2xl:py-6 2xl:px-3 text-lg'>{t('TechnicalData')}</p>
+                <p className='text-gray-500 cursor-not-allowed py-4 px-2 2xl:py-6 2xl:px-3 text-lg'>{t('affiliateLinks')}</p>
+                <p className='text-gray-500 cursor-not-allowed py-4 px-2 2xl:py-6 2xl:px-3 text-lg'>{t('review')}</p>
                 </>
             }
             </div>
