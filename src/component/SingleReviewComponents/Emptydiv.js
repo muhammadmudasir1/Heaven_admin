@@ -59,7 +59,7 @@ const Emptydiv = () => {
               :
               <>
                 <div className='hidden' dangerouslySetInnerHTML={{ __html: data.seoKeys }} />
-                <div className='py-10 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.review }} />
+                <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data.review }} />
               </>
             }
           </div>
@@ -82,7 +82,7 @@ const Emptydiv = () => {
               :
               <>
                 <div className='hidden' dangerouslySetInnerHTML={{ __html: data.seoKeys }} />
-                <div className='py-10 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.review }} />
+                <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data.review }} />
               </>
 
             }

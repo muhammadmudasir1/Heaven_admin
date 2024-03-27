@@ -10,8 +10,8 @@ import { useTranslation } from 'react-i18next';
 import useLanguage from '../../hooks/useLanguage';
 import germanflag from '../../imges/germanflag.png';
 import ukflag from '../../imges/ukflag.png'
-import { IoIosMenu } from "react-icons/io";
-import logo from '../Landingpage/logo.png';
+import { IoIosArrowUp, IoIosMenu } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import svgLogo from '../../imges/logo.svg'
 import { CiGlobe } from "react-icons/ci";
 import { ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroicons/react/24/outline';
@@ -197,7 +197,7 @@ const Navigationbar = () => {
                                             handlePrinterDropDown()
                                         }} className='flex text-xl text-center '>{t('3dprinters')}
                                         </p>
-                                            {dropDownOpen ? <ArrowDownCircleIcon className='w-5'/> : <ArrowUpCircleIcon className='w-5'/>}
+                                            {dropDownOpen ? <IoIosArrowDown className='w-5 items-center'/> : <IoIosArrowUp className='w-5'/>}
                                         {dropDownOpen && (
                                             <div className='absolute right-0 top-0 bg-white py-2 px-4 z-30'>
                                                 <ul>

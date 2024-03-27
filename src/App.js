@@ -35,7 +35,8 @@ import Ratgaber from './component/Ratgaber'
 import SearchView from "./component/SearchView"
 import DetailNews from "./component/NewsComponents/DetailNew"
 import DetailBeginnersGuid from "./component/Ratgaber/DetailBeginnersGuid"
-
+// import CookieConsent from "react-cookie-consent";
+import CookiesTry from './Cookies/Cookies'
 
 const App = () => {
     return (
@@ -43,57 +44,55 @@ const App = () => {
         <BrowserRouter>
             <AuthProvider>
                 <CurrentProductProvider>
-
                     <Routes>
                         <Route element={<Navigationbar />}>
                             <Route path="/ComparisonPage" element={<ComparePage />} />
                             <Route path="/" element={<Home />} />
                             <Route path="/filament" element={<ShowFilament />} />
-                            <Route path="/ratgaber" element={<Ratgaber/>}/>
-                            <Route path="/ratgaber/:title/:id" element={<DetailBeginnersGuid/>}/>
-                            <Route path='/comparision' element={<CompareResult/>} />
+                            <Route path="/ratgaber" element={<Ratgaber />} />
+                            <Route path="/ratgaber/:title/:id" element={<DetailBeginnersGuid />} />
+                            <Route path='/comparision' element={<CompareResult />} />
                             <Route path="/product" element={<Review />} >
                                 <Route path="fdm" element={<FDMView />} />
                                 <Route path="sla" element={<SLAView />} />
                                 <Route path="scanner" element={<ScannerView />} />
                                 <Route path="cutter" element={<CutterView />} />
-                                <Route path="search" element={<SearchView/>} />
+                                <Route path="search" element={<SearchView />} />
                             </Route>
                             <Route path="/productreview/:productName/:id" element={<SingleReview />} >
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
-                            <Route path="/news" element={<NewsView/>}/>
-                            <Route path="/news/:title/:id" element={<DetailNews/>}/>
+                            <Route path="/news" element={<NewsView />} />
+                            <Route path="/news/:title/:id" element={<DetailNews />} />
                         </Route>
-                        <Route element={ <PrivatePage/>}>
-                        <Route path="/dashboard" element={<Dashboard />}>
-                            <Route path="product" element={<ProductDashboard />} />
-                            <Route path="topFive" element={<TopFive/>} />
-                            <Route path="news" element={ <News/> } />
-                            <Route path="addNews" element={ <AddNews/> } />
-                            <Route path="updateNews/:id" element={ <AddNews/> } />
-                            <Route path="beginnersGuid" element={ <BeginnersGuid/> } />
-                            <Route path="addBeginnersGuid" element={ <AddBeginnersGuid/> } />
-                            <Route path="updateBeginnersGuid/:id" element={ <AddBeginnersGuid/> } />
-                            <Route element={<NavigationForAddForm/>}>
-                            <Route path="addProduct" element={<AddProduct />} />
-                            <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
-                            <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks/>}/>
-                            <Route path="addReview/:id" element={<AddReview/>}/>
-                            <Route path="updateproduct/:id" element={<UpdateProduct/>}/>
+
+                        <Route element={<PrivatePage />}>
+                            <Route path="/dashboard" element={<Dashboard />}>
+                                <Route path="product" element={<ProductDashboard />} />
+                                <Route path="topFive" element={<TopFive />} />
+                                <Route path="news" element={<News />} />
+                                <Route path="addNews" element={<AddNews />} />
+                                <Route path="updateNews/:id" element={<AddNews />} />
+                                <Route path="beginnersGuid" element={<BeginnersGuid />} />
+                                <Route path="addBeginnersGuid" element={<AddBeginnersGuid />} />
+                                <Route path="updateBeginnersGuid/:id" element={<AddBeginnersGuid />} />
+                                <Route element={<NavigationForAddForm />}>
+                                    <Route path="addProduct" element={<AddProduct />} />
+                                    <Route path="addSpecs/:id" element={<AddSpecs />}></Route>
+                                    <Route path="addPurchaseLinks/:id" element={<AddPurchaseLinks />} />
+                                    <Route path="addReview/:id" element={<AddReview />} />
+                                    <Route path="updateproduct/:id" element={<UpdateProduct />} />
+                                </Route>
+                                <Route path="users" element={<UserPage />} />
                             </Route>
-                            <Route path="users" element={<UserPage/>}/>
-                        </Route>
                         </Route>
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="*" element={<p>404 Page not found</p>}/>
+                        <Route path="*" element={<p>404 Page not found</p>} />
                     </Routes>
-
                 </CurrentProductProvider>
             </AuthProvider>
-
-
-        </BrowserRouter>
+            <CookiesTry/>
+        </BrowserRouter >
 
     )
 }

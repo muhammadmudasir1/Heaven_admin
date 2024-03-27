@@ -201,7 +201,7 @@ const MobileCard = ({ link }) => {
             <div className='grid grid-cols-6 px-5 py-2'>
                 <div className='col-span-3'>
                     <h1 className='text-xl font-bold'>{sites[link.siteType - 1]}</h1>
-                    <p className=''>
+                    <p className='line-clamp-6'>
                         {link.discription}
                     </p>
                 </div>
@@ -232,8 +232,8 @@ const MobileCard = ({ link }) => {
                             window.open(link.visitingLink, "_blank")
                         }}
                     >
-                        <div className='pr-8 '>Go to Website</div>
-                        <div className='flex items-center justify-center rounded-full h-8 w-12 bg-[#026CC4]'>
+                        <div className=''>Go to Website</div>
+                        <div className='flex items-center justify-center rounded-full h-10 w-10 bg-[#026CC4]'>
                             <ArrowForwardIos fontSize='6px' className='text-white' />
                         </div>
                     </div>

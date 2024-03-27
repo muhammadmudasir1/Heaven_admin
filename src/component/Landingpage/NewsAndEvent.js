@@ -38,7 +38,7 @@ const NewsAndEvent = () => {
             </div>
         
         ):(
-            <div className='flex flex-col items-center justify-center bg-[#F5F2F9] my-4'>
+            <div className='flex flex-col items-center justify-center bg-[#F5F2F9]'>
                 <div className='px-8'>
                     <img src={Illustration} alt="" />
                 </div>
@@ -48,7 +48,7 @@ const NewsAndEvent = () => {
                     onClick={(e)=>{
                         navigate('/news')
                     }}
-                    className='text-neutral-800 bg-cyan-500 rounded-xl px-8 py-3 text-2xl font-medium font-[Roboto] w-3/4'>News & Events</button>
+                    className='mb-2 text-neutral-800 bg-cyan-500 rounded-xl px-8 py-3 text-2xl font-medium font-[Roboto] w-3/4'>News & Events</button>
                 </div>
             </div>
         )}

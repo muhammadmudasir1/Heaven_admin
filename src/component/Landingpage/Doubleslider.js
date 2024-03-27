@@ -18,8 +18,8 @@ const Doubleslider = () => {
   const [isBeginningSLA, setIsBeginningSLA] = useState(true);
   const [isEndSLA, setIsEndSLA] = useState(false);
   const [SLAproducts, setSLAproducts] = useState([])
-  const {t}=useTranslation()
-  const navigate=useNavigate()
+  const { t } = useTranslation()
+  const navigate = useNavigate()
   const handleSwiperSLA = (swiper) => {
     setSwiperInstanceSLA(swiper);
   };
@@ -70,85 +70,6 @@ const Doubleslider = () => {
     <div className="lg:grid lg:grid-cols-8 lg:grid-rows-2 m-8">
       <>
         <div className="lg:col-span-6 lg:relative my-8">
-          <div className=" flex justify-center items-center">
-            <h1 className="text-neutral-800 text-2xl font-normal">
-              {t('LatestSLA')}
-            </h1>
-          </div>
-          {isLoader ? (<LoadingCard />) : (
-            <div className=" relative flex items-center ">
-              {width >= 480 && !isBeginningSLA ? (
-                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute left-0 z-[999]">
-                  <FaAngleLeft
-                    onClick={(e) => {
-                      swiperInstanceSLA.slidePrev();
-                    }}
-                  />
-                </div>
-              ) : null}
-              <Swiper
-                modules={[A11y, Navigation]}
-                spaceBetween={20}
-                slidesPerView={SLAproducts.length > slidesToShow ? slidesToShow : SLAproducts.length}
-                onSwiper={(swiper) => handleSwiperSLA(swiper)}
-                onSlideChange={(swiperCurrent) => {
-                  setIsBeginningSLA(swiperCurrent.isBeginning);
-                  setIsEndSLA(swiperCurrent.isEnd);
-                }}
-                className="p-5"
-              >
-                {SLAproducts.map((SLAproduct, index) => (
-                  <SwiperSlide key={SLAproduct} className=" relative my-3">
-                    <div
-                      className="rounded-xl  flex flex-col items-start  bg-white/95 h-[400px] cursor-pointer"
-                      style={{
-                        boxShadow:
-                          "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
-                      }}
-                      onClick={(e) => {
-                        const name=SLAproduct.product_name.replaceAll(' ','-')
-                        navigate(`/productreview/${name}/${SLAproduct.Id}`);
-                      }}
-                    >
-                      <div className=" w-full h-52 bg-cover bg-center"
-                        style={{
-                          backgroundImage: `url(/api/${SLAproduct.ProductImages[0].path})`
-                        }}
-                      />
-                      <h2 className="pt-8 px-6 font-bold line-clamp-1">{SLAproduct.product_name}</h2>
-                      <p className=" pt-4 px-6 line-clamp-4">
-                        {SLAproduct.discription}
-                      </p>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              {width >= 480 && (
-                <div className=" h-full w-1/12 absolute right-0 bg-gradient-to-l from-white to-transparent from-60% z-[10]" />
-              )}
-              {width >= 480 && !isEndSLA && SLAproducts.length > slidesToShow ? (
-                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-0 z-[10]">
-                  <FaAngleRight
-                    onClick={(e) => {
-                      swiperInstanceSLA.slideNext();
-                    }}
-                  />
-                </div>
-              ) : null}
-            </div>
-          )}
-        </div>
-      </>
-
-      <div
-        className="lg:row-span-2 lg:col-span-2 lg:ml-6 lg:bg-white/95"
-        style={{
-          boxShadow:
-            "-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)",
-        }}
-      ></div>
-      <>
-        <div className="lg:col-span-6 lg:relative my-8">
           <div class=" flex justify-center items-center">
             <h1 class="text-neutral-800 text-2xl font-normal ">
               {t('LatestFDM')}
@@ -185,7 +106,7 @@ const Doubleslider = () => {
                           "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
                       }}
                       onClick={(e) => {
-                        const name=FDMproduct.product_name.replaceAll(' ','-')
+                        const name = FDMproduct.product_name.replaceAll(' ', '-')
                         navigate(`/productreview/${name}/${FDMproduct.Id}`);
                       }}
                     >
@@ -210,6 +131,85 @@ const Doubleslider = () => {
                   <FaAngleRight
                     onClick={(e) => {
                       swiperInstanceFDM.slideNext();
+                    }}
+                  />
+                </div>
+              ) : null}
+            </div>
+          )}
+        </div>
+      </>
+
+      <div
+        className="lg:row-span-2 lg:col-span-2 lg:ml-6 lg:bg-white/95"
+        style={{
+          boxShadow:
+            "-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)",
+        }}
+      ></div>
+      <>
+        <div className="lg:col-span-6 lg:relative my-8">
+          <div className=" flex justify-center items-center">
+            <h1 className="text-neutral-800 text-2xl font-normal">
+              {t('LatestSLA')}
+            </h1>
+          </div>
+          {isLoader ? (<LoadingCard />) : (
+            <div className=" relative flex items-center ">
+              {width >= 480 && !isBeginningSLA ? (
+                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute left-0 z-[999]">
+                  <FaAngleLeft
+                    onClick={(e) => {
+                      swiperInstanceSLA.slidePrev();
+                    }}
+                  />
+                </div>
+              ) : null}
+              <Swiper
+                modules={[A11y, Navigation]}
+                spaceBetween={20}
+                slidesPerView={SLAproducts.length > slidesToShow ? slidesToShow : SLAproducts.length}
+                onSwiper={(swiper) => handleSwiperSLA(swiper)}
+                onSlideChange={(swiperCurrent) => {
+                  setIsBeginningSLA(swiperCurrent.isBeginning);
+                  setIsEndSLA(swiperCurrent.isEnd);
+                }}
+                className="p-5"
+              >
+                {SLAproducts.map((SLAproduct, index) => (
+                  <SwiperSlide key={SLAproduct} className=" relative my-3">
+                    <div
+                      className="rounded-xl  flex flex-col items-start  bg-white/95 h-[400px] cursor-pointer"
+                      style={{
+                        boxShadow:
+                          "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
+                      }}
+                      onClick={(e) => {
+                        const name = SLAproduct.product_name.replaceAll(' ', '-')
+                        navigate(`/productreview/${name}/${SLAproduct.Id}`);
+                      }}
+                    >
+                      <div className=" w-full h-52 bg-cover bg-center"
+                        style={{
+                          backgroundImage: `url(/api/${SLAproduct.ProductImages[0].path})`
+                        }}
+                      />
+                      <h2 className="pt-8 px-6 font-bold line-clamp-1">{SLAproduct.product_name}</h2>
+                      <p className=" pt-4 px-6 line-clamp-4">
+                        {SLAproduct.discription}
+                      </p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              {width >= 480 && (
+                <div className=" h-full w-1/12 absolute right-0 bg-gradient-to-l from-white to-transparent from-60% z-[10]" />
+              )}
+              {width >= 480 && !isEndSLA && SLAproducts.length > slidesToShow ? (
+                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-0 z-[10]">
+                  <FaAngleRight
+                    onClick={(e) => {
+                      swiperInstanceSLA.slideNext();
                     }}
                   />
                 </div>

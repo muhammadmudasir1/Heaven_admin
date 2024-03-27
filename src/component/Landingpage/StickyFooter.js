@@ -41,7 +41,7 @@ const StickyFooter = () => {
                                 <NavLink to={'/product/cutter'} className='text-white text-base'>{t('laserCutter')}</NavLink><br />
                         </div>
                     </div>
-                    <div className='flex flex-row bg-[#4d6464] py-4 justify-between px-6'>
+                    <div className='flex flex-row bg-[#00CED1] py-4 justify-between px-6'>
                         <div className='flex'>
                             <img src={manu_profile} alt="" className='w-20 rounded-full' />
                             <div className='flex items-center justify-center pl-2'>
