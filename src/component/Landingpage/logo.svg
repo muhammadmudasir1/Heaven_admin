@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="23.731089mm"
+   height="9.3742666mm"
+   viewBox="0 0 23.731089 9.3742666"
+   version="1.1"
+   id="svg3742"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3739">
+    <linearGradient
+       xlink:href="#linearGradient390"
+       id="linearGradient392"
+       x1="421.5704"
+       y1="1279.3322"
+       x2="545.84839"
+       y2="319.22385"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.0083875,0,0,0.00751803,76.807183,195.99527)" />
+    <linearGradient
+       id="linearGradient390">
+      <stop
+         style="stop-color:#00ffff;stop-opacity:1;"
+         offset="0"
+         id="stop386" />
+      <stop
+         style="stop-color:#00ffff;stop-opacity:0;"
+         offset="1"
+         id="stop388" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient472"
+       id="linearGradient466"
+       x1="558.03247"
+       y1="38.989128"
+       x2="874.81946"
+       y2="1252.5271"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.00830725,0,0,0.00754735,76.880331,195.95704)" />
+    <linearGradient
+       id="linearGradient472">
+      <stop
+         style="stop-color:#000080;stop-opacity:1"
+         offset="0"
+         id="stop468" />
+      <stop
+         style="stop-color:#00ffff;stop-opacity:0;"
+         offset="1"
+         id="stop470" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient1697"
+       id="linearGradient1699"
+       x1="139.59178"
+       y1="1212.3264"
+       x2="200.29765"
+       y2="1212.3264"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.04849095,0,0,0.04849095,74.743222,142.33267)" />
+    <linearGradient
+       id="linearGradient1697">
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="0"
+         id="stop1695" />
+    </linearGradient>
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-78.293784,-196.43093)">
+    <path
+       style="display:inline;fill:url(#linearGradient392);fill-opacity:1;stroke:#000000;stroke-width:0.00794089px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0"
+       d="m 78.299219,205.137 3.18846,-8.7021 h 0.02044 l 1.819058,9.36162 z"
+       id="path324" />
+    <path
+       style="display:inline;fill:url(#linearGradient466);fill-opacity:1;stroke:url(#linearGradient1699);stroke-width:0.00791819px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 83.337943,205.79652 1.113382,-1.26904 -2.935279,-8.09229 z"
+       id="path458" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="85.58831"
+       y="203.61238"
+       id="text4278"><tspan
+         id="tspan4276"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Arial Unicode MS';-inkscape-font-specification:'Arial Unicode MS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="85.58831"
+         y="203.61238">3DHeaven</tspan></text>
+  </g>
+</svg>

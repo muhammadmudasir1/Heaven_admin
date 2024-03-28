@@ -1,24 +1,55 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const SLASpecs = (props) => {
-    const { saveData } = props
+    const { saveData,oldData,update } = props
     const [installationSpace, setInstallationSpace] = useState('')
     const [monoscreen, setMonoscreen] = useState('')
     const [pixelResolution, setPixelResolution] = useState('')
     const [XYPixelResolution, setXYPixelResolution] = useState('')
     const [ZAxis, setZAxis] = useState('')
     const [ZAxisResolution,setZAxisResolution] = useState('')
-    const [platorm, setPlatform] = useState('')
+    const [platform, setPlatform] = useState('')
     const [touchScreen, setTouchScreen] = useState('')
     const [printSpeed, setPrintSpeed] = useState('')
     const [lightTechnology, setLightTechnology] = useState('')
     const [lightDensity, setLightDensity] = useState('')
     const [airPurificationSystem, setAirPurificationSystem] = useState('')
     const [Interface, setInterface] = useState('')
+    const [userInterface, setUserInterface] = useState('')
     const [buildSize, setBuildSize] = useState('')
+    const [extras, setExtras] = useState('')
+    const [specsId,setSpecsId]=useState(null)
 
-    const handleSave = () => {
+    useEffect(()=>{
+        // console.log(oldData)
+        if(oldData){
+            setXYPixelResolution(oldData.XYPixelResolution)
+            setZAxis(oldData.ZAxis)
+            setZAxisResolution(oldData.ZAxisResolution)
+            setAirPurificationSystem(oldData.airPurificationSystem)
+            setBuildSize(oldData.buildSize)
+            setInstallationSpace(oldData.installationSpace)
+            setInterface(oldData.interface)
+            setUserInterface(oldData.userInterface)
+            setLightDensity(oldData.lightDensity)
+            setLightTechnology(oldData.lightTechnology)
+            setMonoscreen(oldData.monoscreen)
+            setPixelResolution(oldData.pixelResolution)
+            setPlatform(oldData.platform)
+            setPrintSpeed(oldData.printSpeed)
+            setTouchScreen(oldData.touchScreen)
+            setExtras(oldData.extras)
+            setSpecsId(oldData.id)
+        }
+        console.log(oldData)
+    },[oldData])
+
+    useEffect(()=>{
+        console.log(specsId)
+    },[specsId])
+
+    const handleSave = async () => {
         const data = {
             installationSpace,
             monoscreen,
@@ -26,16 +57,40 @@ const SLASpecs = (props) => {
             XYPixelResolution,
             ZAxis,
             ZAxisResolution,
-            platorm,
+            platform,
             touchScreen,
             printSpeed,
             lightTechnology,
             lightDensity,
             airPurificationSystem,
-            Interface,
+            userInterface,
+            extras,
+            "interface":Interface,
             buildSize
         }
         saveData(data)
+    }
+
+    const handleUpdate = async() =>{
+        const data = {
+            installationSpace,
+            monoscreen,
+            pixelResolution,
+            XYPixelResolution,
+            ZAxis,
+            ZAxisResolution,
+            platform,
+            touchScreen,
+            printSpeed,
+            lightTechnology,
+            lightDensity,
+            airPurificationSystem,
+            userInterface,
+            extras,
+            "interface":Interface,
+            buildSize
+        }
+        await update(oldData.product, 1, specsId, data)
     }
 
     const { t } = useTranslation()
@@ -57,6 +112,7 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setInstallationSpace(e.target.value)
                         }}
+                        value={installationSpace}
                         />
 
                     </section>
@@ -71,11 +127,26 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setMonoscreen(e.target.value)
                         }}
+                        value={monoscreen}
                         />
 
                     </section>
 
                     <section className='flex flex-col'>
+                        <label className='text-sm'>{t('ZAxis')}</label>
+                        
+                        <input
+                        type="text"
+                        placeholder="Type Here"
+                        className='border-black border-[1px] rounded-md p-2 mt-1'
+                        onChange={(e)=>{
+                            setZAxis(e.target.value)
+                        }}
+                        value={ZAxis}
+                        />
+                    </section>
+
+                    {/* <section className='flex flex-col'>
                         <label className='text-sm'>{t('pixelResolution')}</label>
                         
                         <input
@@ -85,9 +156,10 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setPixelResolution(e.target.value)
                         }}
+                        value={pixelResolution}
                         />
 
-                    </section>
+                    </section> */}
 
                     <section className='flex flex-col'>
                         <label className='text-sm'>{t('XYPixelResolution')}</label>
@@ -99,22 +171,11 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setXYPixelResolution(e.target.value)
                         }}
+                        value={XYPixelResolution}
                         />
 
                     </section>
-                    <section className='flex flex-col'>
-                        <label className='text-sm'>{t('ZAxis')}</label>
-                        
-                        <input
-                        type="text"
-                        placeholder="Type Here"
-                        className='border-black border-[1px] rounded-md p-2 mt-1'
-                        onChange={(e)=>{
-                            setZAxis(e.target.value)
-                        }}
-                        />
-
-                    </section>
+                    
                     <section className='flex flex-col'>
                         <label className='text-sm'>{t('ZAxisResolution')}</label>
                         
@@ -125,11 +186,12 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setZAxisResolution(e.target.value)
                         }}
+                        value={ZAxisResolution}
                         />
 
                     </section>
                     <section className='flex flex-col'>
-                        <label className='text-sm'>Platform</label>
+                        <label className='text-sm'>{t('printingPlatform')}</label>
 
                         <input
                         type="text"
@@ -138,10 +200,25 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setPlatform(e.target.value)
                         }}
+                        value={platform}
                         />
 
                     </section>
                     <section className='flex flex-col'>
+                        <label className='text-sm'>{t('userInterface')}</label>
+                        <input
+                        type="text"
+                        placeholder="Type Here"
+                        className='border-black border-[1px] rounded-md p-2 mt-1'
+                        onChange={(e)=>{
+                            setUserInterface(e.target.value)
+                        }}
+                        value={userInterface}
+                        />
+
+                    </section>
+
+                    {/* <section className='flex flex-col'>
                         <label className='text-sm'>Touchscreen</label>
                         
                         <input
@@ -151,9 +228,11 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setTouchScreen(e.target.value)
                         }}
+                        value={touchScreen}
                         />
 
-                    </section>
+                    </section> */}
+
                     <section className='flex flex-col'>
                         <label className='text-sm'>{t('printSpeed')}</label>
                         
@@ -164,6 +243,7 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setPrintSpeed(e.target.value)
                         }}
+                        value={printSpeed}
                         />
 
                     </section>
@@ -177,6 +257,7 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setLightTechnology(e.target.value)
                         }}
+                        value={lightTechnology}
                         />
 
                     </section>
@@ -190,6 +271,7 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setLightDensity(e.target.value)
                         }}
+                        value={lightDensity}
                         />
 
                     </section>
@@ -203,6 +285,7 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setAirPurificationSystem(e.target.value)
                         }}
+                        value={airPurificationSystem}
                         />
                     </section>
                     <section className='flex flex-col'>
@@ -215,20 +298,21 @@ const SLASpecs = (props) => {
                         onChange={(e)=>{
                             setInterface(e.target.value)
                         }}
+                        value={Interface}
                         />
 
                     </section>
 
                     <section className='flex flex-col'>
-                        <label className='text-sm'>Build Size</label>
-                        
+                        <label className='text-sm'>Extras</label>
                         <input
                         type="text"
                         placeholder="Type Here"
                         className='border-black border-[1px] rounded-md p-2 mt-1'
                         onChange={(e)=>{
-                            setBuildSize(e.target.value)
+                            setExtras(e.target.value)
                         }}
+                        value={extras}
                         />
 
                     </section>
@@ -237,13 +321,21 @@ const SLASpecs = (props) => {
 
             </div>
 
-            <div className='w-full flex justify-between mt-8 mb-40'>
-                <button className='px-6 py-4 bg-customBlue rounded-lg text-white'>Back</button>
-                <button className='px-4 py-4 bg-customBlue rounded-lg text-white'
-                onClick={(e)=>{
-                    handleSave()
-                }}
-                >Save & Next</button>
+            <div className='w-full flex flex-row-reverse mt-8 mb-40'>
+                {
+                    specsId?
+                    <button className='px-4 py-4 bg-customBlue rounded-lg text-white'
+                    onClick={(e)=>{
+                        handleUpdate()
+                    }}
+                    >Update</button>
+                    :
+                    <button className='px-4 py-4 bg-customBlue rounded-lg text-white'
+                    onClick={(e)=>{
+                        handleSave()
+                    }}
+                    >Save & Next</button>
+                }
             </div>
         </>
 

@@ -1,11 +1,13 @@
 import { useDropzone } from 'react-dropzone'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useProductContext } from '../../context/CurrentProductContext';
-import  ClipLoader  from 'react-spinners/ClipLoader';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { ImCross } from "react-icons/im";
 import { MdCancel } from "react-icons/md";
 import Api from "../../api/Api"
-import {useNavigate,useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
 
 const AddProduct = () => {
     const [images, setImages] = useState([])
@@ -19,19 +21,24 @@ const AddProduct = () => {
     const [manufacturer, setManufacturer] = useState('')
     const [productDiscription, setProductDiscription] = useState('')
     const [scopeOfDeliveryDiscription, setScopeOfDeliveryDiscription] = useState('')
+    const [price,setPrice]=useState("")
+    const [unit,setUnit]=useState("€")
+    const [priceError,setPriceError]=useState("")
     const [priceRating, setPriceRating] = useState(0)
     const [innovationRating, setinnovationRating] = useState(0)
     const [softwareRating, setSoftwareRating] = useState(0)
     const [customerServiceRating, setCustomerServiceRating] = useState(0)
     const [processingRating, setProcessingRating] = useState(0)
     const [nullImageError, setNullImageError] = useState(false)
-    const [isThumbnail,setIsThumbnail]=useState(false)
-    const[thumbnail,setThumbnail]=useState(0)
-    const [includeInBestDeals,setIncludeInBestDeals]=useState(false)
-    const {populateProduct}=useProductContext()
-    const [loading,setLoading]=useState(false)
-    const [error,setError]=useState(null)
-    const navigate=useNavigate()
+    const [isThumbnail, setIsThumbnail] = useState(false)
+    const [thumbnail, setThumbnail] = useState(0)
+    const [includeInBestDeals, setIncludeInBestDeals] = useState(false)
+    const { populateProduct } = useProductContext()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+    const navigate = useNavigate()
+    const {auth,setAuth}=useAuth()
+    const refresh=useRefresh()
 
 
     // states for Error Handling
@@ -39,9 +46,17 @@ const AddProduct = () => {
     const [productNameError, setProductNameError] = useState('')
     const [manufacturerError, setManufacturerError] = useState('')
 
+    useEffect(()=>{
+        console.log(auth)
+        if(auth && auth.role>=3){
+            console.log("from Access")
+            navigate('/dashboard/product')
+        }
+    },[auth])
 
 
     useEffect(() => {
+        console.log(auth)
         const search = async () => {
             const response = await Api.post(`api/products/searchbytype/${productType}`,
                 { "query": variantSearch }
@@ -115,8 +130,8 @@ const AddProduct = () => {
         accept: {
             'image/jpeg': [],
             'image/png': [],
-            'image/webp':[]
-          }
+            'image/webp': []
+        }
     })
     const { acceptedFiles: acceptedFilesScopeImages,
         getInputProps: getInputPropsScopeImages,
@@ -126,56 +141,96 @@ const AddProduct = () => {
         accept: {
             'image/jpeg': [],
             'image/png': [],
-            'image/webp':[]
-          }
+            'image/webp': []
+        }
     })
 
-    
-    const saveProduct=async(e)=>{
-        document.getElementById('addproduct').scrollTop=0
+
+    const saveProduct = async (e) => {
+        document.getElementById('addproduct').scrollTop = 0
         setLoading(true)
-        const fd=new FormData()
-        fd.append("thumbnail",images[thumbnail])
+        const fd = new FormData()
+        fd.append("thumbnail", images[thumbnail])
 
-        images.forEach((image,index)=>{
-            if(index!==thumbnail){
+        images.forEach((image, index) => {
+            if (index !== thumbnail) {
 
-                fd.append('images',image)
+                fd.append('images', image)
             }
         })
 
-        scopeImaages.forEach((image)=>{
-            fd.append('sdImages',image)
+        scopeImaages.forEach((image) => {
+            fd.append('sdImages', image)
         })
-        variants.forEach((variant,index)=>{
-            fd.append('variants',variant.Id)
+        variants.forEach((variant, index) => {
+            fd.append('variants', variant.Id)
         })
 
-        fd.append('product_name',productName)
-        fd.append('manufacturer',manufacturer)
-        fd.append('price_rating',priceRating)
-        fd.append('innovation_rating',innovationRating)
-        fd.append('software_rating',softwareRating)
-        fd.append('customer_service_rating',customerServiceRating)
-        fd.append('processing_rating',processingRating)
-        fd.append('scope_of_delivery_discription',scopeOfDeliveryDiscription)
-        fd.append('include_in_BestDeals',includeInBestDeals)
-        fd.append('productType',productType)
-        fd.append('discription',productDiscription)
-        
+        fd.append('product_name', productName)
+        fd.append('manufacturer', manufacturer)
+        fd.append('price_rating', priceRating)
+        fd.append('innovation_rating', innovationRating)
+        fd.append('software_rating', softwareRating)
+        fd.append('customer_service_rating', customerServiceRating)
+        fd.append('processing_rating', processingRating)
+        fd.append('scope_of_delivery_discription', scopeOfDeliveryDiscription)
+        fd.append('include_in_BestDeals', includeInBestDeals)
+        fd.append('productType', productType)
+        fd.append('discription', productDiscription)
+        fd.append('price',price)
+        fd.append('unit',unit)
+
         console.log(fd.getAll('thumbnail'))
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
         try {
-            const response =await Api.post('/api/products/',fd)
+            const response = await Api.post('/api/products/', fd,config)
             populateProduct(response.data)
             setLoading(false)
-            navigate(`/dashboard/addSpecs/${response.data}`)
-            
-            
+            if (productType!=5){
+                navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
+                navigate(`/dashboard/addSpecs/${response.data}`)
+            }
+            else{
+                navigate('/dashboard/product')
+            }
+
+
         } catch (error) {
             console.log(error)
-            setError("Saving Product is Failed")
-            setLoading(false)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    const response = await Api.post('/api/products/', fd,config)
+                    populateProduct(response.data)
+                    setLoading(false)
+                    if (productType!=5){
+                        navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
+                        navigate(`/dashboard/addSpecs/${response.data}`)
+                    }
+                    else{
+                        navigate('/dashboard/product')
+                    }
+        
 
+                } catch (error) {
+                    console.log(error)
+                    setError("Saving Product is Failed")
+                    setLoading(false)
+                }
+            }else{
+                setError("Saving Product is Failed")
+                setLoading(false) 
+            }
         }
 
 
@@ -183,28 +238,30 @@ const AddProduct = () => {
 
 
     }
-    const processForm =async (e) => {
-        if(!productName || !manufacturer || !productType || images.length < 1){
+    const processForm = async (e) => {
+        if (!productName || !manufacturer || !productType || images.length < 1 || !price) {
             !productName && setProductNameError(true)
             !manufacturer && setManufacturerError(true)
-            !productTypeError && setProductTypeError(true)
-            images.length<1 && setNullImageError(true)
-            document.getElementById('addproduct').scrollTop=0
+            !productType && setProductTypeError(true)
+            !price && setPriceError(true)
+            images.length < 1 && setNullImageError(true)
+            document.getElementById('addproduct').scrollTop = 0
+            console.log(images.length<1)
             return
         }
         else {
-            if(images.length>1){
-                document.getElementById('addproduct').scrollTop=0
+            if (images.length > 1) {
+                document.getElementById('addproduct').scrollTop = 0
                 setIsThumbnail(true)
-                
+
             }
-            else{
+            else {
                 setThumbnail(0)
                 await saveProduct()
             }
 
         }
-        
+
 
     }
 
@@ -212,12 +269,11 @@ const AddProduct = () => {
 
 
     return (
-        <div id='addproduct' className={` w-full h-screen relative p-6 flex flex-col overflow-x-hidden ${isThumbnail||error||loading?" overflow-y-hidden":" overflow-y-scroll"}`}>
+        <div id='addproduct'
+        className={` w-full h-full p-6 flex flex-col overflow-x-hidden
+        ${isThumbnail || error || loading ? " overflow-y-hidden" : ""}`}>
 
             <div>
-                <div className="h-12 ">
-                    <h1 className=" font-sans font-bold text-2xl">Add Product</h1>
-                </div>
                 <div className=" w-full  grid grid-cols-2 gap-4 border-b-2 border-gray-400 pb-2">
                     <div className=" p-2">
                         <section className="flex flex-col mb-2">
@@ -225,14 +281,14 @@ const AddProduct = () => {
                                 Product Name
                             </label>
                             <input type="text" placeholder="Type Here"
-                                className={`h-12 rounded-lg outline-none px-3 border-2 ${productNameError?"border-red-500":"border-gray-400"}`}
+                                className={`h-12 rounded-lg outline-none px-3 border-2 ${productNameError ? "border-red-500" : "border-gray-400"}`}
                                 value={productName}
                                 onChange={(e) => {
                                     setProductName(e.target.value)
                                     setProductNameError(false)
                                 }}
                             />
-                            {productNameError?<p className='text-red-500 text-sm'>Product Name is Compulsory</p>:null}
+                            {productNameError ? <p className='text-red-500 text-sm'>Product Name is Compulsory</p> : null}
 
                         </section>
 
@@ -241,17 +297,47 @@ const AddProduct = () => {
                                 Manufacturer
                             </label>
                             <input type="text" placeholder="Type Here"
-                                className={`h-12 rounded-lg outline-none px-3 border-2 ${manufacturerError?"border-red-500":"border-gray-400"}`}
+                                className={`h-12 rounded-lg outline-none px-3 border-2 ${manufacturerError ? "border-red-500" : "border-gray-400"}`}
                                 value={manufacturer}
                                 onChange={(e) => {
                                     setManufacturer(e.target.value)
                                     setManufacturerError(false)
                                 }}
                             />
-                            {manufacturerError?<p className='text-red-500 text-sm'>Manufacturer is Compulsory</p>:null}
+                            {manufacturerError ? <p className=' text-sm text-red-500'>Manufacturer is Compulsory</p> : null}
+                        </section>
+                        <section className="flex flex-col mt-4">
+                            <div className='flex'>
+                            <div className='flex grow items-center'>
+                            <label className="mr-2">Official Price</label>
+                            <input type="text" placeholder="Type Here"
+                                className={`h-12 rounded-lg outline-none px-3 border-2 w-1/2 ${priceError ? "border-red-500" : "border-gray-400"}`}
+                                value={price}
+                                onChange={(e) => {
+                                    setPrice(e.target.value)
+                                    setPriceError(false)
+                                }}
+                            />
+                            </div>
+                            <div className='flex w-1/2 items-center'>
+                            <p className="mx-2">Price Unit</p>
+                            <select
+                                className={`h-12 rounded-lg outline-none px-3 border-2   border-gray-400`}
+                                value={unit}
+                                onChange={
+                                    (e) => {
+                                        setUnit(e.target.value)
+                                    }}
+                            >
+                                <option value={"€"}>Euro (€)</option>
+                                <option value={"$"}>USD ($)</option>
+                            </select>
+                            </div>
+                            </div>
+                            {priceError ? <p className='text-red-500 text-sm'>Official Price is Compulsory</p> : null}
                         </section>
 
-                        <section className="flex flex-col ">
+                        <section className="flex flex-col mt-4">
                             <label className="ml-4">
                                 Product Discription
                             </label>
@@ -327,7 +413,7 @@ const AddProduct = () => {
                                 Product Type
                             </label>
                             <select
-                                className={`h-12 rounded-lg outline-none px-3 border-2  ${productTypeError?"border-red-500":"border-gray-400"}`}
+                                className={`h-12 rounded-lg outline-none px-3 border-2  ${productTypeError ? "border-red-500" : "border-gray-400"}`}
                                 value={productType}
                                 onChange={
                                     (e) => {
@@ -335,7 +421,7 @@ const AddProduct = () => {
                                             setProductType(null)
                                         }
                                         else {
-                                            
+
                                             setProductType(e.target.value)
                                             setProductTypeError(false)
                                         }
@@ -346,9 +432,9 @@ const AddProduct = () => {
                                 <option value={2}>FDM Printers</option>
                                 <option value={3}>Leaser Cutter</option>
                                 <option value={4}>3D Scannar</option>
-                                <option value={5}>Others</option>
+                                <option value={5}>Filament</option>
                             </select>
-                            {productTypeError?<p className='text-red-500 text-sm'>Product Type is Compulsory</p>:null}
+                            {productTypeError ? <p className='text-red-500 text-sm'>Product Type is Compulsory</p> : null}
                         </section>
                         {
                             !(productType == 5) ?
@@ -431,17 +517,21 @@ const AddProduct = () => {
 
                         }
 
-
+                        {
+                        productType!=5 &&
                         <section className="flex justify-center">
                             <label className="ml-4">
                                 Include in Best Deals
                             </label>
                             <input type="checkbox"
-                                className="ounded-lg outline-none border-2 border-gray-400 ml-3" 
-                                value={includeInBestDeals}
-                                onChange={(e)=>setIncludeInBestDeals(e.target.value)}
-                                />
+                                className="ounded-lg outline-none border-2 border-gray-400 ml-3"
+                                checked={includeInBestDeals}
+                                onChange={(e) => {
+                                    setIncludeInBestDeals(e.target.checked)
+                                }}
+                            />
                         </section>
+                        }
                     </div>
 
 
@@ -656,14 +746,11 @@ const AddProduct = () => {
                         </div>
 
                     </div>
-                    <div className="h-20 w-full flex justify-between mt-4 ">
-                        <div className="w-40 h-12 bg-gray-300 rounded-md">
-                            Back
-                        </div>
+                    <div className="h-20 w-full flex justify-end mt-4 ">
                         <button className="w-40 h-12 bg-gray-300 rounded-md"
-                        onClick={(e)=>{
-                            processForm(e)
-                        }}
+                            onClick={(e) => {
+                                processForm(e)
+                            }}
                         >
                             Save & Next
                         </button>
@@ -671,76 +758,76 @@ const AddProduct = () => {
                 </div>
             </div>
             {
-            isThumbnail?
-            <div className='top-0 left-0  absolute w-full h-full flex justify-center items-center'>
-                <div className=' absolute w-full h-full bg-black opacity-60'>
-                </div>
-                <div className=' w-1/2  bg-white z-[9999] rounded-lg flex flex-col  items-center p-4'>
+                isThumbnail ?
+                    <div className='top-0 left-0  absolute w-full h-full flex justify-center items-center'>
+                        <div className=' absolute w-full h-full bg-black opacity-60'>
+                        </div>
+                        <div className=' w-1/2  bg-white z-[9999] rounded-lg flex flex-col  items-center p-4'>
 
-                    <p className='text-xl font-semibold text-customBlue'>
-                        Select a Thumbnail
-                    </p>
-                    <div className='grid grid-cols-4 gap-2 mt-4'>
-                        {
-                            images.map((picture,index)=>{
-                                return<div className=' bg-customBlue'>
-                                    <img  className={`${thumbnail===index?"mix-blend-screen border-customBlue border-2 ":" "}   hover:mix-blend-overlay w-32 h-32`} src={picture.preview}
-                                    onClick={(e)=>setThumbnail(index)}
-                                    />
-                                </div>
+                            <p className='text-xl font-semibold text-customBlue'>
+                                Select a Thumbnail
+                            </p>
+                            <div className='grid grid-cols-4 gap-2 mt-4'>
+                                {
+                                    images.map((picture, index) => {
+                                        return <div className=' bg-customBlue'>
+                                            <img className={`${thumbnail === index ? "mix-blend-screen border-customBlue border-2 " : " "}   hover:mix-blend-overlay w-32 h-32`} src={picture.preview}
+                                                onClick={(e) => setThumbnail(index)}
+                                            />
+                                        </div>
 
-                                
 
-                            })
-                        }
-                        
+
+                                    })
+                                }
+
+                            </div>
+                            <div>
+
+                                <button
+                                    className="text-white hover:bg-blue-500 bg-customBlue mt-6 px-4 py-2 rounded-lg"
+                                    onClick={async (e) => {
+                                        setIsThumbnail(false)
+                                        await saveProduct()
+                                    }}
+
+                                >
+                                    Done</button>
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div>
-
-                        <button
-                        className="text-white hover:bg-blue-500 bg-customBlue mt-6 px-4 py-2 rounded-lg"
-                            onClick={async(e)=>{
-                                setIsThumbnail(false)
-                                await saveProduct()
-                            }}
-                            
-                            >
-                            Done</button>
-                    </div>
-                </div>
-
-
-            </div>
-            :null
+                    : null
             }
             {
-                loading?
-                <div className='top-0 left-0  absolute w-full h-full flex justify-center items-center'>
-                    <div className=' absolute w-full h-full bg-gray-500 opacity-60'>
-                    </div>
-                    <ClipLoader
-                    size={75}
-                    loading={loading}
-                    color={"#026CC4"}
-                    />
-                </div>:
-                null
+                loading ?
+                    <div className='top-0 left-0  absolute w-full h-full flex justify-center items-center'>
+                        <div className=' absolute w-full h-full bg-gray-500 opacity-60'>
+                        </div>
+                        <ClipLoader
+                            size={75}
+                            loading={loading}
+                            color={"#026CC4"}
+                        />
+                    </div> :
+                    null
             }
 
             {
-                error?
-                <div className='top-0 left-0  absolute w-full h-screen flex justify-center items-center'>
-                    <div className=' absolute w-full h-full bg-gray-500 opacity-60'>
-                        
-                    </div>
-                    <div className=' absolute w-1/2 h-32 bg-white rounded-md z-[9999] flex justify-center items-center'>
-                    <MdCancel className=' absolute top-2 right-2 hover:text-red-500'
-                    onClick={(e)=>setError(null)}
-                    />
-                        <p>{error}</p>
-                    </div>
-                </div>:
-                null
+                error ?
+                    <div className='top-0 left-0  absolute w-full h-screen flex justify-center items-center'>
+                        <div className=' absolute w-full h-full bg-gray-500 opacity-60'>
+
+                        </div>
+                        <div className=' absolute w-1/2 h-32 bg-white rounded-md z-[9999] flex justify-center items-center'>
+                            <MdCancel className=' absolute top-2 right-2 hover:text-red-500'
+                                onClick={(e) => setError(null)}
+                            />
+                            <p>{error}</p>
+                        </div>
+                    </div> :
+                    null
             }
 
 

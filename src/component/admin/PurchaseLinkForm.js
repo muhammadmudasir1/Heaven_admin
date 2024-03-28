@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Api from '../../api/Api'
 import ClipLoader from 'react-spinners/ClipLoader';
 import checkIcon from "../../imges/Check.png"
-
-
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
+import { useNavigate } from 'react-router-dom';
 
 const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToList }) => {
     const [siteType, setSiteType] = useState(1)
@@ -17,8 +18,13 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
     const [title, setTitle] = useState('')
     const [coupon, setCoupon] = useState('')
     const [discription, setDiscription] = useState('')
+    const [visitingLink, setVisitingLink] = useState('')
+    const [siteName, setSiteName] = useState(null)
     const [purchaseLinkId, setPurchaseLinkId] = useState(null)
     const [editData, setEditData] = useState(null)
+    const { auth, setAuth } = useAuth()
+    const refresh = useRefresh()
+    const navigate = useNavigate()
 
     const setData = (data) => {
         setPurchaseLinkId(data.purchaseLinkId)
@@ -30,6 +36,8 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
         setTitle(data.title)
         setCoupon(data.coupon)
         setDiscription(data.discription)
+        setVisitingLink(data.visitingLink)
+        setSiteName(data.siteName)
         setTimeout(() => {
             setRetrivePriceFlag(data.retrivePriceFlag)
 
@@ -41,7 +49,8 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             "purchaseLinksId": data.purchaseLinkId,
             "retrivePriceFlag": data.retrivePriceFlag,
             "siteType": data.siteType,
-            "title": data.title
+            "title": data.title,
+            "visitingLink": data.visitingLink
         })
     }
 
@@ -51,6 +60,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                 returnToList(editData)
             }
             setData(updateData)
+            console.log(updateData)
 
             setUpdateData(null)
 
@@ -63,8 +73,14 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
     }, [link])
 
     const handleAddPurchaseLink = async () => {
-        console.log(id)
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${auth.accessToken}`,
+            },
+        }
         try {
+            console.log(purchaseLinkId)
             await Api.post("/api/products/addPurchaseLinks", {
                 "productId": id,
                 "purchaseLink": {
@@ -77,13 +93,17 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     retrivePriceFlag,
                     title,
                     coupon,
-                    discription
+                    discription,
+                    visitingLink,
+                    siteName
                 }
-            })
+            }, config)
             setSiteType(1)
             setLink("")
+            setVisitingLink("")
             setOriginalPrice("")
             setDiscountedPrice("")
+            setSiteName("")
             setUnit("")
             setRetrivePriceFlag(false)
             setTitle("")
@@ -94,13 +114,62 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
 
         } catch (error) {
             console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.post("/api/products/addPurchaseLinks", {
+                        "productId": id,
+                        "purchaseLink": {
+                            purchaseLinkId,
+                            siteType,
+                            link,
+                            originalPrice,
+                            discountedPrice,
+                            unit,
+                            retrivePriceFlag,
+                            title,
+                            coupon,
+                            discription,
+                            visitingLink
+                        }
+                    }, config)
+                    setSiteType(1)
+                    setLink("")
+                    setVisitingLink("")
+                    setOriginalPrice("")
+                    setDiscountedPrice("")
+                    setUnit("")
+                    setRetrivePriceFlag(false)
+                    setTitle("")
+                    setCoupon("")
+                    setDiscription("")
+                    reRender()
+                    setEditData(null)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
         }
     }
 
     const handleCheckLink = async () => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${auth.accessToken}`,
+            },
+        }
         try {
             setLoading(true)
-            const result = await Api.post("/api/products/check", { siteType, link })
+            const result = await Api.post("/api/products/check", { siteType, link }, config)
             console.log(result.data)
             setDiscountedPrice(result.data.discountedPrice)
             setOriginalPrice(result.data.regularPrice)
@@ -108,8 +177,34 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             setLoading(false)
             setShowRetrive(true)
         } catch (error) {
-            setLoading(false)
-            console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    setLoading(true)
+                    const result = await Api.post("/api/products/check", { siteType, link }, config)
+                    console.log(result.data)
+                    setDiscountedPrice(result.data.discountedPrice)
+                    setOriginalPrice(result.data.regularPrice)
+                    setUnit(result.data.unit)
+                    setLoading(false)
+                    setShowRetrive(true)
+
+                } catch (error) {
+                    setLoading(false)
+                    console.log(error)
+                }
+
+            }
+            else {
+                setLoading(false)
+            }
+
         }
     }
 
@@ -183,47 +278,78 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                     }}
                 >
                     <option value={1} >Amazon de</option>
-                    <option value={2}>Ebay</option>
-                    <option value={3}>GeeksBuyingScrap</option>
-                    <option value={4}>TomTop</option>
-                    <option value={5}>3DJake</option>
-                    <option value={6}>Ortur</option>
-                    <option value={7}>AnyCubic</option>
-                    <option value={8}>Artillery3D</option>
-                    <option value={9}>BambuLab</option>
-                    <option value={10}>Creality </option>
-                    <option value={11}>Elegoo</option>
-                    <option value={12}>Revopoint</option>
-                    <option value={13}>Sculpfun</option>
+                    <option value={2}>Ebay de</option>
+                    <option value={3}>GeeksBuying</option>
+                    <option value={4}>TomTop de</option>
+                    <option value={5}>3DJake de</option>
+                    <option value={6}>Ortur de</option>
+                    <option value={7}>AnyCubic de</option>
+                    <option value={8}>Artillery3D de</option>
+                    <option value={9}>BambuLab de</option>
+                    <option value={10}>Creality de</option>
+                    <option value={11}>Elegoo de</option>
+                    <option value={12}>Revopoint de</option>
+                    <option value={13}>Sculpfun de</option>
                     <option value={14}>Two Trees</option>
-                    <option value={15}>Qidi Tech</option>
+                    <option value={15}>Qidi Tech de</option>
+                    <option value={16}>Others</option>
                 </select>
             </section>
-
-            <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
-                <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Site Link:</label>
-                <div className='w-full grow-0 flex 2xl:grow '>
-                    <input
-                        type='text'
-                        className='grow px-2 py-1 outline-none border-2 border-gray-400 rounded-md'
-                        value={link}
-                        onChange={(e) => {
-                            setLink(e.target.value)
-                        }}
-                    />
-
-                    {
-                        retrivePriceFlag ?
-                            <img src={checkIcon} className=' w-5 mx-2' />
-                            :
-                            <button
-                                className='px-2 py-1 bg-customBlue ml-2 text-white hover:bg-blue-500 rounded-md'
-                                onClick={(e) => {
-                                    handleCheckLink()
+            {
+                siteType != 16 ?
+                    <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
+                        <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Site Link:</label>
+                        <div className='w-full flex '>
+                            <input
+                                type='text'
+                                className='grow px-2 py-1 outline-none border-2 border-gray-400 rounded-md'
+                                value={link}
+                                onChange={(e) => {
+                                    setLink(e.target.value)
                                 }}
-                            >Check</button>
-                    }
-                </div>
+                            />
+
+                            {
+                                retrivePriceFlag ?
+                                    <img src={checkIcon} className=' w-5 mx-2' />
+                                    :
+                                    <button
+                                        className='px-2 py-1 bg-customBlue ml-2 text-white hover:bg-blue-500 rounded-md'
+                                        onClick={(e) => {
+                                            handleCheckLink()
+                                        }}
+                                    >Check</button>
+                            }
+                        </div>
+
+
+                    </section>
+                    : <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
+                        <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Site Name:</label>
+                        <div className='w-full flex '>
+                            <input
+                                type='text'
+                                className='grow px-2 py-1 outline-none border-2 border-gray-400 rounded-md'
+                                value={siteName}
+                                onChange={(e) => {
+                                    setSiteName(e.target.value)
+                                }}
+                            />
+                        </div>
+
+
+                    </section>
+            }
+            <section className='p-0 2xl:p-2 flex items-start flex-col 2xl:flex-row 2xl:items-center w-full'>
+                <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Visiting Link:</label>
+                <input
+                    type='text'
+                    className='px-2 py-1  outline-none border-2 border-gray-400 rounded-md w-full grow-0 2xl:grow'
+                    value={visitingLink}
+                    onChange={(e) => {
+                        setVisitingLink(e.target.value)
+                    }}
+                />
             </section>
             <div className='grid grid-flow-col gap-2 2xl:block'>
                 <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
@@ -238,6 +364,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                         }}
                     />
                 </section>
+
                 <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center'>
                     <label className='mr-2 pl-1 pt-1 2xl:w-2/6 2xl:p-0 text-sm 2xl:text-base'>Discounteds Price:</label>
                     <input
@@ -250,10 +377,25 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
                         ]}
                     />
                 </section>
+                {
+                    siteType == 16 &&
+                    <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center'>
+                        <label className='mr-2 pl-1 pt-1 2xl:w-2/6 2xl:p-0 text-sm 2xl:text-base'>Unit:</label>
+                        <select
+                            onChange={
+                                (e) => {
+                                    setUnit(e.target.value)
+                                }}
+                        >
+                            <option value={"€"}>Euro (€)</option>
+                            <option value={"$"}>USD ($)</option>
+                        </select>
+                    </section>
+                }
             </div>
 
 
-            <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center'>
+            <section className='p-0 2xl:p-2 flex items-start flex-col 2xl:flex-row 2xl:items-center'>
                 <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base'>Site Title:</label>
                 <input
                     type='text'
@@ -280,7 +422,7 @@ const PurchaseLinkForm = ({ id, reRender, updateData, setUpdateData, returnToLis
             <section className='p-0 2xl:p-2  flex items-start flex-col 2xl:flex-row 2xl:items-center '>
                 <label className='mr-2 pl-1 pt-1 2xl:w-1/5 2xl:p-0 text-sm 2xl:text-base' >Description:</label>
                 <textarea type='text'
-                    rows={4}
+                    rows={2}
                     className=" resize-none px-2 py-1  outline-none border-2 border-gray-400 rounded-md w-full grow-0 2xl:grow "
                     value={discription}
                     onChange={(e) => {

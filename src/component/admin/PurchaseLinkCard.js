@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ClipLoader from 'react-spinners/ClipLoader';
 import Api from '../../api/Api'
+import { useAuth } from '../../context/AuthContext';
+import useRefresh from '../../hooks/useRefresh';
 
 const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
     const purchaselinkId = data?data.purchaseLinksId:null
@@ -8,10 +10,12 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
     const [originalPrice, setOriginalPrice] = useState(null)
     const [unit, setUnit] = useState(null)
     const [loading, setLoading] = useState(false)
+    const {auth}=useAuth()
+    const refresh=useRefresh()
     useEffect(() => {
-        try {
-            const fetchPrice = async () => {
-                setLoading(true)
+        const fetchPrice = async () => {
+            setLoading(true)
+                try {
                 const result = await Api.get(`/api/products/price/${purchaselinkId}`, {
                     headers: {
                         'Cache-Control': 'no-cache',
@@ -21,17 +25,17 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
                 setOriginalPrice(result.data.originalPrice)
                 setUnit(result.data.unit)
                 setLoading(false)
-            }
+                }catch (error) {
+                    setLoading(false)
+                    console.log(error)
+                }
+                }
                 if(purchaselinkId){
 
                     fetchPrice()
                 }
 
-        }
-        catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
+        
     }, [])
 
     const handleEdit=(e)=>{
@@ -45,20 +49,40 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
         "title":data.title,
         "coupon":data.coupon,
         "discription":data.discription,
-        "siteType":data.siteType
+        "siteType":data.siteType,
+        "visitingLink":data.visitingLink,
+        "siteName":data.siteName
         }
-        console.log("from purchaselink form")
-        console.log(newdata)
         setUpdateData(newdata)
         remove(purchaselinkId)
     }
 
     const handleDelete=async (e)=>{
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
         try {
-            await Api.delete(`/api/products/PurchaseLinks/${purchaselinkId}`)
+            await Api.delete(`/api/products/PurchaseLinks/${purchaselinkId}`,config)
             remove(purchaselinkId)
-        } catch (error) {
+        } catch (error){
             console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.delete(`/api/products/PurchaseLinks/${purchaselinkId}`,config)
+                    remove(purchaselinkId)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
         }
     }
     
@@ -66,7 +90,7 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
     const sites = [
         "Amazon",
         "Ebay",
-        "GeeksBuying",
+        "GeekBuying",
         "TomTop",
         "3DJake",
         "Ortur",
@@ -103,7 +127,7 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
             </div>
             <div className='grid grid-cols-8'>
                 <div className=' col-span-6 border-r-2 mb-4'>
-                    <h3 className=' text-2xl font-bold'>{sites[data.siteType - 1]}</h3>
+                    <h3 className=' text-2xl font-bold'>{data.siteType==16?data.siteName:sites[data.siteType - 1]}</h3>
                     <p>{data.discription}</p>
 
                     {
@@ -142,7 +166,7 @@ const PurchaseLinkCard = ({ data,setUpdateData,remove }) => {
                         <a href="#"
                         className='mt-4 py-1 grow rounded-lg text-center text-lg text-white bg-customBlue hover:bg-sky-500'
                         onClick={(e)=>{
-                            window.open(data.link,"_blank")
+                            window.open(data.visitingLink,"_blank")
                         }}
                         >
                         Visit</a>
