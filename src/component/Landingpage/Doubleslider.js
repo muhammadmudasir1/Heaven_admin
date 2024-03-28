@@ -62,7 +62,7 @@ const Doubleslider = () => {
   const [slidesToShow, setSlidesToShow] = useState(3);
 
   useEffect(() => {
-    const noOfSlides = width <= 480 ? 1 : width <= 1500 ? 3 : 4;
+    const noOfSlides = width <= 480 ? 1 : width <= 1700 ? 3 : 4;
     setSlidesToShow(noOfSlides);
   }, [width]);
 
@@ -139,7 +139,6 @@ const Doubleslider = () => {
           )}
         </div>
       </>
-
       <div
         className="lg:row-span-2 lg:col-span-2 lg:ml-6 lg:bg-white/95"
         style={{
