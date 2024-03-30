@@ -15,6 +15,7 @@ import useRefresh from '../../hooks/useRefresh';
 
 const UpdateProduct = () => {
     const [productName, setProductName] = useState('')
+    const [productTitle, setProductTitle] = useState('')
     const [productNameError, setProductNameError] = useState('')
     const [manufacturer, setManufacturer] = useState('')
     const [manufacturerError, setManufacturerError] = useState('')
@@ -82,7 +83,9 @@ const UpdateProduct = () => {
                     return false
                 }
             })
+            console.log(result.data)
             setProductName(result.data.product_name)
+            setProductTitle(result.data.product_title)
             setManufacturer(result.data.manufacturer)
             setProductDiscription(result.data.discription)
             setPriceRating(result.data.price_rating)
@@ -180,6 +183,7 @@ const UpdateProduct = () => {
         setIsLoading(true)
         const data = {
             product_name: productName,
+            product_title:productTitle,
             manufacturer: manufacturer,
             price_rating: Number(priceRating),
             innovation_rating: Number(innovationRating),
@@ -268,6 +272,19 @@ const UpdateProduct = () => {
 
                     </div>
                     <div className='col-span-3 p-4'>
+                        <section className="flex flex-col mb-2">
+                            <label className="ml-4">
+                                Product Title
+                            </label>
+                            <input type="text" placeholder="Type Here"
+                                className={`h-12 rounded-lg outline-none px-3 border-2 ${productNameError ? "border-red-500" : "border-gray-400"}`}
+                                value={productTitle}
+                                onChange={(e) => {
+                                    setProductTitle(e.target.value)
+                                    setProductNameError(false)
+                                }}
+                            />
+                        </section>
                         <section className="flex flex-col mb-2">
                             <label className="ml-4">
                                 Product Name
@@ -625,9 +642,9 @@ const UpdateProduct = () => {
                 (manageImages || manageSODImages) &&
 
                 <div className='w-full h-screen absolute top-0 z-[999] flex justify-center items-center'>
-                    <div className='w-3/4  bg-white z-[9999] rounded-md flex flex-col relative'>
+                    <div className='w-3/4  bg-white z-[9999] rounded-md flex flex-col relative -top-8'>
                         <h2 className=' w-full text-center p-4  text-2xl'>Manage Product Images</h2>
-                        <div className='w-full grow '>
+                        <div className='w-full grow h-[450px] overflow-auto'>
                             {
                                 manageImages &&
                                 <ManageImages productId={id} />

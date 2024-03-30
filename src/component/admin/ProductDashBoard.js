@@ -32,7 +32,6 @@ const ProductDashboard = () => {
                 })
                 setProducts(response.data)
                 setIsLoading(false)
-                console.log(response)
 
             } catch (error) {
                 setIsLoading(false)
@@ -52,7 +51,6 @@ const ProductDashboard = () => {
                 },
             }
             const response = await Api.get("api/user/test", config)
-            console.log(response)
         } catch (error) {
             console.log(error)
             if (error.response?.status === 403) {
@@ -64,7 +62,6 @@ const ProductDashboard = () => {
                     },
                 }
                 const response = await Api.get("api/user/test", config)
-                console.log(response)
             }
             else {
                 setAuth(null)

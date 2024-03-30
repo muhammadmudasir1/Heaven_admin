@@ -23,7 +23,6 @@ const AddSpecs = () => {
   const refresh = useRefresh()
 
   useEffect(()=>{
-    console.log(auth)
     if(auth && auth.role>=3){
         navigate(`/dashboard/addreview/${id}`)
     }
@@ -34,7 +33,6 @@ const AddSpecs = () => {
       try {
         setIsLoading(true)
         const response = await Api.get(`/api/products/${id}`)
-        console.log(response.data)
         setProductType(response.data.productType)
 
         if (response.data.productType === 1) {
@@ -92,7 +90,6 @@ const AddSpecs = () => {
           },
         }
         try {
-          // console.log("From Api Call")
           await Api.patch(`/api/products/specs/${specsId}`, {
             "product_id": productId,
             "productType": productType,

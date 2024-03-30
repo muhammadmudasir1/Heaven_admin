@@ -14,7 +14,7 @@ const ManageSODImages = ({ productId }) => {
     const { auth, setAuth } = useAuth()
     const refresh = useRefresh()
     const navigate = useNavigate()
-    
+
 
     const getImages = async (id) => {
         try {
@@ -90,7 +90,7 @@ const ManageSODImages = ({ productId }) => {
             addImages.forEach((image, index) => {
                 fd.append("images", image)
             })
-            await Api.patch(`/api/products/addsodimages/${productId}`, fd,config)
+            await Api.patch(`/api/products/addsodimages/${productId}`, fd, config)
             setAddImages([])
             await getImages(productId)
         } catch (error) {
@@ -108,7 +108,7 @@ const ManageSODImages = ({ productId }) => {
                     addImages.forEach((image, index) => {
                         fd.append("images", image)
                     })
-                    await Api.patch(`/api/products/addsodimages/${productId}`, fd,config)
+                    await Api.patch(`/api/products/addsodimages/${productId}`, fd, config)
                     setAddImages([])
                     await getImages(productId)
 
@@ -168,6 +168,44 @@ const ManageSODImages = ({ productId }) => {
         })
     }
 
+    const addAltText=async (imageId,altText) =>{
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
+        try {
+            await Api.patch(`/api/products/addAltText/${imageId}`,{
+                "altText":altText
+            },config)
+            await getImages(productId)
+        } catch(error){
+            console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.patch(`/api/products/addAltText/${imageId}`,{
+                        "altText":altText
+                    },config)
+                    await getImages(productId)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
+        }
+    }
+
     return (
         <div className='grid grid-cols-3 2xl:grid-cols-4 gap-2 p-3'>
             <div className=' col-span-3 grid grid-cols-5 gap-2'>            {
@@ -177,13 +215,21 @@ const ManageSODImages = ({ productId }) => {
                             className='bg-cover b-center h-28 2xl:h-32 relative flex flex-col-reverse'
                             style={{ backgroundImage: `url(/api/${image.path})` }}>
                             <div className='absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-40'></div>
-                            
+
                             <RxCross2
                                 className='absolute top-1 right-1 bg-customBlue rounded-full text-white p-[1px] hover:bg-sky-500 hover:text-red-500 cursor-pointer'
                                 onClick={(e) => {
                                     removeImage(image.id)
                                 }}
                             />
+                            <button className='hidden group-hover:block bg-gray-400 text-center p-1 z-[999] hover:bg-customBlue text-white'
+                                onClick={(e) => {
+                                    const altText = prompt(`Set Alt-Text: ${image.altText ? "Previous Alt Text is '" + image.altText+"'" : ""}`)
+                                    if (altText) {
+                                        addAltText(image.id, altText)
+                                    }
+                                }}
+                            >Set Alt-Text</button>
                         </div>
                     </div>
 

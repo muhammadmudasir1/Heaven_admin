@@ -10,7 +10,7 @@ const TextEditor = ({text,setText}) => {
     const handleChange=(content, delta, source, editor)=>{
         setText(content)
     }
-
+    // console.log(text)
     const modules = {
         toolbar: [
             ['bold', 'italic', 'underline', 'strike'],

@@ -6,7 +6,6 @@ import { useEffect } from "react"
 const PrivatePage=()=>{
     const refresh=useRefresh()
     const {auth}=useAuth()
-    console.log(auth)
     
     useEffect(()=>{
         if(!auth){
