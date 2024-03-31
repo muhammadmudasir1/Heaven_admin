@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { CiStar } from "react-icons/ci";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import PaginationClass from "../ComparisonComponet/PaginationClass";
+import { useNavigate } from "react-router-dom";
 import Api from "../../api/Api";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import PaginationClass from "../ComparisonComponet/PaginationClass";
 import LoadingCard from "../LoadingCard";
 import LoadingCardMobile from "../LoadingCardMobile";
-import { useTranslation } from "react-i18next";
 
 const FDMView = () => {
   const navigation = useNavigate();
@@ -50,9 +50,8 @@ const FDMView = () => {
     width > 600 ?
       <div className="flex flex-col items-center">
         {isLoader ? (<LoadingCard />) : (
-          <div className="grid grid-cols-7 p-5 w-full">
-
-            <div className="col-span-5 h-325px pr-12 pl-6">
+          <div className="flex p-5 justify-between">
+            <div className="flex-col grow h-325px pr-12 pl-6">
               {currentCard.map((Cards) => {
                 return (
                   <div
@@ -112,7 +111,7 @@ const FDMView = () => {
               })}
             </div>
             <div
-              className="lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600"
+              className="lg:bg-white lg:min-h-min lg:w-[300px] lg:shadow-lg lg:shadow-slate-600"
               style={{
                 boxShadow:
                   "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",

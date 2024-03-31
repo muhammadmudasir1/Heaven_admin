@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import PaginationClass from '../ComparisonComponet/PaginationClass';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Api from '../../api/Api';
+import PaginationClass from '../ComparisonComponet/PaginationClass';
 import LoadingCard from '../LoadingCard';
 import LoadingCardMobile from '../LoadingCardMobile';
 
@@ -56,7 +56,7 @@ const AddAndNews = () => {
         <>
             {!isMobile ? (
                 <div className='flex flex-col items-center pt-20 w-full'>
-                    <div className='lg:grid lg:grid-cols-7 p-5 w-full '>
+                    <div className='lg:flex justify-between p-5 w-full '>
                         {isLoader ? (
                             <div className='col-span-5 h-full lg:pr-12 '>
                                 <LoadingCard />
@@ -65,9 +65,7 @@ const AddAndNews = () => {
                                 <LoadingCard />
                                 <LoadingCard />
                             </div>) : (
-                            // <div className="w-full h-40 bg-yellow-400 ">
-
-                            <div className=' col-span-5 h-full lg:pr-12 ' >
+                            <div className=' flex-col grow h-full lg:pr-12 ' >
                                 {currentCard.map(Cards => {
                                     return <div onClick={(e)=>{
 
@@ -84,10 +82,9 @@ const AddAndNews = () => {
                                         </div>
                                     </div>
                                 })}
-                            </div> 
-                            // </div>
+                            </div>
                         )}
-                        <div className='lg:bg-white lg:h-full lg:w-full lg:col-span-2 lg:shadow-lg lg:shadow-slate-600 min-h-[600px]' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
+                        <div className='lg:bg-white lg:min-h-min lg:w-[300px] lg:shadow-lg lg:shadow-slate-600 min-h-[600px]' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
                     </div>
                     {!isLoader && (
                         <PaginationClass

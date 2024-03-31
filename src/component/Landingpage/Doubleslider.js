@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, A11y } from "swiper/modules";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Api from "../../api/Api";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import "swiper/css";
+import "swiper/css/a11y";
 import "swiper/css/bundle";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/a11y";
-import "swiper/css";
+import { A11y, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Api from "../../api/Api";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import LoadingCard from "../LoadingCard";
-import { useNavigate } from "react-router-dom";
 
 const Doubleslider = () => {
   const [swiperInstanceSLA, setSwiperInstanceSLA] = useState(null);
@@ -67,9 +67,9 @@ const Doubleslider = () => {
   }, [width]);
 
   return (
-    <div className="lg:grid lg:grid-cols-8 lg:grid-rows-2 m-8">
-      <>
-        <div className="lg:col-span-6 lg:relative my-8">
+    <div className="lg:flex">
+      <div className="lg:flex-col lg:w-3/4">
+        <div className="lg:grow lg:relative my-8">
           <div class=" flex justify-center items-center">
             <h1 class="text-neutral-800 text-2xl font-normal ">
               {t('LatestFDM')}
@@ -78,7 +78,7 @@ const Doubleslider = () => {
           {isLoader ? (<LoadingCard />) : (
             <div className=" relative flex items-center ">
               {width >= 480 && !isBeginningFDM ? (
-                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute left-0 z-[999]">
+                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute left-0 z-10">
                   <FaAngleLeft
                     onClick={(e) => {
                       swiperInstanceFDM.slidePrev();
@@ -138,16 +138,7 @@ const Doubleslider = () => {
             </div>
           )}
         </div>
-      </>
-      <div
-        className="lg:row-span-2 lg:col-span-2 lg:ml-6 lg:bg-white/95"
-        style={{
-          boxShadow:
-            "-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)",
-        }}
-      ></div>
-      <>
-        <div className="lg:col-span-6 lg:relative my-8">
+        <div className="lg:grow lg:relative my-8">
           <div className=" flex justify-center items-center">
             <h1 className="text-neutral-800 text-2xl font-normal">
               {t('LatestSLA')}
@@ -156,7 +147,7 @@ const Doubleslider = () => {
           {isLoader ? (<LoadingCard />) : (
             <div className=" relative flex items-center ">
               {width >= 480 && !isBeginningSLA ? (
-                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute left-0 z-[999]">
+                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute left-0 z-10">
                   <FaAngleLeft
                     onClick={(e) => {
                       swiperInstanceSLA.slidePrev();
@@ -216,8 +207,12 @@ const Doubleslider = () => {
             </div>
           )}
         </div>
-      </>
+      </div>
+      <div className="lg:w-[599px] lg:min-h-min px-8 lg:my-8">
+        <div className="lg:w-full lg:h-full lg:bg-white-950/95" style={{ boxShadow: "-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)", }}></div>
+      </div>
     </div>
+
   );
 };
 

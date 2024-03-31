@@ -1,20 +1,20 @@
-import React from 'react'
-import { CiStar } from 'react-icons/ci';
-import SingleReviewPropertyCard from './SingleReviewPropertyCard';
-import ProsAndCons from './ProsAndCons';
-import { useEffect } from 'react';
-import PriceCards from './PriceCards'
-import WarningBannar from './WarningBannar';
-import { useState } from 'react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import './SingleReviwStyle.css'
-import Api from '../../api/Api';
-import { useParams } from 'react-router-dom';
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { CiStar } from 'react-icons/ci';
+import { useParams } from 'react-router-dom';
+import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import Api from '../../api/Api';
+import PriceCards from './PriceCards';
+import ProsAndCons from './ProsAndCons';
+import SingleReviewPropertyCard from './SingleReviewPropertyCard';
+import './SingleReviwStyle.css';
+import WarningBannar from './WarningBannar';
+
 
 const ReviewAndAdd = () => {
-
+    const swiper = useSwiper();
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
     const { id } = useParams()
     const [images, setImages] = useState([])
@@ -103,188 +103,201 @@ const ReviewAndAdd = () => {
     return (
         <>
             {!isMobile ? (
-                <div className='grid-cols-8 grid '>
-                    <div className=' col-span-6 p-4'>
+                <div className='flex-col '>
+                    <div className=' w-2/3 p-4'>
                         {
                             productType === 3 &&
                             <WarningBannar />
                         }
 
                     </div>
-                    <div className=' col-span-8' id='alle'>
+                    <div className='w-full' id='alle'>
                         <h1 class="w-full py-8 bg-zinc-100 flex items-center px-20 text-neutral-800 text-[32px] font-semibold">
                             {t("coreData")}</h1>
                     </div>
-                    {
-                        isLoading ?
-                            <div className='col-span-6 pl-8'>
-                                <div className='lg:flex pt-4 pb-8 justify-center pr-4  relative w-full'>
-                                    <div className='flex items-center lg:flex-col w-[400px]'>
-                                        <div className='w-full h-64  rounded-md shadow-md bg-gray-200 animate-pulse'
-                                        />
-                                        <div className='lg:flex items-center justify-center py-8 animate-pulse ' >
-                                            <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
-                                                <div className='w-full h-full ' />
-                                            </div>
-                                            <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
-                                                <div className='w-full h-full ' />
-                                            </div>
-                                            <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
-                                                <div className='w-full h-full ' />
-                                            </div>
+                    <div className='flex justify-between pr-8'>
+                        {
+                            isLoading ?
+                                <div className='flex-col pl-8'>
+                                    <div className='lg:flex pt-4 pb-8 justify-center pr-4  relative w-full'>
+                                        <div className='flex items-center lg:flex-col w-[400px]'>
+                                            <div className='w-full h-64  rounded-md shadow-md bg-gray-200 animate-pulse'
+                                            />
+                                            <div className='lg:flex items-center justify-center py-8 animate-pulse ' >
+                                                <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
+                                                    <div className='w-full h-full ' />
+                                                </div>
+                                                <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
+                                                    <div className='w-full h-full ' />
+                                                </div>
+                                                <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
+                                                    <div className='w-full h-full ' />
+                                                </div>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className=' px-8 w-3/5'>
-                                        <h1 className=' py-5 bg-gray-200 rounded-2xl animate-pulse'></h1>
-                                        <p className='pb-6'></p>
-                                        <div className='flex items-center mb-2 animate-pulse'>
+                                        <div className=' px-8 w-3/5'>
+                                            <h1 className=' py-5 bg-gray-200 rounded-2xl animate-pulse'></h1>
+                                            <p className='pb-6'></p>
+                                            <div className='flex items-center mb-2 animate-pulse'>
 
-                                            {overall > 0 && [...Array.from({ length: 5 }, (_, index) => index + 1)].map((_, index) => (
-                                                <CiStar
-                                                    key={index}
-                                                    size={50}
-                                                    className=" text-[#00CED1]"
-                                                />
-                                            ))}
-                                        </div>
-                                        <div>
-                                            <div className='flex items-center py-1 animate-pulse'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-3/5 animate-pulse`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    {t('price')}
-                                                </h1>
-                                            </div>
-                                            <div className='flex items-center py-1 animate-pulse'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-2/5`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    {t('processing')}
-                                                </h1>
-                                            </div>
-                                            <div className='flex items-center py-1 animate-pulse'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-2/5 animate-pulse`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    Innovation
-                                                </h1>
-                                            </div>
-                                            <div className='flex items-center py-1 animate-pulse'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-4/5 animate-pulse`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    Software
-                                                </h1>
-                                            </div>
-                                            <div className='flex items-center py-1 animate-pulse'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-3/5 animate-pulse`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    {t('customerSupport')}
-                                                </h1>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='w-full h-[200px] bg-gray-200 animate-pulse' />
-
-                            </div>
-                            : <div className='col-span-6 pl-8'>
-                                <div className='lg:flex pt-4 pb-8 justify-center pr-4  relative w-full'>
-                                    <div className='flex items-center lg:flex-col w-[400px]'>
-                                        <div className='w-full h-64 bg-cover bg-center rounded-md shadow-md'
-                                            style={{ backgroundImage: `url(/api/${mainImage && mainImage.path})` }}
-                                        />
-                                        <div className='lg:flex items-center justify-center py-8 ' >
-                                            {images.map((picture) => (
-                                                <div key={picture.id} className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4' onClick={() => switchMainImage(picture)}>
-                                                    <div className='w-full h-full bg-cover bg-center'
-                                                        style={{ backgroundImage: `url(/api/${picture.path})` }}
+                                                {overall > 0 && [...Array.from({ length: 5 }, (_, index) => index + 1)].map((_, index) => (
+                                                    <CiStar
+                                                        key={index}
+                                                        size={50}
+                                                        className=" text-[#00CED1]"
                                                     />
+                                                ))}
+                                            </div>
+                                            <div>
+                                                <div className='flex items-center py-1 animate-pulse'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-3/5 animate-pulse`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        {t('price')}
+                                                    </h1>
                                                 </div>
-                                            ))}
+                                                <div className='flex items-center py-1 animate-pulse'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg animate-pulse w-2/5`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        {t('processing')}
+                                                    </h1>
+                                                </div>
+                                                <div className='flex items-center py-1 animate-pulse'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-2/5 animate-pulse`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        Innovation
+                                                    </h1>
+                                                </div>
+                                                <div className='flex items-center py-1 animate-pulse'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-4/5 animate-pulse`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        Software
+                                                    </h1>
+                                                </div>
+                                                <div className='flex items-center py-1 animate-pulse'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg w-3/5 animate-pulse`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        {t('customerSupport')}
+                                                    </h1>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className=' px-8 grow'>
-                                        <h1 className=' text-neutral-800 text-2xl font-semibold py-3 line-clamp-2'>{productName && productName}</h1>
-                                        <p className='pb-6'>{discription && discription}</p>
-                                        <div className='flex items-center mb-2'>
-                                            <h1 className='text-2xl font-semibold pr-2'>{overall}</h1>
+                                    <div className='w-full h-[200px] bg-gray-200 animate-pulse' />
 
-                                            {overall > 0 && [...Array.from({ length: overall }, (_, index) => index + 1)].map((_, index) => (
-                                                <CiStar
-                                                    key={index}
-                                                    size={50}
-                                                    className=" text-[#00CED1]"
-                                                />
-                                            ))}
-                                            {[...Array.from({ length: 5 - overall }, (_, index) => index + 1)].map((_, index) => (
-                                                <CiStar
-                                                    key={index}
-                                                    size={50}
-                                                    className="text-gray-500"
-                                                />
-                                            ))}
-                                        </div>
-                                        <div>
-                                            <div className='flex items-center py-1'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    {t('price')}
-                                                </h1>
-                                            </div>
-                                            <div className='flex items-center py-1'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    {t('processing')}
-                                                </h1>
-                                            </div>
-                                            <div className='flex items-center py-1'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation === 1 ? "w-1/5" : innovation === 2 ? "w-2/5" : innovation === 3 ? "w-3/5" : innovation === 4 ? "w-4/5" : innovation === 5 ? "w-full" : ""}`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    Innovation
-                                                </h1>
-                                            </div>
-                                            <div className='flex items-center py-1'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software === 1 ? "w-1/5" : software === 2 ? "w-2/5" : software === 3 ? "w-3/5" : software === 4 ? "w-4/5" : software === 5 ? "w-full" : ""}`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    Software
-                                                </h1>
-                                            </div>
-                                            <div className='flex items-center py-1'>
-                                                <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
-                                                    <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
-                                                </div>
-                                                <h1 className='pl-4 font-light text-sm'>
-                                                    {t('customerSupport')}
-                                                </h1>
-                                            </div>
-
-                                        </div>
-                                    </div>
                                 </div>
-                                <SingleReviewPropertyCard specs={specs} productType={productType} />
-                                <ProsAndCons />
-                                <PriceCards />
-                            </div>
-                    }
+                                : <div className='flex-col w-3/4 pl-8'>
+                                    <div className='grow lg:flex pt-4 pb-8 justify-center pr-4  relative w-full'>
+                                        <div className='flex items-center lg:flex-col w-[400px]'>
+                                            <div className='w-full h-64 bg-cover bg-center rounded-md shadow-md'
+                                                style={{ backgroundImage: `url(/api/${mainImage && mainImage.path})` }}
+                                            />
+                                            <div className=' py-8 ' >
+                                                <Swiper
+                                                    // spaceBetween={50}
+                                                    slidesPerView={5}
+                                                    onSlideChange={() => console.log('slide change')}
+                                                    onSwiper={(swiper) => console.log(swiper)}
+                                                >
+                                                    {images.map((picture) => {
+                                                        return <SwiperSlide key={picture.id}>
+                                                            <div className='relative w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4' onClick={() => switchMainImage(picture)}>
+                                                                <div className='w-full h-full bg-cover bg-center'
+                                                                    style={{ backgroundImage: `url(/api/${picture.path})` }}
+                                                                />
+                                                            </div>
+                                                        </SwiperSlide>
+                                                    })}
+                                                    <ArrowBackIos fontSize='30px' className='absolute left-0 top-1/2 z-10' onClick={(e)=>{swiper.allowSlideNext()}}></ArrowBackIos>
+                                                    
+                                                    <ArrowForwardIos fontSize='30px' className='absolute right-0 top-1/2 z-10' onClick={(e)=>{swiper.allowSlideNext()}}></ArrowForwardIos>
+                                                </Swiper>
+                                            </div>
+                                        </div>
+                                        <div className=' px-8 grow'>
+                                            <h1 className=' text-neutral-800 text-2xl font-semibold py-3 line-clamp-2'>{productName && productName}</h1>
+                                            <p className='pb-6'>{discription && discription}</p>
+                                            <div className='flex items-center mb-2'>
+                                                <h1 className='text-2xl font-semibold pr-2'>{overall}</h1>
 
-                    <div className=' min-h-[600px] col-span-2 lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203,213,225,0.2), 0 8px 15px rgb(203,213,225,0.2)' }} ></div>
+                                                {overall > 0 && [...Array.from({ length: overall }, (_, index) => index + 1)].map((_, index) => (
+                                                    <CiStar
+                                                        key={index}
+                                                        size={50}
+                                                        className=" text-[#00CED1]"
+                                                    />
+                                                ))}
+                                                {[...Array.from({ length: 5 - overall }, (_, index) => index + 1)].map((_, index) => (
+                                                    <CiStar
+                                                        key={index}
+                                                        size={50}
+                                                        className="text-gray-500"
+                                                    />
+                                                ))}
+                                            </div>
+                                            <div>
+                                                <div className='flex items-center py-1'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${price === 1 ? "w-1/5" : price === 2 ? "w-2/5" : price === 3 ? "w-3/5" : price === 4 ? "w-4/5" : price === 5 ? "w-full" : ""}`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        {t('price')}
+                                                    </h1>
+                                                </div>
+                                                <div className='flex items-center py-1'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${processing === 1 ? "w-1/5" : processing === 2 ? "w-2/5" : processing === 3 ? "w-3/5" : processing === 4 ? "w-4/5" : processing === 5 ? "w-full" : ""}`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        {t('processing')}
+                                                    </h1>
+                                                </div>
+                                                <div className='flex items-center py-1'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${innovation === 1 ? "w-1/5" : innovation === 2 ? "w-2/5" : innovation === 3 ? "w-3/5" : innovation === 4 ? "w-4/5" : innovation === 5 ? "w-full" : ""}`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        Innovation
+                                                    </h1>
+                                                </div>
+                                                <div className='flex items-center py-1'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${software === 1 ? "w-1/5" : software === 2 ? "w-2/5" : software === 3 ? "w-3/5" : software === 4 ? "w-4/5" : software === 5 ? "w-full" : ""}`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        Software
+                                                    </h1>
+                                                </div>
+                                                <div className='flex items-center py-1'>
+                                                    <div className='h-2 w-60 relative bg-[#EEEEEE] rounded-lg '>
+                                                        <div className={`absolute h-2 bg-[#00CED1] rounded-lg ${customerService === 1 ? "w-1/5" : customerService === 2 ? "w-2/5" : customerService === 3 ? "w-3/5" : customerService === 4 ? "w-4/5" : customerService === 5 ? "w-full" : ""}`} />
+                                                    </div>
+                                                    <h1 className='pl-4 font-light text-sm'>
+                                                        {t('customerSupport')}
+                                                    </h1>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <SingleReviewPropertyCard specs={specs} productType={productType} />
+                                    <ProsAndCons />
+                                    <PriceCards />
+                                </div>
+                        }
+                        <div className=' min-h-[600px] w-[300px] lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203,213,225,0.2), 0 8px 15px rgb(203,213,225,0.2)' }} ></div>
+                    </div>
                 </div>
             ) : (
                 <div className='' id='alle'>

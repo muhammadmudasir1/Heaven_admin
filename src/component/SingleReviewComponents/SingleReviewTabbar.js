@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 const SingleReviewTabbar = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedName,setSelectedName]=useState("Alle Wichtigste")
+    const [selectedName,setSelectedName]=useState('coreData')
     const [isSticky, setIsSticky] = useState(false);
     const {t}=useTranslation()
 
@@ -160,7 +160,7 @@ const SingleReviewTabbar = () => {
                                             });
                                         }}
                                     >
-                                        Purchase Links
+                                        {t('purchaseLinks')}
                                     </button>
                                     <button
                                         className='text-neutral-800 text-xl font-normal'
