@@ -5,6 +5,7 @@ import NewsCard from "./NewsCard"
 import Api from "../../api/Api"
 import ClipLoader from 'react-spinners/ClipLoader';
 
+
 const News = () => {
     const [news,setNews]=useState([])
     const [reload,setReload]=useState(false)

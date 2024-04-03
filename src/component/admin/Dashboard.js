@@ -14,7 +14,8 @@ import germanflag from "../../imges/germanflag.png"
 import ukflag from "../../imges/ukflag.png"
 import { useState } from "react"
 import { CiGlobe } from "react-icons/ci";
-import { FaCaretDown } from "react-icons/fa"
+import { FaCaretDown,FaRegNewspaper} from "react-icons/fa"
+import { IoIosSettings } from "react-icons/io";
 
 const Dashboard = () => {
     const { t } = useTranslation()
@@ -67,6 +68,14 @@ const Dashboard = () => {
                         <Link to={'beginnersGuid'} className="flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
                             <img src={barChart} className=" w-4 ml-7" />
                             <p className="pl-2">Tutorials</p>
+                        </Link>
+                        <Link to={'newsletter'} className="flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
+                            <FaRegNewspaper className=" text-lg ml-7"/>
+                            <p className="pl-2">News Letter</p>
+                        </Link>
+                        <Link to={'setting'} className="flex items-center text-white font-sans font-bold text-lg py-3 hover:bg-sky-500">
+                            <IoIosSettings className=" text-lg ml-7"/>
+                            <p className="pl-2">Customization</p>
                         </Link>
                     </div>
 

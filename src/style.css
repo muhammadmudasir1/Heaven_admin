@@ -990,13 +990,6 @@ video {
   -webkit-line-clamp: 4;
 }
 
-.line-clamp-6 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
-}
-
 .line-clamp-5 {
   overflow: hidden;
   display: -webkit-box;
@@ -1004,8 +997,19 @@ video {
   -webkit-line-clamp: 5;
 }
 
+.line-clamp-6 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+}
+
 .flex {
   display: flex;
+}
+
+.table {
+  display: table;
 }
 
 .grid {
@@ -1216,6 +1220,10 @@ video {
   height: 450px;
 }
 
+.h-\[480px\] {
+  height: 480px;
+}
+
 .h-\[70px\] {
   height: 70px;
 }
@@ -1234,18 +1242,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[550px\] {
-  height: 550px;
-}
-
-.h-\[500px\] {
-  height: 500px;
-}
-
-.h-\[480px\] {
-  height: 480px;
 }
 
 .max-h-72 {

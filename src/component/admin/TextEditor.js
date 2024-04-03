@@ -34,7 +34,7 @@ const TextEditor = ({text,setText}) => {
 
     return (
         <ReactQuill
-            className=''
+            className='h-full'
             modules={modules}
             theme="snow"
             value={text}

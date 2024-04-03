@@ -205,7 +205,7 @@ const AddNews = () => {
                         }
                         fd.append("body", blog)
                         fd.append("Title", title)
-                        fd.append("description",description)
+                        fd.append("description")
                         setIsLoading(true)
                         await Api.patch(`/api/news/${id}`, fd, config)
                         setIsLoading(false)

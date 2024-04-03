@@ -35,6 +35,8 @@ import Ratgaber from './component/Ratgaber'
 import SearchView from "./component/SearchView"
 import DetailNews from "./component/NewsComponents/DetailNew"
 import DetailBeginnersGuid from "./component/Ratgaber/DetailBeginnersGuid"
+import NewsLetter from "./component/admin/NewsLetter"
+import Setting from "./component/admin/Setting"
 
 
 const App = () => {
@@ -75,6 +77,8 @@ const App = () => {
                             <Route path="beginnersGuid" element={ <BeginnersGuid/> } />
                             <Route path="addBeginnersGuid" element={ <AddBeginnersGuid/> } />
                             <Route path="updateBeginnersGuid/:id" element={ <AddBeginnersGuid/> } />
+                            <Route path="newsletter" element={ <NewsLetter/> } />
+                            <Route path="setting" element={ <Setting/> } />
                             <Route element={<NavigationForAddForm/>}>
                             <Route path="addProduct" element={<AddProduct />} />
                             <Route path="addSpecs/:id" element={<AddSpecs/>}></Route>
