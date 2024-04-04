@@ -1,0 +1,10 @@
+.rcc-decline-button:hover{
+    text-decoration-line: underline;
+    text-decoration-color: blue;
+    text-decoration-thickness: 2px;
+}
+.rcc-accept-button:hover{
+    text-decoration-line: underline;
+    text-decoration-color: blue;
+    text-decoration-thickness: 2px;
+}

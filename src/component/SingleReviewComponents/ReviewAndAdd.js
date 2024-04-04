@@ -1,10 +1,11 @@
-import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CiStar } from 'react-icons/ci';
 import { useParams } from 'react-router-dom';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Api from '../../api/Api';
 import PriceCards from './PriceCards';
 import ProsAndCons from './ProsAndCons';
@@ -12,9 +13,7 @@ import SingleReviewPropertyCard from './SingleReviewPropertyCard';
 import './SingleReviwStyle.css';
 import WarningBannar from './WarningBannar';
 
-
 const ReviewAndAdd = () => {
-    const swiper = useSwiper();
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
     const { id } = useParams()
     const [images, setImages] = useState([])
@@ -203,12 +202,15 @@ const ReviewAndAdd = () => {
                                             <div className='w-full h-64 bg-cover bg-center rounded-md shadow-md'
                                                 style={{ backgroundImage: `url(/api/${mainImage && mainImage.path})` }}
                                             />
-                                            <div className=' py-8 ' >
+                                            <div className='w-full py-8 ' >
                                                 <Swiper
-                                                    // spaceBetween={50}
+                                                    // spaceBetween={10}
+                                                    modules={[A11y,Navigation]}
+                                                    navigation
                                                     slidesPerView={5}
                                                     onSlideChange={() => console.log('slide change')}
                                                     onSwiper={(swiper) => console.log(swiper)}
+                                                    arr
                                                 >
                                                     {images.map((picture) => {
                                                         return <SwiperSlide key={picture.id}>
@@ -219,9 +221,6 @@ const ReviewAndAdd = () => {
                                                             </div>
                                                         </SwiperSlide>
                                                     })}
-                                                    <ArrowBackIos fontSize='30px' className='absolute left-0 top-1/2 z-10' onClick={(e)=>{swiper.allowSlideNext()}}></ArrowBackIos>
-                                                    
-                                                    <ArrowForwardIos fontSize='30px' className='absolute right-0 top-1/2 z-10' onClick={(e)=>{swiper.allowSlideNext()}}></ArrowForwardIos>
                                                 </Swiper>
                                             </div>
                                         </div>

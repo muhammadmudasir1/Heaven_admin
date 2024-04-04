@@ -1,4 +1,9 @@
-
+  .swiper-button-prev{
+    font-size: 8px;
+  }
+  .swiper-button-next{
+    font-size: 8px;
+  }
   .swiper-slide img {
     display: block;
     /* width: 100px; */
