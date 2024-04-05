@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { IoLogoInstagram } from "react-icons/io";
-import { FaLinkedinIn } from "react-icons/fa6";
-import { FaYoutube } from "react-icons/fa";
-import { useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import manu_profile from '../../imges/manu_profile.png';
+import { Email } from '@mui/icons-material';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FaYoutube } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { IoLogoInstagram } from "react-icons/io";
+import { Link, NavLink } from 'react-router-dom';
+import manu_profile from '../../imges/manu_profile.png';
 
 const StickyFooter = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -39,6 +39,14 @@ const StickyFooter = () => {
                                 <NavLink to={'/product/scanner'} className='text-white text-base'>{t('3DScanner')}</NavLink><br />
                             </div>
                                 <NavLink to={'/product/cutter'} className='text-white text-base'>{t('laserCutter')}</NavLink><br />
+                        </div>
+                        <div className='h-9 mb-5'>
+                            <input type="email" name="" id="" placeholder='Your email address' 
+                            className='bg-[#D9D9D9] border-2 border-white 
+                            rounded h-full w-[255px] mb-5 mr-2 px-1 text-[#2775C0]' />
+                            <button type="submit" className='items-center bg-[#00CED1] w-[60px] h-full rounded'>
+                                <Email fontSize='large' className=''/>
+                            </button>
                         </div>
                     </div>
                     <div className='flex flex-row bg-[#00CED1] py-4 justify-between px-6'>
@@ -79,6 +87,16 @@ const StickyFooter = () => {
                                 <NavLink to={'/product/scanner'} className={`text-2xl text-white pt-1`}>{t('3DScanner')}</NavLink><br />
                                 <NavLink to={'/product/cutter'} className={`text-2xl text-white pt-1`}>{t('laserCutter')}</NavLink>
                             </div>
+                        </div>
+                        <div className='min-h-12 mb-14 flex items-center '>
+                            <input type="email" name="" id="" placeholder='Your email address' 
+                            className='bg-[#D9D9D9] border-2 border-white 
+                            rounded h-full w-[420px] mr-2 py-4 px-2 text-[#2775C0] text-xl font-semibold' />
+                            <button type="submit" className='text-[#2775C0]
+                            items-center bg-[#00CED1] 
+                            w-[250px] h-full rounded py-4 px-4 text-xl font-semibold'>
+                                Subscribe Newsletter
+                            </button>
                         </div>
                         <h1 className='text-neutral-100 text-4xl font-bold '>Our channels</h1>
                     </div>

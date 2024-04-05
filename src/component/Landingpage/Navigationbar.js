@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { RxCross2 } from "react-icons/rx";
-import { FaSearch } from 'react-icons/fa';
-import { PiMagnifyingGlass } from "react-icons/pi";
-import { NavLink, Outlet, Link } from 'react-router-dom';
-import StickyFooter from './StickyFooter';
-import { MdOutlineArrowDropDown } from "react-icons/md";
-import { MdOutlineArrowDropUp } from "react-icons/md";
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { CiGlobe } from "react-icons/ci";
+import { FaSearch } from 'react-icons/fa';
+import { IoIosArrowDown, IoIosArrowUp, IoIosMenu } from "react-icons/io";
+import { MdOutlineArrowDropDown, MdOutlineArrowDropUp } from "react-icons/md";
+import { PiMagnifyingGlass } from "react-icons/pi";
+import { RxCross2 } from "react-icons/rx";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import Api from '../../api/Api';
 import useLanguage from '../../hooks/useLanguage';
 import germanflag from '../../imges/germanflag.png';
-import ukflag from '../../imges/ukflag.png'
-import { IoIosArrowUp, IoIosMenu } from "react-icons/io";
-import { IoIosArrowDown } from "react-icons/io";
-import svgLogo from '../../imges/logo.svg'
-import { CiGlobe } from "react-icons/ci";
-import { ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroicons/react/24/outline';
-import Api from '../../api/Api';
-import { useNavigate, useLocation } from 'react-router-dom';
+import svgLogo from '../../imges/logo.svg';
+import ukflag from '../../imges/ukflag.png';
+import StickyFooter from './StickyFooter';
 
 const Navigationbar = () => {
     const [nav, setnav] = useState(false);
@@ -197,7 +193,7 @@ const Navigationbar = () => {
                                             handlePrinterDropDown()
                                         }} className='flex text-xl text-center '>{t('3dprinters')}
                                         </p>
-                                            {dropDownOpen ? <IoIosArrowDown className='w-5 items-center'/> : <IoIosArrowUp className='w-5'/>}
+                                            {dropDownOpen ? <IoIosArrowUp className='w-5 items-center'/> : <IoIosArrowDown className='w-5'/>}
                                         {dropDownOpen && (
                                             <div className='absolute right-0 top-0 bg-white py-2 px-4 z-30'>
                                                 <ul>

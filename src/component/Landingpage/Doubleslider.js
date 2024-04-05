@@ -67,8 +67,8 @@ const Doubleslider = () => {
   }, [width]);
 
   return (
-    <div className="lg:flex">
-      <div className="lg:flex-col lg:w-3/4">
+    <div className="lg:flex lg:justify-between">
+      <div className="flex-col lg:w-3/4">
         <div className="lg:grow lg:relative my-8">
           <div class=" flex justify-center items-center">
             <h1 class="text-neutral-800 text-2xl font-normal ">
@@ -208,9 +208,8 @@ const Doubleslider = () => {
           )}
         </div>
       </div>
-      <div className="lg:w-[599px] lg:min-h-min px-8 lg:my-8">
-        <div className="lg:w-full lg:h-full lg:bg-white-950/95" style={{ boxShadow: "-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)", }}></div>
-      </div>
+      <div className="lg:min-w-[200px] lg:max-h-[600px] lg:mx-8 lg:bg-white-950/95 lg:mt-8" style={{ boxShadow: "-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)", }}></div>
+
     </div>
 
   );

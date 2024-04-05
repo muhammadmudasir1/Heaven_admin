@@ -204,7 +204,7 @@ const ReviewAndAdd = () => {
                                             />
                                             <div className='w-full py-8 ' >
                                                 <Swiper
-                                                    // spaceBetween={10}
+                                                    spaceBetween={2}
                                                     modules={[A11y,Navigation]}
                                                     navigation
                                                     slidesPerView={5}
@@ -295,7 +295,7 @@ const ReviewAndAdd = () => {
                                     <PriceCards />
                                 </div>
                         }
-                        <div className=' min-h-[600px] w-[300px] lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203,213,225,0.2), 0 8px 15px rgb(203,213,225,0.2)' }} ></div>
+                        <div className=' min-h-[600px] min-w-[200px] lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203,213,225,0.2), 0 8px 15px rgb(203,213,225,0.2)' }} ></div>
                     </div>
                 </div>
             ) : (

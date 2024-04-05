@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MdOutlineArrowDropDown } from "react-icons/md";
-import { MdOutlineArrowDropUp } from "react-icons/md";
-import { NavLink, useLocation, Link} from "react-router-dom"
-import "../../customStyle.css"
+import { MdOutlineArrowDropDown, MdOutlineArrowDropUp } from "react-icons/md";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import "../../customStyle.css";
 
 
 const Tabbar = () => {

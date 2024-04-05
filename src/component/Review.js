@@ -1,9 +1,6 @@
-import React from 'react'
-import ReviewTabbar from './ReviewpageComponets.js/ReviewTabbar'
-import ScrollView from './ReviewpageComponets.js/ScrollView'
-import Tabbar from './Landingpage/Tabbar'
-import { Outlet } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import Tabbar from './Landingpage/Tabbar';
 
 const Review = () => {
 

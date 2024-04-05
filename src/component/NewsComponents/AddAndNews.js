@@ -84,7 +84,7 @@ const AddAndNews = () => {
                                 })}
                             </div>
                         )}
-                        <div className='lg:bg-white lg:min-h-min lg:w-[300px] lg:shadow-lg lg:shadow-slate-600 min-h-[600px]' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
+                        <div className='lg:bg-white lg:min-w-[200px] max-h-[600px] lg:shadow-lg lg:shadow-slate-600' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
                     </div>
                     {!isLoader && (
                         <PaginationClass

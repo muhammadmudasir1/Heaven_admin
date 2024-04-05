@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { CiStar } from "react-icons/ci";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { Link, NavLink, useNavigate,useLocation } from "react-router-dom";
-import PaginationClass from "./ComparisonComponet/PaginationClass";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Api from "../api/Api";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import PaginationClass from "./ComparisonComponet/PaginationClass";
 import LoadingCard from "./LoadingCard";
 
 const SearchView = () => {

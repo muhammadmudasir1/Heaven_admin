@@ -48,7 +48,7 @@ const FilamentView = () => {
   return (
     width > 600 ?
     <div className="flex flex-col items-center">
-      <div className="flex justify-between p-5 w-full">
+      <div className="flex justify-between p-5 w-3/4">
       {isLoader?
       (
       <div className="col-span-5">
@@ -109,7 +109,7 @@ const FilamentView = () => {
         </div>
       )}
         <div
-          className="lg:bg-white lg:h-full lg:w-[300px] lg:shadow-lg lg:shadow-slate-600 min-h-[600px]"
+          className="lg:bg-white lg:max-h-[600px] lg:min-w-[200px] lg:shadow-lg lg:shadow-slate-600 "
           style={{
             boxShadow:
               "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",

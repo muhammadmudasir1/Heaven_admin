@@ -14,13 +14,13 @@ const Cookies = () => {
         }
 
         window.addEventListener("resize", handleResize);
-        document.addEventListener("mouseenter", handleHover);
-        document.addEventListener("mouseleave", () => setIsHover(false));
+        document.addEventListener("mouseover", handleHover);
+        document.addEventListener("mouseout", () => setIsHover(false));
 
         return () => {
             window.removeEventListener("resize", handleResize);
-            document.removeEventListener("mouseenter", handleHover);
-            document.removeEventListener("mouseleave", () => setIsHover(false));
+            document.removeEventListener("mouseover", handleHover);
+            document.removeEventListener("mouseout", () => setIsHover(false));
         };
     }, []);
     return (
@@ -36,9 +36,7 @@ const Cookies = () => {
                         cookieName="myAwesomeCookieName2"
                         style={{
                             backgroundColor: "white",
-                            // display: "flex",
-                            // flexDirection: "column",
-                            boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.9)",
+                            boxShadow: "-8px 0 15px rgba(0, 0, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.2)",
                             borderRadius: "40px",
                             margin: "20px",
                             marginRight: "20px",
@@ -93,7 +91,7 @@ const Cookies = () => {
                         cookieName="myAwesomeCookieName2"
                         style={{
                             backgroundColor: "white",
-                            boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.9)",
+                            boxShadow: "-8px 0 15px rgba(0, 0, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.2)",
                             borderRadius: "40px",
                             margin: "20px",
                             marginRight: "20px",

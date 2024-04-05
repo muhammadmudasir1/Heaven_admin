@@ -1,13 +1,13 @@
   .swiper-button-prev{
-    font-size: 8px;
+    color: black;
+    font-weight: bold;
   }
   .swiper-button-next{
-    font-size: 8px;
+    font-weight: bold;
+    color: black;
   }
   .swiper-slide img {
     display: block;
-    /* width: 100px; */
-    /* height: 100px; */
     object-fit: cover;
   }
   .swiper-pagination-bullet{

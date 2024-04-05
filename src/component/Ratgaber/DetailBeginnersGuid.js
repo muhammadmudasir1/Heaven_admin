@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
 import Tabbar from '../Landingpage/Tabbar';
@@ -16,8 +15,10 @@ const DetailBeginnersGuid = () => {
         setIsLoading(true)
         const result = await Api.get(`/api/beginnersGuid/${id}`)
         setData(result.data)
+        console.log("reuslt check");
         console.log(result.data)
         setIsLoading(false)
+        console.log("reuslt checked");
       } catch (error) {
         setIsLoading(false)
         console.log(error)
@@ -58,7 +59,7 @@ const DetailBeginnersGuid = () => {
               </div>
               :
               <>
-                <img src={`/api/${data.image}`} className='w-full'/>
+                <img src={`/api/${data.image}`} alt='ponka' className='w-full'/>
                 <div className='py-10 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.body }} />
               </>
             }
@@ -81,7 +82,7 @@ const DetailBeginnersGuid = () => {
               </div>
               :
               <>
-                <img src={`/api/${data.image}`} className='w-full'/>
+                <img src={`/api/${data.image}`} alt='ponka' className='w-full'/>
                 <div className='py-10 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.body }} />
               </>
 

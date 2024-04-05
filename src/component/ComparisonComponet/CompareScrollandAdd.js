@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import PaginationClass from './PaginationClass'
-import { useLocation, useNavigate } from 'react-router-dom'
-import ComparisionCard from './ComparisionCard'
-import Api from '../../api/Api'
-import LoadingCard from '../LoadingCard'
-import SelectedCard from './SelectedCard'
-import CouponPopUp from './CouponPopUp'
-import useWindowDimensions from '../../hooks/useWindowDimensions'
 import { useTranslation } from 'react-i18next'
+import { useLocation, useNavigate } from 'react-router-dom'
+import Api from '../../api/Api'
+import useWindowDimensions from '../../hooks/useWindowDimensions'
+import LoadingCard from '../LoadingCard'
+import ComparisionCard from './ComparisionCard'
+import CouponPopUp from './CouponPopUp'
+import PaginationClass from './PaginationClass'
+import SelectedCard from './SelectedCard'
 
 const StickyComparisonBar = (setIsSticky) => {
 
@@ -207,13 +207,14 @@ const CompareScrollandAdd = ({ reload }) => {
                 </ul>
 
                 <div className='mb-12'>
-                    <div className='p-5 grid grid-cols-8 h-full '>
-                        <div className='col-span-6 flex flex-col items-center justify-between pr-12'>
+                    <div className='p-5 flex h-full '>
+                        <div className='grow flex flex-col items-center justify-between pr-12'>
                             <div className='w-full ml-5 relative'>
 
 
                                 {
                                     isLoading ? <>
+                                        <LoadingCard />
                                         <LoadingCard />
                                         <LoadingCard />
                                     </>
@@ -242,7 +243,7 @@ const CompareScrollandAdd = ({ reload }) => {
                                 />
                             </div>
                         </div>
-                        <div className='col-span-2 min-h-[600px]' style={{ boxShadow: '-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgb(203,213,225,0.5)' }} />
+                        <div className='min-w-[200px] max-h-[600px]' style={{ boxShadow: '-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgb(203,213,225,0.5)' }} />
                     </div>
                 </div>
                 {selectedCards.length > 0 && selectedCards.length <= 4 && (

@@ -109,7 +109,7 @@ const SLAView = () => {
               })}
             </div>
             <div
-              className="lg:bg-white lg:min-h-min lg:w-[300px] lg:shadow-lg lg:shadow-slate-600"
+              className="lg:bg-white lg:max-h-[600px] lg:min-w-[200px] lg:shadow-lg lg:shadow-slate-600"
               style={{
                 boxShadow:
                   "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
