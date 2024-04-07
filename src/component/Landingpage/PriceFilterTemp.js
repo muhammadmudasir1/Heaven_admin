@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { FaCaretDown,FaCaretUp } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
 
 
@@ -25,7 +24,7 @@ const ProductFilter = ({setPrice,price}) => {
         :price===2?">1.000,00 Euro"
         :price===1?">800,00 Euro"
         :">500,00 Euro"}
-        {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+        {isOpen ? <FaCaretUp /> : <FaCaretDown />}
       </button>
       {isOpen && (
         <div className='flex flex-col md:absolute bg-white w-full top-full z-[999] p-4 h-[30vh] overflow-y-auto'>

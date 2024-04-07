@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { FaCaretDown,FaCaretUp } from "react-icons/fa";
 import Api from '../../api/Api';
 import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
@@ -76,7 +75,7 @@ const ProductFilter = ({setFilterProduct,manufacturers,filterProduct}) => {
         className='bg-white w-full md:text-lg  md:py-3 py-1 m-1 flex items-center justify-between rounded-md tracking-wider border-4 border-transparent active:border-white  duration-500 active:text-white text-center pl-2 pr-2 md:pl-8 md:pr-2  text-neutral-700 text-lg font-light font-[Roboto]'
       >
         {t('products')}
-        {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+        {isOpen ? <FaCaretUp /> : <FaCaretDown />}
       </button>
       {isOpen && (
         <div className='flex flex-col md:absolute bg-white w-full top-full z-[10] p-4 h-[30vh] overflow-y-auto'>

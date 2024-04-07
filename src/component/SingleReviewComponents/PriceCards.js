@@ -2,7 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import { FaCopy } from "react-icons/fa";
 import { useEffect, useRef } from 'react';
-import { ArrowForwardIos } from '@mui/icons-material';
+// import { ArrowForwardIos } from '@mui/icons-material';
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -234,7 +235,7 @@ const MobileCard = ({ link }) => {
                     >
                         <div className=''>Go to Website</div>
                         <div className='flex items-center justify-center rounded-full h-10 w-10 bg-[#026CC4]'>
-                            <ArrowForwardIos fontSize='6px' className='text-white' />
+                            <MdOutlineArrowForwardIos fontSize='6px' className='text-white' />
                         </div>
                     </div>
                 </div>

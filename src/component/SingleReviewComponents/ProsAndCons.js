@@ -1,6 +1,7 @@
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import React, { useEffect, useState } from 'react'
+import { FaCaretDown,FaCaretUp } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
 
@@ -69,7 +70,7 @@ const ProsAndCons = () => {
                             Pros
                         </div>
                         <div className=' '>
-                            {isToggled ? <ArrowDropUpIcon fontSize='large' /> : <ArrowDropDownIcon fontSize='large' />}
+                            {isToggled ? <FaCaretUp fontSize='large' /> : <FaCaretDown fontSize='large' />}
                         </div>
                     </div>
                     {isToggled && (
@@ -88,7 +89,7 @@ const ProsAndCons = () => {
                             Cons
                         </div>
                         <div className=' '>
-                            {isToggledCons ? <ArrowDropUpIcon fontSize='large' /> : <ArrowDropDownIcon fontSize='large' />}
+                            {isToggledCons ? <FaCaretUp fontSize='large' /> : <FaCaretDown fontSize='large' />}
                         </div>
                     </div>
                     {isToggledCons && (

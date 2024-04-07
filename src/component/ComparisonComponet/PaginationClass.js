@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Button, IconButton } from "@material-tailwind/react";
-import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { FaArrowLeftLong,FaArrowRightLong} from "react-icons/fa6";
 
 
 const PaginationClass = ({ currentPage, cardsPerPage, totalcards, onPageChange }) => {
@@ -28,7 +28,7 @@ const PaginationClass = ({ currentPage, cardsPerPage, totalcards, onPageChange }
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
             >
-                <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
+                <FaArrowLeftLong strokeWidth={2} className="h-4 w-4" /> Previous
             </Button>
             <div className="flex items-center gap-2 text-xl">
                 {pageNumber.map((number) => (
@@ -50,7 +50,7 @@ const PaginationClass = ({ currentPage, cardsPerPage, totalcards, onPageChange }
               
             >
                 Next
-                <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
+                <FaArrowRightLong strokeWidth={2} className="h-4 w-4" />
             </Button>
         </div>
     );
