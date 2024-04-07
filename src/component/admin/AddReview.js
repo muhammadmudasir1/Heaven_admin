@@ -8,6 +8,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
+import EditableEditor from '../Editor/EditableEditor'
 
 
 
@@ -22,6 +23,7 @@ const AddReview = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
     const { auth, setAuth } = useAuth()
+    const [showEditor , setShowEditor] = useState(false)
     const refresh = useRefresh()
 
     useEffect(() => {
@@ -32,13 +34,22 @@ const AddReview = () => {
                 if (response.data[0]) {
                     setPros(response.data[0].pros)
                     setCons(response.data[0].cons)
-                    setReview(response.data[0].review)
-                    setReviewId(response.data[0].id)
-                    setSeoKeys(response.data[0].seoKeys)
+                    if(response.data[0].review){
+                        setReview(response.data[0].review)
+                        
+                        setShowEditor(true);
+                        setReviewId(response.data[0].id)
+                        setSeoKeys(response.data[0].seoKeys)
+                    }
+                    
+                }else{
+                    console.log("Calling Api")
+                    setReview(`{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}
+                    `)
+                    setShowEditor(true);
                 }
                 setIsLoading(false)
-
-            } catch (error) {
+                } catch (error) {
                 setIsLoading(false)
                 console.log(error)
             }
@@ -180,7 +191,9 @@ const AddReview = () => {
 
                 </div>
                 <div className='mt-5 '>
-                    <TextEditor text={review} setText={setReview} />
+                    {review && showEditor &&
+                    <EditableEditor text={review} setText={setReview} />
+                    }  
                 </div>
 
             </div>

@@ -9,6 +9,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
+import EditableEditor from '../Editor/EditableEditor';
 
 
 const AddBeginnersGuid = () => {
@@ -329,7 +330,8 @@ const AddBeginnersGuid = () => {
 
             <section className='w-full mt-2 h-[480px] overflow-y-auto'>
                 <label>Body:</label>
-                <TextEditor text={blog} setText={setBlog} className="h-full" />
+                <EditableEditor text={blog} setText={setBlog}/>
+                {/* <TextEditor text={blog} setText={setBlog} className="h-full" /> */}
             </section>
 
             
