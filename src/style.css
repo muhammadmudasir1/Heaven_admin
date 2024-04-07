@@ -1221,6 +1221,14 @@ video {
   height: 100vh;
 }
 
+.h-\[600px\] {
+  height: 600px;
+}
+
+.h-11 {
+  height: 2.75rem;
+}
+
 .max-h-72 {
   max-height: 18rem;
 }
@@ -2441,6 +2449,10 @@ video {
   padding-top: 300px;
 }
 
+.pr-6 {
+  padding-right: 1.5rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -3137,6 +3149,11 @@ video {
 
   .lg\:justify-between {
     justify-content: space-between;
+  }
+
+  .lg\:bg-orange-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(249 115 22 / var(--tw-bg-opacity));
   }
 
   .lg\:bg-white {
