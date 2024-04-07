@@ -10,7 +10,7 @@ const TextEditor = ({text,setText}) => {
     const handleChange=(content, delta, source, editor)=>{
         setText(content)
     }
-
+    // console.log(text)
     const modules = {
         toolbar: [
             ['bold', 'italic', 'underline', 'strike'],
@@ -34,7 +34,7 @@ const TextEditor = ({text,setText}) => {
 
     return (
         <ReactQuill
-            className=''
+            className='h-full'
             modules={modules}
             theme="snow"
             value={text}

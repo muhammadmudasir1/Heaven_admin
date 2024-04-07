@@ -5,7 +5,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { ImCross } from "react-icons/im";
 import { MdCancel } from "react-icons/md";
 import Api from "../../api/Api"
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
 
@@ -18,12 +18,13 @@ const AddProduct = () => {
     const [variantByApi, setVariantByApi] = useState(null)
     const [variants, setVariants] = useState([])
     const [productName, setProductName] = useState('')
+    const [productTitle, setProductTitle] = useState('')
     const [manufacturer, setManufacturer] = useState('')
     const [productDiscription, setProductDiscription] = useState('')
     const [scopeOfDeliveryDiscription, setScopeOfDeliveryDiscription] = useState('')
-    const [price,setPrice]=useState("")
-    const [unit,setUnit]=useState("€")
-    const [priceError,setPriceError]=useState("")
+    const [price, setPrice] = useState("")
+    const [unit, setUnit] = useState("€")
+    const [priceError, setPriceError] = useState("")
     const [priceRating, setPriceRating] = useState(0)
     const [innovationRating, setinnovationRating] = useState(0)
     const [softwareRating, setSoftwareRating] = useState(0)
@@ -37,26 +38,25 @@ const AddProduct = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const navigate = useNavigate()
-    const {auth,setAuth}=useAuth()
-    const refresh=useRefresh()
+    const { auth, setAuth } = useAuth()
+    const refresh = useRefresh()
 
 
     // states for Error Handling
     const [productTypeError, setProductTypeError] = useState(false)
+    const [productTitleError, setProductTitleError] = useState(false)
     const [productNameError, setProductNameError] = useState('')
     const [manufacturerError, setManufacturerError] = useState('')
 
-    useEffect(()=>{
-        console.log(auth)
-        if(auth && auth.role>=3){
+    useEffect(() => {
+        if (auth && auth.role >= 3) {
             console.log("from Access")
             navigate('/dashboard/product')
         }
-    },[auth])
+    }, [auth])
 
 
     useEffect(() => {
-        console.log(auth)
         const search = async () => {
             const response = await Api.post(`api/products/searchbytype/${productType}`,
                 { "query": variantSearch }
@@ -150,23 +150,60 @@ const AddProduct = () => {
         document.getElementById('addproduct').scrollTop = 0
         setLoading(true)
         const fd = new FormData()
-        fd.append("thumbnail", images[thumbnail])
+        if (images[thumbnail].altText) {
+            let extension = images[thumbnail].type.split("/").pop()
+            const newFile = new File([images[thumbnail]], images[thumbnail].altText + "." + extension, { type: images[thumbnail].type });
+            fd.append("thumbnail", newFile)
+        }
+        else {
+            // console.log(images[thumbnail].type)
+            let extension = images[thumbnail].type.split("/").pop()
+            // console.log(extension)
+            const newFile = new File([images[thumbnail]], productName + "." + extension, { type: images[thumbnail].type });
+            fd.append("thumbnail", newFile)
+
+        }
 
         images.forEach((image, index) => {
             if (index !== thumbnail) {
+                if (image.altText) {
+                    let extension = image.type.split("/").pop()
+                    const newFile = new File([image], image.altText + "." + extension, { type: image.type });
+                    fd.append("images", newFile)
+                }
+                else {
+                    // console.log(images[thumbnail].type)
+                    let extension = image.type.split("/").pop()
+                    // console.log(extension)
+                    const newFile = new File([image], productName + "." + extension, { type: image.type });
+                    fd.append("images", newFile)
 
-                fd.append('images', image)
+                }
             }
         })
 
         scopeImaages.forEach((image) => {
-            fd.append('sdImages', image)
+            if (image.altText) {
+                let extension = image.type.split("/").pop()
+                const newFile = new File([image], image.altText + "." + extension, { type: image.type });
+                fd.append("sdImages", newFile)
+            }
+            else {
+                // console.log(images[thumbnail].type)
+                let extension = image.type.split("/").pop()
+                // console.log(extension)
+                const newFile = new File([image], productName + "." + extension, { type: image.type });
+                fd.append("sdImages", newFile)
+
+            }
+            // fd.append('sdImages', image) 
         })
         variants.forEach((variant, index) => {
             fd.append('variants', variant.Id)
         })
 
         fd.append('product_name', productName)
+        fd.append('product_title', productTitle)
         fd.append('manufacturer', manufacturer)
         fd.append('price_rating', priceRating)
         fd.append('innovation_rating', innovationRating)
@@ -177,24 +214,24 @@ const AddProduct = () => {
         fd.append('include_in_BestDeals', includeInBestDeals)
         fd.append('productType', productType)
         fd.append('discription', productDiscription)
-        fd.append('price',price)
-        fd.append('unit',unit)
+        fd.append('price', price)
+        fd.append('unit', unit)
 
-        console.log(fd.getAll('thumbnail'))
         const config = {
             headers: {
                 Authorization: `Bearer ${auth.accessToken}`
             }
         }
         try {
-            const response = await Api.post('/api/products/', fd,config)
+            console.log(fd.getAll('images'))
+            const response = await Api.post('/api/products/', fd, config)
             populateProduct(response.data)
             setLoading(false)
-            if (productType!=5){
+            if (productType != 5) {
                 navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
                 navigate(`/dashboard/addSpecs/${response.data}`)
             }
-            else{
+            else {
                 navigate('/dashboard/product')
             }
 
@@ -210,26 +247,26 @@ const AddProduct = () => {
                     },
                 }
                 try {
-                    const response = await Api.post('/api/products/', fd,config)
+                    const response = await Api.post('/api/products/', fd, config)
                     populateProduct(response.data)
                     setLoading(false)
-                    if (productType!=5){
+                    if (productType != 5) {
                         navigate(`/dashboard/updateproduct/${response.data}`, { replace: true })
                         navigate(`/dashboard/addSpecs/${response.data}`)
                     }
-                    else{
+                    else {
                         navigate('/dashboard/product')
                     }
-        
+
 
                 } catch (error) {
                     console.log(error)
                     setError("Saving Product is Failed")
                     setLoading(false)
                 }
-            }else{
+            } else {
                 setError("Saving Product is Failed")
-                setLoading(false) 
+                setLoading(false)
             }
         }
 
@@ -239,41 +276,91 @@ const AddProduct = () => {
 
     }
     const processForm = async (e) => {
-        if (!productName || !manufacturer || !productType || images.length < 1 || !price) {
+        if (!productName || !manufacturer || !productType || images.length < 1 || !price || !productTitle) {
             !productName && setProductNameError(true)
             !manufacturer && setManufacturerError(true)
             !productType && setProductTypeError(true)
             !price && setPriceError(true)
+            !productTitle && setProductTitleError(true)
             images.length < 1 && setNullImageError(true)
             document.getElementById('addproduct').scrollTop = 0
-            console.log(images.length<1)
+            console.log(images.length < 1)
             return
         }
         else {
             if (images.length > 1) {
                 document.getElementById('addproduct').scrollTop = 0
                 setIsThumbnail(true)
-
             }
             else {
                 setThumbnail(0)
                 await saveProduct()
             }
-
         }
-
-
     }
 
+    const addAltText = (imageIndex, altText) => {
+        setImages((prev) => {
+            // newData=[]
+            const newData = prev.map((prevImageData, index) => {
+                if (index === imageIndex) {
+                    prevImageData['altText'] = altText
+                    console.log(prevImageData)
+                }
+                return prevImageData
+                // return [...newData,prevImageData]
 
+            })
+            return newData
+        })
+    }
+    const addAltTextToSDImages = (imageIndex, altText) => {
+        setScopeImages((prev) => {
+            // newData=[]
+            const newData = prev.map((prevImageData, index) => {
+                if (index === imageIndex) {
+                    prevImageData['altText'] = altText
+                    console.log(prevImageData)
+                }
+                return prevImageData
+                // return [...newData,prevImageData]
+
+            })
+            return newData
+        })
+    }
+
+    useEffect(() => {
+        console.log(images)
+    }, [images])
 
 
     return (
         <div id='addproduct'
-        className={` w-full h-full p-6 flex flex-col overflow-x-hidden
+            className={` w-full h-full p-6 flex flex-col overflow-x-hidden
         ${isThumbnail || error || loading ? " overflow-y-hidden" : ""}`}>
 
             <div>
+                <div className=" w-full  grid grid-cols-2 ">
+                    <div className=" col-span-2 px-2">
+                        <section className="flex flex-col ">
+                            <label className="ml-4">
+                                Product Title:
+                            </label>
+                            <input type="text" placeholder="Type Here"
+                                className={`h-12 rounded-lg outline-none px-3 border-2 ${productTitleError ? "border-red-500" : "border-gray-400"}`}
+                                value={productTitle}
+                                onChange={(e) => {
+                                    setProductTitle(e.target.value)
+                                    setProductTitleError(false)
+                                }}
+                            />
+                            {productNameError ? <p className='text-red-500 text-sm'>Product Title is Compulsory</p> : null}
+
+                        </section>
+                    </div>
+                </div>
+
                 <div className=" w-full  grid grid-cols-2 gap-4 border-b-2 border-gray-400 pb-2">
                     <div className=" p-2">
                         <section className="flex flex-col mb-2">
@@ -308,31 +395,31 @@ const AddProduct = () => {
                         </section>
                         <section className="flex flex-col mt-4">
                             <div className='flex'>
-                            <div className='flex grow items-center'>
-                            <label className="mr-2">Official Price</label>
-                            <input type="text" placeholder="Type Here"
-                                className={`h-12 rounded-lg outline-none px-3 border-2 w-1/2 ${priceError ? "border-red-500" : "border-gray-400"}`}
-                                value={price}
-                                onChange={(e) => {
-                                    setPrice(e.target.value)
-                                    setPriceError(false)
-                                }}
-                            />
-                            </div>
-                            <div className='flex w-1/2 items-center'>
-                            <p className="mx-2">Price Unit</p>
-                            <select
-                                className={`h-12 rounded-lg outline-none px-3 border-2   border-gray-400`}
-                                value={unit}
-                                onChange={
-                                    (e) => {
-                                        setUnit(e.target.value)
-                                    }}
-                            >
-                                <option value={"€"}>Euro (€)</option>
-                                <option value={"$"}>USD ($)</option>
-                            </select>
-                            </div>
+                                <div className='flex grow items-center'>
+                                    <label className="mr-2">Official Price</label>
+                                    <input type="text" placeholder="Type Here"
+                                        className={`h-12 rounded-lg outline-none px-3 border-2 w-1/2 ${priceError ? "border-red-500" : "border-gray-400"}`}
+                                        value={price}
+                                        onChange={(e) => {
+                                            setPrice(e.target.value)
+                                            setPriceError(false)
+                                        }}
+                                    />
+                                </div>
+                                <div className='flex w-1/2 items-center'>
+                                    <p className="mx-2">Price Unit</p>
+                                    <select
+                                        className={`h-12 rounded-lg outline-none px-3 border-2   border-gray-400`}
+                                        value={unit}
+                                        onChange={
+                                            (e) => {
+                                                setUnit(e.target.value)
+                                            }}
+                                    >
+                                        <option value={"€"}>Euro (€)</option>
+                                        <option value={"$"}>USD ($)</option>
+                                    </select>
+                                </div>
                             </div>
                             {priceError ? <p className='text-red-500 text-sm'>Official Price is Compulsory</p> : null}
                         </section>
@@ -377,21 +464,29 @@ const AddProduct = () => {
 
                                 {
                                     images.length > 0 ?
-                                        <div className=' h-14 w-full  flex justify-center items-center'>
+                                        <div className=' h-14 w-full  flex justify-center items-center mb-10'>
                                             {
                                                 images?.map((picture, index) => {
                                                     return <div
-                                                        className='h-12 w-12 border-customBlue border-2 bg-white mx-1 hover:opacity-50 p-0.5 rounded-md shadow-sm shadow-gray-400 relative'
+                                                        className='h-12 w-12 border-customBlue border-2 bg-white mx-1 p-0.5 rounded-md shadow-sm shadow-gray-400 relative'
                                                     >
                                                         <ImCross className='h-3 text-xs -right-1 -top-1 absolute text-white bg-customBlue p-0.5 hover:bg-red-500 rounded-full w-3'
                                                             onClick={() => {
                                                                 handleRemoveImages(index)
                                                             }}
                                                         />
+                                                        <button
+                                                            onClick={(e) => {
+                                                                const altText = prompt(`Enter Alt text: ${picture && picture.altText ? "Previous Alt-text is '" + picture.altText + "'" : ""}`)
+                                                                if (altText) {
+                                                                    addAltText(index, altText)
+                                                                }
+                                                            }}
+                                                            className='absolute text-xs bg-customBlue/50 -bottom-10'>Set<br /> Alt-text</button>
                                                         <img
                                                             src={picture.preview}
                                                             key={index}
-
+                                                            className='hover:opacity-50'
 
                                                         />
                                                     </div>
@@ -518,19 +613,19 @@ const AddProduct = () => {
                         }
 
                         {
-                        productType!=5 &&
-                        <section className="flex justify-center">
-                            <label className="ml-4">
-                                Include in Best Deals
-                            </label>
-                            <input type="checkbox"
-                                className="ounded-lg outline-none border-2 border-gray-400 ml-3"
-                                checked={includeInBestDeals}
-                                onChange={(e) => {
-                                    setIncludeInBestDeals(e.target.checked)
-                                }}
-                            />
-                        </section>
+                            productType != 5 &&
+                            <section className="flex justify-center">
+                                <label className="ml-4">
+                                    Include in Best Deals
+                                </label>
+                                <input type="checkbox"
+                                    className="ounded-lg outline-none border-2 border-gray-400 ml-3"
+                                    checked={includeInBestDeals}
+                                    onChange={(e) => {
+                                        setIncludeInBestDeals(e.target.checked)
+                                    }}
+                                />
+                            </section>
                         }
                     </div>
 
@@ -582,6 +677,14 @@ const AddProduct = () => {
                                                             handleRemoveScopeImages(index)
                                                         }}
                                                     />
+                                                    <button
+                                                        onClick={(e) => {
+                                                            const altText = prompt(`Enter Alt text: ${picture && picture.altText ? "Previous Alt-text is '" + picture.altText + "'" : ""}`)
+                                                            if (altText) {
+                                                                addAltTextToSDImages(index, altText)
+                                                            }
+                                                        }}
+                                                        className='absolute text-xs bg-customBlue/50 -bottom-10'>Set<br /> Alt-text</button>
                                                     <img
                                                         src={picture.preview}
                                                         key={index}

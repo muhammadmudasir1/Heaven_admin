@@ -28,6 +28,7 @@ const ManageImages = ({ productId }) => {
                 }
                 return 0
             })
+            // console.log(data)
             setImages(data)
         } catch (error) {
             console.log(error)
@@ -123,6 +124,7 @@ const ManageImages = ({ productId }) => {
             await Api.patch(`/api/products/addImages/${productId}`, fd, config)
             setAddImages([])
             await getImages(productId)
+            await getImages(productId)
         } catch (error) {
             console.log(error)
             if (error.response?.status === 403) {
@@ -197,6 +199,43 @@ const ManageImages = ({ productId }) => {
             return [...tempOne, ...tempTwo]
         })
     }
+    const addAltText=async (imageId,altText) =>{
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth.accessToken}`
+            }
+        }
+        try {
+            await Api.patch(`/api/products/addAltText/${imageId}`,{
+                "altText":altText
+            },config)
+            await getImages(productId)
+        } catch(error){
+            console.log(error)
+            if (error.response?.status === 403) {
+                const accessToken = await refresh()
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+                try {
+                    await Api.patch(`/api/products/addAltText/${imageId}`,{
+                        "altText":altText
+                    },config)
+                    await getImages(productId)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            else {
+                setAuth(null)
+                navigate('/login')
+            }
+        }
+    }
 
 
 
@@ -207,11 +246,19 @@ const ManageImages = ({ productId }) => {
                 {
                     images.length > 0 &&
                     <div
-                        className='bg-cover b-center h-56 2xl:h-64 relative flex flex-col-reverse rounded-md overflow-hidden shadow-2xl border-[1px] border-customBlue '
+                        className='bg-cover b-center h-56 2xl:h-64 relative  group flex flex-col-reverse rounded-md overflow-hidden shadow-2xl border-[1px] border-customBlue '
                         style={{ backgroundImage: `url(/api/${images[0].path})` }}>
                         <div className='w-full h-1/6 bg-customBlue text-center p-1 z-[999]'>
                             <p className='text-white'>Thumbnail</p>
                         </div>
+                        <button className='hidden group-hover:block bg-gray-400 text-center p-1 z-[999] hover:bg-gray-600 text-white'
+                        onClick={(e)=>{
+                            const altText=prompt(`Set Alt-Text: ${images[0].altText?"Previous Alt Text is '"+ images[0].altText+"'":""}`)
+                            if(altText){
+                                addAltText(images[0].id,altText)
+                            }
+                        }}
+                        >Set Alt-Text</button>
                     </div>
                 }
 
@@ -242,6 +289,14 @@ const ManageImages = ({ productId }) => {
                                                 removeImage(image.id)
                                             }}
                                         />
+                                            <button className='hidden group-hover:block bg-gray-400 text-center p-1 z-[999] hover:bg-customBlue text-white'
+                                            onClick={(e)=>{
+                                                const altText=prompt(`Set Alt-Text: ${image.altText?"Previous Alt Text is '"+ image.altText+"'":""}`)
+                                                if(altText){
+                                                    addAltText(image.id,altText)
+                                                }
+                                            }}
+                                            >Set Alt-Text</button>
                                     </div>
                                 </div>
                             }

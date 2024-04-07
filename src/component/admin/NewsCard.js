@@ -69,9 +69,9 @@ const NewsCard = ({ data, reload }) => {
                     >
                         Delete</button>
                 </div>
-                <div className='w-full  line-clamp-6 py-1 h-4/5 overflow-hidden absolute bottom-0'
-                    dangerouslySetInnerHTML={{ __html: data.body }}
-                />
+                <div className='w-full   py-1 h-4/5 overflow-hidden absolute bottom-0'>
+                    <p className='line-clamp-5'>{data.description}</p>
+                </div>
                 
             </div>
 

@@ -5,6 +5,8 @@
     "password":"Passwort",
     "products":"Produkte",
     "news":"Nachricht",
+    "Impressumtext":"Impressum-text",
+    "PrivacyPolicyText":"Datenschutzerklärung-Text",
     "logout":"Ausloggen",
     "installationSpace":"Bauraum",
     "installationSpaceEnclouser":"Bauraumeinhausung",

@@ -5,6 +5,8 @@
     "password":"Pasword",
     "products":"Products",
     "news":"News",
+    "Impressumtext":"Imprint text",
+    "PrivacyPolicyText":"Privacy policy text",
     "logout":"Logout",
     "installationSpace":"Installation Space",
     "installationSpaceEnclouser":"Installation Space Enclouser",
