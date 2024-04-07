@@ -56,37 +56,49 @@ const AddAndRatgaber = () => {
     return (
         <>
             {!isMobile ? (
-                <div className='flex flex-col items-center pt-20 w-full '>
-                    <div className='lg:flex justify-between p-5 w-full '>
-                        {isLoader ? (
-                            <div className='col-span-5 h-full lg:pr-12 '>
+                <>
+                <div className='flex w-full px-8 mt-4'>
+                    <div className="flex flex-col grow">
+                        {isLoader ?
+                            <div className="w-full pr-6">
                                 <LoadingCard />
                                 <LoadingCard />
                                 <LoadingCard />
                                 <LoadingCard />
-                                <LoadingCard />
-                            </div>) : (
-                            <div className=' flex-col grow h-full lg:pr-12 ' >
-                                {currentCard.map(Cards => {
-                                    return <div onClick={(e)=>{
-
-                                        const name=Cards.Title.replaceAll(' ','-')
-                                        navigation(`/ratgaber/${name}/${Cards.guidId}`)
-
-                                    }} className='flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer'
-                                        style={
-                                            { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
-                                        }>
-                                        <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[358.18px]' style={{ backgroundImage: `url(/api/${Cards.image})` }} />
-                                        <div className='lg:pl-8 w-3/5 '>
-                                            <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.Title}</h1>
+                            </div>
+                            :
+                            <div className="flex flex-col grow h-325px pr-12 pl-6">
+                                {currentCard.map((Cards) => {
+                                    return (
+                                        <div
+                                            onClick={(e) => {
+                                                const name = Cards.Title.replaceAll(' ', '-')
+                                                navigation(`/news/${name}/${Cards.newsId}`)
+                                            }}
+                                            className="flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer"
+                                            style={{
+                                                boxShadow:
+                                                    "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
+                                            }}
+                                        >
+                                            <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[358.18px]' style={{ backgroundImage: `url(/api/${Cards.image})` }} />
+                                            <div className='lg:pl-8 w-3/5 '>
+                                                <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.Title}</h1>
+                                                
+                                            </div>
                                         </div>
-                                    </div>
+                                    );
                                 })}
-                            </div> 
-                        )}
-                        <div className='lg:bg-white lg:max-h-[600px] lg:min-w-[200px] lg:shadow-lg lg:shadow-slate-600' style={{ boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }} />
+                            </div>
+                        }
                     </div>
+                    <div className="lg:bg-white h-[600px] max-h-[600px] min-w-[200px] lg:shadow-lg lg:shadow-slate-600"
+                        style={{
+                            boxShadow:
+                                "-8px 0 15px rgba(203, 213, 225, 0.3), 0 8px 15px rgba(203, 213, 225, 0.3)",
+                        }} />
+                </div>
+                <div className="flex w-full  justify-center">
                     {!isLoader && (
                         <PaginationClass
                             currentPage={CurrentPage}
@@ -96,6 +108,7 @@ const AddAndRatgaber = () => {
                         />
                     )}
                 </div>
+            </>
             ) : (
                 <div className='w-full'>
                     {isMobileLoader ? (

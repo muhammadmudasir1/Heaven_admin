@@ -49,7 +49,7 @@ const CutterView = () => {
   return (
     width > 600 ?
     <>
-      <div className="flex w-full px-8">
+      <div className="flex w-full px-8 mt-4">
             <div className="flex flex-col grow">
             {isLoader ?
               <div className="w-full pr-6">
@@ -139,7 +139,7 @@ const CutterView = () => {
 
 
       </div>
-      </>
+    </>
       : <div>
         {isMobileLoader ? (
           <div>
