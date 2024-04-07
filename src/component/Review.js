@@ -5,7 +5,6 @@ import Tabbar from './Landingpage/Tabbar';
 const Review = () => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 800);
