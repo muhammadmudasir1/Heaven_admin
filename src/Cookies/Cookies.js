@@ -26,7 +26,7 @@ const Cookies = () => {
     return (
         <>
             {!isMobile ? (
-                <div>
+                <div className='w-full px-4 bg-purple-400 '>
                     <CookieConsent
                         location="bottom"
                         buttonText="Accept all"
@@ -34,18 +34,18 @@ const Cookies = () => {
                         declineButtonText="Decline"
                         declineCookieValue={false}
                         cookieName="myAwesomeCookieName2"
-                        style={{
-                            backgroundColor: "white",
-                            boxShadow: "-8px 0 15px rgba(0, 0, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.2)",
-                            borderRadius: "40px",
-                            margin: "20px",
-                            marginRight: "20px",
-                            height: "280px",
-                            width: "1200px",
-                            alignItems: "center",
-                            placeItems: "center",
-                            padding: "12px"
-                        }}
+                        // style={{
+                        //     // backgroundColor: "white",
+                        //     boxShadow: "-8px 0 15px rgba(0, 0, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.2)",
+                        //     borderRadius: "40px",
+                        //     margin: "20px",
+                        //     marginRight: "20px",
+                        //     height: "280px",
+                        //     // width: "1200px",
+                        //     alignItems: "center",
+                        //     placeItems: "center",
+                        //     padding: "12px"
+                        // }}
                         buttonStyle={isHover ? {
                             backgroundColor: "white",
                             color: "black",
@@ -71,9 +71,11 @@ const Cookies = () => {
                             fontSize: "20px",
 
                         }}
+                        
                         expires={150}
+                        containerClasses='!bg-transparent h-[280px] w-3/4 mx-4 rounded-lg flex items-center justify-center'
                     >
-                        <div className='flex-col px-8 '>
+                        <div className='flex-col px-8 bg-white'>
                             <h1 className='font-bold text-xl text-black pt-4'>We Use Cookies</h1>
                             <p className='text-gray-400 pt-4'>If you click ‘accept’, we and third-party providers will process your personal data and store information e.g: through cookies on your device. In accordance with Art. 49 para. 1 lit. a GDPR, your consent also includes the transfer to third countries, eg: the. USA. Data protection declaration.See our <a href="http://" target="_blank" rel="noopener noreferrer" className='hover:text-blue-400'>privacy policy</a></p>
                         </div>
