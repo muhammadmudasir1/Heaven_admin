@@ -1553,6 +1553,10 @@ video {
   list-style-type: disc;
 }
 
+.list-decimal {
+  list-style-type: decimal;
+}
+
 .grid-flow-col {
   grid-auto-flow: column;
 }

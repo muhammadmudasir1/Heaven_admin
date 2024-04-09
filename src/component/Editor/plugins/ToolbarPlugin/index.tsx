@@ -1,11 +1,3 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 import {
   $createCodeNode,
   $isCodeNode,
@@ -21,7 +13,6 @@ import {
   INSERT_UNORDERED_LIST_COMMAND,
   ListNode,
 } from '@lexical/list';
-import {INSERT_EMBED_COMMAND} from '@lexical/react/LexicalAutoEmbedPlugin';
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 import {$isDecoratorBlockNode} from '@lexical/react/LexicalDecoratorBlockNode';
 import {INSERT_HORIZONTAL_RULE_COMMAND} from '@lexical/react/LexicalHorizontalRuleNode';
@@ -1030,14 +1021,6 @@ export default function ToolbarPlugin({
               <i className="icon horizontal-rule" />
               <span className="text">Horizontal Rule</span>
             </DropDownItem>
-            {/* <DropDownItem
-              onClick={() => {
-                activeEditor.dispatchCommand(INSERT_PAGE_BREAK, undefined);
-              }}
-              className="item">
-              <i className="icon page-break" />
-              <span className="text">Page Break</span>
-            </DropDownItem> */}
             <DropDownItem
               onClick={() => {
                 showModal('Insert Image', (onClose) => (

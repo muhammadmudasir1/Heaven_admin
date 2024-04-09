@@ -9,6 +9,7 @@ import { FaCheck } from "react-icons/fa";
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
 import EditableEditor from '../Editor/EditableEditor'
+import ListEditableEditor from '../Editor/ListEditableEditor';
 
 
 
@@ -23,7 +24,7 @@ const AddReview = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
     const { auth, setAuth } = useAuth()
-    const [showEditor , setShowEditor] = useState(false)
+    const [showEditor, setShowEditor] = useState(false)
     const refresh = useRefresh()
 
     useEffect(() => {
@@ -34,22 +35,22 @@ const AddReview = () => {
                 if (response.data[0]) {
                     setPros(response.data[0].pros)
                     setCons(response.data[0].cons)
-                    if(response.data[0].review){
+                    if (response.data[0].review) {
                         setReview(response.data[0].review)
-                        
+
                         setShowEditor(true);
                         setReviewId(response.data[0].id)
                         setSeoKeys(response.data[0].seoKeys)
                     }
-                    
-                }else{
+
+                } else {
                     console.log("Calling Api")
                     setReview(`{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}
                     `)
                     setShowEditor(true);
                 }
                 setIsLoading(false)
-                } catch (error) {
+            } catch (error) {
                 setIsLoading(false)
                 console.log(error)
             }
@@ -164,14 +165,18 @@ const AddReview = () => {
                     <div className='py-2 flex flex-col h-full'>
                         <h2 className='w-full mb-2'>Pros:</h2>
                         <div className='w-full h-40 mb-6 '>
-                            <ListEditor text={pros} setText={setPros} />
+                            {showEditor &&
+                                <ListEditableEditor text={pros} setText={setPros} />
+                            }
                         </div>
 
                     </div>
                     <div className='py-2 flex flex-col h-full'>
                         <h2 className='w-full mb-2'>Cons:</h2>
                         <div className='w-full h-40 mb-6 '>
-                            <ListEditor text={cons} setText={setCons} />
+                            {showEditor &&
+                                <ListEditableEditor text={cons} setText={setCons} />
+                            }
                         </div>
 
                     </div>
@@ -192,8 +197,8 @@ const AddReview = () => {
                 </div>
                 <div className='mt-5 '>
                     {review && showEditor &&
-                    <EditableEditor text={review} setText={setReview} />
-                    }  
+                        <EditableEditor text={review} setText={setReview} />
+                    }  <div className=' list-decimal hidden'/>
                 </div>
 
             </div>

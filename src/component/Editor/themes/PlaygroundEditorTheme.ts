@@ -73,14 +73,15 @@ const theme: EditorThemeClasses = {
     nested: {
       listitem: 'PlaygroundEditorTheme__nestedListItem',
     },
-    olDepth: [
-      'PlaygroundEditorTheme__ol1',
-      'PlaygroundEditorTheme__ol2',
-      'PlaygroundEditorTheme__ol3',
-      'PlaygroundEditorTheme__ol4',
-      'PlaygroundEditorTheme__ol5',
-    ],
-    ul: 'PlaygroundEditorTheme__ul',
+    // olDepth: [
+    //   'PlaygroundEditorTheme__ol1',
+    //   'PlaygroundEditorTheme__ol2',
+    //   'PlaygroundEditorTheme__ol3',
+    //   'PlaygroundEditorTheme__ol4',
+    //   'PlaygroundEditorTheme__ol5',
+    // ],
+    ol :'list-decimal',
+    ul: 'list-disc',
   },
   ltr: 'PlaygroundEditorTheme__ltr',
   mark: 'PlaygroundEditorTheme__mark',

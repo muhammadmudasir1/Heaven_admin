@@ -41,14 +41,14 @@ import {
   LexicalNode,
 } from 'lexical';
 
-import {
-  $createEquationNode,
-  $isEquationNode,
-  EquationNode,
-} from '../../nodes/EquationNode.tsx';
+// import {
+//   $createEquationNode,
+//   $isEquationNode,
+//   EquationNode,
+// } from '../../nodes/EquationNode.tsx';
 import {$createImageNode, $isImageNode, ImageNode} from '../../nodes/ImageNode.tsx';
-import {$createTweetNode, $isTweetNode, TweetNode} from '../../nodes/TweetNode.tsx';
-import emojiList from '../../utils/emoji-list.ts';
+// import {$createTweetNode, $isTweetNode, TweetNode} from '../../nodes/TweetNode.tsx';
+// import emojiList from '../../utils/emoji-list.ts';
 
 export const HR: ElementTransformer = {
   dependencies: [HorizontalRuleNode],
@@ -95,58 +95,58 @@ export const IMAGE: TextMatchTransformer = {
   type: 'text-match',
 };
 
-export const EMOJI: TextMatchTransformer = {
-  dependencies: [],
-  export: () => null,
-  importRegExp: /:([a-z0-9_]+):/,
-  regExp: /:([a-z0-9_]+):/,
-  replace: (textNode, [, name]) => {
-    const emoji = emojiList.find((e) => e.aliases.includes(name))?.emoji;
-    if (emoji) {
-      textNode.replace($createTextNode(emoji));
-    }
-  },
-  trigger: ':',
-  type: 'text-match',
-};
+// export const EMOJI: TextMatchTransformer = {
+//   dependencies: [],
+//   export: () => null,
+//   importRegExp: /:([a-z0-9_]+):/,
+//   regExp: /:([a-z0-9_]+):/,
+//   replace: (textNode, [, name]) => {
+//     const emoji = emojiList.find((e) => e.aliases.includes(name))?.emoji;
+//     if (emoji) {
+//       textNode.replace($createTextNode(emoji));
+//     }
+//   },
+//   trigger: ':',
+//   type: 'text-match',
+// };
 
-export const EQUATION: TextMatchTransformer = {
-  dependencies: [EquationNode],
-  export: (node) => {
-    if (!$isEquationNode(node)) {
-      return null;
-    }
+// export const EQUATION: TextMatchTransformer = {
+//   dependencies: [EquationNode],
+//   export: (node) => {
+//     if (!$isEquationNode(node)) {
+//       return null;
+//     }
 
-    return `$${node.getEquation()}$`;
-  },
-  importRegExp: /\$([^$]+?)\$/,
-  regExp: /\$([^$]+?)\$$/,
-  replace: (textNode, match) => {
-    const [, equation] = match;
-    const equationNode = $createEquationNode(equation, true);
-    textNode.replace(equationNode);
-  },
-  trigger: '$',
-  type: 'text-match',
-};
+//     return `$${node.getEquation()}$`;
+//   },
+//   importRegExp: /\$([^$]+?)\$/,
+//   regExp: /\$([^$]+?)\$$/,
+//   replace: (textNode, match) => {
+//     const [, equation] = match;
+//     const equationNode = $createEquationNode(equation, true);
+//     textNode.replace(equationNode);
+//   },
+//   trigger: '$',
+//   type: 'text-match',
+// };
 
-export const TWEET: ElementTransformer = {
-  dependencies: [TweetNode],
-  export: (node) => {
-    if (!$isTweetNode(node)) {
-      return null;
-    }
+// export const TWEET: ElementTransformer = {
+//   dependencies: [TweetNode],
+//   export: (node) => {
+//     if (!$isTweetNode(node)) {
+//       return null;
+//     }
 
-    return `<tweet id="${node.getId()}" />`;
-  },
-  regExp: /<tweet id="([^"]+?)"\s?\/>\s?$/,
-  replace: (textNode, _1, match) => {
-    const [, id] = match;
-    const tweetNode = $createTweetNode(id);
-    textNode.replace(tweetNode);
-  },
-  type: 'element',
-};
+//     return `<tweet id="${node.getId()}" />`;
+//   },
+//   regExp: /<tweet id="([^"]+?)"\s?\/>\s?$/,
+//   replace: (textNode, _1, match) => {
+//     const [, id] = match;
+//     const tweetNode = $createTweetNode(id);
+//     textNode.replace(tweetNode);
+//   },
+//   type: 'element',
+// };
 
 // Very primitive table setup
 const TABLE_ROW_REG_EXP = /^(?:\|)(.+)(?:\|)\s?$/;
@@ -170,17 +170,17 @@ export const TABLE: ElementTransformer = {
       let isHeaderRow = false;
       for (const cell of row.getChildren()) {
         // It's TableCellNode so it's just to make flow happy
-        if ($isTableCellNode(cell)) {
-          rowOutput.push(
-            $convertToMarkdownString(PLAYGROUND_TRANSFORMERS, cell).replace(
-              /\n/g,
-              '\\n',
-            ),
-          );
-          if (cell.__headerState === TableCellHeaderStates.ROW) {
-            isHeaderRow = true;
-          }
-        }
+        // if ($isTableCellNode(cell)) {
+        //   rowOutput.push(
+        //     $convertToMarkdownString(PLAYGROUND_TRANSFORMERS, cell).replace(
+        //       /\n/g,
+        //       '\\n',
+        //     ),
+        //   );
+        //   if (cell.__headerState === TableCellHeaderStates.ROW) {
+        //     isHeaderRow = true;
+        //   }
+        // }
       }
 
       output.push(`| ${rowOutput.join(' | ')} |`);
@@ -308,9 +308,9 @@ export const PLAYGROUND_TRANSFORMERS: Array<Transformer> = [
   TABLE,
   HR,
   IMAGE,
-  EMOJI,
-  EQUATION,
-  TWEET,
+  // EMOJI,
+  // EQUATION,
+  // TWEET,
   CHECK_LIST,
   ...ELEMENT_TRANSFORMERS,
   ...TEXT_FORMAT_TRANSFORMERS,
