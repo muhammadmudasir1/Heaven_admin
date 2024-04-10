@@ -167,7 +167,7 @@ const AddReview = () => {
                         <div className='w-full h-40 mb-6 '>
                             {showEditor &&
                                 <ListEditableEditor text={pros} setText={setPros} />
-                            }
+                            } 
                         </div>
 
                     </div>

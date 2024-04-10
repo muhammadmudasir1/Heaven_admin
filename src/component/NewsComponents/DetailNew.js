@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
 import Tabbar from '../Landingpage/Tabbar';
+import NonEditableEditor from '../Editor/NonEditableEditor';
 
 const DetailNews = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
@@ -40,7 +41,7 @@ const DetailNews = () => {
         <Tabbar/>
 
         {!isMobile ? (
-          <div className='pt-9 pb-24 px-4 w-full'>
+          <div className='pt-9 pb-24 px-8 w-full'>
             {isLoading ?
               <div className='py-10 bg-gray-100 w-full h-96 animate-pulse px-4'>
                 <div className='w-full h-12 bg-gray-200 rounded-2xl animate-pulse ' />
@@ -58,7 +59,9 @@ const DetailNews = () => {
               :
               <>
                 <img src={`/api/${data.image}`} className='w-full'/>
-                <div className='py-10 px-8 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.body }} />
+                <h1 className=' text-4xl py-2 font-bold'>{data.Title}</h1>
+                <NonEditableEditor text={data.body}/>
+                {/* <div className='py-10 px-8 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.body }} /> */}
               </>
             }
           </div>
@@ -81,7 +84,9 @@ const DetailNews = () => {
               :
               <>
                 <img src={`/api/${data.image}`} className='w-full'/>
-                <div className='py-10 px-8 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.body }} />
+                <h1 className=' text-2xl py-2 font-bold'>{data.Title}</h1>
+                <NonEditableEditor text={data.body}/>
+                {/* <div className='py-10 px-8 bg-stone-100 w-full' dangerouslySetInnerHTML={{ __html: data.body }} /> */}
               </>
 
             }

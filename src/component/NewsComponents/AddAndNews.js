@@ -70,22 +70,23 @@ const AddAndNews = () => {
                                     {currentCard.map((Cards) => {
                                         return (
                                             <div
-                                                onClick={(e) => {
-                                                    const name = Cards.Title.replaceAll(' ', '-')
-                                                    navigation(`/news/${name}/${Cards.newsId}`)
-                                                }}
-                                                className="flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer"
-                                                style={{
-                                                    boxShadow:
-                                                        "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
-                                                }}
-                                            >
-                                                <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[358.18px]' style={{ backgroundImage: `url(/api/${Cards.image})` }} />
-                                                <div className='lg:pl-8 w-3/5 '>
-                                                    <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.Title}</h1>
-                                                    
-                                                </div>
+                                            onClick={(e) => {
+                                                const name = Cards.Title.replaceAll(' ', '-')
+                                                navigation(`/news/${name}/${Cards.newsId}`)
+                                            }}
+                                            className="flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer"
+                                            style={{
+                                                boxShadow:
+                                                    "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
+                                            }}
+                                        >
+                                            <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[250px]' style={{ backgroundImage: `url(/api/${Cards.image})` }} />
+                                            <div className='lg:pl-8 w-3/5 h-full'>
+                                                <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.Title}</h1>
+                                                <p className='line-clamp-5'>{Cards.description && Cards.description}</p>    
+                                            
                                             </div>
+                                        </div>
                                         );
                                     })}
                                 </div>

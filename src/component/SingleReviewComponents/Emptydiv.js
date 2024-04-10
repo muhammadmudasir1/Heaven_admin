@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
+import NoneEditableEditor from '../Editor/NonEditableEditor'
 
 const Emptydiv = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
@@ -59,7 +60,8 @@ const Emptydiv = () => {
               :
               <>
                 <div className='hidden' dangerouslySetInnerHTML={{ __html: data.seoKeys }} />
-                <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data.review }} />
+                {/* <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data.review }} /> */}
+                <NoneEditableEditor text={data.review}/>
               </>
             }
           </div>
@@ -82,7 +84,7 @@ const Emptydiv = () => {
               :
               <>
                 <div className='hidden' dangerouslySetInnerHTML={{ __html: data.seoKeys }} />
-                <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data.review }} />
+                {/* <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data.review }} /> */}
               </>
 
             }

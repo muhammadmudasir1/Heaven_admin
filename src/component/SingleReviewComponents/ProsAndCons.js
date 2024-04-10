@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import { FaCaretDown,FaCaretUp } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
+import NonEditableEditor from '../Editor/NonEditableEditor';
+
 
 const ProsAndCons = () => {
     const [isToggled, setIsToggled] = useState(false);
@@ -64,7 +66,7 @@ const ProsAndCons = () => {
         <div className='my-8 pl-8 pr-12' id='prosAndCons'>
             {
                 pros &&
-                <div onClick={handleToggle} className='mb-4'>
+                <div onClick={handleToggle} className='mb-4 cursor-pointer'>
                     <div className='flex justify-between px-8 py-4 bg-stone-50 rounded-xl'>
                         <div className='text-neutral-700 text-2xl font-bold lg:font-medium '>
                             Pros
@@ -73,17 +75,12 @@ const ProsAndCons = () => {
                             {isToggled ? <FaCaretUp fontSize='large' /> : <FaCaretDown fontSize='large' />}
                         </div>
                     </div>
-                    {isToggled && (
-                        <ul className='list-disc px-16 bg-stone-50 text-neutral-700 text-xl font-medium pb-8'
-
-                            dangerouslySetInnerHTML={{ __html: pros }}
-                        />
-                    )}
+                    {isToggled && <NonEditableEditor text={pros}/>}
                 </div>
             }
             {
                 cons &&
-                <div onClick={handleToggleCons} className='mb-4'>
+                <div onClick={handleToggleCons} className='mb-4 cursor-pointer'>
                     <div className='flex justify-between px-8 py-4 bg-stone-50 rounded-xl'>
                         <div className='text-neutral-700 font-bold text-2xl lg:font-medium '>
                             Cons
@@ -92,11 +89,7 @@ const ProsAndCons = () => {
                             {isToggledCons ? <FaCaretUp fontSize='large' /> : <FaCaretDown fontSize='large' />}
                         </div>
                     </div>
-                    {isToggledCons && (
-                        <ul className='list-disc px-16 bg-stone-50 text-neutral-700 text-xl font-medium pb-8'
-                            dangerouslySetInnerHTML={{ __html: cons }}
-                        />
-                    )}
+                    {isToggledCons && <NonEditableEditor text={cons}/>}
                 </div>
             }
         </div>
