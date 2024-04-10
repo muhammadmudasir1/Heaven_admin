@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-// import CookiesTry from './Cookies/Cookies'
+import CookiesTry from './Cookies/Cookies'
 import CutterView from "./component/CUTTERComponents/CutterView"
 import CompareResult from "./component/CompareResult"
 import ComparePage from "./component/ComparisonComponet/ComparePage"
@@ -92,7 +92,7 @@ const App = () => {
                     </Routes>
                 </CurrentProductProvider>
             </AuthProvider>
-            {/* <CookiesTry/> */}
+            <CookiesTry/>
         </BrowserRouter >
 
     )

@@ -59,7 +59,7 @@ const MaskSlider = () => {
             </div>
             <div className=" relative flex items-center ">
               {width >= 480 && !isBeginning ? (
-                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute left-0 z-[999]">
+                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute left-0 z-10">
                   <FaAngleLeft
                     onClick={(e) => {
                       swiperInstanceTopfive.slidePrev();
@@ -130,10 +130,10 @@ const MaskSlider = () => {
                 ))}
               </Swiper>
               {width >= 480 && !isEnd && TopFiveProducts.length > slidesToShow && (
-                <div className=" h-full w-1/5 absolute right-0 z-[99] bg-gradient-to-l from-white to-transparent from-60% " />
+                <div className=" h-full w-1/5 absolute right-0 z-10 bg-gradient-to-l from-white to-transparent from-60% " />
               )}
               {width >= 480 && !isEnd && TopFiveProducts.length > slidesToShow ? (
-                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-16 z-[999]">
+                <div className="text-6xl text-gray-600 hover:text-customBlue cursor-pointer absolute right-16 z-20">
                   <FaAngleRight
                     onClick={(e) => {
                       swiperInstanceTopfive.slideNext();
