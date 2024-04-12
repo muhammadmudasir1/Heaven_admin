@@ -694,6 +694,10 @@ video {
   z-index: 40;
 }
 
+.z-50 {
+  z-index: 50;
+}
+
 .z-\[100000\] {
   z-index: 100000;
 }
@@ -716,10 +720,6 @@ video {
 
 .z-\[99\] {
   z-index: 99;
-}
-
-.z-50 {
-  z-index: 50;
 }
 
 .col-span-1 {
@@ -933,6 +933,10 @@ video {
   margin-right: 1.25rem;
 }
 
+.mr-6 {
+  margin-right: 1.5rem;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -959,10 +963,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mr-6 {
-  margin-right: 1.5rem;
 }
 
 .line-clamp-1 {
@@ -1235,6 +1235,10 @@ video {
   height: 480px;
 }
 
+.h-\[515px\] {
+  height: 515px;
+}
+
 .h-\[600px\] {
   height: 600px;
 }
@@ -1257,10 +1261,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[515px\] {
-  height: 515px;
 }
 
 .max-h-72 {
@@ -1479,20 +1479,12 @@ video {
   width: 100vw;
 }
 
-.w-\[274px\] {
-  width: 274px;
-}
-
 .min-w-\[200px\] {
   min-width: 200px;
 }
 
 .max-w-\[150px\] {
   max-width: 150px;
-}
-
-.max-w-screen-md {
-  max-width: 768px;
 }
 
 .flex-grow {
@@ -1970,10 +1962,6 @@ video {
 
 .border-t-transparent {
   border-top-color: transparent;
-}
-
-.\!bg-transparent {
-  background-color: transparent !important;
 }
 
 .bg-\[\#00CED1\] {
@@ -2662,6 +2650,11 @@ video {
   color: rgb(39 117 192 / var(--tw-text-opacity));
 }
 
+.text-\[\#444444\] {
+  --tw-text-opacity: 1;
+  color: rgb(68 68 68 / var(--tw-text-opacity));
+}
+
 .text-amber-500 {
   --tw-text-opacity: 1;
   color: rgb(245 158 11 / var(--tw-text-opacity));
@@ -2732,11 +2725,6 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-\[\#444444\] {
-  --tw-text-opacity: 1;
-  color: rgb(68 68 68 / var(--tw-text-opacity));
-}
-
 .underline {
   text-decoration-line: underline;
 }
@@ -2745,16 +2733,12 @@ video {
   text-decoration-line: line-through;
 }
 
-.decoration-cyan-500 {
-  text-decoration-color: #06b6d4;
-}
-
-.decoration-\[customBlue\] {
-  text-decoration-color: customBlue;
-}
-
 .decoration-blue-500 {
   text-decoration-color: #3b82f6;
+}
+
+.decoration-cyan-500 {
+  text-decoration-color: #06b6d4;
 }
 
 .decoration-4 {
@@ -2941,11 +2925,6 @@ video {
 .hover\:bg-sky-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(2 132 199 / var(--tw-bg-opacity));
-}
-
-.hover\:text-blue-400:hover {
-  --tw-text-opacity: 1;
-  color: rgb(96 165 250 / var(--tw-text-opacity));
 }
 
 .hover\:text-customBlue:hover {
