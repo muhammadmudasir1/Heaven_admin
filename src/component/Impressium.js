@@ -22,7 +22,7 @@ const Impressium = () => {
       <Tabbar />
       <div>
         {data ? (
-          <div dangerouslySetInnerHTML={{__html: data.review}}/>
+          <div dangerouslySetInnerHTML={{ __html: data.review }}/>
         ) : (
           <h1>Loading data</h1>
         )}
