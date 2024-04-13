@@ -12,10 +12,11 @@ import ProsAndCons from './ProsAndCons';
 import SingleReviewPropertyCard from './SingleReviewPropertyCard';
 import './SingleReviwStyle.css';
 import WarningBannar from './WarningBannar';
+import { Helmet } from 'react-helmet';
 
 const ReviewAndAdd = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
-    const { id } = useParams()
+    const { id,productNameURL } = useParams()
     const [images, setImages] = useState([])
     const [discription, setDiscription] = useState("")
     const [productName, setProductName] = useState("")
@@ -29,6 +30,7 @@ const ReviewAndAdd = () => {
     const [specs, setSpecs] = useState({})
     const [productType, setProductType] = useState(0)
     const [isLoading, setIsloading] = useState(false)
+    const [title, setTitle] = useState([])
     const { t } = useTranslation()
 
     useEffect(() => {
@@ -46,6 +48,7 @@ const ReviewAndAdd = () => {
             try {
                 setIsloading(true)
                 const result = await Api.get(`/api/products/${id}`)
+                console.log(result.data)
                 const apiImages = result.data.ProductImages.filter((image) => {
                     if (image.role !== 3) {
                         return true
@@ -72,6 +75,7 @@ const ReviewAndAdd = () => {
                 setSoftware(result.data.software_rating)
                 setInnovation(result.data.software_rating)
                 setOverall(result.data.overall_rating)
+                setTitle(result.data.product_title)
                 setProductType(result.data.productType)
                 if (result.data.productType === 1) {
                     setSpecs(result.data.SLA)
@@ -101,6 +105,11 @@ const ReviewAndAdd = () => {
     };
     return (
         <>
+            <Helmet>
+                <title>{title}</title>
+                <meta name='description' content={discription} />
+                <link rel="canonical" href={`https://www.3dheaven.de/${productNameURL}/${id}`} />
+            </Helmet>
             {!isMobile ? (
                 <div className='flex-col '>
                     <div className=' w-2/3 p-4'>
@@ -205,7 +214,7 @@ const ReviewAndAdd = () => {
                                             <div className='w-full py-8 ' >
                                                 <Swiper
                                                     spaceBetween={2}
-                                                    modules={[A11y,Navigation]}
+                                                    modules={[A11y, Navigation]}
                                                     navigation
                                                     slidesPerView={5}
                                                     onSlideChange={() => console.log('slide change')}

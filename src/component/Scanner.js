@@ -2,7 +2,7 @@ import React from 'react'
 import Tabbar from './Landingpage/Tabbar'
 import ScannerTabbar from './SCANNERComponents/ScannerTabbar'
 import ScannerView from './SCANNERComponents/ScannerView'
-const FDM = () => {
+const Scannar = () => {
     return (
         <>
             <Tabbar />
@@ -21,4 +21,4 @@ const FDM = () => {
     )
 }
 
-export default FDM
+export default Scannar

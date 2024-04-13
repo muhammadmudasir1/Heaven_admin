@@ -8,6 +8,7 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 import PaginationClass from "../ComparisonComponet/PaginationClass";
 import LoadingCard from "../LoadingCard";
 import LoadingCardMobile from "../LoadingCardMobile";
+import { Helmet } from "react-helmet";
 
 const FDMView = () => {
   const navigation = useNavigate();
@@ -15,6 +16,24 @@ const FDMView = () => {
   const [CardPerPage, setCardPerPage] = useState(5);
   const [CurrentPage, setCurrentPage] = useState(1);
   const {t}=useTranslation()
+  const [title, setTitle] = useState(null)
+  const [description, setDescription] = useState(null)
+
+  useEffect(() => {
+    const getHeader = async () => {
+      try {
+        const response = await Api.get(`api/setting/fdmHeader`);
+        // console.log(response.data)
+        setTitle(response.data.title)
+        setDescription(response.data.description)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getHeader();
+  }, []);
+
+
   useEffect(() => {
     console.log(CardPerPage);
   }, [CardPerPage]);
@@ -47,6 +66,13 @@ const FDMView = () => {
 
 
   return (
+    <>
+    <Helmet>
+      <title>{title}</title>
+      <meta name='description' content={description}/>
+      <link rel="canonical" href="https://www.3dheaven.de/fdm" />
+    </Helmet>
+    {
     width > 600 ?
     <>
     <div className="flex w-full px-8 mt-4">
@@ -192,6 +218,8 @@ const FDMView = () => {
           </>
         )}
       </div>
+    }
+    </>
 
   );
 };

@@ -7,14 +7,30 @@ import Api from "../../api/Api";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import PaginationClass from "../ComparisonComponet/PaginationClass";
 import LoadingCard from "../LoadingCard";
+import { Helmet } from "react-helmet";
 
 const SLAView = () => {
   const [CardPerPage, setCardPerPage] = useState(5);
   const [CurrentPage, setCurrentPage] = useState(1);
   const { width } = useWindowDimensions()
   const {t}=useTranslation()
-
   const navigation = useNavigate();
+  const [title, setTitle] = useState(null)
+  const [description, setDescription] = useState(null)
+
+  useEffect(() => {
+    const getHeader = async () => {
+      try {
+        const response = await Api.get(`api/setting/slaHeader`);
+        // console.log(response.data)
+        setTitle(response.data.title)
+        setDescription(response.data.description)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getHeader();
+  }, []);
 
   useEffect(() => {
     console.log(CardPerPage);
@@ -44,6 +60,13 @@ const SLAView = () => {
   };
 
   return (
+    <>
+    <Helmet>
+      <title>{title}</title>
+      <meta name='description' content={description}/>
+      <link rel="canonical" href="https://www.3dheaven.de/sla " />
+    </Helmet>
+    {
     width > 600 ?
     <>
     <div className="flex w-full px-8 mt-4">
@@ -179,6 +202,8 @@ const SLAView = () => {
           </>
         })}
       </div>
+    }
+    </>
   );
 };
 
