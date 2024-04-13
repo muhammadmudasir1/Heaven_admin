@@ -29,6 +29,7 @@ const Doubleslider = () => {
       try {
 
         const response = await Api.get(`api/products/type/1`)
+        // console.log(response.data)
         setSLAproducts(response.data)
       } catch (error) {
         console.log(error)
@@ -110,11 +111,21 @@ const Doubleslider = () => {
                         navigate(`/productreview/${name}/${FDMproduct.Id}`);
                       }}
                     >
-                      <div className=" w-full h-52 bg-cover bg-center"
+                      {/* <div className=" w-full h-52 bg-cover bg-center"
                         style={{
                           backgroundImage: `url(/api/${FDMproduct.ProductImages[0].path})`
                         }}
-                      />
+                      /> */}
+                       <div className=" w-full h-52 overflow-hidden"
+                      >
+                        <img className="h-full"
+                        src={`/api/${FDMproduct.ProductImages[0].path}`}
+                        alt={FDMproduct.ProductImages[0].altText}
+                        title={FDMproduct.ProductImages[0].altText}
+                        />
+
+                      </div>
+                      
                       <h2 className="pt-8 px-6 font-bold line-clamp-1">{FDMproduct.product_name}</h2>
                       <p className=" pt-4 px-6 line-clamp-4">
                         {FDMproduct.discription}
@@ -179,11 +190,18 @@ const Doubleslider = () => {
                         navigate(`/productreview/${name}/${SLAproduct.Id}`);
                       }}
                     >
-                      <div className=" w-full h-52 bg-cover bg-center"
-                        style={{
-                          backgroundImage: `url(/api/${SLAproduct.ProductImages[0].path})`
-                        }}
-                      />
+                      <div className=" w-full h-52 overflow-hidden"
+                      >
+                        <img className="h-full"
+                        src={`/api/${SLAproduct.ProductImages[0].path}`}
+                        alt={SLAproduct.ProductImages[0].altText}
+                        title={SLAproduct.ProductImages[0].altText}
+                        />
+
+                      </div>
+                      {/* style={{
+                        backgroundImage: `url(/api/${SLAproduct.ProductImages[0].path})`
+                      }} */}
                       <h2 className="pt-8 px-6 font-bold line-clamp-1">{SLAproduct.product_name}</h2>
                       <p className=" pt-4 px-6 line-clamp-4">
                         {SLAproduct.discription}

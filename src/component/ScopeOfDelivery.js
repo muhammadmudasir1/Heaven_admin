@@ -95,36 +95,44 @@ const ScopeOfDelivery = () => {
                                     </div>
                                 </div>
                                 <div className=' px-8 w-3/5'>
-                                    <div className=' py-5 bg-gray-200 rounded-2xl animate-pulse'/>
-                                    <div className=' py-2 mt-8 bg-gray-200 rounded-2xl animate-pulse'/>
-                                    <div className=' py-2 mt-4 bg-gray-200 rounded-2xl animate-pulse'/>
-                                    <div className=' py-2 mt-4 bg-gray-200 rounded-2xl animate-pulse'/>
-                                    <div className=' py-2 mt-4 bg-gray-200 rounded-2xl animate-pulse'/>
+                                    <div className=' py-5 bg-gray-200 rounded-2xl animate-pulse' />
+                                    <div className=' py-2 mt-8 bg-gray-200 rounded-2xl animate-pulse' />
+                                    <div className=' py-2 mt-4 bg-gray-200 rounded-2xl animate-pulse' />
+                                    <div className=' py-2 mt-4 bg-gray-200 rounded-2xl animate-pulse' />
+                                    <div className=' py-2 mt-4 bg-gray-200 rounded-2xl animate-pulse' />
                                 </div>
                             </div>
                             <div className='w-full h-[200px] bg-gray-200 animate-pulse' />
 
                         </div>
-                        : <div className='col-span-8 pl-8'>
-                            <div className='lg:flex pt-4 pb-8 justify-center pr-4  relative w-full'>
+                        : <div className='col-span-8 pl-8 '>
+                            <div className='lg:flex pt-4 pb-8 justify-center pr-4 relative w-full'>
                                 {images.length > 0 &&
-                                    <div className='flex items-center lg:flex-col w-[400px]'>
-                                        <div className='w-full h-64 bg-cover bg-center rounded-md shadow-md'
-                                            style={{ backgroundImage: `url(/api/${mainImage && mainImage.path})` }}
-                                        />
+                                    <div className='flex items-center flex-col w-1/3 '>
+                                        <div className="w-full h-64 bg-cover bg-center rounded-md shadow-md">
+                                            <img className=" object-cover h-full w-full"
+                                                src={`/api/${mainImage && mainImage.path}`}
+                                                alt={mainImage && mainImage.altText}
+                                                title={mainImage && mainImage.altText}
+                                            />
+                                        </div>
                                         <div className='lg:flex items-center justify-center py-8 ' >
                                             {images.map((picture) => (
                                                 <div key={picture.id} className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4' onClick={() => switchMainImage(picture)}>
-                                                    <div className='w-full h-full bg-cover bg-center'
-                                                        style={{ backgroundImage: `url(/api/${picture.path})` }}
-                                                    />
+                                                    <div className="w-full h-full">
+                                                        <img className=" object-cover h-full w-full"
+                                                            src={`/api/${picture.path}`}
+                                                            alt={picture.altText}
+                                                            title={picture.altText}
+                                                        />
+                                                    </div>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
 
                                 }
-                                <div className=' px-8 grow'>
+                                <div className={`px-8 ${images.length > 0 ? "w-2/3" : "grow"}`}>
                                     <p>{discription}</p>
                                 </div>
                             </div>

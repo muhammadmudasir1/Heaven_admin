@@ -85,8 +85,8 @@ const SingleReviewTabbar = () => {
                                 className='text-neutral-800 text-xl font-normal'
                                 onClick={() => {
                                     const comp = document.getElementById('review')
-                                    const rect = comp.getBoundingClientRect();
-                                    window.scrollTo({
+                                    const rect = comp && comp.getBoundingClientRect();
+                                    rect && window.scrollTo({
                                         top: rect.top - 300,
                                         behavior: 'smooth'
                                     });
@@ -167,8 +167,8 @@ const SingleReviewTabbar = () => {
                                         onClick={() => {
                                             const comp = document.getElementById('review')
                                             handleNameSelect(t('review'))
-                                            const rect = comp.getBoundingClientRect();
-                                            window.scrollTo({
+                                            const rect = comp && comp.getBoundingClientRect();
+                                            rect && window.scrollTo({
                                                 top: rect.top - 200,
                                                 behavior: 'smooth'
                                             });

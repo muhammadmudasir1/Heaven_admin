@@ -74,10 +74,19 @@ const FilamentView = () => {
                           "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
                       }}
                     >
-                      <div
+                      {/* <div
                         className="rounded-l-xl lg:w-1/3 bg-cover bg-center w-full h-[358.18px]"
                         style={{ backgroundImage: `url(/api/${Cards.ProductImages[0].path})`, }}
                       >
+                      </div> */}
+                      <div
+                        className="rounded-l-xl lg:w-1/3 overflow-hidden w-full h-[358.18px] p-4"
+                      >
+                        <img className=" object-cover h-full w-full"
+                          src={`/api/${Cards.ProductImages[0].path}`}
+                          alt={Cards.ProductImages[0].altText}
+                          title={Cards.ProductImages[0].altText}
+                        />
                       </div>
                       <div className="lg:pl-8 w-3/5 ">
                         <h1 className="text-neutral-800 text-3xl font-semibold py-4">
@@ -147,12 +156,6 @@ const FilamentView = () => {
             <LoadingCardMobile />
             <LoadingCardMobile />
             <LoadingCardMobile />
-            <LoadingCardMobile />
-            <LoadingCardMobile />
-            <LoadingCardMobile />
-            <LoadingCardMobile />
-            <LoadingCardMobile />
-            <LoadingCardMobile />
           </div>
         ) : (
           <>
@@ -162,7 +165,17 @@ const FilamentView = () => {
                   key={index} className='grid grid-cols-3 m-4 rounded-xl' style={
                     { boxShadow: '-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)' }
                   }>
-                  <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl' style={{ backgroundImage: `url(/api/${items.ProductImages[0].path})` }} />
+                  {/* <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl'
+                  style={{ backgroundImage: `url(/api/${items.ProductImages[0].path})` }} /> */}
+                  <div
+                    className="col-span-1 rounded-l-xl overflow-hidden w-full h-full]"
+                  >
+                    <img className=" object-cover h-full w-full"
+                      src={`/api/${items.ProductImages[0].path}`}
+                      alt={items.ProductImages[0].altText}
+                      title={items.ProductImages[0].altText}
+                    />
+                  </div>
                   <div className='col-span-2 ml-2 flex flex-col items-start justify-center'>
                     <h1 className='mt-5 text-xl font-bold pr-2 line-clamp-2'>{items.product_name}</h1>
                     <div className='flex pt-2'>

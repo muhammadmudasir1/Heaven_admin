@@ -57,60 +57,61 @@ const AddAndRatgaber = () => {
         <>
             {!isMobile ? (
                 <>
-                <div className='flex w-full px-8 mt-4'>
-                    <div className="flex flex-col grow">
-                        {isLoader ?
-                            <div className="w-full pr-6">
-                                <LoadingCard />
-                                <LoadingCard />
-                                <LoadingCard />
-                                <LoadingCard />
-                            </div>
-                            :
-                            <div className="flex flex-col grow  pr-12 pl-6">
-                                {currentCard.map((Cards) => {
-                                    // console.log(Cards)
-                                    return (
-                                        <div
-                                            onClick={(e) => {
-                                                const name = Cards.Title.replaceAll(' ', '-')
-                                                navigation(`/ratgaber/${name}/${Cards.guidId}`)
-                                            }}
-                                            className="flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer"
-                                            style={{
-                                                boxShadow:
-                                                    "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
-                                            }}
-                                        >
-                                            <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[250px]' style={{ backgroundImage: `url(/api/${Cards.image})` }} />
-                                            <div className='lg:pl-8 w-3/5 h-full'>
-                                                <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.Title}</h1>
-                                                <p className='line-clamp-5'>{Cards.description && Cards.description}</p>    
-                                            
+                    <div className='flex w-full px-8 mt-4'>
+                        <div className="flex flex-col grow">
+                            {isLoader ?
+                                <div className="w-full pr-6">
+                                    <LoadingCard />
+                                    <LoadingCard />
+                                    <LoadingCard />
+                                    <LoadingCard />
+                                </div>
+                                :
+                                <div className="flex flex-col grow  pr-12 pl-6">
+                                    {currentCard.map((Cards) => {
+                                        // console.log(Cards)
+                                        return (
+                                            <div
+                                                onClick={(e) => {
+                                                    const name = Cards.Title.replaceAll(' ', '-')
+                                                    navigation(`/ratgaber/${name}/${Cards.guidId}`)
+                                                }}
+                                                className="flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer"
+                                                style={{
+                                                    boxShadow:
+                                                        "-8px 0 15px rgba(203, 213, 225, 0.5), 0 8px 15px rgba(203, 213, 225, 0.5)",
+                                                }}
+                                            >
+                                                <div className='lg:w-1/3 bg-cover bg-center rounded-l-xl w-full lg:h-[250px]'
+                                                style={{ backgroundImage: `url(/api/${Cards.image})` }} />
+                                                <div className='lg:pl-8 w-3/5 h-full'>
+                                                    <h1 className='text-neutral-800 text-3xl font-semibold py-4'>{Cards.Title}</h1>
+                                                    <p className='line-clamp-5'>{Cards.description && Cards.description}</p>
+
+                                                </div>
                                             </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        }
+                                        );
+                                    })}
+                                </div>
+                            }
+                        </div>
+                        <div className="lg:bg-white h-[600px] max-h-[600px] min-w-[200px] lg:shadow-lg lg:shadow-slate-600"
+                            style={{
+                                boxShadow:
+                                    "-8px 0 15px rgba(203, 213, 225, 0.3), 0 8px 15px rgba(203, 213, 225, 0.3)",
+                            }} />
                     </div>
-                    <div className="lg:bg-white h-[600px] max-h-[600px] min-w-[200px] lg:shadow-lg lg:shadow-slate-600"
-                        style={{
-                            boxShadow:
-                                "-8px 0 15px rgba(203, 213, 225, 0.3), 0 8px 15px rgba(203, 213, 225, 0.3)",
-                        }} />
-                </div>
-                <div className="flex w-full  justify-center">
-                    {!isLoader && (
-                        <PaginationClass
-                            currentPage={CurrentPage}
-                            cardsPerPage={CardPerPage}
-                            totalcards={Cards}
-                            onPageChange={handlePageChange}
-                        />
-                    )}
-                </div>
-            </>
+                    <div className="flex w-full  justify-center">
+                        {!isLoader && (
+                            <PaginationClass
+                                currentPage={CurrentPage}
+                                cardsPerPage={CardPerPage}
+                                totalcards={Cards}
+                                onPageChange={handlePageChange}
+                            />
+                        )}
+                    </div>
+                </>
             ) : (
                 <div className='w-full'>
                     {isMobileLoader ? (
@@ -124,8 +125,8 @@ const AddAndRatgaber = () => {
                         <>
                             {Cards.map((items, index) => {
                                 return <>
-                                    <div key={index} onClick={(e)=>{
-                                        const name=items.Title.replaceAll(' ','-')
+                                    <div key={index} onClick={(e) => {
+                                        const name = items.Title.replaceAll(' ', '-')
                                         navigation(`/ratgaber/${name}/${items.guidId}`)
                                     }
                                     } className='grid grid-cols-3 m-4 rounded-xl p-4' style={
@@ -137,7 +138,7 @@ const AddAndRatgaber = () => {
                                         </div>
                                     </div>
 
-                                    {(index + 1) % 3 === 0 && index !== currentCard.length - 1 && <div key={``} className="h-12"/>}
+                                    {(index + 1) % 3 === 0 && index !== currentCard.length - 1 && <div key={``} className="h-12" />}
                                 </>
                             })}
                         </>

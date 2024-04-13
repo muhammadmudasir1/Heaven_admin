@@ -32,6 +32,7 @@ const MaskSlider = () => {
     const topfive = async () => {
       try {
         const response = await Api.get(`api/products/TopFive`)
+        console.log(response.data)
         setTopFiveProducts(response.data)
       } catch (error) {
         console.log(error)
@@ -93,17 +94,22 @@ const MaskSlider = () => {
                         }}
                       >
                         <div className='w-full h-full relative flex flex-col '>
-                          <div className=" w-full h-full bg-cover bg-center absolute top-0"
-                            style={{
-                              backgroundImage: `url(/api/${Product && Product.ProductImages[0].path})`
-                            }}
-                          />
+                          <div className=" h-full absolute top-0">
+                          <img className="h-full"
+                        src={`/api/${Product && Product.ProductImages[0].path}`}
+                        alt={Product && Product.ProductImages[0].altText}
+                        title={Product && Product.ProductImages[0].altText}
+                        />
+                          </div>
+                          {/* style={{
+                            backgroundImage: `url(/api/${Product && Product.ProductImages[0].path})`
+                          }} */}
                           <div className={`w-full h-full absolute top-0 ${colors[index]}`} />
                           <div className='w-full h-1/5 z-[9999] flex justify-center items-center'>
 
                             <h2 className=' text-4xl text-white font-semibold font-sans'>#{index + 1}</h2>
                           </div>
-                          <h2 className='z-[9999] text-3xl text-white font-semibold font-sans text-center flex-grow flex justify-center items-center px-2'>{Product && Product.product_name}</h2>
+                          <h2 className='z-[9999] text-3xl text-white font-semibold font-sans text-center flex-grow flex justify-center px-2'>{Product && Product.product_name}</h2>
                         </div>
                       </div>
                     </SwiperSlide>
