@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Api from "../api/Api";
 import Tabbar from "./Landingpage/Tabbar";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const DataPrivacy = () => {
   const [privacy, setPrivacy] = useState(null);
+  const { width } = useWindowDimensions(window.innerWidth < 800);
 
   useEffect(() => {
     const data = async () => {
@@ -18,12 +20,16 @@ const DataPrivacy = () => {
     data();
   }, []);
   if (privacy) {
-      return (
+    return (
       <>
-          <Tabbar />
+        <Tabbar />
+        {width < 800 ? (
           <div dangerouslySetInnerHTML={{ __html: privacy.review }} />
-        </>
-      );
+        ) : (
+          <div dangerouslySetInnerHTML={{ __html: privacy.review }} />
+        )}
+      </>
+    );
   }
 };
 export default DataPrivacy;

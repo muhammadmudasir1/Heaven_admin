@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Api from "../api/Api";
 import Tabbar from "./Landingpage/Tabbar";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const Impressium = () => {
   const [data, setData] = useState(null);
+  const {width}=useWindowDimensions(window.innerWidth<800)
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,13 +23,23 @@ const Impressium = () => {
   return (
     <>
       <Tabbar />
-      <div>
+      {width<800?(
+        <div>
         {data ? (
           <div dangerouslySetInnerHTML={{ __html: data.review }}/>
         ) : (
           <h1>Loading data</h1>
         )}
       </div>
+      ):(
+          <div>
+            {data ? (
+              <div dangerouslySetInnerHTML={{ __html: data.review }}/>
+            ) : (
+              <h1>Loading data</h1>
+            )}
+          </div>
+      )}
     </>
   );
 };
