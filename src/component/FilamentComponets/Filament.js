@@ -15,7 +15,6 @@ const Filament = () => {
     const getHeader = async () => {
       try {
         const response = await Api.get(`api/setting/filamentHeader`);
-        // console.log(response.data)
         setTitle(response.data.title)
         setDescription(response.data.description)
       } catch (error) {
@@ -33,7 +32,11 @@ const Filament = () => {
       <link rel="canonical" href="https://www.3dheaven.de/filament" />
     </Helmet>
     <Tabbar/>
-    <Banner/>
+    <div className='px-16 bg-[#008080] py-4'>
+      <h1 className=' text-3xl font-bold text-white'>{title}</h1>
+      <p className='text-white'>{description}</p>
+    </div>
+    {/* <Banner/> */}
     <FilamentView/>
     </>
   )

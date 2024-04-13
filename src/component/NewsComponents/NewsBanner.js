@@ -1,9 +1,24 @@
 import React from 'react'
 import Banner from '../NewsComponents/Banner.png'
 import { useState, useEffect } from 'react';
+import Api from '../../api/Api';
 
 const NewsBanner = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+  const [title, setTitle] = useState(null)
+  const [description, setDescription] = useState(null)
+  useEffect(() => {
+    const getHeader = async () => {
+      try {
+        const response = await Api.get(`api/setting/newsHeader`);
+        setTitle(response.data.title)
+        setDescription(response.data.description)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getHeader();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,24 +34,16 @@ const NewsBanner = () => {
 
     <div>
       {!isMobile ? (
-        <div className='flex items-center justify-between px-28 bg-[#D6E9FC] py-3'>
-          <div className=''>
-            <h1 className='text-3xl font-bold'>Latest News & Events</h1>
-            <p className=''>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br />
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-          <div className='bg-center bg-cover h-56 w-72' style={{ backgroundImage: `url(${Banner})` }} />
-        </div>
+        <div className='px-16 bg-[#F2F4F3] py-4'>
+        <h1 className=' text-3xl font-bold '>{title}</h1>
+        <p className=''>{description}</p>
+      </div>
 
       ) : (
-        <div className='flex flex-col items-center justify-between bg-[#F2F4F3] py-3'>
-          <div className='bg-center bg-cover h-44 w-52' style={{ backgroundImage: `url(${Banner})` }} />
-          <div className='flex flex-col items-center justify-center'>
-            <h1 className='text-xl font-bold'>Latest News & Events</h1>
-            <p className='px-9 text-center pb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </div>
+        <div className='px-16 bg-[#F2F4F3] py-4'>
+              <h1 className=' text-3xl font-bold text-white'>{title}</h1>
+              <p className='text-white'>{description}</p>
+            </div>
       )}
     </div>
   )

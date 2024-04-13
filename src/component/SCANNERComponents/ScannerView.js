@@ -72,6 +72,10 @@ const ScannerView = () => {
       </Helmet>
       {width > 600 ?
         <>
+          <div className='px-16 bg-[#026CC4] py-4'>
+            <h1 className=' text-3xl font-bold text-white'>{title}</h1>
+            <p className='text-white'>{description}</p>
+          </div>
           <div className="flex w-full px-8 mt-4">
             <div className="flex flex-col grow">
               {isLoader ?
@@ -190,14 +194,14 @@ const ScannerView = () => {
                     {/* <div className='h-full w-full bg-cover bg-center col-span-1 rounded-l-xl'
                     style={{ backgroundImage: `url(/api/${items.ProductImages[0].path})` }} /> */}
                     <div
-                        className="col-span-1 rounded-l-xl overflow-hidden w-full h-full]"
-                      >
-                        <img className=" object-cover h-full w-full"
-                          src={`/api/${items.ProductImages[0].path}`}
-                          alt={items.ProductImages[0].altText}
-                          title={items.ProductImages[0].altText}
-                        />
-                      </div>
+                      className="col-span-1 rounded-l-xl overflow-hidden w-full h-full]"
+                    >
+                      <img className=" object-cover h-full w-full"
+                        src={`/api/${items.ProductImages[0].path}`}
+                        alt={items.ProductImages[0].altText}
+                        title={items.ProductImages[0].altText}
+                      />
+                    </div>
                     <div className='col-span-2 ml-2 flex flex-col items-start justify-center'>
                       <h1 className='mt-5 text-xl font-bold pr-2 line-clamp-2'>{items.product_name}</h1>
                       <div className='flex pt-2'>

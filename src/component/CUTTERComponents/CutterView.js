@@ -73,6 +73,10 @@ const CutterView = () => {
       {
         width > 600 ?
           <>
+          <div className='px-16 bg-[#02AED6] py-4'>
+            <h1 className=' text-3xl font-bold text-white'>{title}</h1>
+            <p className='text-white'>{description}</p>
+          </div>
             <div className="flex w-full px-8 mt-4">
               <div className="flex flex-col grow">
                 {isLoader ?
