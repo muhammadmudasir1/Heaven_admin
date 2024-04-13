@@ -105,11 +105,11 @@ const StickyFooter = () => {
                 onChange={handleEmailChange}
                 placeholder="Your email address"
                 className="bg-[#D9D9D9] border-2 border-white 
-                            rounded h-full w-[255px] mb-5 mr-2 px-1 text-[#2775C0]"
+                            rounded h-full w-[255px] mr-2 px-1 text-[#2775C0]"
               />
               <button
                 type="submit"
-                className="justify-center items-center bg-[#00CED1] w-[60px] h-full rounded"
+                className="items-center bg-[#00CED1] w-[60px] h-full rounded"
                 onClick={emailApi}
               >
                 <MdEmail fontSize="large"/>
