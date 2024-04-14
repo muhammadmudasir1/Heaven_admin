@@ -37,7 +37,9 @@ import CurrentProductProvider from "./context/CurrentProductContext"
 import NewsLetter from "./component/admin/NewsLetter"
 import Setting from "./component/admin/Setting"
 import NotFound from "./component/NotFound"
-
+import CookiesTry from './Cookies/Cookies' 
+import Impressium from "./component/Impressium"
+import DataPrivacy from "./component/DataPrivacy"
 
 const App = () => {
     return (
@@ -53,6 +55,8 @@ const App = () => {
                             <Route path="/ratgaber" element={<Ratgaber />} />
                             <Route path="/ratgaber/:title/:id" element={<DetailBeginnersGuid />} />
                             <Route path='/comparision' element={<CompareResult />} />
+                            <Route path="/impressium" element={<Impressium/>} />
+                            <Route path="/dataprivacy" element={<DataPrivacy/>}/>
                             <Route path="/product" element={<Review />} >
                                 <Route path="fdm" element={<FDMView />} />
                                 <Route path="sla" element={<SLAView />} />
@@ -93,7 +97,7 @@ const App = () => {
                     </Routes>
                 </CurrentProductProvider>
             </AuthProvider>
-            {/* <CookiesTry/> */}
+            <CookiesTry/>
         </BrowserRouter >
 
     )

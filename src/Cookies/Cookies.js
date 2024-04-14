@@ -1,145 +1,128 @@
-// import React, { useEffect, useState } from 'react';
-// import CookieConsent from 'react-cookie-consent';
-// import "./cookie.css";
-// const Cookies = () => {
-//     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
-//     const [isHover, setIsHover] = useState(false)
-//     useEffect(() => {
-//         const handleResize = () => {
-//             setIsMobile(window.innerWidth < 1000);
-//         }
+import React, { useEffect, useState } from "react";
 
-//         const handleHover = () => {
-//             setIsHover(true);
-//         }
+const Cookies = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
+  const [accept, setAccept] = useState(false);
 
-//         window.addEventListener("resize", handleResize);
-//         document.addEventListener("mouseover", handleHover);
-//         document.addEventListener("mouseout", () => setIsHover(false));
+  useEffect(() => {
+    const isAccepted = getCookie("cookieConsent");
+    setAccept(isAccepted === "accepted");
 
-//         return () => {
-//             window.removeEventListener("resize", handleResize);
-//             document.removeEventListener("mouseover", handleHover);
-//             document.removeEventListener("mouseout", () => setIsHover(false));
-//         };
-//     }, []);
-//     return (
-//         <>
-//             {!isMobile ? (
-//                 <div className='w-full px-4 bg-purple-400 '>
-//                     <CookieConsent
-//                         location="bottom"
-//                         // buttonText="Accept all"
-//                         // enableDeclineButton
-//                         // declineButtonText="Decline"
-//                         declineCookieValue={false}
-//                         cookieName="myAwesomeCookieName2"
-//                         // style={{
-//                         //     // backgroundColor: "white",
-//                         //     boxShadow: "-8px 0 15px rgba(0, 0, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.2)",
-//                         //     borderRadius: "40px",
-//                         //     margin: "20px",
-//                         //     marginRight: "20px",
-//                         //     height: "280px",
-//                         //     // width: "1200px",
-//                         //     alignItems: "center",
-//                         //     placeItems: "center",
-//                         //     padding: "12px"
-//                         // }}
-//                         // buttonStyle={isHover ? {
-//                         //     backgroundColor: "white",
-//                         //     color: "black",
-//                         // } : {
-//                         //     backgroundColor: "white",
-//                         //     color: "black",
-//                         //     textDecorationLine: "underline",
-//                         //     textDecorationColor: "#00CED1",
-//                         //     textDecorationThickness: "3px",
-//                         //     fontSize: "20px",
-//                         //     padding: "12px",
-//                         // }}
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1000);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
-//                         // declineButtonStyle={isHover ? {
-//                         //     backgroundColor: "white",
-//                         //     color: "black",
-//                         // } : {
-//                         //     backgroundColor: "white",
-//                         //     color: "black",
-//                         //     textDecorationLine: 'underline',
-//                         //     textDecorationColor: "#00CED1",
-//                         //     textDecorationThickness: "3px",
-//                         //     fontSize: "20px",
+  const handleAccept = () => {
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 30);
+    document.cookie =
+      "cookieConsent=accepted; expires=" +
+      expirationDate.toUTCString() +
+      "; path=/";
+    setAccept(true);
+  };
 
-//                         // }}
-//                         // ButtonComponent={}
-//                         expires={150}
-//                         containerClasses='!bg-transparent h-[280px] w-3/4 mx-4 rounded-lg flex items-center justify-center'
-                        
-//                     >
-//                         <div className='flex-col px-8 bg-white'>
-//                             <h1 className='font-bold text-xl text-black pt-4'>We Use Cookies</h1>
-//                             <p className='text-gray-400 pt-4'>If you click ‘accept’, we and third-party providers will process your personal data and store information e.g: through cookies on your device. In accordance with Art. 49 para. 1 lit. a GDPR, your consent also includes the transfer to third countries, eg: the. USA. Data protection declaration.See our <a href="http://" target="_blank" rel="noopener noreferrer" className='hover:text-blue-400'>privacy policy</a></p>
-//                         </div>
+  const handleReject = () => {
+    document.cookie = "cookieConsent=rejected; path=/";
+    setAccept(true);
+  };
 
-//                     </CookieConsent>
-//                 </div>
-//             ) : (
-//                 <div>
-//                     <CookieConsent
-//                         location="bottom"
-//                         buttonText="Accept all"
-//                         enableDeclineButton
-//                         declineButtonText="Decline"
-//                         declineCookieValue={false}
-//                         cookieName="myAwesomeCookieName2"
-//                         style={{
-//                             backgroundColor: "white",
-//                             boxShadow: "-8px 0 15px rgba(0, 0, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.2)",
-//                             borderRadius: "40px",
-//                             margin: "20px",
-//                             marginRight: "20px",
-//                             height: "515px",
-//                             width: "329px",
-//                             alignItems: "center",
-//                             placeItems: "center",
-//                         }}
-//                         buttonStyle={isHover ? {
-//                             backgroundColor: "white",
-//                             color: "black",
-//                         } : {
-//                             backgroundColor: "white",
-//                             color: "black",
-//                             textDecorationLine: "underline",
-//                             textDecorationColor: "#00CED1",
-//                             textDecorationThickness: "3px",
-//                             fontSize: "20px",
-//                             padding: "12px",
-//                         }}
+  const getCookie = (name) => {
+    const cookies = document.cookie.split("; ");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i];
+      const [cookieName, cookieValue] = cookie.split("=");
+      if (cookieName === name) {
+        return cookieValue;
+      }
+    }
+    return null;
+  };
 
-//                         declineButtonStyle={isHover ? {
-//                             backgroundColor: "white",
-//                             color: "black",
-//                         } : {
-//                             backgroundColor: "white",
-//                             color: "black",
-//                             textDecorationLine: 'underline',
-//                             textDecorationColor: "#00CED1",
-//                             textDecorationThickness: "3px",
-//                             fontSize: "20px",
+  if (!accept) {
+    return (
+      <>
+        {!isMobile ? (
+          <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center items-center">
+            <div
+              className="w-full h-[280px] px-6 rounded-xl flex flex-col items-start justify-center bg-white mx-8 mb-8 z-50"
+              style={{
+                boxShadow:
+                  "-8px 0 15px rgba(0, 0, 0, 0.5), 0 8px 15px rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              <h1 className="text-2xl font-bold py-3">We use cookies</h1>
+              <p className="text-gray-400 text-xl py-3">
+                If you click ‘accept’, we and third-party providers will process
+                your personal data and store information (e.g., through cookies
+                on your device). In accordance with Art. 49 para. 1 lit. a GDPR,
+                your consent also includes the transfer to third countries
+                (e.g., the USA). See our privacy policy for more details.
+              </p>
+              <div className="flex">
+                <button
+                  type="button"
+                  onClick={handleAccept}
+                  className="hover:underline decoration-4 decoration-blue-500 text-lg text-[#444444] mr-6"
+                >
+                  Accept all
+                </button>
+                <button
+                  type="button"
+                  onClick={handleReject}
+                  className=" hover:underline decoration-4 decoration-blue-500 text-lg text-[#444444]"
+                >
+                  Decline
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="fixed bottom-0 left-0 flex right-0 items-center justify-center z-40">
+            <div
+              className="flex flex-col items-start justify-center h-[515px] bg-white w-full mx-4 mb-4 rounded-xl px-5"
+              style={{
+                boxShadow:
+                  "-8px 0 15px rgba(0, 0, 0, 0.5), 0 8px 15px rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              <h1 className="text-2xl font-bold py-3">We use cookies</h1>
+              <p className="text-gray-400 text-xl py-3">
+                If you click ‘accept’, we and third-party providers will process
+                your personal data and store information (e.g: through cookies
+                on your device. In accordance with Art. 49 para. 1 lit. a GDPR,
+                your consent also includes the transfer to third countries, eg:
+                the. USA. Data protection declaration. See our privacy policy.
+              </p>
+              <div className="flex">
+                <button
+                  type="button"
+                  onClick={handleAccept}
+                  className="hover:underline decoration-4 decoration-blue-500 text-2xl text-[#444444] mr-6"
+                >
+                  Accept all
+                </button>
+                <button
+                  type="button"
+                  onClick={handleReject}
+                  className=" hover:underline decoration-4 decoration-blue-500 text-2xl text-[#444444]"
+                >
+                  Decline
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
 
-//                         }}
-//                         expires={150}
-//                     >
-//                         <div className='flex-col px-8 w-full h-full'>
-//                             <h1 className='font-bold text-xl text-black pt-4'>We Use Cookies</h1>
-//                             <p className='text-gray-400 pt-4'>If you click ‘accept’, we and third-party providers will process your personal data and store information e.g: through cookies on your device. In accordance with Art. 49 para. 1 lit. a GDPR, your consent also includes the transfer to third countries, eg: the. USA. Data protection declaration.See our <a href="http://" target="_blank" rel="noopener noreferrer" className='hover:text-blue-400'>privacy policy</a></p>
-//                         </div>
+  return null;
+};
 
-//                     </CookieConsent>
-//                 </div>
-//             )}
-//         </>
-//     )
-// }
-
-// export default Cookies
+export default Cookies;
