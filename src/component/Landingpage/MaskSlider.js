@@ -101,9 +101,6 @@ const MaskSlider = () => {
                         title={Product && Product.ProductImages[0].altText}
                         />
                           </div>
-                          {/* style={{
-                            backgroundImage: `url(/api/${Product && Product.ProductImages[0].path})`
-                          }} */}
                           <div className={`w-full h-full absolute top-0 ${colors[index]}`} />
                           <div className='w-full h-1/5 z-[9999] flex justify-center items-center'>
 
