@@ -1031,6 +1031,10 @@ video {
   -webkit-line-clamp: 6;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
