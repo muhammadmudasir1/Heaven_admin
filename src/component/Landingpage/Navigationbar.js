@@ -218,7 +218,7 @@ const Navigationbar = () => {
                                         <NavLink to={'/product/scanner'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('3DScanners')}</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <NavLink to={'/filament'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('Filament')}</NavLink>
+                                        <NavLink to={'/product/filament'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('Filament')}</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
                                         <NavLink to={'/ratgaber'} className={'text-xl font-normal'} onClick={closeDashboard}>Tutorials</NavLink>

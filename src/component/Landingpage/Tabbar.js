@@ -110,7 +110,7 @@ const Tabbar = () => {
                 setPageOnPrinter(false)
               }}
               className='py-4 px-4 flex items-center text-neutral-800 text-xl font-light font-[Roboto] hover:text-white hover:bg-customBlue transition ease-linear duration-300'>{t('3DScanner')}</NavLink>
-            <NavLink to={'/filament'}
+            <NavLink to={'/product/filament'}
               onClick={(e) => {
                 setisOpen(false)
                 setPageOnPrinter(false)

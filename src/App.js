@@ -1,20 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-// import CookiesTry from './Cookies/Cookies'
-import CutterView from "./component/CUTTERComponents/CutterView"
 import CompareResult from "./component/CompareResult"
 import ComparePage from "./component/ComparisonComponet/ComparePage"
-import FDMView from "./component/FDMAComponents/FDMView"
 import Home from "./component/Home"
 import Navigationbar from "./component/Landingpage/Navigationbar"
 import DetailNews from "./component/NewsComponents/DetailNew"
-import NewsView from "./component/NewsView"
-import Ratgaber from './component/Ratgaber'
 import DetailBeginnersGuid from "./component/Ratgaber/DetailBeginnersGuid"
 import Review from "./component/Review"
-import ScannerView from "./component/SCANNERComponents/ScannerView"
-import SLAView from "./component/SLAComponents/SLAView"
-import SearchView from "./component/SearchView"
-import ShowFilament from "./component/ShowFilament"
 import SingleReview from "./component/SingleReview"
 import AddBeginnersGuid from "./component/admin/AddBeginnersGuid"
 import AddNews from "./component/admin/AddNews"
@@ -40,6 +31,14 @@ import NotFound from "./component/NotFound"
 import CookiesTry from './Cookies/Cookies' 
 import Impressium from "./component/Impressium"
 import DataPrivacy from "./component/DataPrivacy"
+import FdmListView from "./component/ListViewProduct/FdmListView"
+import SlaListView from "./component/ListViewProduct/SlaListView"
+import LaserCutterListView from "./component/ListViewProduct/LaserCutterListView"
+import ScannarListView from "./component/ListViewProduct/ScannarListView"
+import FilamentListView from "./component/ListViewProduct/FilamentListView"
+import SearchListView from "./component/ListViewProduct/SearchListView"
+import TutorialListView from "./component/ListViewNonProduct/TutorialListView"
+import NewsListView from "./component/ListViewNonProduct/NewsListView"
 
 const App = () => {
     return (
@@ -51,24 +50,27 @@ const App = () => {
                         <Route element={<Navigationbar />}>
                             <Route path="/ComparisonPage" element={<ComparePage />} />
                             <Route path="/" element={<Home />} />
-                            <Route path="/filament" element={<ShowFilament />} />
-                            <Route path="/ratgaber" element={<Ratgaber />} />
-                            <Route path="/ratgaber/:title/:id" element={<DetailBeginnersGuid />} />
                             <Route path='/comparision' element={<CompareResult />} />
                             <Route path="/impressium" element={<Impressium/>} />
                             <Route path="/dataprivacy" element={<DataPrivacy/>}/>
+
                             <Route path="/product" element={<Review />} >
-                                <Route path="fdm" element={<FDMView />} />
-                                <Route path="sla" element={<SLAView />} />
-                                <Route path="scanner" element={<ScannerView />} />
-                                <Route path="cutter" element={<CutterView />} />
-                                <Route path="search" element={<SearchView />} />
+                                <Route path="fdm" element={<FdmListView />} />
+                                <Route path="filament" element={<FilamentListView />} />
+                                <Route path="sla" element={<SlaListView />} />
+                                <Route path="scanner" element={<ScannarListView />} />
+                                <Route path="cutter" element={<LaserCutterListView />} />
+                                <Route path="search" element={<SearchListView />} />
                             </Route>
+                            <Route path="/ratgaber" element={<TutorialListView />} />
+                            <Route path="/ratgaber/:title/:id" element={<DetailBeginnersGuid />} />
+                            <Route path="/news" element={<NewsListView />} />
+                            <Route path="/news/:title/:id" element={<DetailNews />} />
+                            
+
                             <Route path="/productreview/:productNameURL/:id" element={<SingleReview />} >
                                 <Route path="allmostimportant" element={<SingleReview />} />
                             </Route>
-                            <Route path="/news" element={<NewsView />} />
-                            <Route path="/news/:title/:id" element={<DetailNews />} />
                         </Route>
                         <Route element={ <PrivatePage/>}>
                         <Route path="/dashboard" element={<Dashboard />}>
