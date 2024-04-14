@@ -72,7 +72,7 @@ const Doubleslider = () => {
       <div className="flex-col lg:w-3/4">
         <div className="lg:grow lg:relative my-8">
           <div class=" flex justify-center items-center">
-            <h1 class="text-neutral-800 text-2xl font-normal ">
+            <h1 class="text-neutral-800 text-2xl font-normal text-center">
               {t('LatestFDM')}
             </h1>
           </div>
@@ -111,11 +111,6 @@ const Doubleslider = () => {
                         navigate(`/productreview/${name}/${FDMproduct.Id}`);
                       }}
                     >
-                      {/* <div className=" w-full h-52 bg-cover bg-center"
-                        style={{
-                          backgroundImage: `url(/api/${FDMproduct.ProductImages[0].path})`
-                        }}
-                      /> */}
                        <div className=" w-full h-52 overflow-hidden"
                       >
                         <img className="h-full"
@@ -151,7 +146,7 @@ const Doubleslider = () => {
         </div>
         <div className="lg:grow lg:relative my-8">
           <div className=" flex justify-center items-center">
-            <h1 className="text-neutral-800 text-2xl font-normal">
+            <h1 className="text-neutral-800 text-2xl font-normal text-center">
               {t('LatestSLA')}
             </h1>
           </div>
@@ -199,9 +194,6 @@ const Doubleslider = () => {
                         />
 
                       </div>
-                      {/* style={{
-                        backgroundImage: `url(/api/${SLAproduct.ProductImages[0].path})`
-                      }} */}
                       <h2 className="pt-8 px-6 font-bold line-clamp-1">{SLAproduct.product_name}</h2>
                       <p className=" pt-4 px-6 line-clamp-4">
                         {SLAproduct.discription}

@@ -114,7 +114,9 @@ const Navigationbar = () => {
                 <div className='z-20 flex items-center'>
                     {/* <img src={svgLogo} alt="" className='' /> */}
                     <a href='/'>
-                    <img src={svgLogo} alt="" className='lg:w-32 lg:h-32 h-[35px] ' />
+                        {IsOpen &&
+                        <img src={svgLogo} alt="" className='lg:w-32 lg:h-32 h-[35px] ' />
+                        }
                     </a>
                     {/* <a href='/' className='text-white lg:text-2xl text-lg font-bold'>3DHeaven</a> */}
                 </div>
@@ -130,7 +132,8 @@ const Navigationbar = () => {
                             <div className='absolute left-2 z-30'>
                                 {!IsOpen ? (
                                     <div onMouseLeave={SearchMenu} className='relative w-[65vw]'>
-                                        <input value={Input} onChange={(e) => setInput(e.target.value)} type='text' placeholder={t("search")}
+                                        <input value={Input} onChange={(e) => setInput(e.target.value)} type='text'
+                                        placeholder={t("search")}
                                             onBlur={(e) => {
                                                 setTimeout(() => {
                                                     setResults(false)
@@ -139,7 +142,7 @@ const Navigationbar = () => {
                                                 setIsOpen(false)
                                             }}
 
-                                            className='pl-4 text-neutral-700 md:text-xl text-base font-light h-full w-full md:rounded-xl rounded-full md:py-3 py-1' />
+                                            className='pl-4 outline-none text-neutral-700 md:text-xl text-base font-light h-full w-full md:rounded-xl rounded-full md:py-3 py-1 ' />
                                         <div className='absolute z-40 bg-slate-50 w-full mt-2 rounded-lg overflow-y-scroll max-h-72'>
                                             {result.length > 0 && result.map((ele) => (
                                                 <div key={ele.Id} className='px-4 py-4'

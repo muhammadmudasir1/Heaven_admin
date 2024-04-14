@@ -36,6 +36,7 @@ import AuthProvider from "./context/AuthContext"
 import CurrentProductProvider from "./context/CurrentProductContext"
 import NewsLetter from "./component/admin/NewsLetter"
 import Setting from "./component/admin/Setting"
+import NotFound from "./component/NotFound"
 
 
 const App = () => {
@@ -88,7 +89,7 @@ const App = () => {
                         </Route>
                         </Route>
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="*" element={<p>404 Page not found</p>} />
+                        <Route path="*" element={<NotFound/>} />
                     </Routes>
                 </CurrentProductProvider>
             </AuthProvider>

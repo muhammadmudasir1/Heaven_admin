@@ -138,7 +138,7 @@ export default function Editor({isEditableEditor}) {
               hasCellBackgroundColor={tableCellBackgroundColor}
             />
             <TableCellResizer />
-            <ImagesPlugin />
+            <ImagesPlugin captionsEnabled={false}/>
             <InlineImagePlugin />
             <LinkPlugin />
             <LexicalClickableLinkPlugin disabled={isEditable} />

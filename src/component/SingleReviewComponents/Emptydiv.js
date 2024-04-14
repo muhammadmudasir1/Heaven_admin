@@ -85,6 +85,7 @@ const Emptydiv = () => {
               <>
                 <div className='hidden' dangerouslySetInnerHTML={{ __html: data.seoKeys }} />
                 {/* <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data.review }} /> */}
+                <NoneEditableEditor text={data.review}/>
               </>
 
             }
