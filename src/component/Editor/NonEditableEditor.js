@@ -46,6 +46,21 @@ function UpdatePlugin({update}){
 
 export default function NonEditableEditor({text }) {
     const [update,setUpdate] = useState(null);
+    // console.log(JSON.parse(text))
+    useEffect(()=>{
+      const jsonData=JSON.parse(text)
+      jsonData.root.children.forEach(element => {
+        if (element.type="paragraph"){
+          element.children.forEach((item)=>{
+            if(item.type=="image"){
+              console.log(item)
+              // console.log(window.screen.availWidth)
+              // item.width=window.screen.availWidth
+            }
+          })
+        }
+      });
+    },[text])
 
 const initialEditorState = text
 const initialConfig ={

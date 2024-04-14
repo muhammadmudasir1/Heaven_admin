@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Api from "../../api/Api";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import LoadingCard from "../LoadingCard";
+import LazyLoad from 'react-lazyload'
 
 const Doubleslider = () => {
   const [swiperInstanceSLA, setSwiperInstanceSLA] = useState(null);
@@ -113,11 +114,13 @@ const Doubleslider = () => {
                     >
                        <div className=" w-full h-52 overflow-hidden"
                       >
+                        <LazyLoad>
                         <img className="h-full"
                         src={`/api/${FDMproduct.ProductImages[0].path}`}
                         alt={FDMproduct.ProductImages[0].altText}
                         title={FDMproduct.ProductImages[0].altText}
                         />
+                        </LazyLoad>
 
                       </div>
                       
@@ -187,11 +190,14 @@ const Doubleslider = () => {
                     >
                       <div className=" w-full h-52 overflow-hidden"
                       >
+                        <LazyLoad>
+
                         <img className="h-full"
                         src={`/api/${SLAproduct.ProductImages[0].path}`}
                         alt={SLAproduct.ProductImages[0].altText}
                         title={SLAproduct.ProductImages[0].altText}
                         />
+                        </LazyLoad>
 
                       </div>
                       <h2 className="pt-8 px-6 font-bold line-clamp-1">{SLAproduct.product_name}</h2>

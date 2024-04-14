@@ -175,6 +175,7 @@ export function UpdateInlineImageDialog({
 }
 
 export default function InlineImageComponent({
+  
   src,
   altText,
   nodeKey,
@@ -199,6 +200,11 @@ export default function InlineImageComponent({
   const [isSelected, setSelected, clearSelection] =
     useLexicalNodeSelection(nodeKey);
   const [editor] = useLexicalComposerContext();
+
+  useEffect(()=>{
+    console.log(editor._editable)
+  },[editor])
+
   const [selection, setSelection] = useState<BaseSelection | null>(null);
   const activeEditorRef = useRef<LexicalEditor | null>(null);
 
@@ -353,6 +359,8 @@ export default function InlineImageComponent({
     <Suspense fallback={null}>
       <>
         <div draggable={draggable}>
+          {
+            editor._editable &&
           <button
             className="image-edit-button"
             ref={buttonRef}
@@ -367,6 +375,7 @@ export default function InlineImageComponent({
             }}>
             Edit
           </button>
+          }
           <LazyImage
             className={
               isFocused
