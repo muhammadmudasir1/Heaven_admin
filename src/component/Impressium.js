@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Api from "../api/Api";
 import Tabbar from "./Landingpage/Tabbar";
+import NonEditableEditor from "./Editor/NonEditableEditor";
 
 const Impressium = () => {
   const [data, setData] = useState(null);
@@ -8,7 +9,7 @@ const Impressium = () => {
     const fetchData = async () => {
       try {
         const response = await Api.get("/api/setting/imprint");
-        console.log(response.data);
+        console.log(response.data[0].review);
         setData(response.data);
       } catch (error) {
         console.log(error);
@@ -21,11 +22,9 @@ const Impressium = () => {
     <>
       <Tabbar />
       <div>
-        {data ? (
-          <div dangerouslySetInnerHTML={{ __html: data.review }}/>
-        ) : (
-          <h1>Loading data</h1>
-        )}
+        {data &&
+        <NonEditableEditor text={data[0].review}/> 
+         } 
       </div>
     </>
   );

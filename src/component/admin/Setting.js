@@ -1060,7 +1060,8 @@ const DataPolicy=()=>{
                     <div className='w-full relative h-[350px]'>
                         <div className='w-full h-[300px]'>
 
-                        <TextEditor text={text} setText={setText} className="h-[300px]"/>
+                        {/* <TextEditor text={text} setText={setText} className="h-[300px]"/> */}
+                        <EditableEditor text={text} setText={setText} className="h-[300px]"/>
                         </div>
                     </div>
                     <div className=' w-full flex flex-row-reverse px-2 '>
