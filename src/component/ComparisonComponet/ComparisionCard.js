@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Checkbox } from "@material-tailwind/react"
 import imges from '../../imges/coupon.svg'
 import ebay from '../../imges/EBay_logo.png'
 import amazon from '../../imges/amazon.png'
@@ -7,7 +6,6 @@ import geeksbuying from '../../imges/geeksbuying.png'
 import anyCubic from '../../imges/anyCubic.png'
 import artillery from '../../imges/artillery.png'
 import bambuLab from '../../imges/bambuLab.svg'
-// import creality from '../../imges/bambuLab.svg'
 import creality from '../../imges/creality.png'
 import elegoo from '../../imges/elegoo.png'
 import jake from '../../imges/jake.svg'
@@ -31,6 +29,7 @@ const PriceTile = ({ priceData }) => {
 
     useEffect(() => {
 
+        // eslint-disable-next-line default-case
         switch (priceData.siteType) {
             case 1:
                 setLogo(amazon)
@@ -101,7 +100,7 @@ const PriceTile = ({ priceData }) => {
     return (
         <div className='flex border-2 items-center justify-evenly border-blue-500 md:rounded-md rounded-xl py-2 md:h-14 h-10 my-2 w-full p-2 hover:bg-customBlue cursor-pointer group' >
             <div className='md:w-1/2 w-1/3 h-full flex justify-center items-center rounded-xl  p-2 bg-gray-300 '>
-                {priceData.siteType==16?
+                {priceData.siteType===16?
                 <p className=' text-xs'>{priceData.siteName}</p>
                 :<img src={logo} alt="" className='w-full' />
                 }
@@ -137,9 +136,11 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
     const {t}=useTranslation()
     useEffect(() => {
         console.log(card)
+        // eslint-disable-next-line array-callback-return
         let purchaselink = card.purchaseLinks.map((element) => {
             if (element.coupon) {
                 let site = ""
+                // eslint-disable-next-line default-case
                 switch (element.siteType) {
                     case 1:
                         site = "Amazon"
@@ -197,13 +198,14 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                 return result
             }
         });
+        // eslint-disable-next-line array-callback-return
         purchaselink = purchaselink.filter((element) => {
             if (element) {
                 return element
             }
         })
         setPurchaseLinks(purchaselink)
-    }, [])
+    }, [card])
 
     return (
         width > 600 ?
@@ -218,7 +220,7 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                             <h1 className='text-neutral-800 text-2xl font-semibold font-[Roboto] my-3 line-clamp-2'>{card.product_name}</h1>
                             <div className='px-2'>
                                 {
-                                    card.productType == 1 ?
+                                    card.productType === 1 ?
                                         <ul className=''>
                                             <div className='flex items-center'>
                                                 <li className=' text-lg font-bold pr-2 list-disc'>Pixel Resolution: </li>
@@ -237,7 +239,7 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                                                 <li>{card.SLA && card.SLA.lightTechnology}</li>
                                             </div>
                                         </ul>
-                                        : card.productType == 2 ?
+                                        : card.productType === 2 ?
                                             <ul className=''>
                                                 <div className='flex items-center'>
                                                     <li className=' text-lg font-bold pr-2 list-disc'>Print Volume: </li>
@@ -256,7 +258,7 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                                                     <li>{card.FDM && card.FDM.printingAccuracyXYResolution}</li>
                                                 </div>
                                             </ul>
-                                            : card.productType == 3 ?
+                                            : card.productType === 3 ?
                                                 <ul className=''>
                                                     <div className='flex items-center'>
                                                         <li className=' text-lg font-bold pr-2 list-disc'>Laser Power: </li>
@@ -339,9 +341,9 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
                             <div className='flex flex-col justify-start items-center h-1/5 '>
                                 <p className='text-lg'>{t('officialPrice')}:</p>
                                 <h1 className=' font-bold text-xl'>
-                                <span className='font-light'>{card && card.unit == "€" && "Euro"}  </span>
+                                <span className='font-light'>{card && card.unit === "€" && "Euro"}  </span>
                                     {card && card.price}
-                                    <span className='font-light'>  {card && card.unit == "$" && "USD"}</span>
+                                    <span className='font-light'>  {card && card.unit === "$" && "USD"}</span>
                                 </h1>
 
                             </div>
