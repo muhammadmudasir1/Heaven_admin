@@ -114,9 +114,9 @@ const Navigationbar = () => {
                 <div className='z-20 flex items-center'>
                     {/* <img src={svgLogo} alt="" className='' /> */}
                     <a href='/'>
-                        {IsOpen &&
-                        <img src={svgLogo} alt="" className='lg:w-32 lg:h-32 h-[35px] ' />
-                        }
+                        
+                        <img src={svgLogo} alt="" className={`lg:w-32 lg:h-32 h-[35px] ${isMobile && !IsOpen?"hidden":"block"}`} />
+                        
                     </a>
                     {/* <a href='/' className='text-white lg:text-2xl text-lg font-bold'>3DHeaven</a> */}
                 </div>
@@ -218,7 +218,7 @@ const Navigationbar = () => {
                                         <NavLink to={'/product/scanner'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('3DScanners')}</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
-                                        <NavLink to={'/filament'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('Filament')}</NavLink>
+                                        <NavLink to={'/product/filament'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('Filament')}</NavLink>
                                     </li>
                                     <li className='z-20 text-black'>
                                         <NavLink to={'/ratgaber'} className={'text-xl font-normal'} onClick={closeDashboard}>Tutorials</NavLink>
