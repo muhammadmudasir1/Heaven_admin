@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const ListView = ({ Cards, isLoading }) => {
-    const [CardPerPage, setCardPerPage] = useState(5);
+    const [CardPerPage] = useState(5);
     const [CurrentPage, setCurrentPage] = useState(1);
     const { width } = useWindowDimensions()
     const navigation=useNavigate()

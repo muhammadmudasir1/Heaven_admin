@@ -1,25 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button, IconButton } from "@material-tailwind/react";
 import { FaArrowLeftLong,FaArrowRightLong} from "react-icons/fa6";
 
 
 const PaginationClass = ({ currentPage, cardsPerPage, totalcards, onPageChange }) => {
-    // useEffect(()=>{
-    //     console.log("from pagination")
-    //     console.log(cardsPerPage)
-    //     console.log(totalcards)
-    // },
-    // [totalcards, cardsPerPage])
-
     let total = (totalcards.length)/cardsPerPage;
     total=Math.ceil(total);
     const pageNumber = [];
     for (let i = 1; i <= total; i++) {
         pageNumber.push(i);
     }
-
-    // console.log(pageNumber)
-    // console.log('totalPage ' +total)
     return (
         <div className="flex items-center gap-4 mb-5">
             <Button
