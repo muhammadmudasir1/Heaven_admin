@@ -9,7 +9,6 @@ const SelectedCard = ({data}) => {
             <img src={`/api/${data.image}`} alt="" className='md:h-16 h-10' />
             <div className='px-2'>
                 <h1 className='text-neutral-800 text-base font-semibold font-[Roboto] line-clamp-2' title={data.title}>{data.title}</h1>
-                {/* <h1 className='text-neutral-800 text-sm font-semibold font-[Roboto]'>{data.price}</h1> */}
             </div>
         </div>
     )

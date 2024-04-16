@@ -4,19 +4,7 @@ import Api from '../../api/Api';
 
 const Banner = () => {
   const { id } = useParams()
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
   const [title,setTitle]=useState()
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1000);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,20 +22,10 @@ const Banner = () => {
 
  return (
     <>
-      {!isMobile ? (
 
-        <div className='flex items-center justify-center bg-zinc-100 py-4'>
-          <h1 className='text-neutral-800 text-5xl font-bold pr-44'>{title}</h1>
+        <div className='lg:flex lg:items-center lg:justify-center lg:bg-zinc-100 lg:py-4'>
+          <h1 className='text-center top-12 left-8 text-neutral-800 text-2xl font-bold  lg:text-neutral-800 lg:text-5xl lg:font-bold lg:pr-44'>{title}</h1>
         </div>
-
-      ) : (
-        <>
-          <div className='w-full relative '>
-            <h1 className='absolute text-start top-12 left-8 text-neutral-800 text-2xl font-bold '>{title}</h1>
-          </div>
-          
-        </>
-      )}
     </>
   )
 }

@@ -20,20 +20,7 @@ import { RxSpaceBetweenHorizontally } from "react-icons/rx";
 import quality from '../../imges/quality.png'
 
 const SingleReviewPropertyCard = ({ specs, productType }) => {
-    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
     const {width}=useWindowDimensions()
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsDesktop(window.innerWidth > 768);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     useEffect(() => {
         console.log(specs)
