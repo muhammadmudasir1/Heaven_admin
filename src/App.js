@@ -5,7 +5,6 @@ import Home from "./component/Home"
 import Navigationbar from "./component/Landingpage/Navigationbar"
 import DetailNews from "./component/NewsComponents/DetailNew"
 import DetailBeginnersGuid from "./component/Ratgaber/DetailBeginnersGuid"
-import Review from "./component/Review"
 import SingleReview from "./component/SingleReview"
 import AddBeginnersGuid from "./component/admin/AddBeginnersGuid"
 import AddNews from "./component/admin/AddNews"
@@ -31,6 +30,7 @@ import NotFound from "./component/NotFound"
 import CookiesTry from './Cookies/Cookies' 
 import Impressium from "./component/Impressium"
 import DataPrivacy from "./component/DataPrivacy"
+import ListViewProduct from "./component/ListViewProduct"
 import FdmListView from "./component/ListViewProduct/FdmListView"
 import SlaListView from "./component/ListViewProduct/SlaListView"
 import LaserCutterListView from "./component/ListViewProduct/LaserCutterListView"
@@ -48,13 +48,13 @@ const App = () => {
                 <CurrentProductProvider>
                     <Routes>
                         <Route element={<Navigationbar />}>
-                            <Route path="/ComparisonPage" element={<ComparePage />} />
                             <Route path="/" element={<Home />} />
+                            <Route path="/ComparisonPage" element={<ComparePage />} />
                             <Route path='/comparision' element={<CompareResult />} />
                             <Route path="/impressium" element={<Impressium/>} />
                             <Route path="/dataprivacy" element={<DataPrivacy/>}/>
 
-                            <Route path="/product" element={<Review />} >
+                            <Route path="/product" element={<ListViewProduct />} >
                                 <Route path="fdm" element={<FdmListView />} />
                                 <Route path="filament" element={<FilamentListView />} />
                                 <Route path="sla" element={<SlaListView />} />
@@ -62,16 +62,16 @@ const App = () => {
                                 <Route path="cutter" element={<LaserCutterListView />} />
                                 <Route path="search" element={<SearchListView />} />
                             </Route>
+
                             <Route path="/ratgaber" element={<TutorialListView />} />
                             <Route path="/ratgaber/:title/:id" element={<DetailBeginnersGuid />} />
                             <Route path="/news" element={<NewsListView />} />
                             <Route path="/news/:title/:id" element={<DetailNews />} />
-                            
+                            <Route path="/productreview/:productNameURL/:id" element={<SingleReview />} />
 
-                            <Route path="/productreview/:productNameURL/:id" element={<SingleReview />} >
-                                <Route path="allmostimportant" element={<SingleReview />} />
-                            </Route>
                         </Route>
+                        
+                        {/* Admin Pannel */}
                         <Route element={ <PrivatePage/>}>
                         <Route path="/dashboard" element={<Dashboard />}>
                             <Route path="product" element={<ProductDashboard />} />

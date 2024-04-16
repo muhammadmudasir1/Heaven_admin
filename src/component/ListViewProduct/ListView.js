@@ -47,7 +47,6 @@ const ListView = ({ Cards, isLoading }) => {
                             title={Cards.ProductImages[0].altText}
                         />
                     </div>
-                    {/* style={{ backgroundImage: `url(/api/${Cards.ProductImages[0].path})`, }} */}
                     <div className="lg:pl-8 lg:w-3/5 w-full">
                         <h1 className="text-neutral-800 lg:text-3xl text-xl font-semibold py-4 lg:text-left text-center px-4 lg:px-0 ">
                             {Cards.product_name}

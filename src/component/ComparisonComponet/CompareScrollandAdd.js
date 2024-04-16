@@ -35,7 +35,7 @@ const ComparisionTabbar = () => {
       <div className="flex w-3/4 justify-around text-xl h-full">
         <li
           className={`py-3 cursor-pointer px-2 ${
-            productType === 1 && "active"
+            productType == 1 && "active"
           }`}
           onClick={(e) => {
             setProductType(1);
@@ -45,7 +45,7 @@ const ComparisionTabbar = () => {
         </li>
         <li
           className={`py-3 cursor-pointer px-2 ${
-            productType === 2 && "active"
+            productType == 2 && "active"
           }`}
           onClick={(e) => {
             setProductType(2);
@@ -55,7 +55,7 @@ const ComparisionTabbar = () => {
         </li>
         <li
           className={`py-3 cursor-pointer px-2 ${
-            productType === 3 && "active"
+            productType == 3 && "active"
           }`}
           onClick={(e) => {
             setProductType(3);
@@ -65,7 +65,7 @@ const ComparisionTabbar = () => {
         </li>
         <li
           className={`py-3 cursor-pointer px-2 ${
-            productType === 4 && "active"
+            productType == 4 && "active"
           }`}
           onClick={(e) => {
             setProductType(4);
@@ -122,15 +122,15 @@ const CompareScrollandAdd = ({ reload }) => {
     productsParams = JSON.parse(decodeURIComponent(productsParams));
     let priceParams = queryParams.get("price");
     priceParams = JSON.parse(decodeURIComponent(priceParams));
-    if (priceParams === 1) {
+    if (priceParams == 1) {
       priceParams = 500;
-    } else if (priceParams === 2) {
+    } else if (priceParams == 2) {
       priceParams = 1000;
-    } else if (priceParams === 3) {
+    } else if (priceParams == 3) {
       priceParams = 1500;
-    } else if (priceParams === 4) {
+    } else if (priceParams == 4) {
       priceParams = 2000;
-    } else if (priceParams === 5) {
+    } else if (priceParams == 5) {
       priceParams = 2500;
     }
 
@@ -202,7 +202,7 @@ const CompareScrollandAdd = ({ reload }) => {
   const handleCheckboxChange = (data) => {
     let isSelected = false;
     selectedCards.forEach((prev) => {
-      if (prev.Id === data.Id) {
+      if (prev.Id == data.Id) {
         isSelected = true;
       }
     });
@@ -230,50 +230,6 @@ const CompareScrollandAdd = ({ reload }) => {
 
   return (
     <>
-      {/* <ul className="flex pmb-5 items-center justify-center ">
-        <div className="flex w-3/4 justify-around text-xl h-full">
-          <li
-            className={`py-3 cursor-pointer px-2 ${
-              productType === 1 && "active"
-            }`}
-            onClick={(e) => {
-              setProductType(1);
-            }}
-          >
-            <p>{t("SLA")}</p>
-          </li>
-          <li
-            className={`py-3 cursor-pointer px-2 ${
-              productType === 2 && "active"
-            }`}
-            onClick={(e) => {
-              setProductType(2);
-            }}
-          >
-            <p>{t("fdm")}</p>
-          </li>
-          <li
-            className={`py-3 cursor-pointer px-2 ${
-              productType === 3 && "active"
-            }`}
-            onClick={(e) => {
-              setProductType(3);
-            }}
-          >
-            <p>{t("laserCutter")}</p>
-          </li>
-          <li
-            className={`py-3 cursor-pointer px-2 ${
-              productType === 4 && "active"
-            }`}
-            onClick={(e) => {
-              setProductType(4);
-            }}
-          >
-            <p>{t("3DScanner")}</p>
-          </li>
-        </div>
-      </ul> */}
       {width > 600 ? ComparisionTabbar() : ComparisionTabbar()}
 
       <div className="mb-12">
@@ -364,29 +320,6 @@ const CompareScrollandAdd = ({ reload }) => {
           )}
         </div>
       )}
-
-      {/* 
-      {selectedCards.length > 0 && selectedCards.length <= 4 && (
-        <div
-          className={`bg-black bg-opacity-40 z-10 w-full  items-center py-4 px-8 mt-2 fixed bottom-0 ${
-            isSticky ? "sticky w-full z-20" : ""
-          } `}
-        >
-          <div className="w-full grid grid-cols-2 gap-2">
-            {selectedCards.map((CheckedCard) => {
-              return <SelectedCard data={CheckedCard} />;
-            })}
-          </div>
-          <div className="w-full flex justify-center">
-            <button
-              onClick={handleComparison}
-              className="border-hidden md:h-16 h-10 md:px-4 px-1 bg-customBlue hover:bg-sky-500 flex items-center justify-center rounded-md cursor-pointer text-white mx-2"
-            >
-              {t("compare")}
-            </button>
-          </div>
-        </div>
-      )} */}
     </>
   );
 };

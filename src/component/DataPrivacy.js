@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from "react";
 import Api from "../api/Api";
 import Tabbar from "./Landingpage/Tabbar";
+import NonEditableEditor from "./Editor/NonEditableEditor";
 
 const DataPrivacy = () => {
-  const [privacy, setPrivacy] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const data = async () => {
+    const Fetchdata = async () => {
       try {
         const response = await Api.get("/api/setting/dataprivacy");
         console.log(response.data);
-        setPrivacy(response.data);
+        setData(response.data);
       } catch (error) {
         console.log(error);
       }
     };
-    data();
+    Fetchdata();
   }, []);
-  if (privacy) {
+  if (data) {
       return (
       <>
           <Tabbar />
-          <div dangerouslySetInnerHTML={{ __html: privacy.review }} />
+          {/* <div> */}
+          {data.length > 0 &&
+        <NonEditableEditor text={data[0].review}/> 
+         } 
+
+          {/* </div> */}
         </>
       );
   }
