@@ -1224,10 +1224,6 @@ video {
   height: 350px;
 }
 
-.h-\[358\.18px\] {
-  height: 358.18px;
-}
-
 .h-\[35px\] {
   height: 35px;
 }
@@ -1682,10 +1678,6 @@ video {
   gap: 0.5rem;
 }
 
-.gap-24 {
-  gap: 6rem;
-}
-
 .gap-3 {
   gap: 0.75rem;
 }
@@ -1986,11 +1978,6 @@ video {
   border-top-color: transparent;
 }
 
-.bg-\[\#008080\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 128 128 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#00CED1\] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 206 209 / var(--tw-bg-opacity));
@@ -1999,11 +1986,6 @@ video {
 .bg-\[\#026CC4\] {
   --tw-bg-opacity: 1;
   background-color: rgb(2 108 196 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#02AED6\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(2 174 214 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#035091\] {
@@ -2024,11 +2006,6 @@ video {
 .bg-\[\#EFBE25\] {
   --tw-bg-opacity: 1;
   background-color: rgb(239 190 37 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#F2F4F3\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(242 244 243 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#F4F4F4\] {
@@ -2421,10 +2398,6 @@ video {
   padding-bottom: 2rem;
 }
 
-.pb-\[76px\] {
-  padding-bottom: 76px;
-}
-
 .pl-1 {
   padding-left: 0.25rem;
 }
@@ -2497,10 +2470,6 @@ video {
   padding-top: 1.5rem;
 }
 
-.pt-7 {
-  padding-top: 1.75rem;
-}
-
 .pt-8 {
   padding-top: 2rem;
 }
@@ -2523,10 +2492,6 @@ video {
 
 .text-end {
   text-align: end;
-}
-
-.font-\[Avenir\] {
-  font-family: Avenir;
 }
 
 .font-\[Roboto\] {
@@ -2867,11 +2832,6 @@ video {
   border-color: rgb(0 206 209 / var(--tw-border-opacity));
 }
 
-.hover\:bg-\[\#00CED1\]:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 206 209 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-\[\#EEEEEE\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(238 238 238 / var(--tw-bg-opacity));
@@ -3108,10 +3068,6 @@ video {
     order: 2;
   }
 
-  .lg\:col-span-2 {
-    grid-column: span 2 / span 2;
-  }
-
   .lg\:col-span-6 {
     grid-column: span 6 / span 6;
   }
@@ -3292,10 +3248,6 @@ video {
 
   .lg\:w-auto {
     width: auto;
-  }
-
-  .lg\:w-full {
-    width: 100%;
   }
 
   .lg\:min-w-\[200px\] {

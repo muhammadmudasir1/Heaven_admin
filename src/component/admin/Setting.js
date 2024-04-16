@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RxCaretUp,RxCaretDown } from "react-icons/rx";
 import TextEditor from './TextEditor';
+import EditableEditor from '../Editor/EditableEditor';
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
 import Api from '../../api/Api';
@@ -877,6 +878,7 @@ const Imprint=()=>{
     const [isOpen,setIsOpen]=useState(false)
     const { t } = useTranslation()
     const [text,setText]=useState("")
+    const [showEditor,setShowEditor]= useState(false)
     const { auth, setAuth } = useAuth()
     const navigate=useNavigate()
     const refresh = useRefresh()
@@ -885,7 +887,12 @@ const Imprint=()=>{
         const getData= async ()=>{
             try {
                const response= await Api.get(`/api/setting/imprint`)
-               setText(response.data[0].review)
+               if (response.data[0].review){
+                setText("")//response.data[0].review
+                setShowEditor(true)
+               }else{
+                setShowEditor(true)
+               }
 
             } catch (error) {
                 console.log(error)
@@ -955,7 +962,10 @@ const Imprint=()=>{
                     <div className='w-full relative h-[350px]'>
                         <div className='w-full h-[300px]'>
 
-                        <TextEditor text={text} setText={setText} className="h-[300px]"/>
+                        {/* <TextEditor text={text} setText={setText} className="h-[300px]"/> */}
+                        {/* {text && showEditor && */}
+                            <EditableEditor text={text} setText={setText} className="h-[300px]"  />
+                            {/* } */}
                         </div>
                     </div>
                     <div className=' w-full flex flex-row-reverse px-2 '>
