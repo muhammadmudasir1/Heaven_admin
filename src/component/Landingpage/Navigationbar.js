@@ -122,7 +122,7 @@ const Navigationbar = () => {
                 </div>
                 {isMobile ? (
                     <>
-                        <div className='flex flex-row justify-between items-center'>
+                        <div className='flex flex-row justify-between items-center '>
                             {!IsOpen ? ('') : (<div className='ml-4 text-white text-base '>
                                 Best deals
                             </div>)}

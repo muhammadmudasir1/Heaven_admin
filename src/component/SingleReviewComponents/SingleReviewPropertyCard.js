@@ -4,10 +4,6 @@ import { GoCodespaces } from "react-icons/go";
 import { FaTemperatureThreeQuarters } from "react-icons/fa6";
 import { RiPrinterCloudFill } from "react-icons/ri";
 import { useEffect } from 'react';
-import speed from './Speed.png'
-import Bauraum from './Bauraum.png'
-import nozzle from './printer_d_nozzle_outline_icon.png'
-import temperature from './temperature-bounding box.png'
 import { TbWaveSine } from "react-icons/tb";
 import { GiLaserPrecision } from "react-icons/gi";
 import { SiEnvoyproxy } from "react-icons/si";
