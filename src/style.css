@@ -1207,10 +1207,6 @@ video {
   height: 270px;
 }
 
-.h-\[280px\] {
-  height: 280px;
-}
-
 .h-\[300px\] {
   height: 300px;
 }
@@ -1439,6 +1435,10 @@ video {
   width: 255px;
 }
 
+.w-\[280px\] {
+  width: 280px;
+}
+
 .w-\[283px\] {
   width: 283px;
 }
@@ -1485,10 +1485,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[280px\] {
-  width: 280px;
 }
 
 .min-w-\[200px\] {
@@ -2021,6 +2017,11 @@ video {
   background-color: rgb(2 174 214 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#035091\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(3 80 145 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#C2DCF0\] {
   --tw-bg-opacity: 1;
   background-color: rgb(194 220 240 / var(--tw-bg-opacity));
@@ -2175,6 +2176,10 @@ video {
   background-color: rgb(250 250 249 / var(--tw-bg-opacity));
 }
 
+.bg-transparent {
+  background-color: transparent;
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -2196,15 +2201,6 @@ video {
 .bg-zinc-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(244 244 245 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#035091\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(3 80 145 / var(--tw-bg-opacity));
-}
-
-.bg-transparent {
-  background-color: transparent;
 }
 
 .bg-opacity-40 {
@@ -2324,6 +2320,11 @@ video {
   padding-right: 5rem;
 }
 
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -2404,13 +2405,12 @@ video {
   padding-bottom: 2rem;
 }
 
-.px-24 {
-  padding-left: 6rem;
-  padding-right: 6rem;
-}
-
 .pb-1 {
   padding-bottom: 0.25rem;
+}
+
+.pb-12 {
+  padding-bottom: 3rem;
 }
 
 .pb-16 {
@@ -2539,10 +2539,6 @@ video {
 
 .pt-\[300px\] {
   padding-top: 300px;
-}
-
-.pb-12 {
-  padding-bottom: 3rem;
 }
 
 .text-center {
@@ -3148,6 +3144,11 @@ video {
     grid-column: span 6 / span 6;
   }
 
+  .lg\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
   .lg\:mx-2 {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -3156,11 +3157,6 @@ video {
   .lg\:mx-8 {
     margin-left: 2rem;
     margin-right: 2rem;
-  }
-
-  .lg\:mx-0 {
-    margin-left: 0px;
-    margin-right: 0px;
   }
 
   .lg\:mr-12 {
@@ -3217,6 +3213,10 @@ video {
 
   .lg\:h-\[250px\] {
     height: 250px;
+  }
+
+  .lg\:h-\[280px\] {
+    height: 280px;
   }
 
   .lg\:h-\[400px\] {
