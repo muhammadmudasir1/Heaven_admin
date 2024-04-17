@@ -53,7 +53,7 @@ const TutorialListView = () => {
         <p className='text-white'>{description}</p>
       </div>
 
-      <ListView Cards={Cards} isLoading={isLoader} isNews={true}/>
+      <ListView Cards={Cards} isLoading={isLoader} isNews={false}/>
     </>
 
   );

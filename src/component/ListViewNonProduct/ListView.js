@@ -28,7 +28,14 @@ const ListView = ({ Cards, isLoading ,isNews}) => {
                 <div
                     onClick={(e) => {
                         const name = Cards.Title.replaceAll(' ', '-')
-                        navigation(`/ratgaber/${name}/${isNews?Cards.newsId:Cards.guidId}`)
+                        if(isNews){
+
+                            navigation(`/news/${name}/${Cards.newsId}`)
+                        }
+                        else{
+                            navigation(`/ratgaber/${name}/${Cards.guidId}`)
+
+                        }
                     }}
                     className="lg:flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer mr-4 ml-4 lg:ml-0 lg:mr-0"
                     style={{

@@ -39,6 +39,8 @@ import SearchListView from "./component/ListViewProduct/SearchListView"
 import TutorialListView from "./component/ListViewNonProduct/TutorialListView"
 import NewsListView from "./component/ListViewNonProduct/NewsListView"
 import Review from "./component/Review"
+import NewsDetailView from "./component/NonProductDetailView/NewsDetailView"
+import TutorialDetailView from "./component/NonProductDetailView/TutorialDetailView"
 
 const App = () => {
     return (
@@ -65,9 +67,9 @@ const App = () => {
                             <Route path="/testberichte/:productNameURL/:id" element={<Review />} />
 
                             <Route path="/ratgaber" element={<TutorialListView />} />
-                            <Route path="/ratgaber/:title/:id" element={<DetailBeginnersGuid />} />
+                            <Route path="/ratgaber/:title/:id" element={<TutorialDetailView />} />
                             <Route path="/news" element={<NewsListView />} />
-                            <Route path="/news/:title/:id" element={<DetailNews />} />
+                            <Route path="/news/:title/:id" element={<NewsDetailView />} />
 
                         </Route>
                         
