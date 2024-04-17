@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet'
 import { A11y, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useNavigate } from 'react-router-dom';
 import { CiStar } from 'react-icons/ci';
 import Api from '../../api/Api'
 import useWindowDimensions from '../../hooks/useWindowDimensions';
@@ -11,9 +12,13 @@ import Tabbar from '../Landingpage/Tabbar';
 import ReviewTabbar from './SingleReviewTabbar';
 import WarningBannar from './WarningBannar';
 import PropertyCards from './PropertyCards';
+import ProsAndCons from './ProsAndCons';
+import PriceCards from './PriceCards';
+import ReviewText from './ReviewText'
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import SpecsComparision from './SpecsComparision';
 
 const SingleReview = () => {
     const { width } = useWindowDimensions()
@@ -33,7 +38,11 @@ const SingleReview = () => {
     const [specs, setSpecs] = useState({})
     const [productType, setProductType] = useState(0)
     const [isLoading, setIsloading] = useState(false)
+    const [scopeOfDeliveryDescription,setScopeOfDeliveryDescription]=useState("")
+    const [scopeOfDeliveryImages,setScopeOfDeliveryImages]=useState([])
+    const [scopeOfDeliveryMainImage,setScopeOfDeliveryMainImage]=useState('')
     const { t } = useTranslation()
+    const navigate=useNavigate()
 
 
 
@@ -42,7 +51,10 @@ const SingleReview = () => {
             try {
                 setIsloading(true)
                 const result = await Api.get(`/api/products/${id}`)
-                console.log(result.data)
+                // console.log("abc")
+                if (!result){
+                    navigate('/NotFound')
+                }
                 const apiImages = result.data.ProductImages.filter((image) => {
                     if (image.role !== 3) {
                         return true
@@ -59,6 +71,17 @@ const SingleReview = () => {
                     }
                     return 0
                 })
+                const SOD_images = result.data.ProductImages.filter((image) => {
+                    if (image.role === 3) {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+                setScopeOfDeliveryMainImage(SOD_images[0])
+                setScopeOfDeliveryImages(SOD_images)
+                setScopeOfDeliveryDescription(result.data.scope_of_delivery_discription)
                 setImages(apiImages)
                 setMainImage(apiImages[0])
                 setDiscription(result.data.discription)
@@ -88,6 +111,7 @@ const SingleReview = () => {
 
             } catch (error) {
                 setIsloading(false)
+                navigate('/NotFound')
                 console.log(error)
             }
         }
@@ -98,8 +122,12 @@ const SingleReview = () => {
         setMainImage(picture);
     };
 
+    const switchMainSODImage = (picture) => {
+        setScopeOfDeliveryMainImage(picture);
+    };
+
     return (
-        <div className=' w-screen overflow-hidden'>
+        <div className='overflow-hidden'>
             <Helmet>
                 <title>{title}</title>
                 <meta name='description' content={discription} />
@@ -112,18 +140,18 @@ const SingleReview = () => {
             </div>
             <ReviewTabbar />
             <div className='flex-col '>
-                {/* <div className=' lg:w-2/3 p-4'> */}
+                <div className=' lg:w-2/3 p-4'>
                     {
                         productType === 3 &&
                         <WarningBannar />
                     }
 
-                {/* </div> */}
+                </div>
                 <div className='w-full' id='alle'>
-                    <h1 class="hidden w-full py-8 bg-zinc-100 lg:flex items-center px-20 text-neutral-800 text-[32px] font-semibold">
+                    <h1 class="hidden overflow-hidden w-full py-8 bg-zinc-100 lg:flex items-center px-20 text-neutral-800 text-[32px] font-semibold">
                         {t("coreData")}</h1>
                 </div>
-                <div className='flex justify-between lg:pr-8 pr-0'>
+                <div className='w-full overflow-hidden flex justify-between lg:pr-8 pr-0'>
                     {
                         isLoading ?
                             <div className='lg:flex flex-col lg:pl-8 w-full px-4 lg:px-0'>
@@ -248,7 +276,7 @@ const SingleReview = () => {
                                         </div>
                                     </div>
                                     <div className='w-full lg:w-8/12 lg:h-full lg:pl-4 px-8'>
-                                        <h1 className=' text-neutral-800 lg:text-2xl text-xl text-center font-semibold lg:py-3 py-2'>{productName && productName}</h1>
+                                        <h1 className=' text-neutral-800 lg:text-2xl text-xl lg:text-left text-center font-semibold lg:py-3 py-2'>{productName && productName}</h1>
                                         <p className='lg:text-left text-center'>{discription && discription}</p>
                                         <div className='flex items-center mb-2 lg:justify-start justify-center lg:my-0 my-2'>
                                             <h1 className='text-2xl font-semibold pr-2'>{overall}</h1>
@@ -315,13 +343,76 @@ const SingleReview = () => {
 
                                 </div>
                                 <PropertyCards specs={specs} productType={productType} />
-                                {/* <ProsAndCons />
-                                <PriceCards /> */}
+                                <ProsAndCons />
+                                <PriceCards />
                             </div>
 
                     }
                     <div className='lg:block hidden min-h-[600px] min-w-[200px] lg:bg-white/95' style={{ boxShadow: '-8px 0 15px rgb(203,213,225,0.2), 0 8px 15px rgb(203,213,225,0.2)' }} ></div>
                 </div>
+                    <ReviewText/>
+                    <SpecsComparision/>
+                    {isLoading ?
+                            <div className='lg:flex  lg:pl-8 w-full px-4 lg:px-0 '>
+                                <div className='lg:flex pt-4 pb-8 justify-center lg:pr-4  relative w-full'>
+                                    <div className='lg:flex items-center lg:flex-col lg:w-[400px]'>
+                                        <div className='w-full h-64  rounded-md shadow-md bg-gray-200 animate-pulse'
+                                        />
+                                        <div className='lg:flex hidden items-center justify-center py-8 animate-pulse ' >
+                                            <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
+                                                <div className='w-full h-full ' />
+                                            </div>
+                                            <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
+                                                <div className='w-full h-full ' />
+                                            </div>
+                                            <div className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4'>
+                                                <div className='w-full h-full ' />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='w-full lg:h-[400px] h-[200px] p-4'>
+                                    <div className='animate-pulse bg-gray-200 w-full h-full'/>
+                                </div>
+
+                            </div>
+                    :<div className='col-span-8 pl-8 '>
+                    <div className='lg:flex pt-4 pb-8 justify-center pr-4 relative w-full'>
+                        {scopeOfDeliveryImages.length > 0 &&
+                            <div className='flex items-center flex-col lg:w-1/3 w-full'>
+                                <div className="w-full h-64 bg-cover bg-center rounded-md shadow-md">
+                                    <img className=" object-cover h-full w-full"
+                                        src={`/api/${scopeOfDeliveryMainImage && scopeOfDeliveryMainImage.path}`}
+                                        alt={scopeOfDeliveryMainImage && scopeOfDeliveryMainImage.altText}
+                                        title={scopeOfDeliveryMainImage && scopeOfDeliveryMainImage.altText}
+                                    />
+                                </div>
+                                <div className='flex items-center justify-center py-8 ' >
+                                    {scopeOfDeliveryImages.map((picture) => (
+                                        <div key={picture.id} className='w-20 h-20 mx-1 rounded-md overflow-hidden  hover:border-[#00CED1] border-4' onClick={() => switchMainImage(picture)}>
+                                            <div className="w-full h-full">
+                                                <img className=" object-cover h-full w-full"
+                                                    src={`/api/${picture.path}`}
+                                                    alt={picture.altText}
+                                                    title={picture.altText}
+                                                    onClick={(e)=>{
+                                                        switchMainSODImage(picture)
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                        }
+                        <div className={`px-8 ${scopeOfDeliveryImages.length > 0 ? "lg:w-2/3 w-full" : "grow"}`}>
+                            <p className='lg:text-left text-center'>{scopeOfDeliveryDescription}</p>
+                        </div>
+                    </div>
+                </div>
+                }
             </div>
         </div>
         // <></>

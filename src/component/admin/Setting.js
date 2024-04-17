@@ -888,7 +888,7 @@ const Imprint=()=>{
             try {
                const response= await Api.get(`/api/setting/imprint`)
                if (response.data[0].review){
-                setText("")//response.data[0].review
+                setText(response.data[0].review)
                 setShowEditor(true)
                }else{
                 setShowEditor(true)
@@ -902,7 +902,6 @@ const Imprint=()=>{
     },[])
 
     const handleSave=async()=>{
-        console.log("handleSave")
         const config = {
             headers: {
               Authorization: `Bearer ${auth.accessToken}`
@@ -961,11 +960,9 @@ const Imprint=()=>{
                 <div className=' mt-1 w-full flex flex-col h-[400px]'>
                     <div className='w-full relative h-[350px]'>
                         <div className='w-full h-[300px]'>
-
-                        {/* <TextEditor text={text} setText={setText} className="h-[300px]"/> */}
-                        {/* {text && showEditor && */}
+                            {showEditor &&
                             <EditableEditor text={text} setText={setText} className="h-[300px]"  />
-                            {/* } */}
+                            }
                         </div>
                     </div>
                     <div className=' w-full flex flex-row-reverse px-2 '>
@@ -978,6 +975,7 @@ const Imprint=()=>{
         </selection>
     )
 }
+
 const DataPolicy=()=>{
     const [isOpen,setIsOpen]=useState(false)
     const { t } = useTranslation()
@@ -1060,7 +1058,6 @@ const DataPolicy=()=>{
                     <div className='w-full relative h-[350px]'>
                         <div className='w-full h-[300px]'>
 
-                        {/* <TextEditor text={text} setText={setText} className="h-[300px]"/> */}
                         <EditableEditor text={text} setText={setText} className="h-[300px]"/>
                         </div>
                     </div>
@@ -1074,54 +1071,7 @@ const DataPolicy=()=>{
         </selection>
     )
 }
-// const DataPolicy=()=>{
-//     const [isOpen,setIsOpen]=useState(false)
-//     const { t } = useTranslation()
-//     const [text,setText]=useState("")
 
-//     const handleSave=()=>{
-//         console.log(text)
-//     }
-
-//     return(
-//         <selection className="w-full">
-//                 <div className='flex justify-between p-2 bg-gray-300'>
-//                 <p className='text-1xl'>{t("PrivacyPolicyText")} </p>
-//                 {
-//                     !isOpen?
-//                     <RxCaretDown className='text-2xl p-1 rounded-full bg-customBlue text-white hover:bg-sky-500 cursor-pointer'
-//                     onClick={(e)=>{
-//                         setIsOpen((prev)=>{
-//                             return !prev
-//                         })
-//                     }}
-//                     />
-//                     :<RxCaretUp className='text-2xl p-1 rounded-full bg-customBlue text-white hover:bg-sky-500 cursor-pointer'
-//                     onClick={(e)=>{
-//                         setIsOpen((prev)=>{
-//                             return !prev
-//                         })
-//                     }}
-//                     />
-                    
-//                 }
-//                 </div>
-//                 {isOpen &&
-//                 <div className=' mt-1 w-full'>
-//                     <div className='w-full h-[400px]'>
-//                     <TextEditor text={text} setText={setText} className="h-full"/>
-                    
-//                     </div>
-//                     <div className=' w-full flex flex-row-reverse px-2'>
-//                         <button className=' bg-customBlue px-2 py-1 text-white hover:bg-sky-500'
-//                         onClick={(e)=>handleSave}
-//                         >Save</button></div>
-//                 </div>
-                
-//                 }
-//         </selection>
-//     )
-// }
 
 
 

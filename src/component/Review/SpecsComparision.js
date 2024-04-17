@@ -14,10 +14,6 @@ import Api from '../../api/Api';
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 
 const FDMVarient = ({ specs }) => {
-    console.log("FDM")
-    console.log(specs)
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
-    const { id } = useParams()
     const { t } = useTranslation()
     const [swiperInstance, setSwiperInstance] = useState();
     const [isBeginning, setIsBeginning] = useState(true)
@@ -370,7 +366,7 @@ const FDMVarient = ({ specs }) => {
             </div>
             :
             <div className='mx-2 relative'>
-                <h1 className='flex items-center justify-center text-2xl font-bold py-8'>Product Comparison</h1>
+                <h1 className='flex items-center justify-center lg:text-2xl text-xl font-bold lg:py-8 py-4'>Product Comparison</h1>
                 <div className='flex items-center justify-end mx-2  mb-4'>
                     {
                         !isBeginning ?
@@ -388,7 +384,7 @@ const FDMVarient = ({ specs }) => {
                     <div className='flex items-center'>
                         {
                             specs.length > 1 && specs.map((items, i) => {
-                                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+                                return <div className={`mx-1 ${active === i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
                             })
                         }
                     </div>
@@ -441,13 +437,13 @@ const FDMVarient = ({ specs }) => {
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'> <p className='w-1/3'> {t('motherboard')}</p></div>
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
-                    <div className={`absolute w-full h-full px-2 grid ${specs.length > 1 ? "grid-cols-3" : "grid-cols-2"}`}>
+                    <div className={`absolute w-full h-full px-2 grid grid-cols-2`}>
                         <div className=''></div>
-                        <div className={`${specs.length > 1 && "col-span-2"} h-full`}>
+                        <div className={`h-full`}>
                             <Swiper
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={7}
-                                slidesPerView={2}
+                                slidesPerView={1}
                                 onSwiper={(swiper) => handleSwiper(swiper)}
                                 onSlideChange={(swiperCurrent) => {
                                     setIsBeginning(swiperCurrent.isBeginning)
@@ -508,9 +504,6 @@ const FDMVarient = ({ specs }) => {
     )
 }
 const SLAVarient = ({ specs }) => {
-    // console.log(specs)
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
-    const { id } = useParams()
     const { t } = useTranslation()
     const [swiperInstance, setSwiperInstance] = useState();
     const [isBeginning, setIsBeginning] = useState(true)
@@ -719,7 +712,7 @@ const SLAVarient = ({ specs }) => {
                     <div className='flex items-center'>
                         {
                             specs.length > 1 && specs.map((items, i) => {
-                                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+                                return <div className={`mx-1 ${active === i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
                             })
                         }
                     </div>
@@ -759,13 +752,13 @@ const SLAVarient = ({ specs }) => {
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> Extras</p></div>
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
-                    <div className={`absolute w-full h-full  grid px-2 ${specs.length > 1 ? "grid-cols-3" : "grid-cols-2"}`}>
+                    <div className={`absolute w-full h-full  grid px-2 grid-cols-2`}>
                         <div className=''></div>
-                        <div className={`${specs.length > 1 && "col-span-2"} h-full`}>
+                        <div className={`h-full`}>
                             <Swiper
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={7}
-                                slidesPerView={specs.length > 1 ? 2 : 1}
+                                slidesPerView={1}
                                 onSwiper={(swiper) => handleSwiper(swiper)}
                                 onSlideChange={(swiperCurrent) => {
                                     setIsBeginning(swiperCurrent.isBeginning)
@@ -779,8 +772,8 @@ const SLAVarient = ({ specs }) => {
                                         <div className='bg-white'>
                                             {
                                                 specs.length > 1 &&
-                                                <div className='h-16 mb-2'>
-                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
+                                                <div className='mb-2'>
+                                                    <img src={`/api/${items.thumbnail}`} alt="" className='w-full' />
                                                 </div>
                                             }
                                             <div className='bg-white shadow-lg'>
@@ -1021,7 +1014,7 @@ const LaserVarient = ({ specs }) => {
                         {
                             specs.length > 1 &&
                             specs.map((items, i) => {
-                                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+                                return <div className={`mx-1 ${active === i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
                             })
                         }
                     </div>
@@ -1059,13 +1052,13 @@ const LaserVarient = ({ specs }) => {
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('securityFeatures')}</p></div>
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
-                    <div className={`absolute w-full h-full  px-2 grid ${specs.length > 1 ? "grid-cols-3" : "grid-cols-2"}`}>
+                    <div className={`absolute w-full h-full  px-2 grid grid-cols-2`}>
                         <div className=''></div>
-                        <div className={`${specs.length > 1 && "col-span-2"} h-full`}>
+                        <div className={`h-full`}>
                             <Swiper
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={7}
-                                slidesPerView={2}
+                                slidesPerView={1}
                                 onSwiper={(swiper) => handleSwiper(swiper)}
                                 onSlideChange={(swiperCurrent) => {
                                     setIsBeginning(swiperCurrent.isBeginning)
@@ -1310,7 +1303,7 @@ const ScannarVarient = ({ specs }) => {
                     <div className='flex items-center'>
                         {specs.length > 1 &&
                             specs.map((items, i) => {
-                                return <div className={`mx-1 ${active === i || active + 1 == i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
+                                return <div className={`mx-1 ${active === i ? 'bg-customBlue ' : 'bg-gray-300 '} h-3 w-3 rounded-full`}></div>
                             })
                         }
                     </div>
@@ -1328,7 +1321,7 @@ const ScannarVarient = ({ specs }) => {
                             : <div />
                     }
                 </div>
-                <div className='relative h-[1000px] w-full'>
+                <div className='relative h-[700px] w-full'>
                     <div className='absolute w-full h-8 '>
                         {
                             specs.length > 1 &&
@@ -1337,7 +1330,6 @@ const ScannarVarient = ({ specs }) => {
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scaningPrecision')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanAccuracy')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('workspaceScanWindow')}</p></div>
-                        {/* <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanningDistance')}</p></div> */}
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanSpeed')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('imageCaptureRate')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('minimumObjectSize_handScan')}</p></div>
@@ -1346,16 +1338,15 @@ const ScannarVarient = ({ specs }) => {
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('lightSource')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('portableBattery')}</p></div>
                         <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('accesories')}</p></div>
-                        {/* <div className='h-14 mb-2 w-full bg-gray-300 rounded-xl px-2 flex items-center text-sm'><p className='w-1/3'> {t('scanMaximumSize')}</p></div> */}
                         <div className='h-4 mb-2 w-full  rounded-xl'></div>
                     </div>
-                    <div className={`absolute w-full h-full px-2 grid ${specs.length>1?"grid-cols-3":"grid-cols-2"}`}>
+                    <div className={`absolute w-full h-full px-2 grid grid-cols-2`}>
                         <div className=''></div>
-                        <div className={`${specs.length>1&&"col-span-2"} h-full`}>
+                        <div className={` h-full`}>
                             <Swiper
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={7}
-                                slidesPerView={2}
+                                slidesPerView={1}
                                 onSwiper={(swiper) => handleSwiper(swiper)}
                                 onSlideChange={(swiperCurrent) => {
                                     setIsBeginning(swiperCurrent.isBeginning)
@@ -1367,14 +1358,16 @@ const ScannarVarient = ({ specs }) => {
                                 {specs.map((items, index) => {
                                     return <SwiperSlide>
                                         <div className='bg-white'>
-                                            <div className='h-16 mb-2'>
-                                                <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
-                                            </div>
+                                            {
+                                                specs.length > 1 &&
+                                                <div className='h-16 mb-2'>
+                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
+                                                </div>
+                                            }
                                             <div className='bg-white shadow-lg'>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanningPrecision}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanAccuracy}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.workspaceScanWindow}</div>
-                                                {/* <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanningDistance}</div> */}
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanSpeed}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.imageCaptureRate}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.minimumObjectSize_handScan}</div>
@@ -1383,8 +1376,6 @@ const ScannarVarient = ({ specs }) => {
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.lightSource}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.portableBattery}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.accesories}</div>
-                                                {/* <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.scanMaximum
-                                                    Size}</div> */}
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
                                             </div>
                                         </div>
@@ -1401,7 +1392,7 @@ const ScannarVarient = ({ specs }) => {
 }
 
 
-const ColumnCard = () => {
+const SpecsComparision = () => {
     const [specs, setSpecs] = useState([])
     const [productType, setProductType] = useState(0)
     const { id } = useParams()
@@ -1515,4 +1506,4 @@ const ColumnCard = () => {
     )
 }
 
-export default ColumnCard
+export default SpecsComparision

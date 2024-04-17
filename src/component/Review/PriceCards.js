@@ -2,7 +2,6 @@ import React from 'react'
 import { useState } from 'react'
 import { FaCopy } from "react-icons/fa";
 import { useEffect, useRef } from 'react';
-// import { ArrowForwardIos } from '@mui/icons-material';
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
@@ -167,9 +166,10 @@ const MobileCard = ({ link }) => {
     }, [link])
 
     const copyCoupon = () => {
+        console.log(couponRef)
         if (couponRef.current) {
             const copeid = couponRef.current.innerHTML;
-            console.log(copeid)
+            // console.log(copeid)
             navigator.clipboard.writeText(copeid);
         }
     };
@@ -195,8 +195,12 @@ const MobileCard = ({ link }) => {
             <div className=' flex justify-between'>
                 <div className='bg-[#026CC4] rounded-tl-xl rounded-br-xl px-5 text-white font-semibold'>{link.title}</div>
                 <div className='flex items-center p-2 mx-2'>
-                    <div>{link.coupon}</div>
-                    <div className='px-2'><FaCopy onClick={(e) => copyCoupon()} /></div>
+                    {link.coupon &&
+                        <>
+                            <div ref={couponRef}>{link.coupon}</div>
+                            <div className='px-2'><FaCopy onClick={(e) => copyCoupon()} /></div>
+                        </>
+                    }
                 </div>
             </div>
             <div className='grid grid-cols-6 px-5 py-2'>
@@ -304,7 +308,7 @@ const PriceCards = () => {
                                     </div>
                                     <div className=' flex flex-col justify-between'>
                                         <div className='w-full h-12 bg-gray-200 animate-pulse rounded-2xl' />
-                                        
+
                                         <div className='w-full '>
                                             <div className='w-full h-8 bg-gray-200 animate-pulse rounded-2xl' />
                                             <div className='w-full h-8 mt-2 bg-gray-200 animate-pulse rounded-2xl' />
@@ -332,21 +336,21 @@ const PriceCards = () => {
                 :
                 <div className=' px-11' id='purchaselinks'>
                     {
-                        isLoading?
-                        <div className='w-full h-[300px] bg-gray-200 rounded-xl p-4 animate-pulse'>
-                            <div className='w-full h-8 rounded-2xl bg-gray-300 animate-pulse'/>
-                            <div className='w-full h-4 mt-6 rounded-2xl bg-gray-300 animate-pulse'/>
-                            <div className='w-full h-4 mt-2 rounded-2xl bg-gray-300 animate-pulse'/>
-                            <div className='w-full h-4 mt-2 rounded-2xl bg-gray-300 animate-pulse'/>
-                            <div className='w-full h-4 mt-2 rounded-2xl bg-gray-300 animate-pulse'/>
-                            <div className='w-full h-24 mt-2 rounded-2xl bg-gray-300 animate-pulse'/>
-                        </div>
-                        :
-                        <>
-                        {purchaseLinks.map((item, index) => {
-                            return <MobileCard link={item} />
-                        })}
-                        </>
+                        isLoading ?
+                            <div className='w-full h-[300px] bg-gray-200 rounded-xl p-4 animate-pulse'>
+                                <div className='w-full h-8 rounded-2xl bg-gray-300 animate-pulse' />
+                                <div className='w-full h-4 mt-6 rounded-2xl bg-gray-300 animate-pulse' />
+                                <div className='w-full h-4 mt-2 rounded-2xl bg-gray-300 animate-pulse' />
+                                <div className='w-full h-4 mt-2 rounded-2xl bg-gray-300 animate-pulse' />
+                                <div className='w-full h-4 mt-2 rounded-2xl bg-gray-300 animate-pulse' />
+                                <div className='w-full h-24 mt-2 rounded-2xl bg-gray-300 animate-pulse' />
+                            </div>
+                            :
+                            <>
+                                {purchaseLinks.map((item, index) => {
+                                    return <MobileCard link={item} />
+                                })}
+                            </>
                     }
                 </div>
             }

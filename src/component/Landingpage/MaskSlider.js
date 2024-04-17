@@ -90,7 +90,7 @@ const MaskSlider = () => {
                         }}
                         onClick={(e) => {
                           const name=Product.product_name.replaceAll(' ','-')
-                          navigate(`/productreview/${name}/${Product.Id}`);
+                          navigate(`/testberichte/${name}/${Product.Id}`);
                         }}
                       >
                         <div className='w-full h-full relative flex flex-col '>

@@ -1,5 +1,3 @@
-// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import React, { useEffect, useState } from 'react'
 import { FaCaretDown,FaCaretUp } from "react-icons/fa";
 import { useParams } from 'react-router-dom';

@@ -5,7 +5,6 @@ import Home from "./component/Home"
 import Navigationbar from "./component/Landingpage/Navigationbar"
 import DetailNews from "./component/NewsComponents/DetailNew"
 import DetailBeginnersGuid from "./component/Ratgaber/DetailBeginnersGuid"
-import SingleReview from "./component/SingleReview"
 import AddBeginnersGuid from "./component/admin/AddBeginnersGuid"
 import AddNews from "./component/admin/AddNews"
 import AddProduct from "./component/admin/AddProduct"
@@ -63,7 +62,6 @@ const App = () => {
                                 <Route path="cutter" element={<LaserCutterListView />} />
                                 <Route path="search" element={<SearchListView />} />
                             </Route>
-                            <Route path="/productreview/:productNameURL/:id" element={<SingleReview />} />
                             <Route path="/testberichte/:productNameURL/:id" element={<Review />} />
 
                             <Route path="/ratgaber" element={<TutorialListView />} />

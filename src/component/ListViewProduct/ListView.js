@@ -30,7 +30,7 @@ const ListView = ({ Cards, isLoading }) => {
                 <div
                     onClick={(e) => {
                         const name = Cards.product_name.replaceAll(' ', '-')
-                        navigation(`/productreview/${name}/${Cards.Id}`);
+                        navigation(`/testberichte/${name}/${Cards.Id}`);
                     }}
                     className="lg:flex items-center mb-6 shadow-for-app bg-white/95 rounded-xl cursor-pointer mr-4 ml-4 lg:ml-0 lg:mr-0"
                     style={{
@@ -51,7 +51,8 @@ const ListView = ({ Cards, isLoading }) => {
                         <h1 className="text-neutral-800 lg:text-3xl text-xl font-semibold py-4 lg:text-left text-center px-4 lg:px-0 ">
                             {Cards.product_name}
                         </h1>
-                        <div className="flex pb-4 lg:justify-left justify-center">
+                        <div className="flex pb-4 lg:justify-start justify-center">
+
                             {Cards.overall_rating > 0 && [...Array.from({ length: Cards.overall_rating }, (_, index) => index + 1)].map((_, index) => (
                                 <CiStar
                                     key={index}
@@ -74,7 +75,7 @@ const ListView = ({ Cards, isLoading }) => {
                             <p
                                 onClick={(e) => {
                                     const name = Cards.product_name.replaceAll(' ', '-')
-                                    navigation(`/productreview/${name}/${Cards.Id}`);
+                                    navigation(`/testberichte/${name}/${Cards.Id}`);
                                 }}
                                 className="underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal"
                             >

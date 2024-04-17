@@ -109,7 +109,7 @@ const Doubleslider = () => {
                       }}
                       onClick={(e) => {
                         const name = FDMproduct.product_name.replaceAll(' ', '-')
-                        navigate(`/productreview/${name}/${FDMproduct.Id}`);
+                        navigate(`/testberichte/${name}/${FDMproduct.Id}`);
                       }}
                     >
                        <div className=" w-full h-52 overflow-hidden"
@@ -185,7 +185,7 @@ const Doubleslider = () => {
                       }}
                       onClick={(e) => {
                         const name = SLAproduct.product_name.replaceAll(' ', '-')
-                        navigate(`/productreview/${name}/${SLAproduct.Id}`);
+                        navigate(`/testberichte/${name}/${SLAproduct.Id}`);
                       }}
                     >
                       <div className=" w-full h-52 overflow-hidden"

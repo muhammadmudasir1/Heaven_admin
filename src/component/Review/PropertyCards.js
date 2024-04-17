@@ -76,8 +76,11 @@ const PropertyCards = ({ specs, productType }) => {
 
                     </div>
                     <div className='lg:flex grid grid-cols-2 items-center justify-evenly lg:pt-8 lg:pb-4 lg:mb-0 mb-4'>
+
                         <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+
                             <FaTemperatureThreeQuarters size={width>600?60:30} />
+
                             <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Print Temperature</h1>
                                 <h3 className='font-extralight'>{specs.printTempurature}</h3>
@@ -85,7 +88,9 @@ const PropertyCards = ({ specs, productType }) => {
                         </div>
 
                         <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+
                             <RiPrinterCloudFill size={width>600?60:30} />
+
                             <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Print Accuracy</h1>
                                 <h3 className='font-extralight'>{specs.printingAccuracyXYResolution}</h3>
@@ -94,36 +99,37 @@ const PropertyCards = ({ specs, productType }) => {
                     </div>
                 </>}
                 {productType === 3 && specs && <>
-                    <div className='flex items-center justify-evenly pt-8 pb-4'>
-                        <div className='flex items-center'>
-                            <GiLaserPrecision size={60} />
-                            <div className='px-4'>
+                    <div className='lg:flex grid grid-cols-2 items-center justify-evenly lg:pt-8 lg:pb-4 lg:mb-0 mb-4'>
+
+                        <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+                            <GiLaserPrecision size={width>600?60:30} />
+                            <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Laser Power</h1>
                                 <h3 className='font-extralight'>{specs.laserPower}</h3>
                             </div>
                         </div>
-                        <div className='flex items-center'>
-                            <TbWaveSine size={60} />
-                            <div className='px-4'>
+                        <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+                            <TbWaveSine size={width>600?60:30} />
+                            <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Laser Wavelength</h1>
                                 <h3 className='font-extralight'>{specs.laserWavelength}</h3>
                             </div>
                         </div>
 
                     </div>
-                    <div className='flex items-center justify-evenly pb-8 pt-4'>
+                    <div className='lg:flex grid grid-cols-2 items-center justify-evenly lg:pt-8 lg:pb-4 lg:mb-0 mb-4'>
 
-                        <div className='flex items-center'>
-                            <img src={engraving} className=' w-16'/>
-                            <div className='px-4'>
+                        <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+                            <img src={engraving} className=' lg:w-16 w-8'/>
+                            <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Engraving Accuracy</h1>
                                 <h3 className='font-extralight'>{specs.engravingAccuracy}</h3>
                             </div>
                         </div>
 
-                        <div className='flex items-center'>
-                            <img src={area} className=' w-14'/>
-                            <div className='px-4'>
+                        <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+                            <img src={area} className=' lg:w-14 w-8'/>
+                            <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Engraving Area</h1>
                                 <h3 className='font-extralight'>{specs.engravingArea}</h3>
                             </div>
@@ -134,36 +140,36 @@ const PropertyCards = ({ specs, productType }) => {
                     </div>
                 </>}
                 {productType === 4 && specs && <>
-                    <div className='flex items-center justify-evenly pt-8 pb-4'>
-                        <div className='flex items-center'>
-                            <IoIosQrScanner size={60} />
-                            <div className='px-4'>
+                    <div className='lg:flex grid grid-cols-2 items-center justify-evenly lg:pt-8 lg:pb-4 lg:mb-0 mb-4'>
+                        <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+                            <IoIosQrScanner size={width>600?60:30} />
+                            <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Scan Accuracy</h1>
                                 <h3 className='font-extralight'>{specs.scanAccuracy}</h3>
                             </div>
                         </div>
-                        <div className='flex items-center'>
-                            <RxSpaceBetweenHorizontally size={60} />
-                            <div className='px-4'>
+                        <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+                            <RxSpaceBetweenHorizontally size={width>600?60:30} />
+                            <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Scan Distance</h1>
                                 <h3 className='font-extralight'>{specs.scanningDistance}</h3>
                             </div>
                         </div>
 
                     </div>
-                    <div className='flex items-center justify-evenly pb-8 pt-4'>
+                    <div className='lg:flex grid grid-cols-2 items-center justify-evenly lg:pt-8 lg:pb-4 lg:mb-0 mb-4'>
 
-                        <div className='flex items-center'>
-                        <MdOutlineSpeed size={60} />
-                            <div className='px-4'>
+                        <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+                        <MdOutlineSpeed size={width>600?60:30} />
+                            <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Scan Speed</h1>
                                 <h3 className='font-extralight'>{specs.scanSpeed}</h3>
                             </div>
                         </div>
 
-                        <div className='flex items-center'>
-                            <img src={quality} className=' w-14'/>
-                            <div className='px-4'>
+                        <div className='lg:flex items-center grid grid-col-4 grid-flow-col'>
+                            <img src={quality} className=' lg:w-14 w-7'/>
+                            <div className='px-2 lg:px-4 col-span-3'>
                                 <h1 className='font-semibold text-base'>Scan Quality</h1>
                                 <h3 className='font-extralight'>{specs.scanQuality}</h3>
                             </div>
