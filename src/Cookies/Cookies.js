@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
+import LazyLoad from 'react-lazyload'
+
 
 const Cookies = () => {
-  // const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
   const [accept, setAccept] = useState(false);
 
   useEffect(() => {
     const isAccepted = getCookie("cookieConsent");
     setAccept(isAccepted === "accepted");
-
-    // const handleResize = () => {
-    //   setIsMobile(window.innerWidth < 1000);
-    // };
-    // window.addEventListener("resize", handleResize);
-    // return () => {
-    //   window.removeEventListener("resize", handleResize);
-    // };
   }, []);
 
   const handleAccept = () => {
@@ -46,6 +39,7 @@ const Cookies = () => {
 
   if (!accept) {
     return (
+      <LazyLoad>
       <>
           <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center items-center">
             <div
@@ -81,7 +75,8 @@ const Cookies = () => {
               </div>
             </div>
           </div>
-      </>
+      </>  
+      </LazyLoad>
     );
   }
 
