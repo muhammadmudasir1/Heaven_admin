@@ -39,9 +39,9 @@ const Cookies = () => {
 
   if (!accept) {
     return (
-      <LazyLoad>
       <>
           <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center items-center">
+      <LazyLoad>
             <div
               className="w-full lg:h-[280px] h-[515px] px-6 rounded-xl flex flex-col items-start justify-center bg-white mx-8 mb-8 z-50"
               style={{
@@ -74,12 +74,12 @@ const Cookies = () => {
                 </button>
               </div>
             </div>
+              </LazyLoad>
           </div>
       </>  
-      </LazyLoad>
     );
   }
-
+  
   return null;
 };
 
