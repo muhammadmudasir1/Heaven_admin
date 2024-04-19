@@ -32,7 +32,6 @@ const MaskSlider = () => {
     const topfive = async () => {
       try {
         const response = await Api.get(`api/products/TopFive`)
-        console.log(response.data)
         setTopFiveProducts(response.data)
       } catch (error) {
         console.log(error)
@@ -53,8 +52,8 @@ const MaskSlider = () => {
       <div className='lg:relative'>
         <>
           <div className="lg:col-span-6 lg:relative my-8">
-            <div class=" flex justify-center items-center">
-              <h1 class="text-neutral-800 text-2xl font-bold" id="topFive">
+            <div className=" flex justify-center items-center">
+              <h1 className="text-neutral-800 text-2xl font-bold" id="topFive">
                 Top 5
               </h1>
             </div>

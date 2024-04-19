@@ -6,7 +6,6 @@ import { Helmet } from 'react-helmet'
 const BaseView = ({ data, isLoading }) => {
     const [body,setBody]=useState("")
     useEffect(() => {
-        console.log(data)
         if (data.body) {
             const jsonData = JSON.parse(data.body)
             jsonData.root.children.forEach(element => {
@@ -29,7 +28,6 @@ const BaseView = ({ data, isLoading }) => {
             const strReview = JSON.stringify(jsonData)
             setBody(strReview)
         }
-        console.log(data)
     }, [])
     return (
         <>

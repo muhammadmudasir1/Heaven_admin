@@ -27,7 +27,6 @@ const TutorialListView = () => {
     const fetchData = async () => {
         try {
             const response = await Api.get(`/api/beginnersGuid`);
-            console.log(response.data);
             setCards(response.data)
             setIsLoader(false);
         } catch (error) {

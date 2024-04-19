@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import TextEditor from './TextEditor';
-import ListEditor from './ListEditor';
 import Api from '../../api/Api';
 import { useNavigate, useParams } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';

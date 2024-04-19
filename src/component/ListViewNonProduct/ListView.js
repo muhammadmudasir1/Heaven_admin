@@ -24,7 +24,7 @@ const ListView = ({ Cards, isLoading ,isNews}) => {
 
     const cardPrint = (Cards, index) => {
         return (
-            <>
+            <div key={index}>
                 <div
                     onClick={(e) => {
                         const name = Cards.Title.replaceAll(' ', '-')
@@ -62,7 +62,7 @@ const ListView = ({ Cards, isLoading ,isNews}) => {
                     </div>
                 </div>
                 {width < 600 && (index + 1) % 3 === 0 && <div key={``} className=" h-[50px] bg-red-300 mb-4" />}
-            </>
+            </div>
         );
     }
 

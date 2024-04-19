@@ -170,15 +170,6 @@ const CompareScrollandAdd = ({ reload }) => {
     setCouponCardLocation(0);
     setCoupons([]);
   };
-
-  useEffect(() => {
-    console.log("Handle Coupon Card");
-  }, [openCouponCArd]);
-
-  useEffect(() => {
-    console.log("is Called");
-  }, [cards]);
-
   const handleComparison = () => {
     let ids = selectedCards.map((card) => {
       return card.Id;
@@ -223,10 +214,6 @@ const CompareScrollandAdd = ({ reload }) => {
       });
     }
   };
-
-  useEffect(() => {
-    console.log(selectedCards);
-  }, [selectedCards]);
 
   return (
     <>

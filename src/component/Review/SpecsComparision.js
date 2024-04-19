@@ -24,12 +24,6 @@ const FDMVarient = ({ specs }) => {
     const handleSwiper = (swiper) => {
         setSwiperInstance(swiper)
     }
-    useEffect(() => {
-        if (swiperInstance) {
-            console.log("lenght: ")
-            console.log("Is Begininig " + swiperInstance.isBeginning)
-        }
-    }, [swiperInstance])
 
     return (
         width > 600 ?
@@ -359,8 +353,8 @@ const FDMVarient = ({ specs }) => {
                 </div>
                 <div className={`${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
                     <div></div>
-                    {specs.map((item) => {
-                        return <div className='shadow-lg h-full rounded-b-2xl' />
+                    {specs.map((item,index) => {
+                        return <div key = {index} className='shadow-lg h-full rounded-b-2xl' />
                     })}
                 </div>
             </div>
@@ -453,7 +447,7 @@ const FDMVarient = ({ specs }) => {
                                 className=' w-full h-full '
                             >
                                 {specs.map((items, index) => {
-                                    return <SwiperSlide>
+                                    return <SwiperSlide key={index}>
                                         <div className='bg-white'>
                                             {
                                                 specs.length > 1 &&
@@ -514,12 +508,6 @@ const SLAVarient = ({ specs }) => {
     const handleSwiper = (swiper) => {
         setSwiperInstance(swiper)
     }
-    useEffect(() => {
-        if (swiperInstance) {
-            console.log("lenght: ")
-            console.log("Is Begininig " + swiperInstance.isBeginning)
-        }
-    }, [swiperInstance])
 
     return (
         width > 600 ?
@@ -687,8 +675,8 @@ const SLAVarient = ({ specs }) => {
                 </div>
                 <div className={`${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
                     <div></div>
-                    {specs.map((item) => {
-                        return <div className='shadow-lg h-full rounded-b-2xl' />
+                    {specs.map((item,index) => {
+                        return <div key ={index} className='shadow-lg h-full rounded-b-2xl' />
                     })}
                 </div>
             </div>
@@ -768,7 +756,7 @@ const SLAVarient = ({ specs }) => {
                                 className=' w-full h-full '
                             >
                                 {specs.map((items, index) => {
-                                    return <SwiperSlide>
+                                    return <SwiperSlide key={index}>
                                         <div className='bg-white'>
                                             {
                                                 specs.length > 1 &&
@@ -988,8 +976,8 @@ const LaserVarient = ({ specs }) => {
                 </div>
                 <div className={`${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
                     <div></div>
-                    {specs.map((item) => {
-                        return <div className='shadow-lg h-full rounded-b-2xl' />
+                    {specs.map((item,index) => {
+                        return <div key ={index} className='shadow-lg h-full rounded-b-2xl' />
                     })}
                 </div>
             </div>
@@ -1161,19 +1149,7 @@ const ScannarVarient = ({ specs }) => {
                                 </div>
                             })}
                         </div>
-
-                        {/* <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
-                            <div className='flex items-center'>
-                                <div className=''>{t('scaningArea')}</div>
-                            </div>
-                            {specs.map((items, index) => {
-                                return <div key={index} className='flex bg-white justify-center items-center py-2 '>
-                                    <div className=' '>{items.scanningArea}</div>
-                                </div>
-                            })}
-                        </div> */}
-
-                        <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
+                         <div className={`grid ${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} gap-4 bg-gray-300 rounded-full overflow-hidden px-8 my-2`}>
                             <div className='flex items-center'>
                                 <div className=''>{t('workspaceScanWindow')}</div>
                             </div>
@@ -1278,8 +1254,8 @@ const ScannarVarient = ({ specs }) => {
                 </div>
                 <div className={`${specs.length === 1 ? 'grid-cols-2' : specs.length === 2 ? 'grid-cols-3' : specs.length === 3 ? 'grid-cols-4' : specs.length === 4 ? 'grid-cols-5' : ''} w-full gap-4 px-8 grid h-full absolute top-0`}>
                     <div></div>
-                    {specs.map((item) => {
-                        return <div className='shadow-lg h-full rounded-b-2xl' />
+                    {specs.map((item,index) => {
+                        return <div key= {index} className='shadow-lg h-full rounded-b-2xl' />
                     })}
                 </div>
             </div>
@@ -1402,7 +1378,6 @@ const SpecsComparision = () => {
             try {
                 let tempSpecs = []
                 const result = await Api.get(`/api/products/${id}`)
-                console.log(result)
                 if (result.data.productType === 1) {
                     setProductType(1)
                     let mainProduct = result.data.SLA
@@ -1478,10 +1453,6 @@ const SpecsComparision = () => {
         }
         fetchData()
     }, [id])
-
-    useEffect(() => {
-        console.log(specs)
-    }, [specs])
 
     return (
         <div className='w-full mb-12' id='specs'>

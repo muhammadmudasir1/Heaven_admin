@@ -112,13 +112,11 @@ const Navigationbar = () => {
         <>
             <nav className={`bg-[#026CC4] h-[8vh] lg:h-[10vh] flex items-center justify-between px-8 z-[9999] ${isSticky ? 'fixed w-full top-0' : ''}`}>
                 <div className='z-20 flex items-center'>
-                    {/* <img src={svgLogo} alt="" className='' /> */}
                     <a href='/'>
                         
                         <img src={svgLogo} alt="" className={`lg:w-32 lg:h-32 h-[35px] ${isMobile && !IsOpen?"hidden":"block"}`} />
                         
                     </a>
-                    {/* <a href='/' className='text-white lg:text-2xl text-lg font-bold'>3DHeaven</a> */}
                 </div>
                 {isMobile ? (
                     <>

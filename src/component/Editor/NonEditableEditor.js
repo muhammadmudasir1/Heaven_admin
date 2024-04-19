@@ -46,7 +46,6 @@ function UpdatePlugin({update}){
 
 export default function NonEditableEditor({text }) {
     const [update,setUpdate] = useState(null);
-    // console.log(JSON.parse(text))
     useEffect(()=>{
       const jsonData=JSON.parse(text)
       jsonData.root.children.forEach(element => {
@@ -54,8 +53,6 @@ export default function NonEditableEditor({text }) {
           element.children.forEach((item)=>{
             if(item.type=="image"){
               console.log(item)
-              // console.log(window.screen.availWidth)
-              // item.width=window.screen.availWidth
             }
           })
         }
@@ -78,18 +75,11 @@ const getUpdateFunction=(childUpdateFunc)=>{
     console.log(typeof(childUpdateFunc))
 }
  useEffect(()=>{
-    // console.log(update)
     if(update){
         console.log("If typibzjhfv")
         update(text)
     }
  },[text])
-//   function onChange(text) {
-//   setText(text);
-// }
-useEffect(()=>{
-    console.log(update)
-},[update])
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <SharedHistoryContext>
@@ -103,16 +93,10 @@ useEffect(()=>{
       </SharedHistoryContext>
       <MyOnChangePlugin
             onChange={(editorState) => {
-              const rawContentState = editorState; //convertToRaw(editorState.getCurrentContent());
+              const rawContentState = editorState;
               const contentAsString = JSON.stringify(rawContentState);
-            //   console.log(contentAsString);
-              // const contentAsJSON = JSON.parse(contentAsString);
-            //   setText(contentAsString)
-              // console.log(contentAsJSON);
-              // setEditorState();
             }}
           />
-          {/* <UpdatePlugin  update={getUpdateFunction}/> */}
     </LexicalComposer>
   );
 }

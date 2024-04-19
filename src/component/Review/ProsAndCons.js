@@ -26,8 +26,8 @@ const ProsAndCons = () => {
             try {
                 setIsLoading(true)
                 const result = await Api.get(`/api/products/review/${id}`)
-                setPros(result.data[0].pros)
-                setCons(result.data[0].cons)
+                result.data[0] && setPros(result.data[0].pros)
+                result.data[0] && setCons(result.data[0].cons)
                 setIsLoading(false)
             } catch (error) {
                 setIsLoading(false)
@@ -36,9 +36,6 @@ const ProsAndCons = () => {
         }
         fetchData()
     }, [id])
-    useEffect(() => {
-        console.log(pros)
-    }, [pros])
 
     return (
         isLoading ?

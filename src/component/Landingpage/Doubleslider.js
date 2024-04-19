@@ -72,8 +72,8 @@ const Doubleslider = () => {
     <div className="lg:flex lg:justify-between">
       <div className="flex-col lg:w-3/4">
         <div className="lg:grow lg:relative my-8">
-          <div class=" flex justify-center items-center">
-            <h1 class="text-neutral-800 text-2xl font-normal text-center">
+          <div className=" flex justify-center items-center">
+            <h1 className="text-neutral-800 text-2xl font-normal text-center">
               {t('LatestFDM')}
             </h1>
           </div>
@@ -99,8 +99,8 @@ const Doubleslider = () => {
                 }}
                 className=" p-5"
               >
-                {FDMproducts.map((FDMproduct) => (
-                  <SwiperSlide key={FDMproduct} className="relative my-3">
+                {FDMproducts.map((FDMproduct,index) => (
+                  <SwiperSlide key={index} className="relative my-3">
                     <div
                       className="rounded-xl  flex flex-col items-start  bg-white/95 h-[400px] cursor-pointer"
                       style={{
@@ -176,7 +176,7 @@ const Doubleslider = () => {
                 className="p-5"
               >
                 {SLAproducts.map((SLAproduct, index) => (
-                  <SwiperSlide key={SLAproduct} className=" relative my-3">
+                  <SwiperSlide key={index} className=" relative my-3">
                     <div
                       className="rounded-xl  flex flex-col items-start  bg-white/95 h-[400px] cursor-pointer"
                       style={{

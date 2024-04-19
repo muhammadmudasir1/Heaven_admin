@@ -1,15 +1,12 @@
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
-import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin';
 import { CheckListPlugin } from '@lexical/react/LexicalCheckListPlugin';
 import { ClearEditorPlugin } from '@lexical/react/LexicalClearEditorPlugin';
 import LexicalClickableLinkPlugin from '@lexical/react/LexicalClickableLinkPlugin';
 import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
-import { HashtagPlugin } from '@lexical/react/LexicalHashtagPlugin';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { HorizontalRulePlugin } from '@lexical/react/LexicalHorizontalRulePlugin';
 import { ListPlugin } from '@lexical/react/LexicalListPlugin';
-import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { TabIndentationPlugin } from '@lexical/react/LexicalTabIndentationPlugin';
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
@@ -23,26 +20,18 @@ import { useSettings } from './context/SettingsContext.tsx';
 import { useSharedHistoryContext } from './context/SharedHistoryContext.tsx';
 import AutocompletePlugin from './plugins/AutocompletePlugin/index.tsx';
 import AutoLinkPlugin from './plugins/AutoLinkPlugin/index.tsx';
-import CodeActionMenuPlugin from './plugins/CodeActionMenuPlugin/index.tsx';
 import CodeHighlightPlugin from './plugins/CodeHighlightPlugin/index.ts';
 import CollapsiblePlugin from './plugins/CollapsiblePlugin/index.ts';
-import CommentPlugin from './plugins/CommentPlugin/index.tsx';
 import ComponentPickerPlugin from './plugins/ComponentPickerPlugin/index.tsx';
-import ContextMenuPlugin from './plugins/ContextMenuPlugin/index.tsx';
 import DragDropPaste from './plugins/DragDropPastePlugin/index.ts';
-import DraggableBlockPlugin from './plugins/DraggableBlockPlugin/index.tsx';
-import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin/index.tsx';
-import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormatToolbarPlugin/index.tsx';
 import ImagesPlugin from './plugins/ImagesPlugin/index.tsx';
 import InlineImagePlugin from './plugins/InlineImagePlugin/index.tsx';
-import KeywordsPlugin from './plugins/KeywordsPlugin/index.ts';
 import { LayoutPlugin } from './plugins/LayoutPlugin/LayoutPlugin.tsx';
 import LinkPlugin from './plugins/LinkPlugin/index.tsx';
 import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin/index.ts';
 import MarkdownShortcutPlugin from './plugins/MarkdownShortcutPlugin/index.tsx';
 import { MaxLengthPlugin } from './plugins/MaxLengthPlugin/index.tsx';
 import TabFocusPlugin from './plugins/TabFocusPlugin/index.tsx';
-import TableCellActionMenuPlugin from './plugins/TableActionMenuPlugin/index.tsx';
 import TableCellResizer from './plugins/TableCellResizer/index.tsx';
 import ListToolbarPlugin from './plugins/ToolbarPlugin/ListToolbarPlugin.tsx';
 import ContentEditable from './ui/ContentEditable.tsx';
@@ -116,10 +105,6 @@ export default function ListEditor({isEditableEditor}) {
         <ClearEditorPlugin />
         <ComponentPickerPlugin />
         <AutoLinkPlugin />
-        {/* <CommentPlugin
-          providerFactory={isCollab ? createWebsocketProvider : undefined}
-        /> */}
-        {/* {isRichText ? ( */}
           <>
             {isCollab ? (
               <CollaborationPlugin
@@ -160,42 +145,7 @@ export default function ListEditor({isEditableEditor}) {
             <TabIndentationPlugin />
             <CollapsiblePlugin />
             <LayoutPlugin />
-            {/* {floatingAnchorElem && !isSmallWidthViewport && (
-              <>
-                <DraggableBlockPlugin anchorElem={floatingAnchorElem} />
-                <CodeActionMenuPlugin anchorElem={floatingAnchorElem} />
-                <FloatingLinkEditorPlugin
-                  anchorElem={floatingAnchorElem}
-                  isLinkEditMode={isLinkEditMode}
-                  setIsLinkEditMode={setIsLinkEditMode}
-                />
-                <TableCellActionMenuPlugin
-                  anchorElem={floatingAnchorElem}
-                  cellMerge={true}
-                />
-                <FloatingTextFormatToolbarPlugin
-                  anchorElem={floatingAnchorElem}
-                  setIsLinkEditMode={setIsLinkEditMode}
-                />
-              </>
-            )} */}
           </>
-        {/* ) : ( */}
-          {/* <>
-            <PlainTextPlugin
-              contentEditable={<ContentEditable />}
-              placeholder={placeholder}
-              ErrorBoundary={LexicalErrorBoundary}
-            />
-            <HistoryPlugin externalHistoryState={historyState} />
-          </> */}
-        {/* )} */}
-        {/* {(isCharLimit || isCharLimitUtf8) && (
-          <CharacterLimitPlugin
-            charset={isCharLimit ? 'UTF-16' : 'UTF-8'}
-            maxLength={5}
-          />
-        )} */}
         {isAutocomplete && <AutocompletePlugin />}
       </div>
     </>

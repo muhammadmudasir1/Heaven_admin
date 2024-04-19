@@ -16,7 +16,7 @@ const Review = () => {
             try {
                 setIsLoading(true)
                 const result = await Api.get(`/api/products/review/${id}`)
-                if (result.data[0].review) {
+                if (result.data[0] && result.data[0].review) {
                     const jsonData = JSON.parse(result.data[0].review)
                     jsonData.root.children.forEach(element => {
                         if (element.type = "paragraph") {
@@ -41,7 +41,6 @@ const Review = () => {
                     setReview(strReview)
                 }
                 setData(result.data[0])
-                console.log(result.data[0])
                 setIsLoading(false)
             } catch (error) {
                 setIsLoading(false)

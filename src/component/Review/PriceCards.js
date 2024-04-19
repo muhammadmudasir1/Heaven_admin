@@ -274,7 +274,6 @@ const PriceCards = () => {
                 setIsLoading(true)
                 const result = await Api(`/api/products/PurchaseLinks/${id}`)
                 setPurchaseLinsks(result.data)
-                console.log(result.data)
                 setIsLoading(false)
             } catch (error) {
                 setIsLoading(false)
@@ -348,7 +347,7 @@ const PriceCards = () => {
                             :
                             <>
                                 {purchaseLinks.map((item, index) => {
-                                    return <MobileCard link={item} />
+                                    return <MobileCard link={item} key={index} />
                                 })}
                             </>
                     }

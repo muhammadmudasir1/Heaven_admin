@@ -26,7 +26,6 @@ const FdmListView = () => {
     const FDM = async () => {
       try {
         const response = await Api.get(`api/products/type/2`);
-        console.log(response.data)
         setCards(response.data);
         setIsLoader(false);
       } catch (error) {

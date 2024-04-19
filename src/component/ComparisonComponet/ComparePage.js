@@ -18,10 +18,6 @@ const ComparePage = () => {
     const queryParams = new URLSearchParams(location.search)
     const {t}=useTranslation()
 
-    useEffect(()=>{
-        console.log("From Ru")
-    },[])
-
     useEffect(() => {
         let manufacturersParams = queryParams.get('manufacturers')
         manufacturersParams = JSON.parse(decodeURIComponent(manufacturersParams))

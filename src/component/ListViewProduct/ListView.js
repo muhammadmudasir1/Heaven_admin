@@ -26,8 +26,8 @@ const ListView = ({ Cards, isLoading }) => {
 
     const cardPrint = (Cards, index) => {
         return (
-            <>
-                <div
+            <div key={index}> 
+                <div 
                     onClick={(e) => {
                         const name = Cards.product_name.replaceAll(' ', '-')
                         navigation(`/testberichte/${name}/${Cards.Id}`);
@@ -77,16 +77,16 @@ const ListView = ({ Cards, isLoading }) => {
                                     const name = Cards.product_name.replaceAll(' ', '-')
                                     navigation(`/testberichte/${name}/${Cards.Id}`);
                                 }}
-                                className="underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal"
+                                className=" flex items-center pb-6 underline decoration-cyan-500 underline-offset-8 decoration-4 text-neutral-700 text-xl font-normal"
                             >
                                 {t('Readmore')}
-                            </p>
                             <MdKeyboardDoubleArrowRight size={25} />
+                            </p>
                         </div>
                     </div>
                 </div>
                 {width < 600 && (index + 1) % 3 === 0 && <div key={``} className=" h-[50px] bg-red-300 mb-4" />}
-            </>
+            </div>
         );
     }
 

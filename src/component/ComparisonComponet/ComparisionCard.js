@@ -135,7 +135,6 @@ const ComparisionCard = ({ card, selectedcards, handleCheckboxChange, handleCoup
     const { width } = useWindowDimensions()
     const {t}=useTranslation()
     useEffect(() => {
-        console.log(card)
         // eslint-disable-next-line array-callback-return
         let purchaselink = card.purchaseLinks.map((element) => {
             if (element.coupon) {

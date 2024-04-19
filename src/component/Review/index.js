@@ -51,7 +51,6 @@ const SingleReview = () => {
             try {
                 setIsloading(true)
                 const result = await Api.get(`/api/products/${id}`)
-                // console.log("abc")
                 if (!result){
                     navigate('/NotFound')
                 }
@@ -148,8 +147,9 @@ const SingleReview = () => {
 
                 </div>
                 <div className='w-full' id='alle'>
-                    <h1 class="hidden overflow-hidden w-full py-8 bg-zinc-100 lg:flex items-center px-20 text-neutral-800 text-[32px] font-semibold">
+                    <h1 className="hidden overflow-hidden w-full py-8 bg-zinc-100 lg:flex items-center px-20 text-neutral-800 text-[32px] font-semibold">
                         {t("coreData")}</h1>
+
                 </div>
                 <div className='w-full overflow-hidden flex justify-between lg:pr-8 pr-0'>
                     {
@@ -251,11 +251,8 @@ const SingleReview = () => {
                                             <Swiper
                                                 spaceBetween={1}
                                                 modules={[A11y, Navigation]}
-                                                // width && navigation
                                                 navigation={width>600?true:false}
                                                 slidesPerView={width>600?4:1}
-                                                onSwiper={(swiper) => console.log(swiper)}
-                                                arr
                                             >
                                                 {images.map((picture) => {
                                                     return <SwiperSlide key={picture.id}>

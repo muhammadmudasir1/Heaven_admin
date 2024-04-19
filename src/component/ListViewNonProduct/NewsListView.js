@@ -27,7 +27,6 @@ const NewsListView = () => {
         const fetchData = async () => {
             try {
                 const response = await Api.get(`/api/news`);
-                console.log(response.data);
                 setCards(response.data)
                 setIsLoader(false);
             } catch (error) {

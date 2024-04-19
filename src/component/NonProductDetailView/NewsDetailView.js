@@ -26,7 +26,8 @@ const NewsDetailView = () => {
 
     return (
       
-        <BaseView data={data} isLoading={isLoading}/>
+        data && <BaseView data={data} isLoading={isLoading}/>
+      
     )
   }
 

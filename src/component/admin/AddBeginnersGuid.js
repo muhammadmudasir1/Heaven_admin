@@ -2,7 +2,6 @@ import React from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { ImCross } from "react-icons/im";
-import TextEditor from "./TextEditor"
 import Api from "../../api/Api"
 import { useNavigate, useParams } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -331,7 +330,6 @@ const AddBeginnersGuid = () => {
             <section className='w-full mt-2 h-[480px] overflow-y-auto'>
                 <label>Body:</label>
                 <EditableEditor text={blog} setText={setBlog}/>
-                {/* <TextEditor text={blog} setText={setBlog} className="h-full" /> */}
             </section>
 
             
