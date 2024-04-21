@@ -25,24 +25,6 @@ function MyOnChangePlugin(props) {
   return null;
 }
 
-function UpdatePlugin({update}){
-    const [editor] = useLexicalComposerContext();
-    const Update = (data)=>{
-        // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        editor.update(()=>{
-            const selection = $getSelection();
-            if(selection){
-                selection.insertText("data")
-            }
-        })
-    }
-    
-    useEffect(()=>{
-        // console.log(Update)
-        update(Update)
-    },[])
-    return <div></div>
-}
 
 export default function NonEditableEditor({text }) {
     const [update,setUpdate] = useState(null);
