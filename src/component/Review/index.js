@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect,startTransition } from 'react'
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet'
@@ -50,6 +50,7 @@ const SingleReview = () => {
         const fetchData = async () => {
             try {
                 setIsloading(true)
+
                 const result = await Api.get(`/api/products/${id}`)
                 if (!result){
                     navigate('/NotFound')
@@ -78,34 +79,37 @@ const SingleReview = () => {
                         return false
                     }
                 })
-                setScopeOfDeliveryMainImage(SOD_images[0])
-                setScopeOfDeliveryImages(SOD_images)
-                setScopeOfDeliveryDescription(result.data.scope_of_delivery_discription)
-                setImages(apiImages)
-                setMainImage(apiImages[0])
-                setDiscription(result.data.discription)
-                setProductName(result.data.product_name)
-                setCustomerService(result.data.customer_service_rating)
-                setPrice(result.data.price_rating)
-                setProcessing(result.data.processing_rating)
-                setSoftware(result.data.software_rating)
-                setInnovation(result.data.software_rating)
-                setOverall(result.data.overall_rating)
-                setTitle(result.data.product_title)
-                setProductType(result.data.productType)
-                if (result.data.productType === 1) {
-                    setSpecs(result.data.SLA)
+                startTransition(() =>{
 
-                }
-                if (result.data.productType === 2) {
-                    setSpecs(result.data.FDM)
-                }
-                if (result.data.productType === 3) {
-                    setSpecs(result.data.LeaserCutter)
-                }
-                if (result.data.productType === 4) {
-                    setSpecs(result.data.scanner)
-                }
+                    setScopeOfDeliveryMainImage(SOD_images[0])
+                    setScopeOfDeliveryImages(SOD_images)
+                    setScopeOfDeliveryDescription(result.data.scope_of_delivery_discription)
+                    setImages(apiImages)
+                    setMainImage(apiImages[0])
+                    setDiscription(result.data.discription)
+                    setProductName(result.data.product_name)
+                    setCustomerService(result.data.customer_service_rating)
+                    setPrice(result.data.price_rating)
+                    setProcessing(result.data.processing_rating)
+                    setSoftware(result.data.software_rating)
+                    setInnovation(result.data.software_rating)
+                    setOverall(result.data.overall_rating)
+                    setTitle(result.data.product_title)
+                    setProductType(result.data.productType)
+                    if (result.data.productType === 1) {
+                        setSpecs(result.data.SLA)
+    
+                    }
+                    if (result.data.productType === 2) {
+                        setSpecs(result.data.FDM)
+                    }
+                    if (result.data.productType === 3) {
+                        setSpecs(result.data.LeaserCutter)
+                    }
+                    if (result.data.productType === 4) {
+                        setSpecs(result.data.scanner)
+                    }
+                })
                 setIsloading(false)
 
             } catch (error) {

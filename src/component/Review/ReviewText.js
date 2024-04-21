@@ -2,7 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
-import NoneEditableEditor from '../Editor/NonEditableEditor'
+const NoneEditableEditor = React.lazy(() => import('../Editor/NonEditableEditor'));
+// import NoneEditableEditor from '../Editor/NonEditableEditor'
 
 const Review = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
