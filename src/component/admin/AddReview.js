@@ -6,8 +6,10 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
-import EditableEditor from '../Editor/EditableEditor'
-import ListEditableEditor from '../Editor/ListEditableEditor';
+// import EditableEditor from '../Editor/EditableEditor'
+// import ListEditableEditor from '../Editor/ListEditableEditor';
+import EditorJodit from "../EditorJodit"
+import ListEditor from '../EditorJodit/ListEditor';
 
 
 
@@ -69,6 +71,7 @@ const AddReview = () => {
 
         try {
             const data = { pros, cons, review, seoKeys }
+            // console.log(review)
             setIsLoading(true)
             await Api.post(`/api/products/review/${id}`, data, config)
             setIsLoading(false)
@@ -164,7 +167,8 @@ const AddReview = () => {
                         <h2 className='w-full mb-2'>Pros:</h2>
                         <div className='w-full h-40 mb-6 '>
                             {showEditor &&
-                                <ListEditableEditor text={pros} setText={setPros} />
+                            <ListEditor text={pros} setText={setPros}/>
+                                // <ListEditableEditor text={pros} setText={setPros} />
                             } 
                         </div>
 
@@ -173,7 +177,7 @@ const AddReview = () => {
                         <h2 className='w-full mb-2'>Cons:</h2>
                         <div className='w-full h-40 mb-6 '>
                             {showEditor &&
-                                <ListEditableEditor text={cons} setText={setCons} />
+                            <ListEditor text={cons} setText={setCons}/>
                             }
                         </div>
 
@@ -195,7 +199,13 @@ const AddReview = () => {
                 </div>
                 <div className='mt-5 '>
                     {review && showEditor &&
-                        <EditableEditor text={review} setText={setReview} />
+                    <>
+                        <ul>
+                            <li> a</li>
+                        </ul>
+                        <EditorJodit text={review} setText={setReview}/>
+                    </>
+                        // <EditableEditor text={review} setText={setReview} />
                     }  <div className=' list-decimal hidden'/>
                 </div>
 

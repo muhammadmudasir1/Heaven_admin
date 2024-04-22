@@ -1,32 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Tabbar from '../Landingpage/Tabbar'
-import NonEditableEditor from '../Editor/NonEditableEditor'
+import Editor from "../EditorJodit"
 import { Helmet } from 'react-helmet'
 
 const BaseView = ({ data, isLoading }) => {
     const [body,setBody]=useState("")
     useEffect(() => {
         if (data.body) {
-            const jsonData = JSON.parse(data.body)
-            jsonData.root.children.forEach(element => {
-                if (element.type = "paragraph") {
-                    element.children.forEach((item) => {
-                        if (item.type == "image") {
-                            const itemWidth = item.width
-                            const itemHeight = item.height
-                            const newWidth = window.screen.availWidth - 80
-                            const ratio = itemWidth / itemHeight
-                            const newHeight = newWidth / ratio
-                            console.log(ratio)
-                            console.log(window.screen.availWidth)
-                            item.width = newWidth
-                            item.height = newHeight
-                        }
-                    })
-                }
-            })
-            const strReview = JSON.stringify(jsonData)
-            setBody(strReview)
+            
+            setBody(data.body)
         }
     }, [])
     return (
@@ -58,8 +40,9 @@ const BaseView = ({ data, isLoading }) => {
                             <img src={`/api/${data.image}`} className='w-full' />
                             <h1 className=' text-4xl py-2 font-bold'>{data.Title}</h1>
                             {body &&
-                            
-                            <NonEditableEditor text={body} />
+                            <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: body }} />
+                            // < text={body} />
+                            // <NonEditableEditor text={body} />
                             }
 
                         </>

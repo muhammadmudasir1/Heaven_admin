@@ -47,9 +47,9 @@ const TutorialListView = () => {
         <link rel="canonical" href="https://www.3dheaven.de/ratgaber" />
       </Helmet>
       <Tabbar/>
-      <div className='px-16 bg-[#00CED1] py-4'>
-        <h1 className=' text-3xl font-bold text-white'>{title}</h1>
-        <p className='text-white'>{description}</p>
+      <div className='px-16 bg-[#F2F4F3] py-4'>
+        <h1 className=' text-3xl font-bold '>{title}</h1>
+        <p className=''>{description}</p>
       </div>
 
       <ListView Cards={Cards} isLoading={isLoader} isNews={false}/>

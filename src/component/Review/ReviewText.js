@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
 // const NoneEditableEditor = React.lazy(() => import('../Editor/NonEditableEditor'));
-import NoneEditableEditor from '../Editor/NonEditableEditor'
+// import NoneEditableEditor from '../Editor/NonEditableEditor'
 
-const Review = () => {
+const ReviewText = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
     const { id } = useParams()
     const [data, setData] = useState("")
@@ -18,31 +18,11 @@ const Review = () => {
                 setIsLoading(true)
                 const result = await Api.get(`/api/products/review/${id}`)
                 if (result.data[0] && result.data[0].review) {
-                    const jsonData = JSON.parse(result.data[0].review)
-                    jsonData.root.children.forEach(element => {
-                        if (element.type = "paragraph") {
-                            element.children.forEach((item) => {
-                                if (item.type == "image") {
-                                    // console.log(item)
-                                    const itemWidth = item.width
-                                    const itemHeight = item.height
-                                    const newWidth = window.screen.availWidth - 80
-                                    const ratio = itemWidth / itemHeight
-                                    const newHeight = newWidth / ratio
-                                    console.log(ratio)
-                                    console.log(window.screen.availWidth)
-                                    item.width = newWidth
-                                    item.height = newHeight
-                                }
-                            })
-                        }
-                    })
-                    const strReview = JSON.stringify(jsonData)
-                    // console.log(strReview)
-                    setReview(strReview)
+                    setReview(result.data[0].review)
                 }
                 setData(result.data[0])
                 setIsLoading(false)
+                console.log("abc")
             } catch (error) {
                 setIsLoading(false)
                 console.log(error)
@@ -83,10 +63,7 @@ const Review = () => {
                         :
                         <>
                             <div className='hidden' dangerouslySetInnerHTML={{ __html: data.seoKeys }} />
-                            {/* <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data.review }} /> */}
-                            {
-                                review &&
-                                <NoneEditableEditor text={review} />}
+                            <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: review }} />
                         </>
                     }
                 </div>
@@ -98,4 +75,4 @@ const Review = () => {
     }
 }
 
-export default Review
+export default ReviewText

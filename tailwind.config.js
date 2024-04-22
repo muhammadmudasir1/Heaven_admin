@@ -1,4 +1,7 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: ["./src/**/**/*.{html,js}"],
   theme: {
@@ -16,6 +19,11 @@ module.exports = {
     },
   },
   plugins: [
+    plugin(function({ addBase, theme }) {
+      addBase({
+        'ul': { listStyle: 'disc' },
+      })
+    })
   ]
 }
 

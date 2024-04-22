@@ -45,7 +45,7 @@ const LaserCutterListView = () => {
                 <meta name='description' content={description} />
                 <link rel="canonical" href="https://www.3dheaven.de/product/cutter" />
             </Helmet>
-            <div className='px-16 bg-[#00CED1] py-4'>
+            <div className='px-16 bg-[#02AED6] py-4'>
                 <h1 className=' text-3xl font-bold text-white'>{title}</h1>
                 <p className='text-white'>{description}</p>
             </div>

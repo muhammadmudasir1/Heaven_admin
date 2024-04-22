@@ -41,6 +41,10 @@ const NewsListView = React.lazy(() => import('./component/ListViewNonProduct/New
 const Review = React.lazy(() => import('./component/Review'));
 const NewsDetailView = React.lazy(() => import('./component/NonProductDetailView/NewsDetailView'));
 const TutorialDetailView = React.lazy(() => import('./component/NonProductDetailView/TutorialDetailView'));
+// const CompareResult = React.lazy(() => import('./component/CompareResult'));
+
+
+// import CompareResult from './component/CompareResult';
 // import ComparePage from "./component/ComparisonComponet/ComparePage"
 // import Home from "./component/Home"
 // import Navigationbar from "./component/Landingpage/Navigationbar"

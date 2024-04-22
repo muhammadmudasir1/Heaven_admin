@@ -50,17 +50,21 @@ const NewsLetter = () => {
   },[])
 
   const copyEmails=()=>{
-    const strEmail=emails.map((email)=>{
-      return email.email
-    }).reduce((prev,email)=>{
-      return `${prev},${email}`
-    })
-    buttonRef.current.classList.add('animate-ping')
-    console.log(buttonRef)
-    navigator.clipboard.writeText(strEmail)
-    setTimeout(()=>{
-      buttonRef.current.classList.remove('animate-ping')
-    },[50])
+    try {
+      const strEmail=emails.map((email)=>{
+        return email.email
+      }).reduce((prev,email)=>{
+        return `${prev},${email}`
+      })
+      buttonRef.current.classList.add('animate-ping')
+      navigator.clipboard.writeText(strEmail)
+      setTimeout(()=>{
+        buttonRef.current.classList.remove('animate-ping')
+      },[50])
+      
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 

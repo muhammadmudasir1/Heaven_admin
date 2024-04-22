@@ -8,7 +8,8 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
-import EditableEditor from '../Editor/EditableEditor';
+// import EditableEditor from '../Editor/EditableEditor';
+import Editor from "../EditorJodit"
 
 const AddNews = () => {
     const [images, setImages] = useState([])
@@ -245,8 +246,34 @@ const AddNews = () => {
         } 
         {
         !isLoading &&
-        <div className=' h-full flex flex-col p-6 absolute'>
-            <h2 className='w-full text-2xl font-semibold'>Add Tutorial</h2>
+        <div className='h-full flex flex-col p-6 '>
+            <div className='flex items-center'>
+
+            <h2 className='text-2xl font-semibold'>Add Tutorial</h2>
+            <span className=' mx-10'>
+            {/* {
+                id?
+                <button className='px-4 py-2 bg-customBlue hover:bg-sky-500 rounded-md text-white'>Save</button>
+            } */}
+            {
+                id ?
+                    <button
+                        className=' px-4 py-2 bg-customBlue hover:bg-sky-500 rounded-md text-white'
+                        onClick={(e) => {
+                            updateNews()
+                        }}
+                    >Update</button>
+                    :
+                    <button
+                        className=' px-4 py-2 bg-customBlue hover:bg-sky-500 rounded-md text-white'
+                        onClick={(e) => {
+                            SaveNews()
+                        }}
+                    >Save</button>
+
+            }
+            </span>
+            </div>
             <div className='w-full flex-grow  overflow-y-auto'>
 
             
@@ -336,9 +363,13 @@ const AddNews = () => {
             </section>
             </div>
 
-            <section className='w-full mt-2 h-[480px] overflow-y-auto'>
+            <section className=' mt-2 h-[480px] overflow-y-auto'>
                 <label>Body:</label>
-                <EditableEditor text={blog} setText={setBlog}/>
+                <div className='w-full bg-red-400 overflow-x-auto'>
+
+                <Editor text={blog} setText={setBlog}/>
+                </div>
+                {/* <EditableEditor text={blog} setText={setBlog}/> */}
             </section>
 
             
@@ -352,7 +383,7 @@ const AddNews = () => {
                 </div>
             }
             </div>
-            <div className='w-full flex justify-end pt-2'>
+            {/* <div className='w-full flex justify-end pt-2'>
                 {
                     id ?
                         <button
@@ -370,7 +401,7 @@ const AddNews = () => {
                         >Save</button>
 
                 }
-            </div>
+            </div> */}
         </div>
         }
         </>

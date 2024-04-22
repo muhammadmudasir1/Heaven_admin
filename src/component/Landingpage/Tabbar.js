@@ -58,7 +58,7 @@ const Tabbar = () => {
     <div className={isDesktop ? ` bg-white shadow-md shadow-slate-300 w-full cursor-pointer relative ${isSticky && location.pathname !== "/comparision" ? 'fixednav w-full top-[8vh] lg:top-[10vh] z-20' : ''}` : 'hidden'}>
       {isDesktop ? (
         <div className='w-full h-full flex items-center'>
-          <ul className='flex justify-evenly items-center gap-x-6  w-full relative'>
+          <ul className='flex m-0 justify-evenly items-center gap-x-6  w-full relative'>
             <NavLink
               to={'/'}
               className='z-10 relative py-4 px-4 flex items-center text-neutral-800

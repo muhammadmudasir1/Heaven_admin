@@ -70,7 +70,11 @@ const ProsAndCons = () => {
                             {isToggled ? <FaCaretUp fontSize='large' /> : <FaCaretDown fontSize='large' />}
                         </div>
                     </div>
-                    {isToggled && <NonEditableEditor text={pros}/>}
+                    {isToggled &&
+                        <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: pros }} />
+                        // <NonEditableEditor text={pros}
+                        // />
+                    }
                 </div>
             }
             {
@@ -84,7 +88,10 @@ const ProsAndCons = () => {
                             {isToggledCons ? <FaCaretUp fontSize='large' /> : <FaCaretDown fontSize='large' />}
                         </div>
                     </div>
-                    {isToggledCons && <NonEditableEditor text={cons}/>}
+                    {isToggledCons && 
+                        <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: cons }} />
+                        // <NonEditableEditor text={cons}/>
+                    }
                 </div>
             }
         </div>

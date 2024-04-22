@@ -25,6 +25,7 @@ const ListView = ({ Cards, isLoading }) => {
     };
 
     const cardPrint = (Cards, index) => {
+        console.log(Cards.ProductImages[0])
         return (
             <div key={index}> 
                 <div 

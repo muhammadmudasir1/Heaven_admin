@@ -8,7 +8,8 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
-import EditableEditor from '../Editor/EditableEditor';
+// import EditableEditor from '../Editor/EditableEditor';
+import Editor from '../EditorJodit'
 
 
 const AddBeginnersGuid = () => {
@@ -222,7 +223,7 @@ const AddBeginnersGuid = () => {
 
     return (
         <>
-        {
+         {
             isLoading &&
             <div className='h-full absolute w-full flex justify-center items-center z-[9999]'>
                 <div className='w-full h-full absolute top-0  bg-gray-200 opacity-60' />
@@ -233,11 +234,37 @@ const AddBeginnersGuid = () => {
                 />
 
             </div>
-        }
+        } 
         {
         !isLoading &&
-        <div className=' h-full flex flex-col p-6 absolute'>
-            <h2 className='w-full text-2xl font-semibold'>Add Tutorial</h2>
+        <div className='h-full flex flex-col p-6 '>
+            <div className='flex items-center'>
+
+            <h2 className='text-2xl font-semibold'>Add Tutorial</h2>
+            <span className=' mx-10'>
+            {/* {
+                id?
+                <button className='px-4 py-2 bg-customBlue hover:bg-sky-500 rounded-md text-white'>Save</button>
+            } */}
+            {
+                id ?
+                    <button
+                        className=' px-4 py-2 bg-customBlue hover:bg-sky-500 rounded-md text-white'
+                        onClick={(e) => {
+                            updateBeginnersGuid()
+                        }}
+                    >Update</button>
+                    :
+                    <button
+                        className=' px-4 py-2 bg-customBlue hover:bg-sky-500 rounded-md text-white'
+                        onClick={(e) => {
+                            SaveBeginnersGuid()
+                        }}
+                    >Save</button>
+
+            }
+            </span>
+            </div>
             <div className='w-full flex-grow  overflow-y-auto'>
 
             
@@ -327,9 +354,13 @@ const AddBeginnersGuid = () => {
             </section>
             </div>
 
-            <section className='w-full mt-2 h-[480px] overflow-y-auto'>
+            <section className=' mt-2 h-[480px] overflow-y-auto'>
                 <label>Body:</label>
-                <EditableEditor text={blog} setText={setBlog}/>
+                <div className='w-full bg-red-400 overflow-x-auto'>
+
+                <Editor text={blog} setText={setBlog}/>
+                </div>
+                {/* <EditableEditor text={blog} setText={setBlog}/> */}
             </section>
 
             
@@ -343,25 +374,25 @@ const AddBeginnersGuid = () => {
                 </div>
             }
             </div>
-            <div className='w-full flex justify-end pt-2'>
+            {/* <div className='w-full flex justify-end pt-2'>
                 {
                     id ?
                         <button
                             className=' bg-customBlue px-4 py-2 text-white hover:bg-sky-400 rounded-md'
                             onClick={(e) => {
-                                updateBeginnersGuid()
+                                updateNews()
                             }}
                         >Update</button>
                         :
                         <button
                             className=' bg-customBlue px-4 py-2 text-white hover:bg-sky-400 rounded-md'
                             onClick={(e) => {
-                                SaveBeginnersGuid()
+                                SaveNews()
                             }}
                         >Save</button>
 
                 }
-            </div>
+            </div> */}
         </div>
         }
         </>
