@@ -25,9 +25,8 @@ const StickyComparisonBar = (setIsSticky) => {
   }, [setIsSticky]);
 };
 
-const ComparisionTabbar = () => {
+const ComparisionTabbar = ({productType,setProductType}) => {
   const { width } = useWindowDimensions();
-  const [productType, setProductType] = useState(1);
   const { t } = useTranslation();
 
   return width > 600 ? (
@@ -98,6 +97,7 @@ const ComparisionTabbar = () => {
     </select>
   );
 };
+
 const CompareScrollandAdd = ({ reload }) => {
   const [cards, setCards] = useState([]);
   const [cardPerPage] = useState(5);
@@ -112,7 +112,7 @@ const CompareScrollandAdd = ({ reload }) => {
   const [coupons, setCoupons] = useState([]);
   const { width } = useWindowDimensions();
   const { t } = useTranslation();
-  const [productType] = useState(1);
+  const [productType, setProductType] = useState(1);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -135,6 +135,7 @@ const CompareScrollandAdd = ({ reload }) => {
     }
 
     const fetchData = async () => {
+      console.log("Reloaded")
       setSelectedCards([]);
       setIsloading(true);
       setCards([]);
@@ -217,7 +218,8 @@ const CompareScrollandAdd = ({ reload }) => {
 
   return (
     <>
-      {width > 600 ? ComparisionTabbar() : ComparisionTabbar()}
+
+       <ComparisionTabbar setProductType={setProductType} productType={productType}/>
 
       <div className="mb-12">
         <div className="p-5 flex h-full ">
