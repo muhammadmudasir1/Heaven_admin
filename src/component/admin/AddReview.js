@@ -6,8 +6,6 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
-// import EditableEditor from '../Editor/EditableEditor'
-// import ListEditableEditor from '../Editor/ListEditableEditor';
 import EditorJodit from "../EditorJodit"
 import ListEditor from '../EditorJodit/ListEditor';
 
@@ -168,7 +166,6 @@ const AddReview = () => {
                         <div className='w-full h-40 mb-6 '>
                             {showEditor &&
                             <ListEditor text={pros} setText={setPros}/>
-                                // <ListEditableEditor text={pros} setText={setPros} />
                             } 
                         </div>
 
@@ -205,7 +202,6 @@ const AddReview = () => {
                         </ul>
                         <EditorJodit text={review} setText={setReview}/>
                     </>
-                        // <EditableEditor text={review} setText={setReview} />
                     }  <div className=' list-decimal hidden'/>
                 </div>
 

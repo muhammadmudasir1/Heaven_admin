@@ -8,7 +8,6 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { FaCheck } from "react-icons/fa";
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
-// import EditableEditor from '../Editor/EditableEditor';
 import Editor from '../EditorJodit'
 
 
@@ -360,7 +359,6 @@ const AddBeginnersGuid = () => {
 
                 <Editor text={blog} setText={setBlog}/>
                 </div>
-                {/* <EditableEditor text={blog} setText={setBlog}/> */}
             </section>
 
             
@@ -374,25 +372,6 @@ const AddBeginnersGuid = () => {
                 </div>
             }
             </div>
-            {/* <div className='w-full flex justify-end pt-2'>
-                {
-                    id ?
-                        <button
-                            className=' bg-customBlue px-4 py-2 text-white hover:bg-sky-400 rounded-md'
-                            onClick={(e) => {
-                                updateNews()
-                            }}
-                        >Update</button>
-                        :
-                        <button
-                            className=' bg-customBlue px-4 py-2 text-white hover:bg-sky-400 rounded-md'
-                            onClick={(e) => {
-                                SaveNews()
-                            }}
-                        >Save</button>
-
-                }
-            </div> */}
         </div>
         }
         </>

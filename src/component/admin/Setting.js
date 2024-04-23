@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RxCaretUp,RxCaretDown } from "react-icons/rx";
-import EditableEditor from '../Editor/EditableEditor';
 import Editor from '../EditorJodit/index'
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';

@@ -21,13 +21,9 @@ const DataPrivacy = () => {
       return (
       <>
           <Tabbar />
-          {/* <div> */}
           {data.length > 0 &&
           <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html:data[0].review }} />
-        // <NonEditableEditor text={data[0].review}/> 
          } 
-
-          {/* </div> */}
         </>
       );
   }

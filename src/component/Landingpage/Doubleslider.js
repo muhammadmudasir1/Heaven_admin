@@ -69,7 +69,7 @@ const Doubleslider = () => {
   }, [width]);
 
   return (
-    <div className="lg:flex lg:justify-between">
+    <div className=" lg:pl-8 lg:flex lg:justify-between">
       <div className="flex-col lg:w-3/4">
         <div className="lg:grow lg:relative my-8">
           <div className=" flex justify-center items-center">

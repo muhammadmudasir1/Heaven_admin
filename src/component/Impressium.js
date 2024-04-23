@@ -23,7 +23,6 @@ const Impressium = () => {
       <div>
         {data &&
         <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data[0].review }} />
-        // <NonEditableEditor text={data[0].review}/> 
          } 
       </div>
     </>

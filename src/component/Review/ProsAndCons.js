@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { FaCaretDown,FaCaretUp } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import Api from '../../api/Api';
-import NonEditableEditor from '../Editor/NonEditableEditor';
 
 
 const ProsAndCons = () => {
@@ -72,8 +71,6 @@ const ProsAndCons = () => {
                     </div>
                     {isToggled &&
                         <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: pros }} />
-                        // <NonEditableEditor text={pros}
-                        // />
                     }
                 </div>
             }
@@ -90,7 +87,6 @@ const ProsAndCons = () => {
                     </div>
                     {isToggledCons && 
                         <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: cons }} />
-                        // <NonEditableEditor text={cons}/>
                     }
                 </div>
             }

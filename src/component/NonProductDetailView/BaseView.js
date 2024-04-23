@@ -41,8 +41,6 @@ const BaseView = ({ data, isLoading }) => {
                             <h1 className=' text-4xl py-2 font-bold'>{data.Title}</h1>
                             {body &&
                             <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: body }} />
-                            // < text={body} />
-                            // <NonEditableEditor text={body} />
                             }
 
                         </>
