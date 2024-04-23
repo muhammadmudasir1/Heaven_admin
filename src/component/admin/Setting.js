@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RxCaretUp,RxCaretDown } from "react-icons/rx";
 import EditableEditor from '../Editor/EditableEditor';
+import Editor from '../EditorJodit/index'
 import { useAuth } from '../../context/AuthContext';
 import useRefresh from '../../hooks/useRefresh';
 import Api from '../../api/Api';
@@ -960,7 +961,7 @@ const Imprint=()=>{
                     <div className='w-full relative h-[350px]'>
                         <div className='w-full h-[300px]'>
                             {showEditor &&
-                            <EditableEditor text={text} setText={setText} className="h-[300px]"  />
+                            <Editor text={text} setText={setText} className="h-[300px]"  />
                             }
                         </div>
                     </div>
@@ -1057,7 +1058,7 @@ const DataPolicy=()=>{
                     <div className='w-full relative h-[350px]'>
                         <div className='w-full h-[300px]'>
 
-                        <EditableEditor text={text} setText={setText} className="h-[300px]"/>
+                        <Editor text={text} setText={setText} className="h-[300px]"/>
                         </div>
                     </div>
                     <div className=' w-full flex flex-row-reverse px-2 '>

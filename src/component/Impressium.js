@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Api from "../api/Api";
 import Tabbar from "./Landingpage/Tabbar";
-import NonEditableEditor from "./Editor/NonEditableEditor";
 
 const Impressium = () => {
   const [data, setData] = useState(null);
@@ -23,7 +22,8 @@ const Impressium = () => {
       <Tabbar />
       <div>
         {data &&
-        <NonEditableEditor text={data[0].review}/> 
+        <div className='py-10 px-2 w-full' dangerouslySetInnerHTML={{ __html: data[0].review }} />
+        // <NonEditableEditor text={data[0].review}/> 
          } 
       </div>
     </>

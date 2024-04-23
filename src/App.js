@@ -34,7 +34,7 @@ const FdmListView = React.lazy(() => import('./component/ListViewProduct/FdmList
 const SlaListView = React.lazy(() => import('./component/ListViewProduct/SlaListView'));
 const LaserCutterListView = React.lazy(() => import('./component/ListViewProduct/LaserCutterListView'));
 const ScannarListView = React.lazy(() => import('./component/ListViewProduct/ScannarListView'));
-const FilamentListView = React.lazy(() => import('./component/ListViewProduct/ScannarListView'));
+const FilamentListView = React.lazy(() => import('./component/ListViewProduct/FilamentListView'));
 const SearchListView = React.lazy(() => import('./component/ListViewProduct/SearchListView'));
 const TutorialListView = React.lazy(() => import('./component/ListViewNonProduct/TutorialListView'));
 const NewsListView = React.lazy(() => import('./component/ListViewNonProduct/NewsListView'));
