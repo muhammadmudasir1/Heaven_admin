@@ -33,7 +33,7 @@ const ComparisionTabbar = ({productType,setProductType}) => {
     <ul className="flex pmb-5 items-center justify-center ">
       <div className="flex w-3/4 justify-around text-xl h-full">
         <li
-          className={`py-3 cursor-pointer px-2 ${
+          className={`py-3 cursor-pointer px-2 list-none ${
             productType == 1 && "active"
           }`}
           onClick={(e) => {
@@ -43,7 +43,7 @@ const ComparisionTabbar = ({productType,setProductType}) => {
           <p>{t("SLA")}</p>
         </li>
         <li
-          className={`py-3 cursor-pointer px-2 ${
+          className={`py-3 cursor-pointer px-2 list-none ${
             productType == 2 && "active"
           }`}
           onClick={(e) => {
@@ -53,7 +53,7 @@ const ComparisionTabbar = ({productType,setProductType}) => {
           <p>{t("fdm")}</p>
         </li>
         <li
-          className={`py-3 cursor-pointer px-2 ${
+          className={`py-3 cursor-pointer px-2 list-none ${
             productType == 3 && "active"
           }`}
           onClick={(e) => {
@@ -63,7 +63,7 @@ const ComparisionTabbar = ({productType,setProductType}) => {
           <p>{t("laserCutter")}</p>
         </li>
         <li
-          className={`py-3 cursor-pointer px-2 ${
+          className={`py-3 cursor-pointer px-2 list-none ${
             productType == 4 && "active"
           }`}
           onClick={(e) => {
@@ -262,7 +262,7 @@ const CompareScrollandAdd = ({ reload }) => {
             </div>
           </div>
           <div
-            className="lg:min-w-[200px] lg:max-h-[600px] hidden"
+            className={`${width>600? "lg:min-w-[200px] lg:max-h-[600px]": "hidden"}`}
             style={{
               boxShadow:
                 "-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgb(203,213,225,0.5)",

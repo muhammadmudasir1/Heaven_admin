@@ -55,7 +55,7 @@ const Tabbar = () => {
   }, [location])
 
   return (
-    <div className={isDesktop ? ` bg-white shadow-md shadow-slate-300 w-full cursor-pointer relative ${isSticky && location.pathname !== "/comparision" ? 'fixednav w-full top-[8vh] lg:top-[10vh] z-20' : ''}` : 'hidden'}>
+    <div className={isDesktop ? ` bg-white shadow-md shadow-slate-300 w-full cursor-pointer relative ${isSticky && location.pathname !== "/comparision" ? 'fixednav w-full top-[8vh] lg:top-[10vh] z-30' : ''}` : 'hidden'}>
       {isDesktop ? (
         <div className='w-full h-full flex items-center'>
           <ul className='flex m-0 justify-evenly items-center gap-x-6  w-full relative'>
