@@ -25,7 +25,7 @@ const StickyComparisonBar = (setIsSticky) => {
   }, [setIsSticky]);
 };
 
-const ComparisionTabbar = ({productType,setProductType}) => {
+const ComparisionTabbar = ({ productType, setProductType }) => {
   const { width } = useWindowDimensions();
   const { t } = useTranslation();
 
@@ -33,9 +33,8 @@ const ComparisionTabbar = ({productType,setProductType}) => {
     <ul className="flex pmb-5 items-center justify-center ">
       <div className="flex w-3/4 justify-around text-xl h-full">
         <li
-          className={`py-3 cursor-pointer px-2 list-none ${
-            productType == 1 && "active"
-          }`}
+          className={`py-3 cursor-pointer px-2 list-none ${productType == 1 && "active"
+            }`}
           onClick={(e) => {
             setProductType(1);
           }}
@@ -43,9 +42,8 @@ const ComparisionTabbar = ({productType,setProductType}) => {
           <p>{t("SLA")}</p>
         </li>
         <li
-          className={`py-3 cursor-pointer px-2 list-none ${
-            productType == 2 && "active"
-          }`}
+          className={`py-3 cursor-pointer px-2 list-none ${productType == 2 && "active"
+            }`}
           onClick={(e) => {
             setProductType(2);
           }}
@@ -53,9 +51,8 @@ const ComparisionTabbar = ({productType,setProductType}) => {
           <p>{t("fdm")}</p>
         </li>
         <li
-          className={`py-3 cursor-pointer px-2 list-none ${
-            productType == 3 && "active"
-          }`}
+          className={`py-3 cursor-pointer px-2 list-none ${productType == 3 && "active"
+            }`}
           onClick={(e) => {
             setProductType(3);
           }}
@@ -63,9 +60,8 @@ const ComparisionTabbar = ({productType,setProductType}) => {
           <p>{t("laserCutter")}</p>
         </li>
         <li
-          className={`py-3 cursor-pointer px-2 list-none ${
-            productType == 4 && "active"
-          }`}
+          className={`py-3 cursor-pointer px-2 list-none ${productType == 4 && "active"
+            }`}
           onClick={(e) => {
             setProductType(4);
           }}
@@ -113,6 +109,29 @@ const CompareScrollandAdd = ({ reload }) => {
   const { width } = useWindowDimensions();
   const { t } = useTranslation();
   const [productType, setProductType] = useState(1);
+  const [email, setEmail] = useState("");
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  const checkEmail = (email) => {
+    const regularExpression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regularExpression.test(email);
+  };
+  const emailApi = async () => {
+    if (checkEmail(email)) {
+      try {
+        const response = await Api.post("/api/setting/addNewsLetters", email);
+        console.log(response.data);
+        setEmail("");
+        alert("News Letter Subscribe");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      alert("Enter Correct Email");
+    }
+  };
+
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -219,7 +238,7 @@ const CompareScrollandAdd = ({ reload }) => {
   return (
     <>
 
-       <ComparisionTabbar setProductType={setProductType} productType={productType}/>
+      <ComparisionTabbar setProductType={setProductType} productType={productType} />
 
       <div className="mb-12">
         <div className="p-5 flex h-full ">
@@ -261,20 +280,56 @@ const CompareScrollandAdd = ({ reload }) => {
               />
             </div>
           </div>
-          <div
-            className={`${width>600? "lg:min-w-[200px] lg:max-h-[600px]": "hidden"}`}
-            style={{
-              boxShadow:
-                "-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgb(203,213,225,0.5)",
-            }}
-          />
+          <div className="flex flex-col">
+            <div
+              className={`${width > 600 ? "lg:min-w-[200px] lg:min-h-[600px]" : "hidden"}`}
+              style={{
+                boxShadow:
+                  "-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgb(203,213,225,0.5)",
+              }}
+            />
+            <div className="order-3o flex items-center justify-center py-8">
+              <div
+                className="flex flex-col items-center justify-center 
+                        bg-[#035091] 
+                        px-2 
+                        w-[240px] 
+                        py-4
+                        rounded-xl
+                        py-20"
+              >
+                <h1 className="text-2xl font-bold text-white pb-12 text-center">
+                  Subscribe to <br /> NewsLetter{" "}
+                </h1>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  placeholder="Your email address"
+                  className="
+                            mb-4 mx-2 w-full py-4 
+                            border-t-transparent 
+                            border-x-transparent 
+                            border-b-white 
+                            border-b-2 px-4
+                            bg-transparent outline-none
+                            text-xl text-white font-normal items-center"
+                />
+                <button
+                  className="bg-[#00CED1] rounded-2xl py-4 w-full text-lg font-semibold"
+                  onClick={emailApi}
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       {selectedCards.length > 0 && selectedCards.length <= 4 && (
         <div
-          className={`bg-black bg-opacity-40 z-10 w-full flex items-center py-4 px-8 mt-2 fixed bottom-0 ${
-            isSticky ? "sticky w-full z-20" : ""
-          } `}
+          className={`bg-black bg-opacity-40 z-10 w-full flex items-center py-4 px-8 mt-2 fixed bottom-0 ${isSticky ? "sticky w-full z-20" : ""
+            } `}
         >
           {width > 600 ? (
             <>

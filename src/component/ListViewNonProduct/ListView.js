@@ -1,16 +1,39 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import LoadingCard from '../LoadingCard';
 import PaginationClass from '../ComparisonComponet/PaginationClass';
 import { useNavigate } from 'react-router-dom';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { useTranslation } from 'react-i18next';
+import Api from "../../api/Api";
 
-const ListView = ({ Cards, isLoading ,isNews}) => {
+
+const ListView = ({ Cards, isLoading, isNews }) => {
     const [CardPerPage, setCardPerPage] = useState(5);
     const [CurrentPage, setCurrentPage] = useState(1);
     const { width } = useWindowDimensions()
-    const navigation=useNavigate()
-    const { t } = useTranslation()
+    const navigation = useNavigate()
+    const [email, setEmail] = useState("");
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+    const checkEmail = (email) => {
+        const regularExpression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regularExpression.test(email);
+    };
+    const emailApi = async () => {
+        if (checkEmail(email)) {
+            try {
+                const response = await Api.post("/api/setting/addNewsLetters", email);
+                console.log(response.data);
+                setEmail("");
+                alert("News Letter Subscribe");
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            alert("Enter Correct Email");
+        }
+    };
 
     const indexOfLastCard = CurrentPage * CardPerPage;
     const indexOfFirstCard = indexOfLastCard - CardPerPage;
@@ -28,11 +51,11 @@ const ListView = ({ Cards, isLoading ,isNews}) => {
                 <div
                     onClick={(e) => {
                         const name = Cards.Title.replaceAll(' ', '-')
-                        if(isNews){
+                        if (isNews) {
 
                             navigation(`/news/${name}/${Cards.newsId}`)
                         }
-                        else{
+                        else {
                             navigation(`/ratgaber/${name}/${Cards.guidId}`)
 
                         }
@@ -54,11 +77,11 @@ const ListView = ({ Cards, isLoading ,isNews}) => {
                         <h1 className="text-neutral-800 lg:text-3xl text-xl font-semibold py-4 lg:text-left text-center px-4 lg:px-0 ">
                             {Cards.Title}
                         </h1>
-                        
+
                         <p className="lg:pb-4 text-neutral-700 lg:text-xl text-base px-4 lg:px-2 lg:text-left text-center font-light lg:line-clamp-none line-clamp-3 ">
                             {Cards.description && Cards.description}
                         </p>
-                        
+
                     </div>
                 </div>
                 {width < 600 && (index + 1) % 3 === 0 && <div key={``} className=" h-[50px] bg-red-300 mb-4" />}
@@ -88,11 +111,49 @@ const ListView = ({ Cards, isLoading ,isNews}) => {
                     }
                 </div>
 
-                <div className="lg:block hidden lg:bg-white h-[600px] max-h-[600px] min-w-[200px] lg:shadow-lg lg:shadow-slate-600"
-                    style={{
-                        boxShadow:
-                            "-8px 0 15px rgba(203, 213, 225, 0.3), 0 8px 15px rgba(203, 213, 225, 0.3)",
-                    }} />
+                <div>
+                    <div className="lg:block hidden lg:bg-white h-[600px] min-h-[600px] min-w-[200px] lg:shadow-lg lg:shadow-slate-600"
+                        style={{
+                            boxShadow:
+                                "-8px 0 15px rgba(203, 213, 225, 0.3), 0 8px 15px rgba(203, 213, 225, 0.3)",
+                        }} />
+
+                    <div className="order-3o flex items-center justify-center py-8">
+                        <div
+                            className="flex flex-col items-center justify-center 
+                        bg-[#035091] 
+                        px-2 
+                        w-[240px] 
+                        py-4
+                        rounded-xl
+                        py-20"
+                        >
+                            <h1 className="text-2xl font-bold text-white pb-12 text-center">
+                                Subscribe to <br /> NewsLetter{" "}
+                            </h1>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={handleEmailChange}
+                                placeholder="Your email address"
+                                className="
+                            mb-4 mx-2 w-full py-4 
+                            border-t-transparent 
+                            border-x-transparent 
+                            border-b-white 
+                            border-b-2 px-4
+                            bg-transparent outline-none
+                            text-xl text-white font-normal items-center"
+                            />
+                            <button
+                                className="bg-[#00CED1] rounded-2xl py-4 w-full text-lg font-semibold"
+                                onClick={emailApi}
+                            >
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 

@@ -21,6 +21,28 @@ const Doubleslider = () => {
   const [SLAproducts, setSLAproducts] = useState([])
   const { t } = useTranslation()
   const navigate = useNavigate()
+    const [email, setEmail] = useState("");
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+    const checkEmail = (email) => {
+        const regularExpression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regularExpression.test(email);
+    };
+    const emailApi = async () => {
+        if (checkEmail(email)) {
+            try {
+                const response = await Api.post("/api/setting/addNewsLetters", email);
+                console.log(response.data);
+                setEmail("");
+                alert("News Letter Subscribe");
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            alert("Enter Correct Email");
+        }
+    };
   const handleSwiperSLA = (swiper) => {
     setSwiperInstanceSLA(swiper);
   };
@@ -99,7 +121,7 @@ const Doubleslider = () => {
                 }}
                 className=" p-5"
               >
-                {FDMproducts.map((FDMproduct,index) => (
+                {FDMproducts.map((FDMproduct, index) => (
                   <SwiperSlide key={index} className="relative my-3">
                     <div
                       className="rounded-xl  flex flex-col items-start  bg-white/95 h-[400px] cursor-pointer"
@@ -112,18 +134,18 @@ const Doubleslider = () => {
                         navigate(`/testberichte/${name}/${FDMproduct.Id}`);
                       }}
                     >
-                       <div className=" w-full h-52 overflow-hidden"
+                      <div className=" w-full h-52 overflow-hidden"
                       >
                         <LazyLoad>
-                        <img className="h-full"
-                        src={`/api/${FDMproduct.ProductImages[0].path}`}
-                        alt={FDMproduct.ProductImages[0].altText}
-                        title={FDMproduct.ProductImages[0].altText}
-                        />
+                          <img className="h-full"
+                            src={`/api/${FDMproduct.ProductImages[0].path}`}
+                            alt={FDMproduct.ProductImages[0].altText}
+                            title={FDMproduct.ProductImages[0].altText}
+                          />
                         </LazyLoad>
 
                       </div>
-                      
+
                       <h2 className="pt-8 px-6 font-bold line-clamp-1">{FDMproduct.product_name}</h2>
                       <p className=" pt-4 px-6 line-clamp-4">
                         {FDMproduct.discription}
@@ -192,11 +214,11 @@ const Doubleslider = () => {
                       >
                         <LazyLoad>
 
-                        <img className="h-full"
-                        src={`/api/${SLAproduct.ProductImages[0].path}`}
-                        alt={SLAproduct.ProductImages[0].altText}
-                        title={SLAproduct.ProductImages[0].altText}
-                        />
+                          <img className="h-full"
+                            src={`/api/${SLAproduct.ProductImages[0].path}`}
+                            alt={SLAproduct.ProductImages[0].altText}
+                            title={SLAproduct.ProductImages[0].altText}
+                          />
                         </LazyLoad>
 
                       </div>
@@ -224,7 +246,44 @@ const Doubleslider = () => {
           )}
         </div>
       </div>
-      <div className="lg:min-w-[200px] lg:max-h-[600px] lg:mx-8 lg:bg-white-950/95 lg:mt-8" style={{ boxShadow: "-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)", }}></div>
+      <div className="flex flex-col">
+        <div className="lg:min-w-[200px] lg:min-h-[600px] lg:mx-8 lg:bg-white-950/95 lg:mt-8" style={{ boxShadow: "-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)", }}></div>
+        <div className="order-3o flex items-center justify-center py-8">
+          <div
+            className="flex flex-col items-center justify-center 
+                        bg-[#035091] 
+                        px-2 
+                        w-[240px] 
+                        py-4
+                        rounded-xl
+                        py-20"
+          >
+            <h1 className="text-2xl font-bold text-white pb-12 text-center">
+              Subscribe to <br /> NewsLetter{" "}
+            </h1>
+            <input
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              placeholder="Your email address"
+              className="
+                            mb-4 mx-2 w-full py-4 
+                            border-t-transparent 
+                            border-x-transparent 
+                            border-b-white 
+                            border-b-2 px-4
+                            bg-transparent outline-none
+                            text-xl text-white font-normal items-center"
+            />
+            <button
+              className="bg-[#00CED1] rounded-2xl py-4 w-full text-lg font-semibold"
+              onClick={emailApi}
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
 
     </div>
 
