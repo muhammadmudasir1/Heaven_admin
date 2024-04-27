@@ -280,33 +280,26 @@ const CompareScrollandAdd = ({ reload }) => {
               />
             </div>
           </div>
-          <div className="flex flex-col">
-            <div
-              className={`${width > 600 ? "lg:min-w-[200px] lg:min-h-[600px]" : "hidden"}`}
-              style={{
-                boxShadow:
-                  "-8px 0 15px rgba(203,213,225,0.5), 0 8px 15px rgb(203,213,225,0.5)",
-              }}
-            />
-            <div className="order-3o flex items-center justify-center py-8">
-              <div
-                className="flex flex-col items-center justify-center 
-                        bg-[#035091] 
-                        px-2 
-                        w-[240px] 
-                        py-4
-                        rounded-xl
-                        py-20"
-              >
-                <h1 className="text-2xl font-bold text-white pb-12 text-center">
-                  Subscribe to <br /> NewsLetter{" "}
-                </h1>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  placeholder="Your email address"
-                  className="
+          <div
+          className="lg:block hidden lg:bg-white mr-8"
+          
+        >
+          <div className="h-[600px] max-h-[600px] min-w-[200px] mb-8" style={{
+            boxShadow:
+              "-8px 0 15px rgba(203, 213, 225, 0.3), 0 8px 15px rgba(203, 213, 225, 0.3)",
+          }}/>
+          <div
+            className="flex flex-col items-center justify-center bg-[#035091] px-2 w-[240px] py-4 rounded-xl"
+          >
+            <h1 className="text-2xl font-bold text-white pb-12 text-center">
+              Subscribe to <br /> NewsLetter{" "}
+            </h1>
+            <input
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              placeholder="Your email address"
+              className="
                             mb-4 mx-2 w-full py-4 
                             border-t-transparent 
                             border-x-transparent 
@@ -314,16 +307,15 @@ const CompareScrollandAdd = ({ reload }) => {
                             border-b-2 px-4
                             bg-transparent outline-none
                             text-xl text-white font-normal items-center"
-                />
-                <button
-                  className="bg-[#00CED1] rounded-2xl py-4 w-full text-lg font-semibold"
-                  onClick={emailApi}
-                >
-                  Subscribe
-                </button>
-              </div>
-            </div>
+            />
+            <button
+              className="bg-[#00CED1] rounded-2xl py-4 w-full text-lg font-semibold"
+              onClick={emailApi}
+            >
+              Subscribe
+            </button>
           </div>
+        </div>
         </div>
       </div>
       {selectedCards.length > 0 && selectedCards.length <= 4 && (

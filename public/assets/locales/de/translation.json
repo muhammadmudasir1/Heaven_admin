@@ -128,5 +128,11 @@
     "Beginner’s_guide": "Leitfaden",
     "purchaseLinks": "Preisvergleich",
     "affiliateLinks": "Affiliate-Links",
-    "review": "Testbericht"
+    "review": "Testbericht",
+    "cookie_bannar_text":"Wenn Sie auf 'Akzeptieren' klicken, verarbeiten wir und Drittanbieter Ihre personenbezogenen Daten und speichern Informationen (z.B. durch Cookies) auf Ihrem Gerät. Ihre Einwilligung umfasst gem. Art. 49 Abs. 1 lit. a DSGVO auch die Übermittlung in Drittländer, bspw. in die USA. Datenschutzerklärung",
+    "cookie_bannar_heading":"Wir verwenden Kekse",
+    "accept":"Akzeptieren",
+    "reject":"Ablehnen",
+    "affiliate_text":"3DHeaven wird ermöglicht durch Affiliate-Marketing. Bei allen mit 🛒/*-markierten Links erhält 3DHeaven eine Vergütung, d.h. Provisionen, Zahlungen, Produkte. Als Amazon-Partner verdient 3DHeaven an qualifizierten Verkäufen Geld."
+
 }

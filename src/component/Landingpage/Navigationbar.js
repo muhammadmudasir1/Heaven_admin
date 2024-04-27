@@ -183,13 +183,13 @@ const Navigationbar = () => {
                                     }} />
                                 }
                                 <ul className='gap-8 flex lg:flex-row flex-col items-center justify-center h-screen w-full '>
-                                    <li className='z-20 text-black hover:underline'>
+                                    <li className=' list-none z-20 text-black hover:underline'>
                                         <NavLink to={'/'} onClick={closeDashboard} className={'text-xl font-normal'}>{t('HomePage')}</NavLink>
                                     </li>
-                                    <li className='z-20 text-black'>
+                                    <li className=' list-none z-20 text-black'>
                                         <Link to={'/#topFive'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('Bestlist')}</Link>
                                     </li>
-                                    <li className='z-20 text-black relative w-full flex justify-center'>
+                                    <li className=' list-none z-20 text-black relative w-full flex justify-center'>
                                         <p onClick={(e) => {
                                             handlePrinterDropDown()
                                         }} className='flex text-xl text-center '>{t('3dprinters')}
@@ -198,10 +198,10 @@ const Navigationbar = () => {
                                         {dropDownOpen && (
                                             <div className='absolute right-0 top-0 bg-white py-2 px-4 z-30'>
                                                 <ul>
-                                                    <li>
+                                                    <li className='list-none'>
                                                         <NavLink to='/product/fdm' onClick={closeDashboard} className={`z-30`}>{t('fdm')}</NavLink>
                                                     </li>
-                                                    <li>
+                                                    <li className='list-none'>
                                                         <NavLink onClick={closeDashboard} to='/product/sla' className={`z-30`}>{t('SLA')}</NavLink>
                                                     </li>
                                                 </ul>
@@ -209,19 +209,19 @@ const Navigationbar = () => {
                                         )}
                                     </li>
 
-                                    <li className='z-20 text-black'>
+                                    <li className=' list-none z-20 text-black'>
                                         <NavLink to={'/product/cutter'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('laserCutter')}</NavLink>
                                     </li>
-                                    <li className='z-20 text-black'>
+                                    <li className=' list-none z-20 text-black'>
                                         <NavLink to={'/product/scanner'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('3DScanners')}</NavLink>
                                     </li>
-                                    <li className='z-20 text-black'>
+                                    <li className=' list-none z-20 text-black'>
                                         <NavLink to={'/product/filament'} className={'text-xl font-normal'} onClick={closeDashboard}>{t('Filament')}</NavLink>
                                     </li>
-                                    <li className='z-20 text-black'>
+                                    <li className=' list-none z-20 text-black'>
                                         <NavLink to={'/ratgaber'} className={'text-xl font-normal'} onClick={closeDashboard}>Tutorials</NavLink>
                                     </li>
-                                    <li className='z-20 text-black'>
+                                    <li className='list-none z-20 text-black'>
                                         <NavLink to={'/news'} onClick={closeDashboard} className={'text-xl font-normal'}>News</NavLink>
                                     </li>
                                 </ul>

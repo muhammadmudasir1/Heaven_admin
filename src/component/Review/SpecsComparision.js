@@ -396,7 +396,7 @@ const FDMVarient = ({ specs }) => {
                             : <div />
                     }
                 </div>
-                <div className='relative h-[1700px] w-full'>
+                <div className='relative h-[1800px] w-full'>
                     <div className='absolute w-full h-8  '>
                         {
                             specs.length > 1 &&
@@ -452,7 +452,7 @@ const FDMVarient = ({ specs }) => {
                                             {
                                                 specs.length > 1 &&
                                                 <div className='h-16 mb-2'>
-                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
+                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full w-full' />
                                                 </div>
                                             }
                                             <div className='bg-white shadow-lg'>
@@ -483,7 +483,7 @@ const FDMVarient = ({ specs }) => {
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.printRoomCamera}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.LEDLighting ? "YES" : "NO"}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.motherboard}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
+                                                <div className='h-4 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -681,6 +681,7 @@ const SLAVarient = ({ specs }) => {
                 </div>
             </div>
             :
+            // <></>
             <div className='mx-2 relative'>
                 <h1 className='flex items-center justify-center text-2xl font-bold py-8'>Product Comparison</h1>
                 <div className='flex items-center justify-end mx-2  mb-4'>
@@ -760,8 +761,8 @@ const SLAVarient = ({ specs }) => {
                                         <div className='bg-white'>
                                             {
                                                 specs.length > 1 &&
-                                                <div className='mb-2'>
-                                                    <img src={`/api/${items.thumbnail}`} alt="" className='w-full' />
+                                                <div className='mb-2 h-16'>
+                                                    <img src={`/api/${items.thumbnail}`} alt="" className=' w-full h-full ' />
                                                 </div>
                                             }
                                             <div className='bg-white shadow-lg'>
@@ -778,7 +779,7 @@ const SLAVarient = ({ specs }) => {
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.airPurificationSystem}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.interface}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.extras}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
+                                                <div className='h-4 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -1020,7 +1021,7 @@ const LaserVarient = ({ specs }) => {
                             : <div />
                     }
                 </div>
-                <div className='relative h-[1000px] w-full'>
+                <div className='relative h-[850px] w-full'>
                     <div className='absolute w-full h-8 '>
                         {
                             specs.length > 1 &&
@@ -1061,7 +1062,7 @@ const LaserVarient = ({ specs }) => {
                                             {
                                                 specs.length > 1 &&
                                                 <div className='h-16 mb-2'>
-                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
+                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full w-full' />
                                                 </div>
                                             }
                                             <div className='bg-white shadow-lg'>
@@ -1077,7 +1078,7 @@ const LaserVarient = ({ specs }) => {
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.possibleEngravingMaterials}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.possibleCuttingThicknesses}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.securityFeatures}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
+                                                <div className='h-4 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -1297,7 +1298,7 @@ const ScannarVarient = ({ specs }) => {
                             : <div />
                     }
                 </div>
-                <div className='relative h-[700px] w-full'>
+                <div className='relative h-[750px] w-full'>
                     <div className='absolute w-full h-8 '>
                         {
                             specs.length > 1 &&
@@ -1337,7 +1338,7 @@ const ScannarVarient = ({ specs }) => {
                                             {
                                                 specs.length > 1 &&
                                                 <div className='h-16 mb-2'>
-                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full ' />
+                                                    <img src={`/api/${items.thumbnail}`} alt="" className='h-full w-full ' />
                                                 </div>
                                             }
                                             <div className='bg-white shadow-lg'>
@@ -1352,7 +1353,7 @@ const ScannarVarient = ({ specs }) => {
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.lightSource}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.portableBattery}</div>
                                                 <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'>{items.accesories}</div>
-                                                <div className='h-14 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
+                                                <div className='h-4 mb-2 line-clamp-2 text-sm flex justify-center items-center text-center'></div>
                                             </div>
                                         </div>
                                     </SwiperSlide>

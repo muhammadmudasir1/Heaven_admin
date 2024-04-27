@@ -6,6 +6,7 @@ import { CiStar } from "react-icons/ci";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { useTranslation } from "react-i18next";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import Api from "../../api/Api";
 import LazyLoad from "react-lazyload";
 
 const ListView = ({ Cards, isLoading }) => {
@@ -14,6 +15,7 @@ const ListView = ({ Cards, isLoading }) => {
   const { width } = useWindowDimensions();
   const navigation = useNavigate();
   const { t } = useTranslation();
+  const [email, setEmail] = useState("");
 
   const indexOfLastCard = CurrentPage * CardPerPage;
   const indexOfFirstCard = indexOfLastCard - CardPerPage;
@@ -21,6 +23,28 @@ const ListView = ({ Cards, isLoading }) => {
 
   const handlePageChange = (PageNumber) => {
     setCurrentPage(PageNumber);
+  };
+  const checkEmail = (email) => {
+    const regularExpression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regularExpression.test(email);
+  };
+  const emailApi = async () => {
+    if (checkEmail(email)) {
+      try {
+        const response = await Api.post("/api/setting/addNewsLetters", email);
+        console.log(response.data);
+        setEmail("");
+        alert("News Letter Subscribe");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      alert("Enter Correct Email");
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const cardPrint = (Cards, index) => {
@@ -114,12 +138,41 @@ const ListView = ({ Cards, isLoading }) => {
         </div>
 
         <div
-          className="lg:block hidden lg:bg-white h-[600px] max-h-[600px] min-w-[200px] lg:shadow-lg lg:shadow-slate-600"
-          style={{
+          className="lg:block hidden lg:bg-white "
+          
+        >
+          <div className="h-[600px] max-h-[600px] min-w-[200px] mb-8" style={{
             boxShadow:
               "-8px 0 15px rgba(203, 213, 225, 0.3), 0 8px 15px rgba(203, 213, 225, 0.3)",
-          }}
-        />
+          }}/>
+          <div
+            className="flex flex-col items-center justify-center bg-[#035091] px-2 w-[240px] py-4 rounded-xl"
+          >
+            <h1 className="text-2xl font-bold text-white pb-12 text-center">
+              Subscribe to <br /> NewsLetter{" "}
+            </h1>
+            <input
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              placeholder="Your email address"
+              className="
+                            mb-4 mx-2 w-full py-4 
+                            border-t-transparent 
+                            border-x-transparent 
+                            border-b-white 
+                            border-b-2 px-4
+                            bg-transparent outline-none
+                            text-xl text-white font-normal items-center"
+            />
+            <button
+              className="bg-[#00CED1] rounded-2xl py-4 w-full text-lg font-semibold"
+              onClick={emailApi}
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="lg:flex hidden w-full  justify-center ">

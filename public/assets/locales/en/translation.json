@@ -128,5 +128,10 @@
     "Beginner’s_guide": "Beginner’s guide",
     "purchaseLinks": "Purchase Links",
     "review": "Review",
-    "affiliateLinks": "Affiliate Links"
+    "affiliateLinks": "Affiliate Links",
+    "cookie_bannar_text":" If you click on 'Accept', we and third-party providers will process your personal data and store information (e.g. through cookies) on your device. In accordance with Art. 49 para. 1 lit. a GDPR, your consent also includes the transfer to third countries, e.g. the USA. Data protection declaration",
+    "cookie_bannar_heading":"We use cookies",
+    "accept":"Accept",
+    "reject":"Reject",
+    "affiliate_text":"3DHeaven is made possible by affiliate marketing. For all links marked with 🛒/*, 3DHeaven receives compensation, i.e. commissions, payments, products. As an Amazon partner, 3DHeaven earns money from qualified sales."
 }

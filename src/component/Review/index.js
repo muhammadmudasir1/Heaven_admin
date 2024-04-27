@@ -143,7 +143,7 @@ const SingleReview = () => {
             </div>
             <ReviewTabbar />
             <div className='flex-col '>
-                <div className=' lg:w-2/3 p-4'>
+                <div className='p-4'>
                     {
                         productType === 3 &&
                         <WarningBannar />
@@ -342,6 +342,9 @@ const SingleReview = () => {
                                         </div>
                                     </div>
 
+                                </div>
+                                <div className='py-8 lg:px-0 px-4 text-center'>
+                                    {t('affiliate_text')}
                                 </div>
                                 <PropertyCards specs={specs} productType={productType} />
                                 <ProsAndCons />

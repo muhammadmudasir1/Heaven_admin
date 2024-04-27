@@ -21,28 +21,28 @@ const Doubleslider = () => {
   const [SLAproducts, setSLAproducts] = useState([])
   const { t } = useTranslation()
   const navigate = useNavigate()
-    const [email, setEmail] = useState("");
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-    const checkEmail = (email) => {
-        const regularExpression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regularExpression.test(email);
-    };
-    const emailApi = async () => {
-        if (checkEmail(email)) {
-            try {
-                const response = await Api.post("/api/setting/addNewsLetters", email);
-                console.log(response.data);
-                setEmail("");
-                alert("News Letter Subscribe");
-            } catch (error) {
-                console.log(error);
-            }
-        } else {
-            alert("Enter Correct Email");
-        }
-    };
+  const [email, setEmail] = useState("");
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  const checkEmail = (email) => {
+    const regularExpression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regularExpression.test(email);
+  };
+  const emailApi = async () => {
+    if (checkEmail(email)) {
+      try {
+        const response = await Api.post("/api/setting/addNewsLetters", email);
+        console.log(response.data);
+        setEmail("");
+        alert("News Letter Subscribe");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      alert("Enter Correct Email");
+    }
+  };
   const handleSwiperSLA = (swiper) => {
     setSwiperInstanceSLA(swiper);
   };
@@ -91,7 +91,7 @@ const Doubleslider = () => {
   }, [width]);
 
   return (
-    <div className=" lg:pl-8 lg:flex lg:justify-between">
+    <div className="px-4 lg:px-8 lg:flex lg:justify-between">
       <div className="flex-col lg:w-3/4">
         <div className="lg:grow lg:relative my-8">
           <div className=" flex justify-center items-center">
@@ -246,17 +246,16 @@ const Doubleslider = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col">
-        <div className="lg:min-w-[200px] lg:min-h-[600px] lg:mx-8 lg:bg-white-950/95 lg:mt-8" style={{ boxShadow: "-8px 0 15px rgb(203 213 225), 0 8px 15px rgb(203 213 225)", }}></div>
-        <div className="order-3o flex items-center justify-center py-8">
+      <div
+          className="lg:block hidden lg:bg-white mr-8"
+          
+        >
+          <div className="h-[600px] max-h-[600px] min-w-[200px] mb-8" style={{
+            boxShadow:
+              "-8px 0 15px rgba(203, 213, 225, 0.3), 0 8px 15px rgba(203, 213, 225, 0.3)",
+          }}/>
           <div
-            className="flex flex-col items-center justify-center 
-                        bg-[#035091] 
-                        px-2 
-                        w-[240px] 
-                        py-4
-                        rounded-xl
-                        py-20"
+            className="flex flex-col items-center justify-center bg-[#035091] px-2 w-[240px] py-4 rounded-xl"
           >
             <h1 className="text-2xl font-bold text-white pb-12 text-center">
               Subscribe to <br /> NewsLetter{" "}
@@ -283,7 +282,6 @@ const Doubleslider = () => {
             </button>
           </div>
         </div>
-      </div>
 
     </div>
 
